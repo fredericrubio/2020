@@ -1,0 +1,68 @@
+# Prerequisites
+*.d
+
+# Mac OS created folders through NetBeans
+.AppleDouble
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Raspbian Section
+libraspicam.so.0.1
+
+# NetBeans Section
+Server/dist/
+
+# Mac OS Section
+.DS_Store
+
+# XCode section
+DerivedData/
+
+# Compiled Dynamic libraries
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+/ComLib/build/
+/ComLib/dist/
+/ComLib/.dep.inc
+/DataLib/build/
+/DataLib/dist/
+/Server/build/
+/Server/.dep.inc
+/DataLib/.dep.inc
+/CameraLib/build/
+/CameraLib/dist/
+/CameraLib/.dep.inc
+/UtilsLib/build/
+/UtilsLib/dist/
+/UtilsLib/.dep.inc
+/UtilsLib/build/
+/UtilsLib/dist/
+/HEM_Server/build/
+/HEM_Server/dist/
+/IMG_Server/dist/
+/IMG_Server/build/
+/HEM_Client/build/
+/HEM_Client/dist/

@@ -11,6 +11,8 @@
 		B5228D90224FF7CB00CE4CD3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5228D8F224FF7CB00CE4CD3 /* main.cpp */; };
 		B5228D97224FF90900CE4CD3 /* NHOSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5228D95224FF90900CE4CD3 /* NHOSensor.cpp */; };
 		B5228D98224FF90900CE4CD3 /* NHOSensor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5228D96224FF90900CE4CD3 /* NHOSensor.hpp */; };
+		B5228D9B2253F11000CE4CD3 /* NHOCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5228D992253F11000CE4CD3 /* NHOCamera.cpp */; };
+		B5228D9C2253F11000CE4CD3 /* NHOCamera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5228D9A2253F11000CE4CD3 /* NHOCamera.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +44,8 @@
 		B5228D8F224FF7CB00CE4CD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B5228D95224FF90900CE4CD3 /* NHOSensor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOSensor.cpp; sourceTree = "<group>"; };
 		B5228D96224FF90900CE4CD3 /* NHOSensor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSensor.hpp; sourceTree = "<group>"; };
+		B5228D992253F11000CE4CD3 /* NHOCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCamera.cpp; sourceTree = "<group>"; };
+		B5228D9A2253F11000CE4CD3 /* NHOCamera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOCamera.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 		B5228D93224FF8B200CE4CD3 /* Inc */ = {
 			isa = PBXGroup;
 			children = (
+				B5228D9A2253F11000CE4CD3 /* NHOCamera.hpp */,
 				B5228D96224FF90900CE4CD3 /* NHOSensor.hpp */,
 			);
 			path = Inc;
@@ -149,6 +154,7 @@
 		B5228D94224FF8B700CE4CD3 /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B5228D992253F11000CE4CD3 /* NHOCamera.cpp */,
 				B5228D95224FF90900CE4CD3 /* NHOSensor.cpp */,
 			);
 			path = Src;
@@ -162,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5228D98224FF90900CE4CD3 /* NHOSensor.hpp in Headers */,
+				B5228D9C2253F11000CE4CD3 /* NHOCamera.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5228D9B2253F11000CE4CD3 /* NHOCamera.cpp in Sources */,
 				B5228D97224FF90900CE4CD3 /* NHOSensor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

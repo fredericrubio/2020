@@ -15,11 +15,19 @@ class NHOSensor {
     // instance variables
     
 public:
-    // <#member functions#>
+    /**
+     * Constructor
+     **/
     public NHOSensor();
     
+    /**
+     * Acquire data from sensor
+     **/
     public bool acquire() = 0;
     
+    /**
+     * Process acquired data.
+     **/
     public bool process() = 0;
 };
 

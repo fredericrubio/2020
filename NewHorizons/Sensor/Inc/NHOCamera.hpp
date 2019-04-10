@@ -9,7 +9,13 @@
 #ifndef NHOCamera_hpp
 #define NHOCamera_hpp
 
-class NHOCamera {
+#include "NHOSensor.hpp"
+#ifdef _RASPBIAN
+// Raspberry OS
+#include "raspicam.h"
+#endif
+
+class NHOCamera : public NHOSensor{
     
     /**
      * Attributes
@@ -19,6 +25,48 @@ public:
     /**
      * Constructor
      **/
-    public NHOCamera();
+    NHOCamera();
+    
+    /**
+     *
+     **/
+    virtual NHOCamera();
+    
+    /**
+     * Acquire data from sensor
+     **/
+    bool acquire();
+    
+    /**
+     * Process acquired data.
+     **/
+    bool process();
+    
+    /**
+     * Stop acquisition
+     **/
+    bool stopAcquisition();
+
+    /**
+     * Stop acquisition
+     **/
+    bool startAcquisition();
+    
+    /**
+     * Initiakize sensor
+     **/
+    bool initialize();
+    
+    /**
+     * True means that the sensor is ready to acquire.
+     **/
+    virtual bool isReady();
+    
+protected:
+    #ifdef _RASPBIAN
+        raspicam::RaspiCam* raspCam;
+    #else
+    #endif
 };
+
 #endif /* NHOCamera_hpp */

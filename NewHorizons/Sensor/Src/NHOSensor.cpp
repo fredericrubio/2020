@@ -8,6 +8,42 @@
 
 #include "NHOSensor.hpp"
 
-public NHOSensor::NHOSensor() {
+NHOSensor::NHOSensor():ready(false) {
     
+}
+
+
+/**
+ * Start acquisition
+ **/
+bool NHOSensor::startAcquisition() {
+    
+    // launch the acquisition thread
+    acquisitionThread = new std::thread(&NHOSensor::acquireThread, std::ref(*this));
+    
+    return true;
+}
+
+/**
+ *
+ **/
+bool NHOSensor::acquireThread() {
+    
+    // never ending loop
+    do {
+        // acquire data
+        acquire();
+        
+        // serialize date
+        data->serialize();
+
+        // send data
+        emitter->send(data);
+        
+        // sleep for a while
+        std::this_thread::sleep_for (std::chrono::milliseconds(period));
+        
+    }
+    while(1);
+    return false;
 }

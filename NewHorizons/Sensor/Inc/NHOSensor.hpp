@@ -9,26 +9,68 @@
 #ifndef Sensor_hpp
 #define Sensor_hpp
 
-#include <stdio.h>
+#include <thread>
+#include "NHOSensorData.hpp"
+#include "NHOEmitter.hpp"
 
 class NHOSensor {
-    // instance variables
     
 public:
     /**
      * Constructor
      **/
-    public NHOSensor();
+    NHOSensor();
+
+    /**
+     *
+     **/
+    virtual NHOSensor();
     
     /**
-     * Acquire data from sensor
+     * Start acquisition
      **/
-    public bool acquire() = 0;
+    virtual bool startAcquisition();
+    
+    /**
+     * Stop acquisition
+     **/
+    virtual bool stopAcquisition() = 0;
     
     /**
      * Process acquired data.
      **/
-    public bool process() = 0;
+    virtual bool process() = 0;
+    
+    /**
+     * Acquire data from sensor
+     **/
+    virtual bool acquire() = 0;
+    
+    /**
+     * Initiakize sensor
+     **/
+    virtual bool initialize() = 0;
+    
+    /**
+     * True means that the sensor is ready to acquire.
+     **/
+    virtual inline bool isReady() {return ready;};
+    
+protected:
+    /**
+     * True: the sensor is ready to acquire
+     **/
+    bool ready;
+    
+    std::thread* acquisitionThread;
+    
+    NHOSensorData* data;
+    
+    NHOEmitter* emitter;
+    
+    /// time elapsed betwween to capture (ms)
+    unsigned short period; 
+    
 };
 
 #endif /* NHOSensor_hpp */

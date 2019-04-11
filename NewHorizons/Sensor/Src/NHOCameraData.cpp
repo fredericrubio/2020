@@ -6,13 +6,40 @@
 //  Copyright © 2019 Frédéric Rubio. All rights reserved.
 //
 
+#include <iostream>
 #include "NHOCameraData.hpp"
 
-#include "NHOSensorData.hpp"
+/**
+ *
+ **/
+NHOCameraData::NHOCameraData() {
+    
+}
 
-public class nameNHOCameraData: public NHOSensorData {
+/**
+ *
+ **/
+const unsigned char* NHOCameraData::getImage(unsigned int* const pSize) {
+    return NULL;
+}
+
+/**
+ *
+ **/
+void NHOCameraData::setImage(unsigned short pWidth, const unsigned short pHeight, const unsigned char*) {
     
-public:
-    NHOCameraData();
-    
-};
+}
+
+/**
+ * Serialize the sensor data in order to be sent.
+ **/
+bool NHOCameraData::serialize() {
+    return true;
+}
+
+/**
+ * Unserialize the sensor data received.
+ **/
+bool NHOCameraData::unserialize() {
+    return true;
+}

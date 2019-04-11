@@ -6,10 +6,17 @@
 //  Copyright © 2019 Frédéric Rubio. All rights reserved.
 //
 
-#include <iostream>
+#include "NHOLOG.hpp"
+
+#include "NHOCamera.hpp"
 
 int main(int argc, const char * argv[]) {
+    
+    NHOCamera*  lCamera = new NHOCamera();
+    
     // insert code here...
-    std::cout << "Hello, World!\n";
+    NHOFILE_LOG(logDEBUG) << "main: start" << std::endl;
+    
     return 0;
+    
 }

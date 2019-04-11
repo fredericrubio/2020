@@ -11,7 +11,7 @@
 
 #include "NHOSensorData.hpp"
 
-public class NHOEmitter {
+class NHOEmitter {
     /**
      * Instance variables
      **/

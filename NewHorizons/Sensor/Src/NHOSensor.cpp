@@ -6,9 +6,15 @@
 //  Copyright © 2019 Frédéric Rubio. All rights reserved.
 //
 
+#include <iostream>
+
 #include "NHOSensor.hpp"
 
-NHOSensor::NHOSensor():ready(false) {
+NHOSensor::NHOSensor():ready(false),
+acquisitionThread(NULL),
+data(NULL),
+parameters(NULL),
+emitter(NULL) {
     
 }
 

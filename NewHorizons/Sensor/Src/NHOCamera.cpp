@@ -8,15 +8,14 @@
 
 #include "NHOCamera.hpp"
 
-NHOCamera::NHOCamera() {
-    
-}
+#include "NHOCameraParameters.hpp"
+#include "NHOCameraData.hpp"
 
-/**
- * Acquire data from sensor
- **/
-bool NHOCamera::acquire() {
-    return true;
+NHOCamera::NHOCamera() {
+
+    data = new NHOCameraData();
+    parameters = new NHOCameraParameters();
+    
 }
 
 /**
@@ -25,7 +24,6 @@ bool NHOCamera::acquire() {
 bool NHOCamera::process() {
     return true;
 }
-
 
 /**
  * Stop acquisition
@@ -54,37 +52,58 @@ bool NHOCamera::initialize() {
 /**
  * True means that the sensor is ready to acquire.
  **/
-virtual bool NHOCamera::isReady() {
+bool NHOCamera::isReady() {
 #ifdef _RASPBIAN
     if (raspCam == NULL) {
-        NHOCamera(logDEBUG) << "NHOCamera::isReady: Camera not initialized" << std::endl;
+        NHOFILE_LOG(logDEBUG) << "NHOCamera::isReady: Camera not initialized" << std::endl;
         return false;
     }
-    return  raspCam->isOpened();
+    ready = raspCam->isOpened();
 #else
-    return ready;
 #endif
+    return ready;
+}
+
+/**
+ * Acquire data from senso
+ **/
+bool NHOCamera::acquire() {
+    bool lCapture = false;
+#ifdef _RASPBIAN
+    lCapture = raspCam->grab();
+    
+    NHOFILE_LOG(logDEBUG) << "NHOCamera::acquire: " << lCapture << std::endl;
+    
+    if (! lCapture) {
+        return lCapture;
+    }
+    
+    unsigned char* lData = NULL;
+    unsigned int lSize = 0;
+    // get the image
+    lSize = raspCam->getImageTypeSize( raspicam::RASPICAM_FORMAT_RGB );
+    if (lSize > 0) {
+        // allocate
+        lData = new unsigned char[*pSize];
+        //extract the image in rgb format
+        raspCam->retrieve(lData, raspicam::RASPICAM_FORMAT_IGNORE );
+        // store date
+        data->setImage(unsigned short pWidth, const unsigend short pHeight, lData);
+    }
+#else
+    // To do
+    // Read an image (rgb) from a file
+#endif
+    return lCapture;
 }
 
 /**
  *
  **/
-bool IMP_Camera::captureImage() {
-    
-    bool lCapture = raspCam->grab();
-    
-#ifdef _DEBUG
-    NHO_FILE_LOG(logDEBUG) << "IMP_Camera::captureImage: " << lCapture << std::endl;
-#endif
-    
-    return lCapture;
-    
-}
-
-/////////////////////////////////
-// Method called by the thread capturging the images.
-// Only one image is available: the latest captured.
-void IMP_Server::captureImage() {
+bool NHOCamera::acquireThread() {
+    /////////////////////////////////
+    // Method called by the thread capturging the images.
+    // Only one image is available: the latest captured.
 #ifdef _RASPBIAN
     unsigned char*  lPixels;
     unsigned int    lSize;
@@ -92,12 +111,10 @@ void IMP_Server::captureImage() {
     std::chrono::time_point<std::chrono::steady_clock> end_time;
     unsigned int lElapsedTime = 0;
     
-    // check whether the camera is opened or not
-    
     do {
         // get time at the begining of the send image process
         start_time = std::chrono::steady_clock::now();
-        if (camera.captureImage() == true) {
+        if (acquire() == true) {
             lPixels = camera.getImage(&lSize);
             if (lSize > 0) {
                 // set image pixels
@@ -129,6 +146,34 @@ void IMP_Server::captureImage() {
     }
     while(1);
 #endif
+    return true;
 }
 
+/*
+ * Getters
+ */
+unsigned int NHOCamera::getWidth() const {
+#ifdef _RASPBIAN
+    if (raspCam == NULL) {
+        NHOFILE_LOG(logDEBUG) << "NHOCamera::getWidth: Camera not initialized" << std::endl;
+        return false;
+    }
+    
+    return raspCam->getWidth();
+#else
+    return -1;
+#endif
+}
 
+unsigned int NHOCamera::getHeight() const {
+#ifdef _RASPBIAN
+    if (raspCam == NULL) {
+        NHO_FILE_LOG(logDEBUG) << "NHOCamera::getHeight: Camera not initialized" << std::endl;
+        return false;
+    }
+    
+    return raspCam->getHeight();
+#else
+    return -1;
+#endif
+}

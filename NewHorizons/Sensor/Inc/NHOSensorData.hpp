@@ -9,7 +9,7 @@
 #ifndef NHOSensorData_hpp
 #define NHOSensorData_hpp
 
-public class NHOSensorData {
+class NHOSensorData {
 protected:
     /**
      *
@@ -31,7 +31,7 @@ public:
      **/
     virtual bool unserialize() = 0;
 
-    inline void setDate(const long long pDate) {date = pDate};
+    inline void setDate(const long long pDate) {date = pDate;};
     inline const long long getDate() const {return date;};
     
 };

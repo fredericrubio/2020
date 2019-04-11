@@ -30,7 +30,7 @@ public:
     /**
      *
      **/
-    virtual NHOCamera();
+    ~NHOCamera();
     
     /**
      * Acquire data from sensor
@@ -47,6 +47,11 @@ public:
      **/
     bool stopAcquisition();
 
+    /**
+     *
+     **/
+    bool acquireThread();
+    
     /**
      * Stop acquisition
      **/
@@ -67,6 +72,9 @@ protected:
         raspicam::RaspiCam* raspCam;
     #else
     #endif
+    
+    unsigned int getWidth() const;
+    unsigned int getHeight() const;
 };
 
 #endif /* NHOCamera_hpp */

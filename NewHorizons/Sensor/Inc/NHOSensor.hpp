@@ -10,8 +10,11 @@
 #define Sensor_hpp
 
 #include <thread>
+#include <mutex>
+
 #include "NHOSensorData.hpp"
 #include "NHOEmitter.hpp"
+#include "NHOSensorParameters.hpp"
 
 class NHOSensor {
     
@@ -24,13 +27,18 @@ public:
     /**
      *
      **/
-    virtual NHOSensor();
+    ~NHOSensor();
     
     /**
      * Start acquisition
      **/
     virtual bool startAcquisition();
     
+    /**
+     *
+     **/
+    virtual bool acquireThread();
+        
     /**
      * Stop acquisition
      **/
@@ -66,10 +74,15 @@ protected:
     
     NHOSensorData* data;
     
+    NHOSensorParameters* parameters;
+    
     NHOEmitter* emitter;
     
     /// time elapsed betwween to capture (ms)
-    unsigned short period; 
+    unsigned short period;
+    
+    /// Mutex
+    std::mutex mutex;
     
 };
 

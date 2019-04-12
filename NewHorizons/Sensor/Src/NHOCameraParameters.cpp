@@ -15,10 +15,3 @@ NHOCameraParameters::NHOCameraParameters() {
     
 }
 
-/**
- * Constructor
- **/
-NHOCameraParameters::NHOCameraParameters(const unsigned pFrequency):
-NHOSensorParameters(pFrequency) {
-    
-}

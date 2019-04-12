@@ -10,34 +10,73 @@
 #define NHOSensorParameters_hpp
 
 class NHOSensorParameters {
-protected:
-    /**
-     * Instance Variables
-     **/
-    unsigned short frequency;
-    
+
 public:
     /**
      * Setters/Getters
      **/
-    inline void setFrequency(const unsigned short pFrequecy) {
-        frequency = pFrequecy;
+    inline void setSamplingReiod(const unsigned short pPeriod) {
+        period = pPeriod;
+    }
+    inline void setEmissionPeriod(const unsigned short pPeriod) {
+        emissionPreriod = pPeriod;
+    };
+    inline void setStoragePeriod(const unsigned short pPeriod) {
+        strorePreriod = pPeriod;
+    };
+    inline void setEmissionPort(const unsigned short pPort) {
+        emissionPort = pPort;
     };
     
-    inline unsigned short gerFrequency() {
-        return frequency;
-    }
-
+    inline void setStorage(const bool pOn) {
+        emittingOn = pOn;
+    };
+    inline void setEmission(const bool pOn) {
+        storingOn = pOn;
+    };
+    
+    inline unsigned short gerPeriod() const {
+        return period;
+    };
+    inline unsigned short gerEmissionPeriod() const {
+        return emissionPreriod;
+    };
+    inline unsigned short storePeriod() const {
+        return strorePreriod;
+    };
+    inline unsigned short getEmissionPort() const {
+        return emissionPort;
+    };
+    
+    inline bool isEmitterOn() const {
+        return emittingOn;
+    };
+    inline bool isStoringOn() const {
+        return storingOn;
+    };
 protected:
+    /// time elapsed betwween to capture (ms)
+    unsigned short period;
+    
+    /**
+     * Emitter configuration parameters
+     **/
+    // Unit: one in 'period' sample is emitted
+    unsigned short emissionPreriod;
+    bool emittingOn;
+    unsigned short emissionPort;
+    
+    /**
+     * Storage configuration parameters
+     **/
+    // Unit: one in 'period' sample is stored
+    unsigned short strorePreriod;
+    bool storingOn;
+    
     /**
      * Constructor
      **/
     NHOSensorParameters();
-    
-    /**
-     * Constructor
-     **/
-    NHOSensorParameters(const unsigned short pFrequecy);
 };
 #endif /* NHOSensorParameters_hpp */
 

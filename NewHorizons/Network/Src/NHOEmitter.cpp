@@ -11,7 +11,11 @@
 /**
  * Member functions
  **/
-NHOEmitter::NHOEmitter() {
+NHOEmitter::NHOEmitter(const unsigned short pPort, const unsigned short pPeriod) {
+    
+    port = pPort;
+    sampling = pPeriod;
+    counter = 0;
     
 }
 
@@ -19,7 +23,12 @@ NHOEmitter::NHOEmitter() {
  *
  **/
 bool NHOEmitter::send(const NHOSensorData* pData) {
-    
+ 
+    counter++;
+    if (counter >= sampling) {
+        counter = 0;
+        // send 
+    }
     return (true);
     
 }

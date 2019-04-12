@@ -11,13 +11,9 @@
 /**
  * Constructor
  **/
-NHOSensorParameters::NHOSensorParameters() {
-    frequency = 0;
+NHOSensorParameters::NHOSensorParameters():
+emissionPreriod(0), emittingOn(false),
+strorePreriod(0), storingOn(false)
+{
 }
 
-/**
- * Constructor
- **/
-NHOSensorParameters::NHOSensorParameters(const unsigned short pFrequency):
-frequency(pFrequency) {
-}

@@ -42,7 +42,7 @@ public:
     /**
      * Stop acquisition
      **/
-    virtual bool stopAcquisition() = 0;
+    virtual bool stopAcquisition();
     
     /**
      * Process acquired data.
@@ -57,7 +57,7 @@ public:
     /**
      * Initiakize sensor
      **/
-    virtual bool initialize() = 0;
+    virtual bool initialize(const NHOSensorParameters* pParameters);
     
     /**
      * True means that the sensor is ready to acquire.
@@ -74,16 +74,12 @@ protected:
     
     NHOSensorData* data;
     
-    NHOSensorParameters* parameters;
+    const NHOSensorParameters* parameters;
     
     NHOEmitter* emitter;
     
-    /// time elapsed betwween to capture (ms)
-    unsigned short period;
-    
     /// Mutex
     std::mutex mutex;
-    
 };
 
 #endif /* NHOSensor_hpp */

@@ -20,11 +20,16 @@ public:
     /**
      * Member functions
      **/
-    NHOEmitter();
+    NHOEmitter(const unsigned short pPort, const unsigned short pPeriod);
     
     /**
-     *
+     * Send the parameter data.
      **/
     virtual bool send(const NHOSensorData* pData);
+protected:
+    unsigned short port;
+    unsigned short sampling;
+    unsigned short counter;
+    
 };
 #endif /* NHOEmitter_hpp */

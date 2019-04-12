@@ -25,6 +25,8 @@
 		B5EBFCAA225E64E10073ABFF /* NHOCameraData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5EBFCA8225E64E10073ABFF /* NHOCameraData.hpp */; };
 		B5EBFCB8225E7F600073ABFF /* NHOEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EBFCB6225E7F600073ABFF /* NHOEmitter.cpp */; };
 		B5EBFCB9225E7F600073ABFF /* NHOEmitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */; };
+		B5EBFCBC226133E00073ABFF /* NHOBroadCastElitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EBFCBA226133E00073ABFF /* NHOBroadCastElitter.cpp */; };
+		B5EBFCBD226133E00073ABFF /* NHOBroadCastElitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5EBFCBB226133E00073ABFF /* NHOBroadCastElitter.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,6 +74,8 @@
 		B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetwork.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EBFCB6225E7F600073ABFF /* NHOEmitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOEmitter.cpp; sourceTree = "<group>"; };
 		B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOEmitter.hpp; sourceTree = "<group>"; };
+		B5EBFCBA226133E00073ABFF /* NHOBroadCastElitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOBroadCastElitter.cpp; sourceTree = "<group>"; };
+		B5EBFCBB226133E00073ABFF /* NHOBroadCastElitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOBroadCastElitter.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +253,7 @@
 		B5EBFCB4225E7F400073ABFF /* Inc */ = {
 			isa = PBXGroup;
 			children = (
+				B5EBFCBB226133E00073ABFF /* NHOBroadCastElitter.hpp */,
 				B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */,
 			);
 			path = Inc;
@@ -257,6 +262,7 @@
 		B5EBFCB5225E7F430073ABFF /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B5EBFCBA226133E00073ABFF /* NHOBroadCastElitter.cpp */,
 				B5EBFCB6225E7F600073ABFF /* NHOEmitter.cpp */,
 			);
 			path = Src;
@@ -290,6 +296,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EBFCBD226133E00073ABFF /* NHOBroadCastElitter.hpp in Headers */,
 				B5EBFCB9225E7F600073ABFF /* NHOEmitter.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EBFCB8225E7F600073ABFF /* NHOEmitter.cpp in Sources */,
+				B5EBFCBC226133E00073ABFF /* NHOBroadCastElitter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

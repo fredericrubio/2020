@@ -9,8 +9,13 @@
 #include <iostream>
 
 #include "NHOSensor.hpp"
+#include "NHOLOG.hpp"
 
-NHOSensor::NHOSensor():ready(false),
+/**
+ * Constructor
+ **/
+NHOSensor::NHOSensor():
+ready(false),
 acquisitionThread(NULL),
 data(NULL),
 parameters(NULL),
@@ -18,11 +23,16 @@ emitter(NULL) {
     
 }
 
-
 /**
  * Start acquisition
  **/
 bool NHOSensor::startAcquisition() {
+    
+    // check the period
+    if (parameters->gerPeriod() == 0) {
+         NHOFILE_LOG(logDEBUG)  << "NHOSensor::startAcquisition: period is zero. Thread not started." << std::endl;
+        return false;
+    }
     
     // launch the acquisition thread
     acquisitionThread = new std::thread(&NHOSensor::acquireThread, std::ref(*this));
@@ -44,12 +54,28 @@ bool NHOSensor::acquireThread() {
         data->serialize();
 
         // send data
-        emitter->send(data);
+        if (parameters->isEmitterOn()) {
+            emitter->send(data);
+        }
         
         // sleep for a while
-        std::this_thread::sleep_for (std::chrono::milliseconds(period));
+        std::this_thread::sleep_for (std::chrono::milliseconds(parameters->gerPeriod()));
         
     }
     while(1);
     return false;
 }
+
+/**
+ * Initiakize sensor
+ **/
+bool NHOSensor::initialize(const NHOSensorParameters* pParameters) {
+    
+    parameters = pParameters;
+    
+    emitter = new NHOEmitter(parameters->getEmissioPort(), parameters->gerEmissionPeriod);
+    
+    return true;
+    
+}
+

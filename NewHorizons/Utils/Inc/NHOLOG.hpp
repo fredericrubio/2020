@@ -95,7 +95,7 @@ inline TLogLevel NHOLOG::FromString(const std::string& level)
 
 typedef NHOLOG NHO_FILELog;
 
-#define NHO_FILE_LOG(level) \
+#define NHOFILE_LOG(level) \
     if (level > NHO_FILELog::ReportingLevel()) ; \
     else NHOLOG().Get(level)
 

@@ -7,7 +7,7 @@
 		<key>Network.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>2</integer>
 		</dict>
 		<key>New Horizons.xcscheme</key>
 		<dict>
@@ -22,22 +22,27 @@
 		<key>Rover.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Sensor.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 		<key>Utils.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>B5228D7B224FF6C700CE4CD3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B5228D85224FF70900CE4CD3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

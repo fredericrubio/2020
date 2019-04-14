@@ -15,8 +15,9 @@ public:
     /**
      * Setters/Getters
      **/
-    inline void setSamplingReiod(const unsigned short pPeriod) {
+    virtual inline bool setSamplingPeriod(const unsigned short pPeriod) {
         period = pPeriod;
+        return true;
     }
     inline void setEmissionPeriod(const unsigned short pPeriod) {
         emissionPreriod = pPeriod;

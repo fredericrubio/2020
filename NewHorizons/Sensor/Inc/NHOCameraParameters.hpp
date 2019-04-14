@@ -27,5 +27,21 @@ public:
      **/
     NHOCameraParameters(const unsigned pFrequency);
     
+    /**
+     * Set and check that the acquisition period is not too small.
+     **/
+    virtual inline bool setSamplingPeriod(const unsigned short pPeriod) {
+        if (pPeriod < minimalPeriod) {
+            return false;
+        }
+        period = pPeriod;
+        return true;
+    }
+    
+    inline void setMinimalPeriod(const unsigned short pValue) {
+        minimalPeriod = pValue;
+    }
+protected:
+    unsigned short   minimalPeriod = 100;
 };
 #endif /* NHOCameraParameters_hpp */

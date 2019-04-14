@@ -7,6 +7,7 @@
 //
 
 #include "NHOEmitter.hpp"
+#include "NHOLOG.hpp"
 
 /**
  * Member functions
@@ -24,6 +25,8 @@ NHOEmitter::NHOEmitter(const unsigned short pPort, const unsigned short pPeriod)
  **/
 bool NHOEmitter::send(const NHOSensorData* pData) {
  
+    NHOFILE_LOG(logERROR) << "NHOEmitter::send." << std::endl;
+
     counter++;
     if (counter >= sampling) {
         counter = 0;

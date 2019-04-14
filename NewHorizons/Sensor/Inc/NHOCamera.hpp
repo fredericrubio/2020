@@ -10,6 +10,8 @@
 #define NHOCamera_hpp
 
 #include "NHOSensor.hpp"
+#include "NHOCameraParameters.hpp"
+
 #ifdef _RASPBIAN
 // Raspberry OS
 #include "raspicam.h"
@@ -43,24 +45,9 @@ public:
     bool process();
     
     /**
-     * Stop acquisition
-     **/
-    bool stopAcquisition();
-
-    /**
-     *
-     **/
-    bool acquireThread();
-    
-    /**
-     * Stop acquisition
-     **/
-    bool startAcquisition();
-    
-    /**
      * Initiakize sensor
      **/
-    bool initialize();
+    bool initialize(const NHOCameraParameters* pParameters);
     
     /**
      * True means that the sensor is ready to acquire.

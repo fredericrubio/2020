@@ -11,9 +11,13 @@
 
 #include "NHOEmitter.hpp"
 
-class NHOBroadcastEmitter public NHOEmitter{
+class NHOBroadcastEmitter : public NHOEmitter{
     
 public:
+    /**
+     * Constructor
+     **/
+    NHOBroadcastEmitter(const unsigned short pPort, const unsigned short pPeriod);
 
 };
 #endif /* NHOBroadCastElitter_hpp */

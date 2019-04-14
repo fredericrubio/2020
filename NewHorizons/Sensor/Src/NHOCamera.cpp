@@ -10,6 +10,8 @@
 
 #include "NHOCameraParameters.hpp"
 #include "NHOCameraData.hpp"
+#include "NHOBroadcastEmitter.hpp"
+#include "NHOLOG.hpp"
 
 NHOCamera::NHOCamera() {
 
@@ -26,16 +28,22 @@ bool NHOCamera::process() {
 }
 
 /**
- * Stop acquisition
- **/
-bool NHOCamera::stopAcquisition() {
-    return true;
-}
-
-/**
  * Initiakize sensor
  **/
-bool NHOCamera::initialize() {
+bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
+    
+    if (!pParameters) {
+        NHOFILE_LOG(logERROR) << "NHOCamera::initialize: OK" << std::endl;
+        return false;
+    }
+    // sensor part initializing
+    if (!NHOSensor::initialize(pParameters)) {
+        return false;
+    }
+    
+    // emitter
+    emitter = new NHOBroadcastEmitter(pParameters->getEmissionPort(), pParameters->gerEmissionPeriod());
+
 #ifdef _RASPBIAN
     if (raspCam->open()) {
         NHOFILE_LOG(logDEBUG) << "NHOCamera::initialize: OK" << std::endl;
@@ -93,6 +101,8 @@ bool NHOCamera::acquire() {
 #else
     // To do
     // Read an image (rgb) from a file
+    NHOFILE_LOG(logDEBUG) << "NHOCamera::acquire. " << std::endl;
+    lCapture = true;
 #endif
     return lCapture;
 }
@@ -100,7 +110,7 @@ bool NHOCamera::acquire() {
 /**
  *
  **/
-bool NHOCamera::acquireThread() {
+/*bool NHOCamera::acquireThread() {
     /////////////////////////////////
     // Method called by the thread capturging the images.
     // Only one image is available: the latest captured.
@@ -146,9 +156,10 @@ bool NHOCamera::acquireThread() {
     }
     while(1);
 #endif
+    NHOFILE_LOG(logINFO) << "NHOCamera::acquireThread" << std::endl;
     return true;
 }
-
+*/
 /*
  * Getters
  */

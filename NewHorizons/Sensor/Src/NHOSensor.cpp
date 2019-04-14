@@ -24,6 +24,13 @@ emitter(NULL) {
 }
 
 /**
+ * Constructor
+ **/
+NHOSensor::~NHOSensor() {
+    
+}
+
+/**
  * Start acquisition
  **/
 bool NHOSensor::startAcquisition() {
@@ -37,6 +44,15 @@ bool NHOSensor::startAcquisition() {
     // launch the acquisition thread
     acquisitionThread = new std::thread(&NHOSensor::acquireThread, std::ref(*this));
     
+    NHOFILE_LOG(logDEBUG)  << "NHOSensor::startAcquisition." << std::endl;
+    
+    return true;
+}
+
+/**
+ * Stop acquisition
+ **/
+bool NHOSensor::stopAcquisition() {
     return true;
 }
 
@@ -45,22 +61,42 @@ bool NHOSensor::startAcquisition() {
  **/
 bool NHOSensor::acquireThread() {
     
+    std::chrono::time_point<std::chrono::steady_clock> start_time;
+    std::chrono::time_point<std::chrono::steady_clock> end_time;
+    long long lElapsedTime = 0;
     // never ending loop
     do {
-        // acquire data
-        acquire();
-        
-        // serialize date
-        data->serialize();
+        start_time = std::chrono::steady_clock::now();
 
-        // send data
-        if (parameters->isEmitterOn()) {
-            emitter->send(data);
+        // acquire data
+        if (acquire()) {
+            // serialize date
+            data->serialize();
+
+            // send data
+            // do not forget to thread the emission => mutex management
+            if (parameters->isEmitterOn()) {
+                emitter->send(data);
+            }
+            
+            end_time = std::chrono::steady_clock::now();
+            lElapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
         }
-        
-        // sleep for a while
-        std::this_thread::sleep_for (std::chrono::milliseconds(parameters->gerPeriod()));
-        
+        else {
+            // no image to get: elapsed time <- 0
+            lElapsedTime = 0;
+            NHOFILE_LOG(logWARNING) << "NHOSensor::acquireThread: No acquisition" << std::endl;
+        }
+
+        // if elapsed time is greater than 'period', sleep for another 'period'
+        if (lElapsedTime > parameters->gerPeriod()) {
+            NHOFILE_LOG(logWARNING) << "NHOSensor::acquireThread: elapsed time greater than cycle." << std::endl;
+            std::this_thread::sleep_for (std::chrono::milliseconds(parameters->gerPeriod()));
+        }
+        else {
+            // reduce the next loop start
+            std::this_thread::sleep_for (std::chrono::milliseconds(parameters->gerPeriod() - lElapsedTime));
+        }
     }
     while(1);
     return false;
@@ -73,7 +109,7 @@ bool NHOSensor::initialize(const NHOSensorParameters* pParameters) {
     
     parameters = pParameters;
     
-    emitter = new NHOEmitter(parameters->getEmissioPort(), parameters->gerEmissionPeriod);
+    emitter = new NHOEmitter(parameters->getEmissionPort(), parameters->gerEmissionPeriod());
     
     return true;
     

@@ -25,9 +25,36 @@
 		B5EBFCAA225E64E10073ABFF /* NHOCameraData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5EBFCA8225E64E10073ABFF /* NHOCameraData.hpp */; };
 		B5EBFCB8225E7F600073ABFF /* NHOEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EBFCB6225E7F600073ABFF /* NHOEmitter.cpp */; };
 		B5EBFCB9225E7F600073ABFF /* NHOEmitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */; };
-		B5EBFCBC226133E00073ABFF /* NHOBroadCastElitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EBFCBA226133E00073ABFF /* NHOBroadCastElitter.cpp */; };
-		B5EBFCBD226133E00073ABFF /* NHOBroadCastElitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5EBFCBB226133E00073ABFF /* NHOBroadCastElitter.hpp */; };
+		B5EBFCBC226133E00073ABFF /* NHOBroadcastEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EBFCBA226133E00073ABFF /* NHOBroadcastEmitter.cpp */; };
+		B5EBFCBD226133E00073ABFF /* NHOBroadcastEmitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5EBFCBB226133E00073ABFF /* NHOBroadcastEmitter.hpp */; };
+		B5EBFCBF2261C1D90073ABFF /* libNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */; };
+		B5EBFCC02261C1D90073ABFF /* libSensor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5228D7C224FF6C700CE4CD3 /* libSensor.a */; };
+		B5EBFCC12261C1D90073ABFF /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFC98225D2E6E0073ABFF /* libUtils.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B5EBFCC22261C2600073ABFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5228D65224FF4DE00CE4CD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5228D7B224FF6C700CE4CD3;
+			remoteInfo = Sensor;
+		};
+		B5EBFCC42261C2600073ABFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5228D65224FF4DE00CE4CD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5EBFC97225D2E6E0073ABFF;
+			remoteInfo = Utils;
+		};
+		B5EBFCC62261C2600073ABFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5228D65224FF4DE00CE4CD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5EBFCAE225E7F2F0073ABFF;
+			remoteInfo = Network;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		B5228D6B224FF4DE00CE4CD3 /* CopyFiles */ = {
@@ -74,8 +101,8 @@
 		B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetwork.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EBFCB6225E7F600073ABFF /* NHOEmitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOEmitter.cpp; sourceTree = "<group>"; };
 		B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOEmitter.hpp; sourceTree = "<group>"; };
-		B5EBFCBA226133E00073ABFF /* NHOBroadCastElitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOBroadCastElitter.cpp; sourceTree = "<group>"; };
-		B5EBFCBB226133E00073ABFF /* NHOBroadCastElitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOBroadCastElitter.hpp; sourceTree = "<group>"; };
+		B5EBFCBA226133E00073ABFF /* NHOBroadcastEmitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOBroadcastEmitter.cpp; sourceTree = "<group>"; };
+		B5EBFCBB226133E00073ABFF /* NHOBroadcastEmitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOBroadcastEmitter.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +124,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EBFCBF2261C1D90073ABFF /* libNetwork.a in Frameworks */,
+				B5EBFCC02261C1D90073ABFF /* libSensor.a in Frameworks */,
+				B5EBFCC12261C1D90073ABFF /* libUtils.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +157,7 @@
 				B5228D87224FF70900CE4CD3 /* Rover */,
 				B5228D80224FF6D400CE4CD3 /* Sensor */,
 				B5EBFC9C225D2E7C0073ABFF /* Utils */,
+				B5EBFCBE2261C1D90073ABFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -253,7 +284,7 @@
 		B5EBFCB4225E7F400073ABFF /* Inc */ = {
 			isa = PBXGroup;
 			children = (
-				B5EBFCBB226133E00073ABFF /* NHOBroadCastElitter.hpp */,
+				B5EBFCBB226133E00073ABFF /* NHOBroadcastEmitter.hpp */,
 				B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */,
 			);
 			path = Inc;
@@ -262,10 +293,17 @@
 		B5EBFCB5225E7F430073ABFF /* Src */ = {
 			isa = PBXGroup;
 			children = (
-				B5EBFCBA226133E00073ABFF /* NHOBroadCastElitter.cpp */,
+				B5EBFCBA226133E00073ABFF /* NHOBroadcastEmitter.cpp */,
 				B5EBFCB6225E7F600073ABFF /* NHOEmitter.cpp */,
 			);
 			path = Src;
+			sourceTree = "<group>";
+		};
+		B5EBFCBE2261C1D90073ABFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +334,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5EBFCBD226133E00073ABFF /* NHOBroadCastElitter.hpp in Headers */,
+				B5EBFCBD226133E00073ABFF /* NHOBroadcastEmitter.hpp in Headers */,
 				B5EBFCB9225E7F600073ABFF /* NHOEmitter.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +387,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				B5EBFCC32261C2600073ABFF /* PBXTargetDependency */,
+				B5EBFCC52261C2600073ABFF /* PBXTargetDependency */,
+				B5EBFCC72261C2600073ABFF /* PBXTargetDependency */,
 			);
 			name = Rover;
 			productName = Rover;
@@ -484,11 +525,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EBFCB8225E7F600073ABFF /* NHOEmitter.cpp in Sources */,
-				B5EBFCBC226133E00073ABFF /* NHOBroadCastElitter.cpp in Sources */,
+				B5EBFCBC226133E00073ABFF /* NHOBroadcastEmitter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5EBFCC32261C2600073ABFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5228D7B224FF6C700CE4CD3 /* Sensor */;
+			targetProxy = B5EBFCC22261C2600073ABFF /* PBXContainerItemProxy */;
+		};
+		B5EBFCC52261C2600073ABFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5EBFC97225D2E6E0073ABFF /* Utils */;
+			targetProxy = B5EBFCC42261C2600073ABFF /* PBXContainerItemProxy */;
+		};
+		B5EBFCC72261C2600073ABFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5EBFCAE225E7F2F0073ABFF /* Network */;
+			targetProxy = B5EBFCC62261C2600073ABFF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B5228D72224FF4DE00CE4CD3 /* Debug */ = {

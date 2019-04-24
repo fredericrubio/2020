@@ -11,10 +11,9 @@
 
 #include "NHOSensorData.hpp"
 
+class NHOMessage;
+
 class NHOEmitter {
-    /**
-     * Instance variables
-     **/
     
 public:
     /**
@@ -23,13 +22,16 @@ public:
     NHOEmitter(const unsigned short pPort, const unsigned short pPeriod);
     
     /**
-     * Send the parameter data.
+     * Emit one.
      **/
-    virtual bool send(const NHOSensorData* pData);
+    virtual bool send(const NHOMessage*) const ;
+    
 protected:
     unsigned short port;
     unsigned short sampling;
     unsigned short counter;
+    int emissionSocket;
+
     
 };
 #endif /* NHOEmitter_hpp */

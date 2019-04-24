@@ -9,6 +9,8 @@
 #ifndef NHOCameraData_hpp
 #define NHOCameraData_hpp
 
+#include <stdlib.h>
+
 #include "NHOSensorData.hpp"
 
 class NHOCameraData: public NHOSensorData {
@@ -61,11 +63,6 @@ public:
     }
     
     /**
-     * Serialize the sensor data in order to be sent.
-     **/
-    virtual bool serialize();
-    
-    /**
      * Unserialize the sensor data received.
      **/
     virtual bool unserialize();
@@ -75,6 +72,16 @@ public:
      **/
     bool loadFromDisk(const char* pFileName);
     
+    /**
+     * Save the image to disk (debug purpose)
+     **/
+    bool saveToDisk();
+    
+    /**
+     * Serialize the sensor data in order to be sent.
+     **/
+    bool serialize(const NHODataSerializer* pSerializer) const ;
+    
 private :
     unsigned int width;
     unsigned int height;
@@ -82,10 +89,6 @@ private :
     unsigned int size;
     unsigned char* pixels;
 
-    /**
-     * Save the image to disk (debug purpose)
-     **/
-    bool saveToDisk();
     
 };
 #endif /* NHOCameraData_hpp */

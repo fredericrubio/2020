@@ -40,6 +40,11 @@ public:
     bool acquire();
     
     /**
+     * Send data
+     **/
+    virtual bool send();
+    
+    /**
      * Process acquired data.
      **/
     bool process();

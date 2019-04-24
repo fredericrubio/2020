@@ -55,6 +55,11 @@ public:
     virtual bool acquire() = 0;
     
     /**
+     * Send data
+     **/
+    virtual bool send() = 0;
+    
+    /**
      * Initiakize sensor
      **/
     virtual bool initialize(const NHOSensorParameters* pParameters);
@@ -80,6 +85,9 @@ protected:
     
     /// Mutex
     std::mutex mutex;
+
+    
+    
 };
 
 #endif /* NHOSensor_hpp */

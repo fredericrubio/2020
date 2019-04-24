@@ -20,8 +20,10 @@
 #include <iostream>
 #include <sys/ioctl.h>
 #include <netinet/tcp.h>
-
 #include <iostream>
+
+#include "NHODataSerializer.hpp"
+
 #include "NHOCameraData.hpp"
 
 /**
@@ -70,21 +72,20 @@ bool NHOCameraData::loadFromDisk(const char* pFileName) {
     // last useless line
     std::getline(inFile,line);
     
-    char* lBuffer = (char *) calloc(lWidth * lHeight * 3, sizeof(char));
+    unsigned char* lBuffer = (unsigned char *) calloc(lWidth * lHeight * 3, sizeof(unsigned char));
     
     inFile >> lBuffer;
     inFile.close();
 
+    this->setWidth(lWidth);
+    this->setHeight(lHeight);
+    this->setFormat(FORMAT_RGB);
+    this->setPixels(getWidth() * getHeight() * 3, lBuffer);
+    
     return true;
 
 }
 
-/**
- * Serialize the sensor data in order to be sent.
- **/
-bool NHOCameraData::serialize(){
-    return true;
-}
 /**
  * Unserialize the sensor data received.
  **/
@@ -92,5 +93,13 @@ bool NHOCameraData::unserialize() {
     return true;
 }
 
-
+/**
+ * Serialize the sensor data in order to be sent.
+ **/
+bool NHOCameraData::serialize(const NHODataSerializer* pSerializer) const {
+    
+    pSerializer->serialize(this);
+    
+    return true;
+}
 

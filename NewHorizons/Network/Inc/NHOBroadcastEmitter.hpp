@@ -19,5 +19,6 @@ public:
      **/
     NHOBroadcastEmitter(const unsigned short pPort, const unsigned short pPeriod);
 
+    bool initiate();
 };
 #endif /* NHOBroadCastElitter_hpp */

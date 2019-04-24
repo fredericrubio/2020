@@ -17,6 +17,16 @@
 		B55235162255460300DBE5DA /* NHOSensorParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B55235142255460300DBE5DA /* NHOSensorParameters.hpp */; };
 		B55235192255475500DBE5DA /* NHOCameraParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55235172255475500DBE5DA /* NHOCameraParameters.cpp */; };
 		B552351A2255475500DBE5DA /* NHOCameraParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B55235182255475500DBE5DA /* NHOCameraParameters.hpp */; };
+		B5DC76F8226E0C9E0043AAA8 /* NHOMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DC76F6226E0C9E0043AAA8 /* NHOMessage.cpp */; };
+		B5DC76F9226E0C9E0043AAA8 /* NHOMessage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5DC76F7226E0C9E0043AAA8 /* NHOMessage.hpp */; };
+		B5DC76FC226E0FB50043AAA8 /* NHOCameraDataMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */; };
+		B5DC76FD226E0FB50043AAA8 /* NHOCameraDataMessage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5DC76FB226E0FB50043AAA8 /* NHOCameraDataMessage.hpp */; };
+		B5DC7700226E1DDA0043AAA8 /* NHOData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DC76FE226E1DDA0043AAA8 /* NHOData.cpp */; };
+		B5DC7701226E1DDA0043AAA8 /* NHOData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5DC76FF226E1DDA0043AAA8 /* NHOData.hpp */; };
+		B5DC7704226E277B0043AAA8 /* NHODataSerializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DC7702226E277B0043AAA8 /* NHODataSerializer.cpp */; };
+		B5DC7705226E277B0043AAA8 /* NHODataSerializer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5DC7703226E277B0043AAA8 /* NHODataSerializer.hpp */; };
+		B5DC77102270E09B0043AAA8 /* NHOMessageFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DC770E2270E09B0043AAA8 /* NHOMessageFactory.cpp */; };
+		B5DC77112270E09B0043AAA8 /* NHOMessageFactory.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5DC770F2270E09B0043AAA8 /* NHOMessageFactory.hpp */; };
 		B5EBFCA0225D2EA90073ABFF /* NHOLOG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5EBFC9F225D2EA90073ABFF /* NHOLOG.hpp */; };
 		B5EBFCA2225D2FAF0073ABFF /* NHOLOG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EBFCA1225D2FAF0073ABFF /* NHOLOG.cpp */; };
 		B5EBFCA5225D33AB0073ABFF /* NHOSensorData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EBFCA3225D33AB0073ABFF /* NHOSensorData.cpp */; };
@@ -91,6 +101,16 @@
 		B55235142255460300DBE5DA /* NHOSensorParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSensorParameters.hpp; sourceTree = "<group>"; };
 		B55235172255475500DBE5DA /* NHOCameraParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCameraParameters.cpp; sourceTree = "<group>"; };
 		B55235182255475500DBE5DA /* NHOCameraParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOCameraParameters.hpp; sourceTree = "<group>"; };
+		B5DC76F6226E0C9E0043AAA8 /* NHOMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOMessage.cpp; sourceTree = "<group>"; };
+		B5DC76F7226E0C9E0043AAA8 /* NHOMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOMessage.hpp; sourceTree = "<group>"; };
+		B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCameraDataMessage.cpp; sourceTree = "<group>"; };
+		B5DC76FB226E0FB50043AAA8 /* NHOCameraDataMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOCameraDataMessage.hpp; sourceTree = "<group>"; };
+		B5DC76FE226E1DDA0043AAA8 /* NHOData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOData.cpp; sourceTree = "<group>"; };
+		B5DC76FF226E1DDA0043AAA8 /* NHOData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOData.hpp; sourceTree = "<group>"; };
+		B5DC7702226E277B0043AAA8 /* NHODataSerializer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHODataSerializer.cpp; sourceTree = "<group>"; };
+		B5DC7703226E277B0043AAA8 /* NHODataSerializer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHODataSerializer.hpp; sourceTree = "<group>"; };
+		B5DC770E2270E09B0043AAA8 /* NHOMessageFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOMessageFactory.cpp; sourceTree = "<group>"; };
+		B5DC770F2270E09B0043AAA8 /* NHOMessageFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOMessageFactory.hpp; sourceTree = "<group>"; };
 		B5EBFC98225D2E6E0073ABFF /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EBFC9F225D2EA90073ABFF /* NHOLOG.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOLOG.hpp; sourceTree = "<group>"; };
 		B5EBFCA1225D2FAF0073ABFF /* NHOLOG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOLOG.cpp; sourceTree = "<group>"; };
@@ -227,6 +247,7 @@
 				B5228D9A2253F11000CE4CD3 /* NHOCamera.hpp */,
 				B5EBFCA8225E64E10073ABFF /* NHOCameraData.hpp */,
 				B55235182255475500DBE5DA /* NHOCameraParameters.hpp */,
+				B5DC76FF226E1DDA0043AAA8 /* NHOData.hpp */,
 				B5228D96224FF90900CE4CD3 /* NHOSensor.hpp */,
 				B5EBFCA4225D33AB0073ABFF /* NHOSensorData.hpp */,
 				B55235142255460300DBE5DA /* NHOSensorParameters.hpp */,
@@ -240,6 +261,7 @@
 				B5228D992253F11000CE4CD3 /* NHOCamera.cpp */,
 				B5EBFCA7225E64E10073ABFF /* NHOCameraData.cpp */,
 				B55235172255475500DBE5DA /* NHOCameraParameters.cpp */,
+				B5DC76FE226E1DDA0043AAA8 /* NHOData.cpp */,
 				B5228D95224FF90900CE4CD3 /* NHOSensor.cpp */,
 				B5EBFCA3225D33AB0073ABFF /* NHOSensorData.cpp */,
 				B55235132255460300DBE5DA /* NHOSensorParameters.cpp */,
@@ -285,7 +307,11 @@
 			isa = PBXGroup;
 			children = (
 				B5EBFCBB226133E00073ABFF /* NHOBroadcastEmitter.hpp */,
+				B5DC76FB226E0FB50043AAA8 /* NHOCameraDataMessage.hpp */,
+				B5DC7703226E277B0043AAA8 /* NHODataSerializer.hpp */,
 				B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */,
+				B5DC76F7226E0C9E0043AAA8 /* NHOMessage.hpp */,
+				B5DC770F2270E09B0043AAA8 /* NHOMessageFactory.hpp */,
 			);
 			path = Inc;
 			sourceTree = "<group>";
@@ -294,7 +320,11 @@
 			isa = PBXGroup;
 			children = (
 				B5EBFCBA226133E00073ABFF /* NHOBroadcastEmitter.cpp */,
+				B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */,
+				B5DC7702226E277B0043AAA8 /* NHODataSerializer.cpp */,
 				B5EBFCB6225E7F600073ABFF /* NHOEmitter.cpp */,
+				B5DC76F6226E0C9E0043AAA8 /* NHOMessage.cpp */,
+				B5DC770E2270E09B0043AAA8 /* NHOMessageFactory.cpp */,
 			);
 			path = Src;
 			sourceTree = "<group>";
@@ -315,6 +345,7 @@
 			files = (
 				B5228D98224FF90900CE4CD3 /* NHOSensor.hpp in Headers */,
 				B5228D9C2253F11000CE4CD3 /* NHOCamera.hpp in Headers */,
+				B5DC7701226E1DDA0043AAA8 /* NHOData.hpp in Headers */,
 				B55235162255460300DBE5DA /* NHOSensorParameters.hpp in Headers */,
 				B5EBFCAA225E64E10073ABFF /* NHOCameraData.hpp in Headers */,
 				B552351A2255475500DBE5DA /* NHOCameraParameters.hpp in Headers */,
@@ -334,8 +365,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5DC76F9226E0C9E0043AAA8 /* NHOMessage.hpp in Headers */,
+				B5DC77112270E09B0043AAA8 /* NHOMessageFactory.hpp in Headers */,
 				B5EBFCBD226133E00073ABFF /* NHOBroadcastEmitter.hpp in Headers */,
+				B5DC7705226E277B0043AAA8 /* NHODataSerializer.hpp in Headers */,
 				B5EBFCB9225E7F600073ABFF /* NHOEmitter.hpp in Headers */,
+				B5DC76FD226E0FB50043AAA8 /* NHOCameraDataMessage.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +530,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5DC7700226E1DDA0043AAA8 /* NHOData.cpp in Sources */,
 				B5EBFCA9225E64E10073ABFF /* NHOCameraData.cpp in Sources */,
 				B5228D9B2253F11000CE4CD3 /* NHOCamera.cpp in Sources */,
 				B5228D97224FF90900CE4CD3 /* NHOSensor.cpp in Sources */,
@@ -526,6 +562,10 @@
 			files = (
 				B5EBFCB8225E7F600073ABFF /* NHOEmitter.cpp in Sources */,
 				B5EBFCBC226133E00073ABFF /* NHOBroadcastEmitter.cpp in Sources */,
+				B5DC7704226E277B0043AAA8 /* NHODataSerializer.cpp in Sources */,
+				B5DC76FC226E0FB50043AAA8 /* NHOCameraDataMessage.cpp in Sources */,
+				B5DC77102270E09B0043AAA8 /* NHOMessageFactory.cpp in Sources */,
+				B5DC76F8226E0C9E0043AAA8 /* NHOMessage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

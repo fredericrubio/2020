@@ -12,6 +12,8 @@
 #include "NHOCameraData.hpp"
 #include "NHOBroadcastEmitter.hpp"
 #include "NHOLOG.hpp"
+#include "NHOCameraDataMessage.hpp"
+#include "NHOMessageFactory.hpp"
 
 NHOCamera::NHOCamera() {
 
@@ -70,6 +72,22 @@ bool NHOCamera::isReady() {
 #else
 #endif
     return ready;
+}
+
+
+/**
+ * Send data
+ **/
+bool NHOCamera::send() {
+    // send data
+    // instanciate message to send
+    NHOCameraDataMessage* lMessage = NHOMessageFactory::build(dynamic_cast<NHOCameraData*>(data));
+    
+    // do not forget to thread the emission => mutex management
+    if (parameters->isEmitterOn()) {
+        return (emitter->send(lMessage));
+    }
+    return true;
 }
 
 /**

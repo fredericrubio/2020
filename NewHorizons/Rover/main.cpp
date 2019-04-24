@@ -17,8 +17,9 @@
 int main(int argc, const char * argv[]) {
     
     std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
-    NHOCameraData* LCameraData = new NHOCameraData();
-    LCameraData->loadFromDisk(lFileName.c_str());
+    NHOCameraData* lCameraData = new NHOCameraData();
+    lCameraData->loadFromDisk(lFileName.c_str());
+    lCameraData->saveToDisk();
     
     bool loadFromDisk(const char* pFileName);
     NHOCamera*  lCamera = new NHOCamera();

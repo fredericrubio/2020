@@ -19,7 +19,7 @@ ready(false),
 acquisitionThread(NULL),
 data(NULL),
 parameters(NULL),
-emitter(NULL) {
+emitter(NULL){
     
 }
 
@@ -70,13 +70,10 @@ bool NHOSensor::acquireThread() {
 
         // acquire data
         if (acquire()) {
-            // serialize date
-            data->serialize();
 
-            // send data
-            // do not forget to thread the emission => mutex management
+            //
             if (parameters->isEmitterOn()) {
-                emitter->send(data);
+                send();
             }
             
             end_time = std::chrono::steady_clock::now();
@@ -97,6 +94,7 @@ bool NHOSensor::acquireThread() {
             // reduce the next loop start
             std::this_thread::sleep_for (std::chrono::milliseconds(parameters->gerPeriod() - lElapsedTime));
         }
+        
     }
     while(1);
     return false;

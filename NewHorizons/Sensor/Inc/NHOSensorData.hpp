@@ -9,7 +9,11 @@
 #ifndef NHOSensorData_hpp
 #define NHOSensorData_hpp
 
-class NHOSensorData {
+#include "NHOData.hpp"
+
+class NHODataSerializer;
+
+class NHOSensorData : public NHOData {
 protected:
     /**
      *
@@ -21,16 +25,9 @@ protected:
     long long date;
     
 public:
-    /**
-     * Serialize the sensor data in order to be sent.
-     **/
-    virtual bool serialize() = 0;
 
-    /**
-     * Unserialize the sensor data received.
-     **/
-    virtual bool unserialize() = 0;
-
+    virtual bool serialize(const NHODataSerializer* pSerializer) const = 0;
+    
     inline void setDate(const long long pDate) {date = pDate;};
     inline const long long getDate() const {return date;};
     

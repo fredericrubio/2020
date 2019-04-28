@@ -21,10 +21,12 @@
 #include <sys/ioctl.h>
 #include <netinet/tcp.h>
 #include <iostream>
-
-#include "NHODataSerializer.hpp"
+#include<stdio.h>
+#include<stdlib.h>
 
 #include "NHOCameraData.hpp"
+
+#define RGB_COMPONENT_COLOR 255
 
 /**
  *
@@ -39,16 +41,94 @@ NHOCameraData::NHOCameraData() {
 bool NHOCameraData::saveToDisk() {
     
      std::string lFileName = std::to_string(clock()) + "_image.ppm";
-     std::ofstream outFile ( lFileName ,std::ios::binary );
-    outFile<<"P6\n" << "#Raspery\n" << getWidth() << " " << getHeight() << "\n255\n";
+     std::ofstream outFile ( lFileName, std::ios::binary );
+     outFile<<"P6\n" << getWidth() << " " << getHeight() << " 255\n";
+//     outFile<<"P6\n" << "#Raspery\n" << getWidth() << " " << getHeight() << "\n255\n";
      outFile.write ( ( char* ) getPixels(), getDataSize());
      outFile.close();
+
+    return (true);
+}
+
+/**
+ * Load an image from disk (debug purpose)
+ **/
+bool NHOCameraData::readPPM(const char *filename) {
     
+    char buff[16];
+    FILE *fp;
+    int c, rgb_comp_color;
+    //open PPM file for reading
+    fp = fopen(filename, "rb");
+    if (!fp) {
+        fprintf(stderr, "Unable to open file '%s'\n", filename);
+        exit(1);
+    }
+    
+    //read image format
+    if (!fgets(buff, sizeof(buff), fp)) {
+        perror(filename);
+        exit(1);
+    }
+    
+    //check the image format
+    if (buff[0] != 'P' || buff[1] != '6') {
+        fprintf(stderr, "Invalid image format (must be 'P6')\n");
+        exit(1);
+    }
+    
+    //check for comments
+    c = getc(fp);
+    while (c == '#') {
+        while (getc(fp) != '\n') ;
+        c = getc(fp);
+    }
+    
+    ungetc(c, fp);
+    //read image size information
+    int lWidth, lHeight;
+    if (fscanf(fp, "%d %d", &lWidth, &lHeight) != 2) {
+        fprintf(stderr, "Invalid image size (error loading '%s')\n", filename);
+        exit(1);
+    }
+    
+    //read rgb component
+    if (fscanf(fp, "%d", &rgb_comp_color) != 1) {
+        fprintf(stderr, "Invalid rgb component (error loading '%s')\n", filename);
+        exit(1);
+    }
+    
+    //check rgb component depth
+    if (rgb_comp_color!= RGB_COMPONENT_COLOR) {
+        fprintf(stderr, "'%s' does not have 8-bits components\n", filename);
+        exit(1);
+    }
+    
+    while (fgetc(fp) != '\n') ;
+    //memory allocation for pixel data
+    unsigned char* lBuffer = (unsigned char *) calloc(lWidth * lHeight * 3, sizeof(unsigned char));
+    if (!lBuffer) {
+        fprintf(stderr, "Unable to allocate memory\n");
+        exit(1);
+    }
+    
+    //read pixel data from file
+    if (fread(lBuffer, 3 * lWidth, lHeight, fp) != lHeight) {
+        fprintf(stderr, "Error loading image '%s'\n", filename);
+        exit(1);
+    }
+    
+    this->setWidth(lWidth);
+    this->setHeight(lHeight);
+    this->setFormat(FORMAT_RGB);
+    this->setPixels(getWidth() * getHeight() * 3, lBuffer);
+    
+    fclose(fp);
     return true;
 }
 
 /**
- * Lad an image from disk (debug purpose)
+ * Load an image from disk (debug purpose)
  **/
 bool NHOCameraData::loadFromDisk(const char* pFileName) {
     std::string line;
@@ -89,17 +169,20 @@ bool NHOCameraData::loadFromDisk(const char* pFileName) {
 /**
  * Unserialize the sensor data received.
  **/
-bool NHOCameraData::unserialize() {
+/*
+ bool NHOCameraData::unserialize() {
     return true;
 }
-
+*/
 /**
  * Serialize the sensor data in order to be sent.
  **/
-bool NHOCameraData::serialize(const NHODataSerializer* pSerializer) const {
+/*
+ bool NHOCameraData::serialize(const NHODataSerializer* pSerializer) const {
     
     pSerializer->serialize(this);
     
     return true;
 }
+*/
 

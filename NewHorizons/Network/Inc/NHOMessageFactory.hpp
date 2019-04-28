@@ -20,7 +20,5 @@ public:
      */
     static NHOCameraDataMessage* build(const NHOCameraData* pData);
     
-    void test();
-    
 };
 #endif /* NHOMessageFactory_hpp */

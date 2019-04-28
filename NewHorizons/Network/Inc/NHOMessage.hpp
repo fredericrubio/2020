@@ -28,16 +28,6 @@ public:
      **/
     ~NHOMessage();
     
-    /**
-     * Serialize the sensor data in order to be sent.
-     **/
-    virtual bool serialize(NHOData *) = 0;
-    
-    /**
-     * Unserialize the sensor data received.
-     **/
-    virtual bool unserialize() = 0;
-    
     virtual inline size_t getSize() const { return size; };
 
     virtual inline unsigned char* getData() const {return data;};

@@ -50,7 +50,8 @@ public:
         /*           if (pixels != NULL) {
          free(pixels);
          }
-         */           pixels = pPixels;
+         */
+        pixels = pPixels;
     } ;
     /*
      *
@@ -65,13 +66,18 @@ public:
     /**
      * Unserialize the sensor data received.
      **/
-    virtual bool unserialize();
+//    virtual bool unserialize();
 
     /**
      * Lad an image from disk (debug purpose)
      **/
     bool loadFromDisk(const char* pFileName);
     
+    /**
+     * Load an image from disk (debug purpose)
+     **/
+    bool readPPM(const char *filename);
+        
     /**
      * Save the image to disk (debug purpose)
      **/
@@ -80,8 +86,8 @@ public:
     /**
      * Serialize the sensor data in order to be sent.
      **/
-    bool serialize(const NHODataSerializer* pSerializer) const ;
-    
+/*    bool serialize(const NHODataSerializer* pSerializer) const ;
+*/
 private :
     unsigned int width;
     unsigned int height;

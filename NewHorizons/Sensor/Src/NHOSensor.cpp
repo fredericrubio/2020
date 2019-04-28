@@ -107,8 +107,6 @@ bool NHOSensor::initialize(const NHOSensorParameters* pParameters) {
     
     parameters = pParameters;
     
-    emitter = new NHOEmitter(parameters->getEmissionPort(), parameters->gerEmissionPeriod());
-    
     return true;
     
 }

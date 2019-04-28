@@ -25,12 +25,12 @@ public:
     /**
      * Serialize the sensor data in order to be sent.
      **/
-    virtual bool serialize(NHOCameraData*);
+    virtual bool serialize(const NHOCameraData* const);
     
     /**
      * Unserialize the sensor data received.
      **/
-    virtual bool unserialize();
+    virtual bool unserialize(NHOCameraData* const) const;
     
 };
 #endif /* NHOCameraDataMessage_hpp */

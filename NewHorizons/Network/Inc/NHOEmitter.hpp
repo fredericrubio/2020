@@ -24,7 +24,12 @@ public:
     /**
      * Emit one.
      **/
-    virtual bool send(const NHOMessage*) const ;
+    virtual bool send(const NHOMessage*) const = 0;
+    
+    /**
+     * Initialize whatever lust be initialized.
+     **/
+    virtual bool initiate() = 0;
     
 protected:
     unsigned short port;

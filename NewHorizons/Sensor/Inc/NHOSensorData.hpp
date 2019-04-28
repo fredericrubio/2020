@@ -26,10 +26,10 @@ protected:
     
 public:
 
-    virtual bool serialize(const NHODataSerializer* pSerializer) const = 0;
+//    virtual bool serialize(const NHODataSerializer* pSerializer) const = 0;
     
-    inline void setDate(const long long pDate) {date = pDate;};
-    inline const long long getDate() const {return date;};
+    inline virtual void setDate(const long long pDate) {date = pDate;};
+    inline virtual const long long getDate() const {return date;};
     
 };
 #endif /* NHOSensorData_hpp */

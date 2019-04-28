@@ -20,5 +20,10 @@ public:
     NHOBroadcastEmitter(const unsigned short pPort, const unsigned short pPeriod);
 
     bool initiate();
+    
+    /**
+     * Emit one.
+     **/
+    virtual bool send(const NHOMessage*) const;
 };
 #endif /* NHOBroadCastElitter_hpp */

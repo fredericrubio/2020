@@ -30,10 +30,10 @@ public:
     };
     
     inline void setStorage(const bool pOn) {
-        emittingOn = pOn;
+        storingOn = pOn;
     };
     inline void setEmission(const bool pOn) {
-        storingOn = pOn;
+        emittingOn = pOn;
     };
     
     inline unsigned short gerPeriod() const {

@@ -6,19 +6,19 @@
 //  Copyright © 2019 Frédéric Rubio. All rights reserved.
 //
 
+#include <time.h>
+
 #include "NHOMessageFactory.hpp"
-
-#include "NHODataSerializer.hpp"
+#include "NHOCameraData.hpp"
 #include "NHOCameraDataMessage.hpp"
-
-static const NHODataSerializer* sSerializer = new NHODataSerializer();
 
 /**
  *
  */
 NHOCameraDataMessage* NHOMessageFactory::build(const NHOCameraData* pData) {
     
-  //  pData->serialize(serializer);
-    
-    return NULL;
+    NHOCameraDataMessage* lMsg = new NHOCameraDataMessage(clock());
+    lMsg->serialize(pData);
+
+    return lMsg;
 }

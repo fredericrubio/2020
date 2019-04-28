@@ -17,11 +17,11 @@
 int main(int argc, const char * argv[]) {
     
     std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
-    NHOCameraData* lCameraData = new NHOCameraData();
-    lCameraData->loadFromDisk(lFileName.c_str());
-    lCameraData->saveToDisk();
+//    NHOCameraData* lCameraData = new NHOCameraData();
+//    lCameraData->loadFromDisk(lFileName.c_str());
+//    lCameraData->readPPM(lFileName.c_str());
+//    lCameraData->saveToDisk();
     
-    bool loadFromDisk(const char* pFileName);
     NHOCamera*  lCamera = new NHOCamera();
     NHOCameraParameters* pParameters = new NHOCameraParameters();
     
@@ -29,9 +29,9 @@ int main(int argc, const char * argv[]) {
     NHOFILE_LOG(logDEBUG) << "main: start" << std::endl;
     pParameters->setStorage(false);
     pParameters->setEmission(true);
-    pParameters->setEmissionPort(12345);
+    pParameters->setEmissionPort(51717);
     pParameters->setSamplingPeriod(100);
-    pParameters->setEmissionPeriod(1);
+    pParameters->setEmissionPeriod(10);
 
     lCamera->initialize(pParameters);
     lCamera->startAcquisition();

@@ -18,15 +18,12 @@
  **/
 NHOCameraDataMessage::NHOCameraDataMessage(const long long   pDate):
 NHOMessage(pDate) {
-    
-    ;
-    
 }
 
 /**
  * Serialize the sensor data in order to be sent.
  **/
-bool NHOCameraDataMessage::serialize(NHOCameraData* pData) {
+bool NHOCameraDataMessage::serialize(const NHOCameraData* const pData) {
     
     if (pData == NULL) {
         return false;
@@ -36,7 +33,7 @@ bool NHOCameraDataMessage::serialize(NHOCameraData* pData) {
     unsigned int width = lData->getWidth();
     unsigned int height = lData->getHeight();
 
-    // calculate message size
+    // calculate message size (bytes)
     size = sizeof(date) + sizeof(width) + sizeof(height) + lData->getDataSize();
     
     // memory management
@@ -52,11 +49,13 @@ bool NHOCameraDataMessage::serialize(NHOCameraData* pData) {
     memcpy((void *) data, &date, sizeof(date));
     offset += sizeof(date);
     /// width
-    memcpy(data + sizeof(date), &width, sizeof(width));
+    memcpy(data + offset, &width, sizeof(width));
+    offset += sizeof(width);
     /// height
-    memcpy(data + sizeof(width), &height, sizeof(height));
+    memcpy(data + offset, &height, sizeof(height));
+    offset += sizeof(height);
     // data
-    memcpy(data + sizeof(height), lData->getPixels(), sizeof(lData->getDataSize()));
+    memcpy(data + offset, lData->getPixels(), lData->getDataSize());
     
     return size;
 }
@@ -64,6 +63,33 @@ bool NHOCameraDataMessage::serialize(NHOCameraData* pData) {
 /**
  * Unserialize the sensor data received.
  **/
-bool NHOCameraDataMessage::unserialize() {
+bool NHOCameraDataMessage::unserialize(NHOCameraData* const pData) const {
+    
+    if (pData == NULL) {
+        return false;
+    }
+    
+    long long date;
+    unsigned int width, height;
+    
+    // date
+    memcpy(&date, (void *) data, sizeof(date));
+    unsigned int offset = sizeof(date);
+    // width
+    memcpy(&width, (void *) (data + offset), sizeof(width));
+    offset += sizeof(width);
+    // height
+    memcpy(&height, (void *) (data + offset), sizeof(height));
+    offset += sizeof(height);
+    // pixels
+    unsigned int lSize = width * height * 3;
+    unsigned char* pixels = (unsigned char *) calloc(size, sizeof(unsigned char));
+    memcpy(pixels, (void *) (data + offset), size * sizeof(unsigned char));
+
+    pData->setWidth(width);
+    pData->setHeight(height);
+    pData->setPixels(lSize * sizeof(unsigned char), pixels);
+    pData->setFormat(NHOCameraData::FORMAT_RGB);
+    
     return true;
 }

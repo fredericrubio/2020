@@ -10,7 +10,7 @@
 
 #include "NHOCameraParameters.hpp"
 #include "NHOCameraData.hpp"
-#include "NHOBroadcastEmitter.hpp"
+#include "NHOFullDuplexConnectedEmitter.hpp"
 #include "NHOLOG.hpp"
 #include "NHOCameraDataMessage.hpp"
 #include "NHOMessageFactory.hpp"
@@ -44,8 +44,9 @@ bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
     }
     
     // emitter
-    emitter = new NHOBroadcastEmitter(pParameters->getEmissionPort(), pParameters->gerEmissionPeriod());
-
+    emitter = new NHOFullDuplexConnectedEmitter(pParameters->getEmissionPort(), pParameters->gerEmissionPeriod());
+    emitter->initiate();
+    
 #ifdef _RASPBIAN
     if (raspCam->open()) {
         NHOFILE_LOG(logDEBUG) << "NHOCamera::initialize: OK" << std::endl;
@@ -79,15 +80,26 @@ bool NHOCamera::isReady() {
  * Send data
  **/
 bool NHOCamera::send() {
-    // send data
-    // instanciate message to send
-    NHOCameraDataMessage* lMessage = NHOMessageFactory::build(dynamic_cast<NHOCameraData*>(data));
+    NHOFILE_LOG(logDEBUG) << "NHOCamera::send: " << std::endl;
     
-    // do not forget to thread the emission => mutex management
+    NHOCameraDataMessage* lMessage  = NULL;
+    bool lReturn = false;
+    
+    // send data
+    // do not forget to thread the emission => mutex management on image data
     if (parameters->isEmitterOn()) {
-        return (emitter->send(lMessage));
+        // instanciate message to send
+        lMessage = NHOMessageFactory::build(dynamic_cast<NHOCameraData*>(data));
+        // send mesg and get status
+        lReturn = emitter->send(lMessage);
     }
-    return true;
+    
+    //memory management
+    if (!lMessage) {
+        delete lMessage;
+    }
+    
+    return lReturn;
 }
 
 /**
@@ -119,6 +131,9 @@ bool NHOCamera::acquire() {
 #else
     // To do
     // Read an image (rgb) from a file
+    std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
+    dynamic_cast<NHOCameraData*>(data)->readPPM(lFileName.c_str());
+    
     NHOFILE_LOG(logDEBUG) << "NHOCamera::acquire. " << std::endl;
     lCapture = true;
 #endif

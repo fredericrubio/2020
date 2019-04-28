@@ -6,6 +6,7 @@
 //  Copyright © 2019 Frédéric Rubio. All rights reserved.
 //
 
+#include <stdlib.h>
 #include "NHOMessage.hpp"
 
 /**
@@ -13,6 +14,17 @@
  **/
 NHOMessage::NHOMessage(const long long pDate):
 size(0), data(NULL), date(pDate) {
+    
+}
+
+/**
+ * Destructor
+ **/
+NHOMessage::~NHOMessage() {
+    
+    if (data) {
+        free(data);
+    }
     
 }
 

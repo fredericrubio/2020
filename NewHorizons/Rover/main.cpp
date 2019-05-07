@@ -16,6 +16,8 @@
 
 int main(int argc, const char * argv[]) {
     
+    NHOFILE_LOG(logDEBUG) << "main: start" << std::endl;
+    
     std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
 //    NHOCameraData* lCameraData = new NHOCameraData();
 //    lCameraData->loadFromDisk(lFileName.c_str());
@@ -26,12 +28,11 @@ int main(int argc, const char * argv[]) {
     NHOCameraParameters* pParameters = new NHOCameraParameters();
     
     // insert code here...
-    NHOFILE_LOG(logDEBUG) << "main: start" << std::endl;
     pParameters->setStorage(false);
-    pParameters->setEmission(true);
-    pParameters->setEmissionPort(51717);
+    pParameters->setDataEmission(true);
+    pParameters->setDataEmissionPort(51717);
     pParameters->setSamplingPeriod(100);
-    pParameters->setEmissionPeriod(10);
+    pParameters->setDataEmissionPeriod(10);
 
     lCamera->initialize(pParameters);
     lCamera->startAcquisition();

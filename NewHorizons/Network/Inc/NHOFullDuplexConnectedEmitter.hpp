@@ -22,7 +22,7 @@ public:
      * Constructor
      **/
     NHOFullDuplexConnectedEmitter(const unsigned short pPort, const unsigned short pPeriod);
-    
+
     /**
      *
      **/
@@ -36,36 +36,14 @@ public:
     bool echoing();
 
 protected:
-    unsigned int infoPort;
-    unsigned int dataPort;
-    
-    int infoConnexionSocket;
-    int dataConnexionSocket;
-    
-    int infoClientSocket; // to manage a client connection (information, service message, commands, ...)
-    int dataClientSocket; // to manage a client connection
-    
-    std::thread* serviceMessageSendingThread;
-    std::thread* serviceConnectionThread;
-    
-    std::thread* dataConnectionThread;
+    std::thread* connectionThread;
 
     ////////////////////////////////
     // Never ending loop.
     // Wait and register a connexion on the main socket.
-    // Launch a thread to send all service messages at once to the new connected client.
-    bool waitForConnectionOnServiceSocket();
-    
-    ////////////////////////////////
-    // Never ending loop.
-    // Wait and register a connexion on the main socket.
     // This socket is the exit for captured images.
-    bool waitForConnectionOnDataSocket();
+    bool waitForConnectionOnSocket();
     
-    /**
-     * Manage a connection with a client (channel dedicated to parameters (not images).
-     * Send all service messages to a client on a dedicated port.
-     **/
-    void sendServiceMessages(int pClientPort);
+    int dataClientSocket;
 };
 #endif /* NHOFullDuplexConnectedEmitter_hpp */

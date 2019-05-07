@@ -61,12 +61,12 @@ bool NHOBroadcastEmitter::initiate() {
 /**
  * Emit one.
  **/
-bool NHOBroadcastEmitter::send(const NHOMessage* pMsg) const {
+bool NHOBroadcastEmitter::send( NHOMessage * const pMsg) const {
     if (!emissionSocket) {
         NHOFILE_LOG(logERROR) << "NHOBroadcastEmitter::send: socket not initialized." << std::endl;
         return false;
     }
-    if (pMsg->getSize() > 65507) {
+    if ((*pMsg).getSize() > 65507) {
         NHOFILE_LOG(logERROR) << "NHOBroadcastEmitter::send: message size exceeds limit." << std::endl;
         return false;
     }
@@ -80,7 +80,7 @@ bool NHOBroadcastEmitter::send(const NHOMessage* pMsg) const {
     lInfoServAddr.sin_family = AF_INET;
     //    lInfoServAddr.sin_addr.s_addr = INADDR_ANY; // INADDR_BROADCAST //? sure about that ?
     lInfoServAddr.sin_addr = *((struct in_addr *)he->h_addr);
-    lInfoServAddr.sin_port = htons(port);
+    lInfoServAddr.sin_port = htons(emissionPort);
     
     socklen_t optlen = sizeof(lInfoServAddr);
     

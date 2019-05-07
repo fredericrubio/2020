@@ -19,38 +19,44 @@ public:
         period = pPeriod;
         return true;
     }
-    inline void setEmissionPeriod(const unsigned short pPeriod) {
-        emissionPreriod = pPeriod;
+    inline void setDataEmissionPeriod(const unsigned short pPeriod) {
+        dataEmissionPreriod = pPeriod;
     };
     inline void setStoragePeriod(const unsigned short pPeriod) {
-        strorePreriod = pPeriod;
+        storePreriod = pPeriod;
     };
-    inline void setEmissionPort(const unsigned short pPort) {
-        emissionPort = pPort;
+    inline void setDataEmissionPort(const unsigned short pPort) {
+        dataEmissionPort = pPort;
+    };
+    inline void setServiceEmissionPort(const unsigned short pPort) {
+        serviceEmissionPort = pPort;
     };
     
     inline void setStorage(const bool pOn) {
         storingOn = pOn;
     };
-    inline void setEmission(const bool pOn) {
-        emittingOn = pOn;
+    inline void setDataEmission(const bool pOn) {
+        dataEmittingOn = pOn;
     };
     
     inline unsigned short gerPeriod() const {
         return period;
     };
-    inline unsigned short gerEmissionPeriod() const {
-        return emissionPreriod;
+    inline unsigned short getDataEmissionPeriod() const {
+        return dataEmissionPreriod;
     };
     inline unsigned short storePeriod() const {
-        return strorePreriod;
+        return storePreriod;
     };
-    inline unsigned short getEmissionPort() const {
-        return emissionPort;
+    inline unsigned short getDataEmissionPort() const {
+        return dataEmissionPort;
+    };
+    inline unsigned short getServiceEmissionPort() const {
+        return serviceEmissionPort;
     };
     
-    inline bool isEmitterOn() const {
-        return emittingOn;
+    inline bool isDataEmitterOn() const {
+        return dataEmittingOn;
     };
     inline bool isStoringOn() const {
         return storingOn;
@@ -63,15 +69,16 @@ protected:
      * Emitter configuration parameters
      **/
     // Unit: one in 'period' sample is emitted
-    unsigned short emissionPreriod;
-    bool emittingOn;
-    unsigned short emissionPort;
+    unsigned short dataEmissionPreriod;
+    bool dataEmittingOn;
+    unsigned short dataEmissionPort;
     
+    unsigned short serviceEmissionPort;
     /**
      * Storage configuration parameters
      **/
     // Unit: one in 'period' sample is stored
-    unsigned short strorePreriod;
+    unsigned short storePreriod;
     bool storingOn;
     
     /**

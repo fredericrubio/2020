@@ -26,7 +26,9 @@
 /**
  * Constructor
  **/
-NHOFullDuplexConnectedEmitter::NHOFullDuplexConnectedEmitter(const unsigned short pPort, const unsigned short pPeriod) : NHOEmitter(pPort, pPeriod), dataConnexionSocket(pPort) {
+NHOFullDuplexConnectedEmitter::NHOFullDuplexConnectedEmitter(const unsigned short pDataPort,
+                                                             const unsigned short pPeriod):
+NHOEmitter(pDataPort, pPeriod) {
 }
 
 /**
@@ -35,28 +37,26 @@ NHOFullDuplexConnectedEmitter::NHOFullDuplexConnectedEmitter(const unsigned shor
 bool NHOFullDuplexConnectedEmitter::initiate() {
     
     NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::initiate." << std::endl;
-
+    
     struct sockaddr_in lInfoServAddr;
-    // data channel
-    struct sockaddr_in serv_addr;
-    dataConnexionSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (dataConnexionSocket < 0) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::initiate: socket opening error." << std::endl;
+    // service channel
+    emissionSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (emissionSocket < 0) {
+        fprintf(stderr, "ERROR opening socket");
         return(false);
     }
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = INADDR_ANY;
-    serv_addr.sin_port = htons(dataPort);
-    if (bind(dataConnexionSocket, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::initiate: binding error." << std::endl;
+    bzero((char *) &lInfoServAddr, sizeof(lInfoServAddr));
+    lInfoServAddr.sin_family = AF_INET;
+    lInfoServAddr.sin_addr.s_addr = INADDR_ANY;
+    lInfoServAddr.sin_port = htons(emissionPort);
+    if (bind(emissionSocket, (struct sockaddr *) &lInfoServAddr, sizeof(lInfoServAddr)) < 0) {
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::initiate: subscription socket opening error." << std::endl;
         return(false);
     }
     
     // launch the connexion thread
-    /// data channel
-    dataConnectionThread = new std::thread(&NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket, std::ref(*this));
-    
+    connectionThread = new std::thread(&NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket, std::ref(*this));
+
     NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::initiate end." << std::endl;
 
     return(true);
@@ -67,18 +67,18 @@ bool NHOFullDuplexConnectedEmitter::initiate() {
 // Never ending loop.
 // Wait and register a connexion on the main socket.
 // This socket is the exit for captured images.
-bool NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket() {
-#ifdef _DEBUG
-    std::cout << "IMP_Server::waitForConnectionOnDataSocket \n";
-#endif
+bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
+    
+    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket \n";
+
     socklen_t clilen;
     struct sockaddr_in cli_addr;
     
-    listen(dataConnexionSocket, 5);
+    listen(emissionSocket, 5);
     clilen = sizeof(cli_addr);
     
     while (1) {
-        dataClientSocket = accept(dataConnexionSocket,
+        dataClientSocket = accept(emissionSocket,
                                   (struct sockaddr *) &cli_addr,
                                   &clilen);
         if (dataClientSocket < 0) {
@@ -96,14 +96,12 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket() {
         // an attempt to flush socket
         //        int flag = 1;
         //        setsockopt(dataClientSocket, IPPROTO_TCP, TCP_NODELAY, (char *) &flag, sizeof(int));
-#ifdef _DEBUG
-        std::cout << "IMP_Server::waitForConnectionOnDataSocket another loop\n";
-#endif
+
+        NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket another connection\n";
     }
     
-#ifdef _DEBUG
-    std::cout << "IMP_Server::waitForConnectionOnDataSocket End\n";
-#endif
+    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket End\n";
+
     return(true);
     
 }
@@ -125,6 +123,9 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     // send message
     size_t lWrittenBytes = write(dataClientSocket, pMsg->getData(), pMsg->getSize());
     if (lWrittenBytes != pMsg->getSize()) {
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter IMP_Server::send " <<
+        strerror(errno) << std::endl;
+
         NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter IMP_Server::send (number of written bytes:" <<
             lWrittenBytes << "/" << pMsg->getSize() << "))." << std::endl;
         return(false);
@@ -132,7 +133,7 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     
     // wait for an answer
     // Useless: the sent image is in chunks (STREAM SOCKETS)
-    NHOAckMessage* lAckMsg = new NHOAckMessage();
+    NHOAckMessage* lAckMsg = new NHOAckMessage(clock());
     long lReceivedBytes;
     char* lBuffer = (char *) calloc(lAckMsg->getSize(), sizeof(char));
     lReceivedBytes = read(dataClientSocket, lBuffer, sizeof(size_t));
@@ -142,7 +143,7 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     }
     else {
         // check the answer
-        lAckMsg->unserialize(lBuffer);
+        lAckMsg->unserialize();
         if (lAckMsg->getValue() != pMsg->getSize()) {
             NHOFILE_LOG(logERROR) << "ERROR NHOFullDuplexConnectedEmitter::send: lost image (" << std::endl;
         }
@@ -160,14 +161,14 @@ bool NHOFullDuplexConnectedEmitter::echoing() {
     long n;
     
     bzero(buffer,256);
-    n = read(infoClientSocket,buffer,255);
+    n = read(emissionSocket,buffer,255);
     if (n < 0) {
         std::cout << "ERROR reading from socket";
         return(false);
     }
     
     printf("Here is the message: %s\n",buffer);
-    n = write(infoClientSocket,"I got your message",18);
+    n = write(emissionSocket,"I got your message",18);
     if (n < 0) {
         std::cout << "ERROR writing to socket";
         return(false);

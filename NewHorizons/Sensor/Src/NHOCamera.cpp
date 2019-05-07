@@ -14,10 +14,11 @@
 #include "NHOLOG.hpp"
 #include "NHOCameraDataMessage.hpp"
 #include "NHOMessageFactory.hpp"
+#include "NHOImage.hpp"
 
-NHOCamera::NHOCamera() {
+NHOCamera::NHOCamera(const unsigned short pCameraId) {
 
-    data = new NHOCameraData();
+    data = new NHOCameraData(pCameraId);
     parameters = new NHOCameraParameters();
     
 }
@@ -43,9 +44,13 @@ bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
         return false;
     }
     
-    // emitter
-    emitter = new NHOFullDuplexConnectedEmitter(pParameters->getEmissionPort(), pParameters->gerEmissionPeriod());
-    emitter->initiate();
+    // data emitter
+    dataEmitter = new NHOFullDuplexConnectedEmitter(pParameters->getDataEmissionPort(), pParameters->getDataEmissionPeriod());
+    dataEmitter->initiate();
+    
+    // service emitter
+    serviceEmitter = new NHOFullDuplexConnectedEmitter(pParameters->getServiceEmissionPort(), 0);
+    serviceEmitter->initiate();
     
 #ifdef _RASPBIAN
     if (raspCam->open()) {
@@ -87,11 +92,11 @@ bool NHOCamera::send() {
     
     // send data
     // do not forget to thread the emission => mutex management on image data
-    if (parameters->isEmitterOn()) {
+    if (parameters->isDataEmitterOn()) {
         // instanciate message to send
         lMessage = NHOMessageFactory::build(dynamic_cast<NHOCameraData*>(data));
         // send mesg and get status
-        lReturn = emitter->send(lMessage);
+        lReturn = dataEmitter->send(lMessage);
     }
     
     //memory management
@@ -132,7 +137,7 @@ bool NHOCamera::acquire() {
     // To do
     // Read an image (rgb) from a file
     std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
-    dynamic_cast<NHOCameraData*>(data)->readPPM(lFileName.c_str());
+    dynamic_cast<NHOCameraData*>(data)->getImage()->readPPM(lFileName.c_str());
     
     NHOFILE_LOG(logDEBUG) << "NHOCamera::acquire. " << std::endl;
     lCapture = true;

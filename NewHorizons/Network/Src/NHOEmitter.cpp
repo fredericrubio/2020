@@ -26,7 +26,7 @@
  **/
 NHOEmitter::NHOEmitter(const unsigned short pPort, const unsigned short pPeriod) {
     
-    port = pPort;
+    emissionPort = pPort;
     sampling = pPeriod;
     counter = 0;
     emissionSocket = 0;

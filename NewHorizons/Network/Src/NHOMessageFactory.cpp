@@ -15,10 +15,22 @@
 /**
  *
  */
-NHOCameraDataMessage* NHOMessageFactory::build(const NHOCameraData* pData) {
-    
+NHOCameraDataMessage* NHOMessageFactory::build(NHOCameraData* pData) {
+    /*
+     switch(type) {
+     case eImageSize:
+     body = new NHOImageSizeMessageBody();
+     break;
+     case eCameraParameters:
+     case eImage:
+     case eUnknown:
+     break;
+     }
+     
+*/
     NHOCameraDataMessage* lMsg = new NHOCameraDataMessage(clock());
-    lMsg->serialize(pData);
+    lMsg->setCameraData(pData);
+    lMsg->serialize();
 
     return lMsg;
 }

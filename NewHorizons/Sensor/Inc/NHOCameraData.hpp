@@ -13,88 +13,32 @@
 
 #include "NHOSensorData.hpp"
 
+class NHOImage;
+
 class NHOCameraData: public NHOSensorData {
 
 public:
     /**
      Default constructor
      **/
-    NHOCameraData();
-    
-    /*
-     *Image formats
-     */
-    typedef enum {
-        FORMAT_YUV420 = 0,
-        FORMAT_GRAY,
-        FORMAT_BGR,
-        FORMAT_RGB,
-        FORMAT_IGNORE //do not use
-    } IMAGE_FORMAT;
+    NHOCameraData(const unsigned short pCameraId);
     
     /**
-     * Getters and setters
-     **/
-    inline unsigned int getWidth() const {return width;} ;
-    inline unsigned int getHeight() const {return height;} ;
-    inline unsigned int getFormat() const {return format;} ;
-    inline const unsigned char* getPixels() const {return pixels;} ;
-    inline  unsigned int getDataSize() const {return size; } ;
-    
-    inline void setWidth(const unsigned int pValue) {width = pValue;} ;
-    inline void setHeight(const unsigned int pValue) {height = pValue;} ;
-    inline void setFormat(const IMAGE_FORMAT pValue) {format = pValue; size = width * height * 3;};
-    // To do: take into account the image format
-    inline void setPixels(const unsigned int pSize, unsigned char* const pPixels) {
-        size = pSize;
-        /*           if (pixels != NULL) {
-         free(pixels);
-         }
-         */
-        pixels = pPixels;
-    } ;
-    /*
      *
      */
-    void deletePixels() {
-        if (pixels != NULL) {
-            free(pixels);
-            pixels = NULL;
-        }
-    }
+    void setImage(NHOImage* pImage);
     
     /**
-     * Unserialize the sensor data received.
+     *
      **/
-//    virtual bool unserialize();
-
-    /**
-     * Lad an image from disk (debug purpose)
-     **/
-    bool loadFromDisk(const char* pFileName);
+    inline NHOImage* getImage() const {return image;};
     
-    /**
-     * Load an image from disk (debug purpose)
-     **/
-    bool readPPM(const char *filename);
-        
-    /**
-     * Save the image to disk (debug purpose)
-     **/
-    bool saveToDisk();
+    inline const unsigned short getId() const { return cameraId ;};
     
-    /**
-     * Serialize the sensor data in order to be sent.
-     **/
-/*    bool serialize(const NHODataSerializer* pSerializer) const ;
-*/
 private :
-    unsigned int width;
-    unsigned int height;
-    IMAGE_FORMAT format;
-    unsigned int size;
-    unsigned char* pixels;
 
-    
+    NHOImage*   image;
+    unsigned short cameraId;
+
 };
 #endif /* NHOCameraData_hpp */

@@ -32,7 +32,7 @@ public:
     virtual bool initiate() = 0;
     
 protected:
-    unsigned short port;
+    unsigned short emissionPort;
     unsigned short sampling;
     unsigned short counter;
     int emissionSocket;

@@ -41,7 +41,18 @@ public:
     inline void setMinimalPeriod(const unsigned short pValue) {
         minimalPeriod = pValue;
     }
+    
+    inline void setServiceEmissionPort(const unsigned short pPort)  {
+        servicemissionPort = pPort;
+    };
+    
+    inline unsigned short getServiceEmissionPort() const {
+        return servicemissionPort;
+    };
+
 protected:
-    unsigned short   minimalPeriod = 100;
+    unsigned short  minimalPeriod = 100;
+    unsigned short  servicemissionPort;
+    
 };
 #endif /* NHOCameraParameters_hpp */

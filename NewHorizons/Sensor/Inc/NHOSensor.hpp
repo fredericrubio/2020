@@ -78,11 +78,17 @@ protected:
     std::thread* acquisitionThread;
     
     NHOSensorData* data;
-    
     const NHOSensorParameters* parameters;
-    
-    NHOEmitter* emitter;
-    
+    /**
+     * One channel
+     **/
+    NHOEmitter* dataEmitter;
+
+    /**
+     * Service channnel
+     **/
+    NHOEmitter* serviceEmitter;
+
     /// Mutex
     std::mutex mutex;
 

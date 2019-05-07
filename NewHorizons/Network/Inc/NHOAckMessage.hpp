@@ -9,21 +9,30 @@
 #ifndef NHOAckMessage_hpp
 #define NHOAckMessage_hpp
 
-class NHOAckMessage {
+#include "NHOMessage.hpp"
+
+class NHOAckMessage : public NHOMessage {
     
     public :
-    NHOAckMessage() {};
-    NHOAckMessage(const unsigned int pSize):value(pSize) {};
+        /**
+         * Constructors
+         **/
+        NHOAckMessage(long long pDate);
+        NHOAckMessage(long long pDate, const unsigned int pSize);
+        /**
+         * Destructor
+         **/
+        virtual ~NHOAckMessage();
     
-    bool serialize(char * const);
+        virtual bool serialize();
+        virtual bool unserialize();
     
-    bool unserialize(const char *const);
+        virtual unsigned int computeSize();
     
-    virtual unsigned int getSize();
-    
-    unsigned int getValue() {return value;};
+        unsigned int getValue() {return value;};
     
     protected :
-    unsigned int value;
+        unsigned int value;
+    
 };
 #endif /* NHOAckMessage_hpp */

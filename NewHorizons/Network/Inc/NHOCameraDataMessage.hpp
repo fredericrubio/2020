@@ -18,19 +18,34 @@ class NHOCameraDataMessage : public NHOMessage{
 public:
     
     /**
-     * COnstructor
+     * Constructor
      **/
     NHOCameraDataMessage(const long long   pDate);
 
     /**
+     * Destructor
+     **/
+    ~NHOCameraDataMessage();
+    
+    /**
      * Serialize the sensor data in order to be sent.
      **/
-    virtual bool serialize(const NHOCameraData* const);
+    virtual bool serialize();
     
     /**
      * Unserialize the sensor data received.
      **/
-    virtual bool unserialize(NHOCameraData* const) const;
+    virtual bool unserialize();
+   
+    inline void setCameraData(NHOCameraData*  pData) {
+        cameraData = pData;
+        computeSize();
+    };
+    
+    virtual unsigned int computeSize();
+
+    protected :
+    NHOCameraData*  cameraData;
     
 };
 #endif /* NHOCameraDataMessage_hpp */

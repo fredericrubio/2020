@@ -19,7 +19,8 @@ ready(false),
 acquisitionThread(NULL),
 data(NULL),
 parameters(NULL),
-emitter(NULL){
+dataEmitter(NULL),
+serviceEmitter(NULL){
     
 }
 
@@ -71,8 +72,8 @@ bool NHOSensor::acquireThread() {
         // acquire data
         if (acquire()) {
 
-            //
-            if (parameters->isEmitterOn()) {
+            // data
+            if (parameters->isDataEmitterOn()) {
                 send();
             }
             

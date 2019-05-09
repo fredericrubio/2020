@@ -39,3 +39,25 @@ cameraId(pCameraId){
     
 }
 
+/**
+ * Copy constructor
+ **/
+NHOCameraData::NHOCameraData(const NHOCameraData & pCameraData) {
+    
+    NHOImage*   image;
+    unsigned short cameraId;
+    
+}
+
+/**
+ Default destructor
+ **/
+NHOCameraData::~NHOCameraData() {
+    
+    if (image) {
+        delete image;
+        image = NULL;
+    }
+    
+}
+

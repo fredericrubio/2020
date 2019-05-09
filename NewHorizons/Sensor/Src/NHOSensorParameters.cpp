@@ -12,7 +12,7 @@
  * Constructor
  **/
 NHOSensorParameters::NHOSensorParameters():
-dataEmissionPreriod(0), dataEmittingOn(false),
+dataEmissionPeriod(0), dataEmittionOn(false),
 storePreriod(0), storingOn(false),
 dataEmissionPort(0), serviceEmissionPort(0)
 {

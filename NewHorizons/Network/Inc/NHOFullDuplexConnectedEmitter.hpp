@@ -26,7 +26,7 @@ public:
     /**
      *
      **/
-    bool initiate();
+    virtual bool initiate();
     
     /**
      * Emit one.
@@ -42,8 +42,9 @@ protected:
     // Never ending loop.
     // Wait and register a connexion on the main socket.
     // This socket is the exit for captured images.
-    bool waitForConnectionOnSocket();
+    virtual bool waitForConnectionOnSocket();
     
     int dataClientSocket;
+    bool keepGoing;
 };
 #endif /* NHOFullDuplexConnectedEmitter_hpp */

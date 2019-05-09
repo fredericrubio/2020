@@ -31,8 +31,22 @@
 /**
  *
  **/
-NHOImage::NHOImage():pixels(NULL){
+NHOImage::NHOImage():
+pixels(NULL){
     
+}
+
+
+/**
+ * Destructor
+ **/
+NHOImage::~NHOImage() {
+    
+    if (pixels) {
+        free(pixels);
+        pixels = NULL;
+    }
+    width = -1;
 }
 
 /**

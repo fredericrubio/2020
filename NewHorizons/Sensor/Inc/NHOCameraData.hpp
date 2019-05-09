@@ -22,11 +22,20 @@ public:
      Default constructor
      **/
     NHOCameraData(const unsigned short pCameraId);
+    /**
+     * Copy constructor
+     **/
+    NHOCameraData(const NHOCameraData & pCameraData);
+    
+    /**
+     Default destructor
+     **/
+    virtual ~NHOCameraData();
     
     /**
      *
      */
-    void setImage(NHOImage* pImage);
+    inline void setImage(NHOImage* const pImage) {image = pImage;};
     
     /**
      *

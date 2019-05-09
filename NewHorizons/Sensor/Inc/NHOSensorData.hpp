@@ -14,19 +14,15 @@
 class NHODataSerializer;
 
 class NHOSensorData : public NHOData {
+    
 protected:
-    /**
-     *
-     **/
-    char* data;
-    
     unsigned short size;
-    
     long long date;
     
 public:
 
-//    virtual bool serialize(const NHODataSerializer* pSerializer) const = 0;
+    NHOSensorData();
+    virtual ~NHOSensorData();
     
     inline virtual void setDate(const long long pDate) {date = pDate;};
     inline virtual const long long getDate() const {return date;};

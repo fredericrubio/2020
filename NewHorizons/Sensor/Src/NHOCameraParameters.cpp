@@ -11,8 +11,7 @@
 /**
  * Constructor
  **/
-NHOCameraParameters::NHOCameraParameters():
-servicemissionPort(0) {
+NHOCameraParameters::NHOCameraParameters(){
     
 }
 

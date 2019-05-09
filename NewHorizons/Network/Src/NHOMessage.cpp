@@ -65,10 +65,6 @@ const unsigned int NHOMessage::unserializeHeader() {
 
 const unsigned short NHOMessage::getHeaderSize() {
     
-    if (size != 0) {
-        return size;
-    }
-    
     size = sizeof(date);
     size += sizeof(type);
 

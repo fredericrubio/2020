@@ -15,10 +15,13 @@
 #include "NHOCameraDataMessage.hpp"
 #include "NHOMessageFactory.hpp"
 #include "NHOImage.hpp"
+#include "NHOReflexFullDuplexConnectedEmitter.hpp"
+#include "NHOImageSizeMessage.hpp"
 
 NHOCamera::NHOCamera(const unsigned short pCameraId) {
 
     data = new NHOCameraData(pCameraId);
+    ((NHOCameraData*) data)->setImage(new NHOImage());
     parameters = new NHOCameraParameters();
     
 }
@@ -35,6 +38,24 @@ bool NHOCamera::process() {
  **/
 bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
     
+#ifdef _RASPBIAN
+    if (raspCam->open()) {
+        NHOFILE_LOG(logDEBUG) << "NHOCamera::initialize: OK" << std::endl;
+    }
+    else {
+        // error management
+        NHOFILE_LOG(logERROR) << "NHOCamera::initialize: Error opening camera" << std::endl;
+        return false;
+    }
+#else
+    std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
+    image = new NHOImage();
+    if (!image->readPPM(lFileName.c_str())) {
+        NHOFILE_LOG(logERROR) << "NHOCamera::initialize: Error opening reference image" << std::endl;
+        return false;
+    }
+#endif
+    
     if (!pParameters) {
         NHOFILE_LOG(logERROR) << "NHOCamera::initialize: OK" << std::endl;
         return false;
@@ -46,23 +67,24 @@ bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
     
     // data emitter
     dataEmitter = new NHOFullDuplexConnectedEmitter(pParameters->getDataEmissionPort(), pParameters->getDataEmissionPeriod());
-    dataEmitter->initiate();
+    if (!dataEmitter->initiate()) {
+        return false;
+    }
     
     // service emitter
-    serviceEmitter = new NHOFullDuplexConnectedEmitter(pParameters->getServiceEmissionPort(), 0);
-    serviceEmitter->initiate();
-    
-#ifdef _RASPBIAN
-    if (raspCam->open()) {
-        NHOFILE_LOG(logDEBUG) << "NHOCamera::initialize: OK" << std::endl;
-        return true;
+    serviceEmitter = new NHOReflexFullDuplexConnectedEmitter(pParameters->getServiceEmissionPort(), 0);
+    NHOImageSizeMessage* lReflexMessage = new NHOImageSizeMessage(clock(),
+                                                                  image->getWidth(),
+                                                                  image->getHeight(),
+                                                                  image->getFormat(),
+                                                                  0);
+    lReflexMessage->serialize();
+    ((NHOReflexFullDuplexConnectedEmitter *) serviceEmitter)->setReflexMessage(lReflexMessage);
+    if (!serviceEmitter->initiate()) {
+        return false;
     }
-    // error management
-    NHOFILE_LOG(logERROR) << "NHOCamera::initialize: Error opening camera" << std::endl;
-    return false;
-#else
+    
     return true;
-#endif
 }
 
 /**
@@ -76,6 +98,7 @@ bool NHOCamera::isReady() {
     }
     ready = raspCam->isOpened();
 #else
+    ready = (image != NULL);
 #endif
     return ready;
 }
@@ -85,7 +108,7 @@ bool NHOCamera::isReady() {
  * Send data
  **/
 bool NHOCamera::send() {
-    NHOFILE_LOG(logDEBUG) << "NHOCamera::send: " << std::endl;
+//    NHOFILE_LOG(logDEBUG) << "NHOCamera::send: " << std::endl;
     
     NHOCameraDataMessage* lMessage  = NULL;
     bool lReturn = false;
@@ -96,13 +119,16 @@ bool NHOCamera::send() {
         // instanciate message to send
         lMessage = NHOMessageFactory::build(dynamic_cast<NHOCameraData*>(data));
         // send mesg and get status
+        lMessage->serialize();
         lReturn = dataEmitter->send(lMessage);
     }
     
     //memory management
-    if (!lMessage) {
-        delete lMessage;
-    }
+    // TO DO a copy constructor in the factory: objective delete the NHOCameraDataMessage independently of the lifecyscle
+    // of the field data
+//    if (lMessage) {
+//        delete lMessage;
+//    }
     
     return lReturn;
 }
@@ -139,7 +165,7 @@ bool NHOCamera::acquire() {
     std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
     dynamic_cast<NHOCameraData*>(data)->getImage()->readPPM(lFileName.c_str());
     
-    NHOFILE_LOG(logDEBUG) << "NHOCamera::acquire. " << std::endl;
+//    NHOFILE_LOG(logDEBUG) << "NHOCamera::acquire. " << std::endl;
     lCapture = true;
 #endif
     return lCapture;
@@ -210,7 +236,7 @@ unsigned int NHOCamera::getWidth() const {
     
     return raspCam->getWidth();
 #else
-    return -1;
+    return image->getWidth();
 #endif
 }
 
@@ -223,6 +249,6 @@ unsigned int NHOCamera::getHeight() const {
     
     return raspCam->getHeight();
 #else
-    return -1;
+    return image->getHeight();
 #endif
 }

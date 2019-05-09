@@ -42,6 +42,8 @@ public:
         computeSize();
     };
     
+    inline NHOCameraData* const getCameraData() const {return cameraData;};
+    
     virtual unsigned int computeSize();
 
     protected :

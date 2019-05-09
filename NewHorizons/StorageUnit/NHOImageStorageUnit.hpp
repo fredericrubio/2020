@@ -19,7 +19,7 @@
 class NHOImageStorageUnit {
     
     public :
-    NHOImageStorageUnit(const std::string pHostName, const int pDataPort);
+    NHOImageStorageUnit(const std::string pHostName, const int pDataPort, const int pInfoPort);
     
     bool initiate();
     
@@ -34,28 +34,36 @@ class NHOImageStorageUnit {
     bool sendMessage(const size_t pSize, const char* const pMessage);
     
     inline void setImageSize(const unsigned short pWidth, const unsigned short pHeight) {
-        cmaeraData.getImage()->setWidth(pWidth);
-        cmaeraData.getImage()->setHeight(pHeight);
+        if (cameraData.getImage() == NULL) {
+            cameraData.setImage(new NHOImage());
+        }
+        cameraData.getImage()->setWidth(pWidth);
+        cameraData.getImage()->setHeight(pHeight);
     }
     
     inline void setImageFormat(const NHOImage::IMAGE_FORMAT pFormat) {
-        cmaeraData.getImage()->setFormat(pFormat);
+        if (cameraData.getImage() == NULL) {
+            cameraData.setImage(new NHOImage());
+        }
+        cameraData.getImage()->setFormat(pFormat);
     }
 protected:
     unsigned int dataPort;
+    unsigned int infoPort;
     
     std::string hostName;
     
     int dataSocket;
+    int infoSocket;
     
     std::thread* dataThread;
-    std::thread* connectionThread;
+    std::thread* infoThread;
     
     // Image parameters
     unsigned int imageWidth;
     unsigned int imageHeight;
     NHOImage::IMAGE_FORMAT imageFormat;
-    NHOCameraData   cmaeraData;
+    NHOCameraData   cameraData;
 };
 
 #endif /* NHOImageStorageUnit_hpp */

@@ -21,6 +21,10 @@
 #include "NHOMessage.hpp"
 #include "NHOAckMessage.hpp"
 
+#include "NHOImage.hpp"
+#include "NHOCameraDataMessage.hpp"
+#include "NHOCameraData.hpp"
+
 #include "NHOFullDuplexConnectedEmitter.hpp"
 
 /**
@@ -29,6 +33,11 @@
 NHOFullDuplexConnectedEmitter::NHOFullDuplexConnectedEmitter(const unsigned short pDataPort,
                                                              const unsigned short pPeriod):
 NHOEmitter(pDataPort, pPeriod) {
+    
+    emissionSocket = 0;
+    dataClientSocket = 0;
+    keepGoing = true;
+    
 }
 
 /**
@@ -50,17 +59,18 @@ bool NHOFullDuplexConnectedEmitter::initiate() {
     lInfoServAddr.sin_addr.s_addr = INADDR_ANY;
     lInfoServAddr.sin_port = htons(emissionPort);
     if (bind(emissionSocket, (struct sockaddr *) &lInfoServAddr, sizeof(lInfoServAddr)) < 0) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::initiate: subscription socket opening error." << std::endl;
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::initiate " << strerror(errno) ;
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::initiate: data socket binding error." << std::endl;
         return(false);
     }
-    
+     
     // launch the connexion thread
     connectionThread = new std::thread(&NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket, std::ref(*this));
 
     NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::initiate end." << std::endl;
 
     return(true);
-    
+     
 }
 
 ////////////////////////////////
@@ -77,7 +87,7 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
     listen(emissionSocket, 5);
     clilen = sizeof(cli_addr);
     
-    while (1) {
+    while (keepGoing) {
         dataClientSocket = accept(emissionSocket,
                                   (struct sockaddr *) &cli_addr,
                                   &clilen);
@@ -91,7 +101,7 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
         // If iMode = 0, blocking is enabled;
         // If iMode != 0, non-blocking mode is enabled.
         int lMode = 0;
-        ioctl(dataClientSocket, FIONBIO, &lMode);
+        ioctl(emissionSocket, FIONBIO, &lMode);
         
         // an attempt to flush socket
         //        int flag = 1;
@@ -123,10 +133,8 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     // send message
     size_t lWrittenBytes = write(dataClientSocket, pMsg->getData(), pMsg->getSize());
     if (lWrittenBytes != pMsg->getSize()) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter IMP_Server::send " <<
-        strerror(errno) << std::endl;
-
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter IMP_Server::send (number of written bytes:" <<
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send " << strerror(errno) << std::endl;
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send (number of written bytes:" <<
             lWrittenBytes << "/" << pMsg->getSize() << "))." << std::endl;
         return(false);
     }
@@ -137,6 +145,7 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     long lReceivedBytes;
     char* lBuffer = (char *) calloc(lAckMsg->getSize(), sizeof(char));
     lReceivedBytes = read(dataClientSocket, lBuffer, sizeof(size_t));
+    lAckMsg->setData(lBuffer);
     // we can detect a problem in the transmission of the image
     if (lReceivedBytes < 0) {
         NHOFILE_LOG(logERROR) << "ERROR NHOFullDuplexConnectedEmitter::send (number of read bytes) " << lReceivedBytes << std::endl;
@@ -149,8 +158,7 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
         }
     }
     // memory management
-    delete lBuffer;
-    delete lAckMsg;
+    delete lAckMsg; // the variale lBuffer is freed when invoking destructor on lAckMsg
     
     return(true);
 }

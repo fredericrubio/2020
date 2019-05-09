@@ -16,6 +16,11 @@ public:
      **/
     NHOImage();
     
+    /**
+     * Destructor
+     **/
+    ~NHOImage();
+    
     /*
      *Image formats
      */
@@ -38,6 +43,7 @@ public:
     
     inline void setWidth(const unsigned int pValue) {width = pValue;} ;
     inline void setHeight(const unsigned int pValue) {height = pValue;} ;
+    // TO DO: compute the size of the image by taking into account the fromat
     inline void setFormat(const IMAGE_FORMAT pValue) {format = pValue; size = width * height * 3;};
     // To do: take into account the image format
     inline void setPixels(const unsigned int pSize, unsigned char* const pPixels) {

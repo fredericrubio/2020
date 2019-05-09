@@ -87,12 +87,7 @@ protected:
     /**
      * Service channnel
      **/
-    NHOEmitter* serviceEmitter;
-
-    /// Mutex
-    std::mutex mutex;
-
-    
+    NHOEmitter* serviceEmitter;    
     
 };
 

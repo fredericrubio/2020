@@ -10,6 +10,7 @@
 #define IMP_ImageSizeMessageBody_hpp
 
 #include "NHOMessage.hpp"
+#include "NHOImage.hpp"
 
 class NHOImageSizeMessage : public NHOMessage {
     
@@ -20,7 +21,7 @@ class NHOImageSizeMessage : public NHOMessage {
     NHOImageSizeMessage(long long pDate );
     NHOImageSizeMessage(   long long pDate, const unsigned int pWidth,
                                 const unsigned int pHeight, 
-                                const unsigned int pFormat,
+                                const NHOImage::IMAGE_FORMAT pFormat,
                                 const unsigned int pDataSize) ;
     /**
      * Destructor
@@ -37,18 +38,18 @@ class NHOImageSizeMessage : public NHOMessage {
      **/
     inline unsigned int getWidth() const {return width;} ;
     inline unsigned int getHeight() const {return height;} ;
-    inline unsigned int getFormat() const {return format;} ;
+    inline const NHOImage::IMAGE_FORMAT getFormat() const {return format;} ;
     inline unsigned int getDataSize() const {return dataSize;} ;
     
     inline void setWidth(const unsigned int pValue) {width = pValue;} ;
     inline void setHeight(const unsigned int pValue) {height = pValue;} ;
-    inline void setFormat(const unsigned int pValue) {format = pValue;} ;
+    inline void setFormat(const NHOImage::IMAGE_FORMAT pValue) {format = pValue;} ;
     inline void setDataSize(const unsigned int pValue) {dataSize = pValue;} ;
 
     protected :
     unsigned int width;
     unsigned int height;
-    unsigned int format;
+    NHOImage::IMAGE_FORMAT format;
     unsigned int dataSize;
 
 };

@@ -19,8 +19,8 @@ public:
         period = pPeriod;
         return true;
     }
-    inline void setDataEmissionPeriod(const unsigned short pPeriod) {
-        dataEmissionPreriod = pPeriod;
+    inline virtual void setDataEmissionPeriod(const unsigned short pPeriod) {
+        dataEmissionPeriod = pPeriod;
     };
     inline void setStoragePeriod(const unsigned short pPeriod) {
         storePreriod = pPeriod;
@@ -36,14 +36,14 @@ public:
         storingOn = pOn;
     };
     inline void setDataEmission(const bool pOn) {
-        dataEmittingOn = pOn;
+        dataEmittionOn = pOn;
     };
     
     inline unsigned short gerPeriod() const {
         return period;
     };
     inline unsigned short getDataEmissionPeriod() const {
-        return dataEmissionPreriod;
+        return dataEmissionPeriod;
     };
     inline unsigned short storePeriod() const {
         return storePreriod;
@@ -56,7 +56,7 @@ public:
     };
     
     inline bool isDataEmitterOn() const {
-        return dataEmittingOn;
+        return dataEmittionOn;
     };
     inline bool isStoringOn() const {
         return storingOn;
@@ -69,8 +69,8 @@ protected:
      * Emitter configuration parameters
      **/
     // Unit: one in 'period' sample is emitted
-    unsigned short dataEmissionPreriod;
-    bool dataEmittingOn;
+    unsigned short dataEmissionPeriod;
+    bool dataEmittionOn;
     unsigned short dataEmissionPort;
     
     unsigned short serviceEmissionPort;

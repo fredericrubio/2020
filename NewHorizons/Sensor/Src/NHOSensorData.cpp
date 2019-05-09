@@ -6,4 +6,15 @@
 //  Copyright © 2019 Frédéric Rubio. All rights reserved.
 //
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "NHOSensorData.hpp"
+
+NHOSensorData::NHOSensorData(){
+    
+}
+
+NHOSensorData::~NHOSensorData() {
+    
+}

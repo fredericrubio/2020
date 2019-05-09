@@ -48,11 +48,12 @@ class NHOMessage {
     static NHOMessageFactory::NHOMessageType getType(const char * const pMessage) {
         unsigned int lOffset = 0;
         NHOMessageFactory::NHOMessageType type;
-        lOffset = sizeof(unsigned long);
+        lOffset = sizeof(date);
         memcpy(&type, pMessage + lOffset, sizeof(NHOMessageFactory::NHOMessageType));
         return type;  
     }
     
+    virtual inline void setData(const char* const pData) {data = (char *) pData;};
     static long long getDate(const char * const pMessage) {
         unsigned int lOffset = 0;
         unsigned long lDate;
@@ -63,7 +64,7 @@ class NHOMessage {
     /////////////////////////////////////////
 
     protected :
-        unsigned short type;
+        NHOMessageFactory::NHOMessageType type;
 
         long long   date; // 'long long' to force 64bits on 32bits OS
 

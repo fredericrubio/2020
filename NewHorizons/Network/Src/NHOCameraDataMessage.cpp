@@ -30,16 +30,17 @@ NHOMessage(pDate, NHOMessageFactory::eCameraData) {
  **/
 NHOCameraDataMessage::~NHOCameraDataMessage() {
     
+    if (cameraData) {
+        delete cameraData;
+        cameraData = NULL;
+    }
+    
 }
 
 /**
  *
  **/
 unsigned int NHOCameraDataMessage::computeSize() {
-    
-    if (size != 0) {
-        return size;
-    }
     
     if (cameraData == NULL) {
         return -1;
@@ -50,7 +51,9 @@ unsigned int NHOCameraDataMessage::computeSize() {
     size += sizeof(cameraData->getImage()->getWidth());
     size += sizeof(cameraData->getImage()->getHeight());
     size += sizeof(cameraData->getImage()->getFormat());
-    size += cameraData->getImage()->getDataSize();
+    if (cameraData->getImage() != NULL) {
+        size += cameraData->getImage()->getDataSize();
+    }
     
     return size;
 }
@@ -89,7 +92,8 @@ bool NHOCameraDataMessage::serialize() {
     offset += sizeof(format);
     // pixels
     const unsigned char* pixels = cameraData->getImage()->getPixels();
-    memcpy((void *) (data + offset), pixels, sizeof(cameraData->getImage()->getDataSize()));
+    memcpy((void *) (data + offset), pixels, cameraData->getImage()->getDataSize() * sizeof(unsigned char));
+
     
     return true;
 }
@@ -108,33 +112,38 @@ bool NHOCameraDataMessage::unserialize() {
 
     if (cameraData != NULL) {
         delete cameraData;
+        cameraData = NULL;
     }
-    unsigned short cameraId = -1;
+    
+    unsigned short cameraId = -1; 
     unsigned int width, height;
     NHOImage::IMAGE_FORMAT format = NHOImage::FORMAT_IGNORE;
     
     // camera id
     memcpy(&cameraId, (void *) (data + offset), sizeof(cameraId));
-    offset += sizeof(width);
+    offset += sizeof(cameraId);
     // width
     memcpy(&width, (void *) (data + offset), sizeof(width));
     offset += sizeof(width);
     // height
     memcpy(&height, (void *) (data + offset), sizeof(height));
     offset += sizeof(height);
+    // format
+    memcpy(&format, (void *) (data + offset), sizeof(format));
+    offset += sizeof(format);
     // pixels
+    // TO DO
     unsigned int lSize = width * height * 3;
     unsigned char* pixels = (unsigned char *) calloc(lSize, sizeof(unsigned char));
-    memcpy(pixels, (void *) (data + offset), size * sizeof(unsigned char));
+    memcpy(pixels, (void *) (data + offset), lSize * sizeof(unsigned char));
 
     cameraData = new NHOCameraData(cameraId);
     NHOImage* image = new NHOImage();
     image->setWidth(width);
     image->setHeight(height);
     image->setFormat(format);
-    image->setPixels(lSize * sizeof(unsigned char), pixels);
+    image->setPixels(lSize, pixels);
     cameraData->setImage(image);
-    
     computeSize();
     
     return true;

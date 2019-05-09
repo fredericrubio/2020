@@ -17,14 +17,14 @@
  * Constructors
  **/
 NHOImageSizeMessage::NHOImageSizeMessage(long long pDate,
-        const unsigned int pWidth, 
-        const unsigned int pHeight,
-        const unsigned int pSize,
-        const unsigned int pFormat):
+                                         const unsigned int pWidth,
+                                         const unsigned int pHeight,
+                                         const NHOImage::IMAGE_FORMAT pFormat,
+                                         const unsigned int pDataSize):
 NHOMessage(pDate, NHOMessageFactory::eImageSize) {
     width = pWidth;
     height = pHeight;
-    dataSize = pSize;
+    dataSize = pDataSize;
     format = pFormat;
     computeSize();
 }

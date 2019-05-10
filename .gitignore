@@ -30,10 +30,6 @@ DerivedData/
 *.dylib
 *.dll
 
-# Fortran module files
-*.mod
-*.smod
-
 # Compiled Static libraries
 *.lai
 *.la
@@ -55,14 +51,16 @@ DerivedData/
 /CameraLib/build/
 /CameraLib/dist/
 /CameraLib/.dep.inc
-/UtilsLib/build/
-/UtilsLib/dist/
-/UtilsLib/.dep.inc
-/UtilsLib/build/
-/UtilsLib/dist/
+/NewHorizons/Utils/build/
+/NewHorizons/Utils/dist/
+/NewHorizons/Utils/.dep.inc
+/NewHorizons/Utils/build/
+/NewHorizons/Utils/dist/
 /HEM_Server/build/
 /HEM_Server/dist/
 /IMG_Server/dist/
 /IMG_Server/build/
 /HEM_Client/build/
 /HEM_Client/dist/
+/NewHorizons/Utils/build/
+/NewHorizons/Utils/dist/

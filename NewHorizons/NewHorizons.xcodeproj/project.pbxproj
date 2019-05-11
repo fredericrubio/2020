@@ -219,14 +219,14 @@
 			isa = PBXGroup;
 			children = (
 				B5228D81224FF6E500CE4CD3 /* Actuator */,
+				B5EBFCBE2261C1D90073ABFF /* Frameworks */,
 				B5EBFCB3225E7F350073ABFF /* Network */,
 				B5228D6F224FF4DE00CE4CD3 /* NewHorizons */,
-				B5DC771F2275F8A40043AAA8 /* StorageUnit */,
 				B5228D6E224FF4DE00CE4CD3 /* Products */,
 				B5228D87224FF70900CE4CD3 /* Rover */,
 				B5228D80224FF6D400CE4CD3 /* Sensor */,
+				B5DC771F2275F8A40043AAA8 /* StorageUnit */,
 				B5EBFC9C225D2E7C0073ABFF /* Utils */,
-				B5EBFCBE2261C1D90073ABFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

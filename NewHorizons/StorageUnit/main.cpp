@@ -27,7 +27,8 @@ int main(int argc, char *argv[])
     NHOImageStorageUnit* client = new NHOImageStorageUnit("localhost", 51717s);
 #else
 //    NHOImageStorageUnit* client = new NHOImageStorageUnit("localhost", 51717);
-    NHOImageStorageUnit* client = new NHOImageStorageUnit("192.168.0.13", 51717, 51718);
+//    NHOImageStorageUnit* client = new NHOImageStorageUnit("192.168.0.13", 51717, 51718);
+    NHOImageStorageUnit* client = new NHOImageStorageUnit("192.168.0.22", 51717, 51718);
 #endif
     client->setImageSize(400, 600);
     client->setImageFormat(NHOImage::FORMAT_RGB);

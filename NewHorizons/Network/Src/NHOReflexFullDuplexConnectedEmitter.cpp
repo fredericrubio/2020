@@ -27,10 +27,9 @@
 /**
  * Constructor
  **/
-NHOReflexFullDuplexConnectedEmitter::NHOReflexFullDuplexConnectedEmitter(const unsigned short pDataPort,
-                                                             const unsigned short pPeriod):
-NHOFullDuplexConnectedEmitter(pDataPort, pPeriod) {
-    
+NHOReflexFullDuplexConnectedEmitter::NHOReflexFullDuplexConnectedEmitter(const unsigned short pDataPort):
+NHOFullDuplexConnectedEmitter(pDataPort, 0) {
+
     emissionSocket = 0;
     dataClientSocket = 0;
     message = NULL;

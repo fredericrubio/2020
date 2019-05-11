@@ -51,11 +51,6 @@ DerivedData/
 /CameraLib/build/
 /CameraLib/dist/
 /CameraLib/.dep.inc
-/NewHorizons/Utils/build/
-/NewHorizons/Utils/dist/
-/NewHorizons/Utils/.dep.inc
-/NewHorizons/Utils/build/
-/NewHorizons/Utils/dist/
 /HEM_Server/build/
 /HEM_Server/dist/
 /IMG_Server/dist/
@@ -64,3 +59,13 @@ DerivedData/
 /HEM_Client/dist/
 /NewHorizons/Utils/build/
 /NewHorizons/Utils/dist/
+/NewHorizons/Utils/.dep.inc
+/NewHorizons/Sensor/build/
+/NewHorizons/Sensor/dist/
+/NewHorizons/Sensor/.dep.inc
+/NewHorizons/Network/.dep.inc
+/NewHorizons/Network/build/
+/NewHorizons/Network/dist/
+/NewHorizons/Rover/build/
+/NewHorizons/Rover/dist/
+/NewHorizons/Rover/.dep.inc

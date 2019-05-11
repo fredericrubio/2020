@@ -23,7 +23,23 @@ NHOCamera::NHOCamera(const unsigned short pCameraId) {
     data = new NHOCameraData(pCameraId);
     ((NHOCameraData*) data)->setImage(new NHOImage());
     parameters = new NHOCameraParameters();
+#ifdef _RASPBIAN
+    raspCam = new raspicam::RaspiCam();
+    raspCam->setFormat(raspicam::RASPICAM_FORMAT_RGB);
+#endif
     
+}
+
+/**
+ *
+ **/
+NHOCamera::~NHOCamera() {
+    
+#ifdef _RASPBIAN
+    if (raspCam != NULL) {
+        delete raspCam;
+    }
+#endif    
 }
 
 /**
@@ -39,8 +55,20 @@ bool NHOCamera::process() {
 bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
     
 #ifdef _RASPBIAN
+    if (!raspCam) {
+        NHOFILE_LOG(logDEBUG) << "NHOCamera::initialize: KO (no rasp camera" << std::endl;
+        return false ;
+    }
+    
+    image = new NHOImage();
+    
     if (raspCam->open()) {
         NHOFILE_LOG(logDEBUG) << "NHOCamera::initialize: OK" << std::endl;
+
+        // set the image attributes
+        image->setWidth(raspCam->getWidth());
+        image->setHeight(raspCam->getHeight());
+        image->setFormat(NHOImage::FORMAT_RGB);
     }
     else {
         // error management
@@ -49,7 +77,6 @@ bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
     }
 #else
     std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
-    image = new NHOImage();
     if (!image->readPPM(lFileName.c_str())) {
         NHOFILE_LOG(logERROR) << "NHOCamera::initialize: Error opening reference image" << std::endl;
         return false;
@@ -72,7 +99,7 @@ bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
     }
     
     // service emitter
-    serviceEmitter = new NHOReflexFullDuplexConnectedEmitter(pParameters->getServiceEmissionPort(), 0);
+    serviceEmitter = new NHOReflexFullDuplexConnectedEmitter(pParameters->getServiceEmissionPort());
     NHOImageSizeMessage* lReflexMessage = new NHOImageSizeMessage(clock(),
                                                                   image->getWidth(),
                                                                   image->getHeight(),
@@ -147,17 +174,21 @@ bool NHOCamera::acquire() {
         return lCapture;
     }
     
-    unsigned char* lData = NULL;
+    unsigned char* lImageBuffer = NULL;
     unsigned int lSize = 0;
     // get the image
     lSize = raspCam->getImageTypeSize( raspicam::RASPICAM_FORMAT_RGB );
     if (lSize > 0) {
         // allocate
-        lData = new unsigned char[*pSize];
+        lImageBuffer = new unsigned char[lSize];
         //extract the image in rgb format
-        raspCam->retrieve(lData, raspicam::RASPICAM_FORMAT_IGNORE );
+        raspCam->retrieve(lImageBuffer, raspicam::RASPICAM_FORMAT_IGNORE );
         // store date
-        data->setImage(unsigned short pWidth, const unsigend short pHeight, lData);
+        NHOCameraData* lData = dynamic_cast<NHOCameraData*>(data);
+        lData->getImage()->setWidth(image->getWidth());
+        lData->getImage()->setHeight(image->getHeight());
+        lData->getImage()->setFormat(NHOImage::FORMAT_RGB);
+        lData->getImage()->setPixels(lSize, lImageBuffer);
     }
 #else
     // To do
@@ -165,9 +196,9 @@ bool NHOCamera::acquire() {
     std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
     dynamic_cast<NHOCameraData*>(data)->getImage()->readPPM(lFileName.c_str());
     
-//    NHOFILE_LOG(logDEBUG) << "NHOCamera::acquire. " << std::endl;
     lCapture = true;
 #endif
+    NHOFILE_LOG(logDEBUG) << "NHOCamera::acquire. " << std::endl;
     return lCapture;
 }
 
@@ -243,7 +274,7 @@ unsigned int NHOCamera::getWidth() const {
 unsigned int NHOCamera::getHeight() const {
 #ifdef _RASPBIAN
     if (raspCam == NULL) {
-        NHO_FILE_LOG(logDEBUG) << "NHOCamera::getHeight: Camera not initialized" << std::endl;
+        NHOFILE_LOG(logDEBUG) << "NHOCamera::getHeight: Camera not initialized" << std::endl;
         return false;
     }
     

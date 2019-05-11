@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>Inc/NHOCamera.hpp</itemPath>
+      <itemPath>Inc/NHOCameraData.hpp</itemPath>
+      <itemPath>Inc/NHOCameraParameters.hpp</itemPath>
+      <itemPath>Inc/NHOData.hpp</itemPath>
+      <itemPath>Inc/NHOSensor.hpp</itemPath>
+      <itemPath>Inc/NHOSensorData.hpp</itemPath>
+      <itemPath>Inc/NHOSensorParameters.hpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>Src/NHOCamera.cpp</itemPath>
+      <itemPath>Src/NHOCameraData.cpp</itemPath>
+      <itemPath>Src/NHOCameraParameters.cpp</itemPath>
+      <itemPath>Src/NHOData.cpp</itemPath>
+      <itemPath>Src/NHOSensor.cpp</itemPath>
+      <itemPath>Src/NHOSensorData.cpp</itemPath>
+      <itemPath>Src/NHOSensorParameters.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>Inc</pElem>
+            <pElem>../Utils/Inc</pElem>
+            <pElem>../Network/Inc</pElem>
+            <pElem>../RaspiCam/Inc</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_RASPBIAN</Elem>
+          </preprocessorList>
+        </ccTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="Inc/NHOCamera.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOCameraData.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOCameraParameters.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOData.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOSensor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOSensorData.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOSensorParameters.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Src/NHOCamera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOCameraData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOCameraParameters.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOSensor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOSensorData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOSensorParameters.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="Inc/NHOCamera.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOCameraData.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOCameraParameters.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOData.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOSensor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOSensorData.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOSensorParameters.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Src/NHOCamera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOCameraData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOCameraParameters.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOSensor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOSensorData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOSensorParameters.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

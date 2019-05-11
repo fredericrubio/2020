@@ -17,7 +17,7 @@
 
 #include "NHOMessage.hpp"
 #include "NHOLOG.hpp"
-#include "NHOBroadCastEmitter.hpp"
+#include "NHOBroadcastEmitter.hpp"
 
 /**
  * Constructor

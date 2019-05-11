@@ -15,9 +15,8 @@
 #ifdef _RASPBIAN
     // Raspberry OS
     #include "raspicam.h"
-#else
-    #include "NHOImage.hpp"
 #endif
+    #include "NHOImage.hpp"
 
 class NHOCamera : public NHOSensor{
     
@@ -64,9 +63,8 @@ public:
 protected:
     #ifdef _RASPBIAN
         raspicam::RaspiCam* raspCam;
-    #else
-        NHOImage* image;
     #endif
+    NHOImage* image;
     
     unsigned int getWidth() const;
     unsigned int getHeight() const;

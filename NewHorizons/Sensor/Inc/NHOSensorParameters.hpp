@@ -39,19 +39,19 @@ public:
         dataEmittionOn = pOn;
     };
     
-    inline unsigned short gerPeriod() const {
+    inline const unsigned short gerPeriod() const {
         return period;
     };
-    inline unsigned short getDataEmissionPeriod() const {
+    inline const unsigned short getDataEmissionPeriod() const {
         return dataEmissionPeriod;
     };
-    inline unsigned short storePeriod() const {
+    inline const unsigned short geStorePeriod() const {
         return storePreriod;
     };
-    inline unsigned short getDataEmissionPort() const {
+    inline const unsigned short getDataEmissionPort() const {
         return dataEmissionPort;
     };
-    inline unsigned short getServiceEmissionPort() const {
+    inline const unsigned short getServiceEmissionPort() const {
         return serviceEmissionPort;
     };
     

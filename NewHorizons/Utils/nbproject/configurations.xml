@@ -7,10 +7,6 @@
       <itemPath>Inc/NHOImage.hpp</itemPath>
       <itemPath>Inc/NHOLOG.hpp</itemPath>
     </logicalFolder>
-    <logicalFolder name="ResourceFiles"
-                   displayName="Resource Files"
-                   projectFiles="true">
-    </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">

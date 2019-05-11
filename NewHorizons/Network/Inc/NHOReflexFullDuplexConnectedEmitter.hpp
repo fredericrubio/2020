@@ -20,7 +20,7 @@ public:
     /**
      * Constructor
      **/
-    NHOReflexFullDuplexConnectedEmitter(const unsigned short pPort, const unsigned short pPeriod);
+    NHOReflexFullDuplexConnectedEmitter(const unsigned short pPort);
 
     void setReflexMessage(NHOMessage* pMsg) {message = pMsg;};
     

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>Inc/NHOAckMessage.hpp</itemPath>
+      <itemPath>Inc/NHOBroadcastEmitter.hpp</itemPath>
+      <itemPath>Inc/NHOCameraDataMessage.hpp</itemPath>
+      <itemPath>Inc/NHOEmitter.hpp</itemPath>
+      <itemPath>Inc/NHOFullDuplexConnectedEmitter.hpp</itemPath>
+      <itemPath>Inc/NHOImageSizeMessage.hpp</itemPath>
+      <itemPath>Inc/NHOMessage.hpp</itemPath>
+      <itemPath>Inc/NHOMessageFactory.hpp</itemPath>
+      <itemPath>Inc/NHOReflexFullDuplexConnectedEmitter.hpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>Src/NHOAckMessage.cpp</itemPath>
+      <itemPath>Src/NHOBroadcastEmitter.cpp</itemPath>
+      <itemPath>Src/NHOCameraDataMessage.cpp</itemPath>
+      <itemPath>Src/NHOEmitter.cpp</itemPath>
+      <itemPath>Src/NHOFullDuplexConnectedEmitter.cpp</itemPath>
+      <itemPath>Src/NHOImageSizeMessage.cpp</itemPath>
+      <itemPath>Src/NHOMessage.cpp</itemPath>
+      <itemPath>Src/NHOMessageFactory.cpp</itemPath>
+      <itemPath>Src/NHOReflexFullDuplexConnectedEmitter.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>Inc</pElem>
+            <pElem>../Sensor/Inc</pElem>
+            <pElem>../Utils/Inc</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_RASPBIAN</Elem>
+          </preprocessorList>
+        </ccTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="Inc/NHOAckMessage.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOBroadcastEmitter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOCameraDataMessage.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOEmitter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOFullDuplexConnectedEmitter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Inc/NHOImageSizeMessage.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOMessage.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOMessageFactory.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOReflexFullDuplexConnectedEmitter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Src/NHOAckMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOBroadcastEmitter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOCameraDataMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOEmitter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOFullDuplexConnectedEmitter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Src/NHOImageSizeMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOMessageFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOReflexFullDuplexConnectedEmitter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="Inc/NHOAckMessage.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOBroadcastEmitter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOCameraDataMessage.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOEmitter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOFullDuplexConnectedEmitter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Inc/NHOImageSizeMessage.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOMessage.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOMessageFactory.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOReflexFullDuplexConnectedEmitter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Src/NHOAckMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOBroadcastEmitter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOCameraDataMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOEmitter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOFullDuplexConnectedEmitter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Src/NHOImageSizeMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOMessageFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOReflexFullDuplexConnectedEmitter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -16,7 +16,7 @@ class NHOImageSizeMessage;
 class NHOMessageFactory {
     
 public:
-    typedef enum {eUnknown, eAckMessage, eImageSize, eCameraParameters, eImage, eCameraData} NHOMessageType;
+    typedef enum {eUnknown, eAckMessage, eImageSize, eCameraParameters, eImage, eCameraData, eHEM} NHOMessageType;
 
     /**
      *

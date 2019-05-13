@@ -54,13 +54,13 @@ bool NHOCamera::process() {
  **/
 bool NHOCamera::initialize(const NHOCameraParameters* pParameters) {
     
+    image = new NHOImage();
+    
 #ifdef _RASPBIAN
     if (!raspCam) {
         NHOFILE_LOG(logDEBUG) << "NHOCamera::initialize: KO (no rasp camera" << std::endl;
         return false ;
     }
-    
-    image = new NHOImage();
     
     if (raspCam->open()) {
         NHOFILE_LOG(logDEBUG) << "NHOCamera::initialize: OK" << std::endl;

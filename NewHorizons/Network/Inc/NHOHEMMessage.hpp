@@ -40,14 +40,16 @@ public:
      **/
     bool unserialize();
     
+    virtual unsigned int computeSize();
+    
     /**
      * Set the payload.
      **/
-    inline void setData(NHOHEMData* const pData) {data = pData;};
+    inline void setHEMData(NHOHEMData* const pData) {HEMData = pData;};
     /**
      * Get the payload
      **/
-    inline const NHOHEMData* const getDate() const {return data;};
+    inline const NHOHEMData* const getHEMDate() const {return HEMData;};
     
     inline const char* getMsg() const {return msg;};
     inline void setMsg(const int pSize, const char* pMsg) {
@@ -60,7 +62,7 @@ public:
 private:
     long long   date; // 'long long' to force 64bits on 32bits OS
     
-    NHOHEMData*   data;
+    NHOHEMData*   HEMData;
     
     char* msg;
 

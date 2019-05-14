@@ -8,7 +8,7 @@
 #include <string.h>
 #include <iostream>
 
-#include "NHOHEMessage.hpp"
+#include "NHOHEMMessage.hpp"
 
 #include "NHOHEMData.hpp"
 #include "NHOMessageFactory.hpp"
@@ -36,6 +36,15 @@ NHOHEMMessage::~NHOHEMMessage() {
     
 }
 
+
+unsigned int NHOHEMMessage::computeSize() {
+    
+    size = 0;
+    
+    return size;
+    
+}
+
 /**
  * Serializes the current values of the health monitoring message (allocates and fills the
  * the buffer readdy to be sent.
@@ -51,28 +60,28 @@ bool NHOHEMMessage::serialize() {
     }
     
     // calculate message size
-    size_t lSize = data->getSize();
+    size_t lSize = HEMData->getSize();
 
     msg = (char *) calloc(lSize, sizeof(char));
     
     // copy values
     unsigned int offset = 0;
     /// date
-    long long lDate = data->getDate();
+    long long lDate = HEMData->getDate();
     memcpy((void *) msg, &lDate, sizeof(lDate));
     offset += sizeof(lDate);
     /// cpu
-    short lCpu = data->getCPUUsage();
+    short lCpu = HEMData->getCPUUsage();
     memcpy((void *) (msg + offset), &lCpu, sizeof(lCpu));
     offset += sizeof(lCpu);
     
     /// temp
-    short lTemp = data->getTemperature();
+    short lTemp = HEMData->getTemperature();
     memcpy((void *) (msg + offset), &lTemp, sizeof(lTemp));
     offset += sizeof(lTemp);
     
     /// mempry
-    short lMemory = data->getMemoryUsage();
+    short lMemory = HEMData->getMemoryUsage();
     memcpy((void *) (msg + offset), &lMemory, sizeof(lMemory));
     offset += sizeof(lMemory);
     
@@ -119,7 +128,7 @@ bool NHOHEMMessage::unserialize() {
     offset += sizeof(lMemory);
     lData->setMemoryUsage(lMemory);
     
-    setData(lData);
+    setHEMData(lData);
     
     return true;
 }

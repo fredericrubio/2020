@@ -14,7 +14,10 @@
 #ifndef NHOHEMDATA_H
 #define NHOHEMDATA_H
 
-class NHOHEMData {
+#include "NHOSensorData.hpp"
+
+class NHOHEMData : public NHOSensorData {
+    
 public:
     NHOHEMData();
     NHOHEMData(const long long pDate);
@@ -31,7 +34,6 @@ public:
     /**
      * Getters
      **/
-    inline long long getDate() const {return date;};
     inline short getCPUUsage() const {return cpu;};
     inline short getTemperature() const {return temp;};
     inline short getMemoryUsage() const {return usedMemory;};

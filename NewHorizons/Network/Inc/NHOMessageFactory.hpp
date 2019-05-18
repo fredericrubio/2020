@@ -12,6 +12,8 @@
 class NHOCameraData;
 class NHOCameraDataMessage;
 class NHOImageSizeMessage;
+class NHOMessage;
+class NHOData;
 
 class NHOMessageFactory {
     
@@ -25,8 +27,13 @@ public:
     
     /**
      *
-     */
+     **/
     static NHOImageSizeMessage* build(const char* const pData);
+
+    /**
+     *
+     */
+    static NHOMessage* build(const NHOData* const pData);
     
 };
 #endif /* NHOMessageFactory_hpp */

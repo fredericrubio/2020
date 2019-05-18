@@ -42,7 +42,6 @@ class NHORoverHEM : public NHOSensor {
      bool initialize(const NHOSensorParameters* pParameters);
     
 protected:
-    NHOHEMMessage* message;
     
  };
 

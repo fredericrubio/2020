@@ -11,3 +11,9 @@
 NHOData::NHOData() {
     
 }
+
+NHOData::NHOData(const NHOData& pCopy) {
+    
+    type = pCopy.type;
+    
+}

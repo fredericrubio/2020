@@ -11,6 +11,8 @@
 
 class NHOCamera;
 class NHOCameraParameters;
+class NHOSensorParameters;
+class NHORoverHEM;
 
 class NHORover {
     
@@ -38,7 +40,9 @@ public:
 protected:
     
     NHOCamera*  camera;
+    NHORoverHEM*  hem;
     NHOCameraParameters* cameraParameters;
+    NHOSensorParameters* hemParameters;
 
     /**
      *

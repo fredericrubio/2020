@@ -18,18 +18,26 @@
     #include "sys/sysinfo.h"
 #endif
 #include <stdio.h>
-
+#include "NHOMessageFactory.hpp"
 #include "NHOHEMData.hpp"
 
 NHOHEMData::NHOHEMData() {
+    
+    type = NHOMessageFactory::eHEM;
+    
 }
 
 NHOHEMData::NHOHEMData(const long long pDate):date(pDate) {
+    
+    type = NHOMessageFactory::eHEM;
     
 }
 
     
 NHOHEMData::NHOHEMData(const NHOHEMData& orig) {
+    
+    type = NHOMessageFactory::eHEM;
+    
 }
 
 NHOHEMData::~NHOHEMData() {

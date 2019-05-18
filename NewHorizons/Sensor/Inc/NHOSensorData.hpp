@@ -22,6 +22,7 @@ protected:
 public:
 
     NHOSensorData();
+    NHOSensorData(const NHOSensorData&);
     virtual ~NHOSensorData();
     
     inline virtual void setDate(const long long pDate) {date = pDate;};

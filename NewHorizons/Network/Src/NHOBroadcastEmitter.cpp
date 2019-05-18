@@ -61,7 +61,7 @@ bool NHOBroadcastEmitter::initiate() {
 /**
  * Emit one.
  **/
-bool NHOBroadcastEmitter::send( NHOMessage * const pMsg) const {
+bool NHOBroadcastEmitter::send(const NHOMessage *  pMsg) const {
     if (!emissionSocket) {
         NHOFILE_LOG(logERROR) << "NHOBroadcastEmitter::send: socket not initialized." << std::endl;
         return false;

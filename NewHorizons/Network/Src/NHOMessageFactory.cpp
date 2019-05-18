@@ -12,13 +12,16 @@
 #include "NHOCameraData.hpp"
 #include "NHOCameraDataMessage.hpp"
 #include "NHOImageSizeMessage.hpp"
+#include "NHOData.hpp"
+#include "NHOHEMMessage.hpp"
+#include "NHOHEMData.hpp"
 
 /**
  *
  */
 NHOCameraDataMessage* NHOMessageFactory::build(NHOCameraData* pData) {
     NHOCameraDataMessage* lMsg = new NHOCameraDataMessage(clock());
-    lMsg->setCameraData(pData);
+    lMsg->setCameraData(new NHOCameraData(*pData));
     return lMsg;
 }
 
@@ -44,5 +47,25 @@ NHOImageSizeMessage* NHOMessageFactory::build(const char* const pData) {
     return lMessage;
 }
 
+/**
+ *
+ */
+NHOMessage* NHOMessageFactory::build(const NHOData* const pData) {
+    
+    // get the message type
+    NHOMessageFactory::NHOMessageType lType = pData->getType();
+    NHOMessage* lMessage = NULL;
+    switch (lType) {
+        case NHOMessageFactory::eHEM:
+            lMessage = new NHOHEMMessage(clock());
+            (dynamic_cast<NHOHEMMessage*> (lMessage))->setHEMData((NHOHEMData*) pData);
+            break;
+            
+        default:
+            break;
+    }
+    
+    return lMessage;
+}
 
 

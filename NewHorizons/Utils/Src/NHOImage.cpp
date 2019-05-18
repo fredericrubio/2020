@@ -21,8 +21,8 @@
 #include <sys/ioctl.h>
 #include <netinet/tcp.h>
 #include <iostream>
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "NHOImage.hpp"
 
@@ -34,6 +34,20 @@
 NHOImage::NHOImage():
 pixels(NULL){
     
+}
+
+/**
+ Copy constructor
+ **/
+NHOImage::NHOImage(const NHOImage& pCopy) {
+    
+    width = pCopy.width;
+    height = pCopy.height;
+    format = pCopy.format;
+    size = pCopy.size;
+    pixels = (unsigned char*) calloc(size, sizeof(char));
+    memcpy(pixels, pCopy.pixels, size);
+
 }
 
 

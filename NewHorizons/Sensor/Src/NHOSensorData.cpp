@@ -18,3 +18,11 @@ NHOSensorData::NHOSensorData(){
 NHOSensorData::~NHOSensorData() {
     
 }
+
+NHOSensorData::NHOSensorData(const NHOSensorData& pCopy) {
+    
+    size = pCopy.size;
+    date = pCopy.date;
+    
+}
+

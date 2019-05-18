@@ -17,6 +17,11 @@ public:
     NHOImage();
     
     /**
+     Copy constructor
+     **/
+    NHOImage(const NHOImage&);
+    
+    /**
      * Destructor
      **/
     ~NHOImage();

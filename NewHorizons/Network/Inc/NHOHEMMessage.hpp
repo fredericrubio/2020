@@ -52,11 +52,11 @@ public:
     inline const NHOHEMData* const getHEMDate() const {return HEMData;};
     
     inline const char* getMsg() const {return msg;};
-    inline void setMsg(const int pSize, const char* pMsg) {
-        if (msg != NULL) {
-            free(msg);
+    inline void setData(const int pSize, const char* pMsg) {
+        if (data != NULL) {
+            free(data);
         }
-        msg = (char *) calloc(pSize, 0); memcpy(msg, pMsg, pSize);
+        data = (char *) calloc(pSize, 0); memcpy(data, pMsg, pSize);
     };
 
 private:

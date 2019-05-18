@@ -51,38 +51,38 @@ unsigned int NHOHEMMessage::computeSize() {
  **/
 bool NHOHEMMessage::serialize() {
     
-    if (data == NULL) {
+    if (HEMData == NULL) {
         return false;
     }
     
-    if (msg != NULL) {
-        free(msg);
+    if (data != NULL) {
+        free(data);
     }
     
     // calculate message size
     size_t lSize = HEMData->getSize();
 
-    msg = (char *) calloc(lSize, sizeof(char));
+    data = (char *) calloc(lSize, sizeof(char));
     
     // copy values
     unsigned int offset = 0;
     /// date
     long long lDate = HEMData->getDate();
-    memcpy((void *) msg, &lDate, sizeof(lDate));
+    memcpy((void *) data, &lDate, sizeof(lDate));
     offset += sizeof(lDate);
     /// cpu
     short lCpu = HEMData->getCPUUsage();
-    memcpy((void *) (msg + offset), &lCpu, sizeof(lCpu));
+    memcpy((void *) (data + offset), &lCpu, sizeof(lCpu));
     offset += sizeof(lCpu);
     
     /// temp
     short lTemp = HEMData->getTemperature();
-    memcpy((void *) (msg + offset), &lTemp, sizeof(lTemp));
+    memcpy((void *) (data + offset), &lTemp, sizeof(lTemp));
     offset += sizeof(lTemp);
     
     /// mempry
     short lMemory = HEMData->getMemoryUsage();
-    memcpy((void *) (msg + offset), &lMemory, sizeof(lMemory));
+    memcpy((void *) (data + offset), &lMemory, sizeof(lMemory));
     offset += sizeof(lMemory);
     
     size = (unsigned int) lSize;
@@ -99,32 +99,32 @@ bool NHOHEMMessage::unserialize() {
     unsigned int offset = 0;
     NHOHEMData* lData = new NHOHEMData();
     
-    if (msg == NULL) {
+    if (data == NULL) {
         return false;
     }
     
     // copy values
     /// date
     long long lDate;
-    memcpy(&lDate, (void *) msg, sizeof(lDate));
+    memcpy(&lDate, (void *) data, sizeof(lDate));
     offset += sizeof(lDate);
     lData->setDate(lDate);
     
     /// cpu
     short lCpu;
-    memcpy(&lCpu, (void *) (msg + offset), sizeof(lCpu));
+    memcpy(&lCpu, (void *) (data + offset), sizeof(lCpu));
     offset += sizeof(lCpu);
     lData->setCPUUsage(lCpu);
     
     /// temp
     short lTemperature;
-    memcpy(&lTemperature, (void *) (msg + offset), sizeof(lTemperature));
+    memcpy(&lTemperature, (void *) (data + offset), sizeof(lTemperature));
     offset += sizeof(lTemperature);
     lData->setTemperature(lTemperature);
     
     /// memory
     short lMemory;
-    memcpy(&lMemory, (void *) (msg + offset), sizeof(lMemory));
+    memcpy(&lMemory, (void *) (data + offset), sizeof(lMemory));
     offset += sizeof(lMemory);
     lData->setMemoryUsage(lMemory);
     

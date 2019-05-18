@@ -44,6 +44,9 @@ cameraId(pCameraId){
  **/
 NHOCameraData::NHOCameraData(const NHOCameraData & pCameraData) {
     
+    cameraId = pCameraData.cameraId;
+    image = new NHOImage(*pCameraData.image);
+
 }
 
 /**

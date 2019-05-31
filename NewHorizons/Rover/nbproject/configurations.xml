@@ -51,6 +51,7 @@
             <pElem>../Sensor/Inc</pElem>
             <pElem>../Utils/Inc</pElem>
             <pElem>../RaspiCam/Inc</pElem>
+            <pElem>../../../../wiringPi/wiringPi</pElem>
           </incDir>
           <preprocessorList>
             <Elem>_RASPBIAN</Elem>

@@ -74,12 +74,12 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ${OBJECTFILES}
 ${OBJECTDIR}/Src/NHORover.o: Src/NHORover.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -IInc -I../Network/Inc -I../Sensor/Inc -I../Utils/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHORover.o Src/NHORover.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -IInc -I../Network/Inc -I../Sensor/Inc -I../Utils/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHORover.o Src/NHORover.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Network/Inc -I../Sensor/Inc -I../Utils/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Network/Inc -I../Sensor/Inc -I../Utils/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

@@ -160,8 +160,8 @@ bool NHOHEMData::fetchMemoryUsage() {
  * Fetch Pins
  **/
 bool NHOHEMData::fetchPins() {
-#ifdef _RASPBIAN
     int pin;
+#ifdef _RASPBIAN
     for (pin = wiringPiNodes->pinBase ; pin <= wiringPiNodes->pinMax ; ++pin) {
         modes[pin] = getAlt(pin);
     }
@@ -170,6 +170,7 @@ bool NHOHEMData::fetchPins() {
         modes[pin] = -1;
     }
 #endif
+    return true;
 }
 
 

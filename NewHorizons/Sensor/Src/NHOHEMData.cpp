@@ -16,6 +16,7 @@
     #include <fcntl.h>
     #include <unistd.h>
     #include "sys/sysinfo.h"
+    #include "wiringPi.h"
 #endif
 #include <stdio.h>
 #include "NHOMessageFactory.hpp"
@@ -50,7 +51,7 @@ bool NHOHEMData::fetch() {
     
     bool lReturn = false;
     
-    lReturn = fetchCPUUsage() && fetchMemoryUsage() && fetchTemperature();
+    lReturn = fetchCPUUsage() && fetchMemoryUsage() && fetchTemperature() && fetchPins();
     
     return lReturn;
 }
@@ -154,3 +155,21 @@ bool NHOHEMData::fetchMemoryUsage() {
     return true;
 #endif    
 }
+
+/**
+ * Fetch Pins
+ **/
+bool NHOHEMData::fetchPins() {
+#ifdef _RASPBIAN
+    int pin;
+    for (pin = wiringPiNodes->pinBase ; pin <= wiringPiNodes->pinMax ; ++pin) {
+        modes[pin] = getAlt(pin);
+    }
+#else
+    for (pin = 0 ; pin <= NB_PINS ; ++pin) {
+        modes[pin] = -1;
+    }
+#endif
+}
+
+

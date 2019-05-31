@@ -39,6 +39,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Src/NHOCameraData.o \
 	${OBJECTDIR}/Src/NHOCameraParameters.o \
 	${OBJECTDIR}/Src/NHOData.o \
+	${OBJECTDIR}/Src/NHOHEMData.o \
+	${OBJECTDIR}/Src/NHORoverHEM.o \
 	${OBJECTDIR}/Src/NHOSensor.o \
 	${OBJECTDIR}/Src/NHOSensorData.o \
 	${OBJECTDIR}/Src/NHOSensorParameters.o
@@ -73,37 +75,47 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsensor.a: ${OBJECTFILES}
 ${OBJECTDIR}/Src/NHOCamera.o: Src/NHOCamera.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOCamera.o Src/NHOCamera.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOCamera.o Src/NHOCamera.cpp
 
 ${OBJECTDIR}/Src/NHOCameraData.o: Src/NHOCameraData.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOCameraData.o Src/NHOCameraData.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOCameraData.o Src/NHOCameraData.cpp
 
 ${OBJECTDIR}/Src/NHOCameraParameters.o: Src/NHOCameraParameters.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOCameraParameters.o Src/NHOCameraParameters.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOCameraParameters.o Src/NHOCameraParameters.cpp
 
 ${OBJECTDIR}/Src/NHOData.o: Src/NHOData.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOData.o Src/NHOData.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOData.o Src/NHOData.cpp
+
+${OBJECTDIR}/Src/NHOHEMData.o: Src/NHOHEMData.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOHEMData.o Src/NHOHEMData.cpp
+
+${OBJECTDIR}/Src/NHORoverHEM.o: Src/NHORoverHEM.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHORoverHEM.o Src/NHORoverHEM.cpp
 
 ${OBJECTDIR}/Src/NHOSensor.o: Src/NHOSensor.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOSensor.o Src/NHOSensor.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOSensor.o Src/NHOSensor.cpp
 
 ${OBJECTDIR}/Src/NHOSensorData.o: Src/NHOSensorData.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOSensorData.o Src/NHOSensorData.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOSensorData.o Src/NHOSensorData.cpp
 
 ${OBJECTDIR}/Src/NHOSensorParameters.o: Src/NHOSensorParameters.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOSensorParameters.o Src/NHOSensorParameters.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Utils/Inc -I../Network/Inc -I../RaspiCam/Inc -I../../../../wiringPi/wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOSensorParameters.o Src/NHOSensorParameters.cpp
 
 # Subprojects
 .build-subprojects:

@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Src/NHOCameraDataMessage.o \
 	${OBJECTDIR}/Src/NHOEmitter.o \
 	${OBJECTDIR}/Src/NHOFullDuplexConnectedEmitter.o \
+	${OBJECTDIR}/Src/NHOHEMMessage.o \
 	${OBJECTDIR}/Src/NHOImageSizeMessage.o \
 	${OBJECTDIR}/Src/NHOMessage.o \
 	${OBJECTDIR}/Src/NHOMessageFactory.o \
@@ -96,6 +97,11 @@ ${OBJECTDIR}/Src/NHOFullDuplexConnectedEmitter.o: Src/NHOFullDuplexConnectedEmit
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOFullDuplexConnectedEmitter.o Src/NHOFullDuplexConnectedEmitter.cpp
+
+${OBJECTDIR}/Src/NHOHEMMessage.o: Src/NHOHEMMessage.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOHEMMessage.o Src/NHOHEMMessage.cpp
 
 ${OBJECTDIR}/Src/NHOImageSizeMessage.o: Src/NHOImageSizeMessage.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src

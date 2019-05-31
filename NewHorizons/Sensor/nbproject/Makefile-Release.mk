@@ -39,6 +39,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Src/NHOCameraData.o \
 	${OBJECTDIR}/Src/NHOCameraParameters.o \
 	${OBJECTDIR}/Src/NHOData.o \
+	${OBJECTDIR}/Src/NHOHEMData.o \
+	${OBJECTDIR}/Src/NHORoverHEM.o \
 	${OBJECTDIR}/Src/NHOSensor.o \
 	${OBJECTDIR}/Src/NHOSensorData.o \
 	${OBJECTDIR}/Src/NHOSensorParameters.o
@@ -89,6 +91,16 @@ ${OBJECTDIR}/Src/NHOData.o: Src/NHOData.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOData.o Src/NHOData.cpp
+
+${OBJECTDIR}/Src/NHOHEMData.o: Src/NHOHEMData.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOHEMData.o Src/NHOHEMData.cpp
+
+${OBJECTDIR}/Src/NHORoverHEM.o: Src/NHORoverHEM.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHORoverHEM.o Src/NHORoverHEM.cpp
 
 ${OBJECTDIR}/Src/NHOSensor.o: Src/NHOSensor.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src

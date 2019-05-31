@@ -85,6 +85,10 @@ bool NHOHEMMessage::serialize() {
     memcpy((void *) (data + offset), &lMemory, sizeof(lMemory));
     offset += sizeof(lMemory);
     
+    /// pins
+    memcpy((void *) (data + offset), HEMData->getPinModes(), sizeof(NHOHEMData::NB_PINS)*sizeof(int));
+    offset += sizeof(sizeof(NHOHEMData::NB_PINS)*sizeof(int));
+    
     size = (unsigned int) lSize;
     return true;
 }
@@ -127,6 +131,12 @@ bool NHOHEMMessage::unserialize() {
     memcpy(&lMemory, (void *) (data + offset), sizeof(lMemory));
     offset += sizeof(lMemory);
     lData->setMemoryUsage(lMemory);
+    
+    /// pins
+    int pins[NHOHEMData::NB_PINS];
+    memcpy(pins, (void *) (data + offset), sizeof(pins));
+    offset += sizeof(pins);
+    lData->setPinModes(pins);
     
     setHEMData(lData);
     

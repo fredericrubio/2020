@@ -4,11 +4,24 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Inc/NHORover.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Src/NHORover.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -33,6 +46,7 @@
       <compileType>
         <ccTool>
           <incDir>
+            <pElem>Inc</pElem>
             <pElem>../Network/Inc</pElem>
             <pElem>../Sensor/Inc</pElem>
             <pElem>../Utils/Inc</pElem>
@@ -43,6 +57,9 @@
           </preprocessorList>
         </ccTool>
         <linkerTool>
+          <linkerAddLib>
+            <pElem>../../../../wiringPi/wiringPi</pElem>
+          </linkerAddLib>
           <linkerLibItems>
             <linkerLibProjectItem>
               <makeArtifact PL="../Sensor"
@@ -82,6 +99,7 @@
             </linkerLibProjectItem>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
             <linkerLibFileItem>../RaspiCam/Lib/libraspicam.so</linkerLibFileItem>
+            <linkerLibLibItem>wiringPi</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
         <requiredProjects>
@@ -117,6 +135,15 @@
           </makeArtifact>
         </requiredProjects>
       </compileType>
+      <item path="Inc/NHORover.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Src/NHORover.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>Inc</pElem>
+          </incDir>
+        </ccTool>
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -140,6 +167,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Inc/NHORover.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Src/NHORover.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>

@@ -14,11 +14,15 @@
 #ifndef NHOHEMDATA_H
 #define NHOHEMDATA_H
 
+#include <string.h>
+
 #include "NHOSensorData.hpp"
 
 class NHOHEMData : public NHOSensorData {
     
 public:
+    static const int NB_PINS = 40;
+    
     NHOHEMData();
     NHOHEMData(const long long pDate);
     NHOHEMData(const NHOHEMData& orig);
@@ -28,7 +32,7 @@ public:
      * Returns the size (in bytes) of a HEM message
      **/
     static inline size_t getSize() {
-        return (sizeof(date) + sizeof(cpu) + sizeof(temp) + sizeof(usedMemory)) ;
+        return (sizeof(date) + sizeof(cpu) + sizeof(temp) + sizeof(usedMemory) + sizeof(modes)) ;
     }
     
     /**
@@ -37,6 +41,7 @@ public:
     inline short getCPUUsage() const {return cpu;};
     inline short getTemperature() const {return temp;};
     inline short getMemoryUsage() const {return usedMemory;};
+    inline const int* const getPinModes() const {return modes;};
     
     /**
      * Setters
@@ -45,6 +50,7 @@ public:
     inline void setTemperature(const short pTemperature) {temp = pTemperature;};
     inline void setMemoryUsage(const short pMemory) {usedMemory = pMemory;};
     inline void setDate(const long long pDate) {date = pDate;};
+    inline void setPinModes(const int* pModes) {memcpy(modes, pModes, sizeof(modes));};
     
     /**
      * Update health monitoring sata
@@ -57,7 +63,7 @@ private:
     short cpu;
     short temp;
     short usedMemory;
-    
+    int   modes[NB_PINS];
     /**
      * Fetch CPU
      **/
@@ -72,6 +78,11 @@ private:
      * Fetch Memory
      **/
     bool fetchMemoryUsage();
+    
+    /**
+     * Fetch Pins
+     **/
+    bool fetchPins();
 };
 
 #endif /* NHOHEMDATA_H */

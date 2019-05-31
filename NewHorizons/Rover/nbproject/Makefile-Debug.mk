@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Src/NHORover.o \
 	${OBJECTDIR}/main.o
 
 
@@ -52,7 +53,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=../Sensor/dist/Debug/GNU-Linux/libsensor.a ../Network/dist/Debug/GNU-Linux/libnetwork.a ../Utils/dist/Debug/GNU-Linux/libutils.a -lpthread ../RaspiCam/Lib/libraspicam.so
+LDLIBSOPTIONS=-L../../../../wiringPi/wiringPi ../Sensor/dist/Debug/GNU-Linux/libsensor.a ../Network/dist/Debug/GNU-Linux/libnetwork.a ../Utils/dist/Debug/GNU-Linux/libutils.a -lpthread ../RaspiCam/Lib/libraspicam.so -lwiringPi
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -70,10 +71,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/Src/NHORover.o: Src/NHORover.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -IInc -I../Network/Inc -I../Sensor/Inc -I../Utils/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHORover.o Src/NHORover.cpp
+
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_RASPBIAN -I../Network/Inc -I../Sensor/Inc -I../Utils/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Network/Inc -I../Sensor/Inc -I../Utils/Inc -I../RaspiCam/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

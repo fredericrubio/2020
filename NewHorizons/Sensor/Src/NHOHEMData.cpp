@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include "NHOMessageFactory.hpp"
 #include "NHOHEMData.hpp"
+#include "NHOLOG.hpp"
 
 NHOHEMData::NHOHEMData() {
     
@@ -162,9 +163,11 @@ bool NHOHEMData::fetchMemoryUsage() {
 bool NHOHEMData::fetchPins() {
     int pin;
 #ifdef _RASPBIAN
-    for (pin = wiringPiNodes->pinBase ; pin <= wiringPiNodes->pinMax ; ++pin) {
+    for (pin = 0 ; pin <= NHOHEMData::NB_PINS ; ++pin) {
         modes[pin] = getAlt(pin);
+//        NHOFILE_LOG(logDEBUG) << modes[pin] << " ";
     }
+//    NHOFILE_LOG(logDEBUG) << std::endl;
 #else
     for (pin = 0 ; pin <= NB_PINS ; ++pin) {
         modes[pin] = -1;

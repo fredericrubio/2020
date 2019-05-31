@@ -49,7 +49,7 @@ public:
     /**
      * Get the payload
      **/
-    inline const NHOHEMData* const getHEMDate() const {return HEMData;};
+    inline const NHOHEMData* const getHEMData() const {return HEMData;};
     
     inline const char* getMsg() const {return msg;};
     inline void setData(const int pSize, const char* pMsg) {

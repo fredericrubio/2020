@@ -114,9 +114,14 @@ bool NHOHEMStorageUnit::receiveHEM() {
         }
         lMessage->setData(numbytes, buf);
         lMessage->unserialize();
-        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM CPU:" << lMessage->getHEMDate()->getCPUUsage() << std::endl;
-        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Memory:" << lMessage->getHEMDate()->getMemoryUsage() << std::endl;
-        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Temperature:" << lMessage->getHEMDate()->getTemperature() << std::endl;
+        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM CPU:" << lMessage->getHEMData()->getCPUUsage() << std::endl;
+        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Memory:" << lMessage->getHEMData()->getMemoryUsage() << std::endl;
+        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Temperature:" << lMessage->getHEMData()->getTemperature() << std::endl;
+        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Modes: " ;
+        for (int loop = 0 ; loop < NHOHEMData::NB_PINS ; loop++) {
+            NHOFILE_LOG(logDEBUG) << lMessage->getHEMData()->getPinModes()[loop] << " " ;
+        }
+            NHOFILE_LOG(logDEBUG) << std::endl;
     }
     
 #ifdef _DEBUG

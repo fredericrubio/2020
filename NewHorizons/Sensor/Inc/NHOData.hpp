@@ -9,11 +9,21 @@
 #ifndef NHOData_hpp
 #define NHOData_hpp
 
+#include "NHOMessageFactory.hpp"
+
 class NHOData {
     
 public:
     
     NHOData();
+    NHOData(const NHOData&);
+
+    virtual inline NHOMessageFactory::NHOMessageType getType() const {return type;} ;
+    
+protected :
+    
+    NHOMessageFactory::NHOMessageType  type;
+    
     
 };
 #endif /* NHOData_hpp */

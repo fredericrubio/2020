@@ -13,6 +13,11 @@ class NHOSensorParameters {
 
 public:
     /**
+     * Constructor
+     **/
+    NHOSensorParameters();
+
+    /**
      * Setters/Getters
      **/
     virtual inline bool setSamplingPeriod(const unsigned short pPeriod) {
@@ -81,10 +86,6 @@ protected:
     unsigned short storePreriod;
     bool storingOn;
     
-    /**
-     * Constructor
-     **/
-    NHOSensorParameters();
 };
 #endif /* NHOSensorParameters_hpp */
 

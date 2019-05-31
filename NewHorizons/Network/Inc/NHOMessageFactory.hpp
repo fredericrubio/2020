@@ -12,11 +12,13 @@
 class NHOCameraData;
 class NHOCameraDataMessage;
 class NHOImageSizeMessage;
+class NHOMessage;
+class NHOData;
 
 class NHOMessageFactory {
     
 public:
-    typedef enum {eUnknown, eAckMessage, eImageSize, eCameraParameters, eImage, eCameraData} NHOMessageType;
+    typedef enum {eUnknown, eAckMessage, eImageSize, eCameraParameters, eImage, eCameraData, eHEM} NHOMessageType;
 
     /**
      *
@@ -25,8 +27,13 @@ public:
     
     /**
      *
-     */
+     **/
     static NHOImageSizeMessage* build(const char* const pData);
+
+    /**
+     *
+     */
+    static NHOMessage* build(const NHOData* const pData);
     
 };
 #endif /* NHOMessageFactory_hpp */

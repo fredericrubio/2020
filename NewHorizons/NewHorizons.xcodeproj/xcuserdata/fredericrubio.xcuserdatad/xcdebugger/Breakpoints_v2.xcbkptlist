@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StorageUnit/NHOImageStorageUnit.cpp"
-            timestampString = "579117494.734261"
+            timestampString = "579887495.713293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StorageUnit/NHOImageStorageUnit.cpp"
-            timestampString = "579117494.734354"
+            timestampString = "579887495.713576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sensor/Src/NHOCamera.cpp"
-            timestampString = "579117494.734579"
+            timestampString = "579890849.967944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Network/Src/NHOCameraDataMessage.cpp"
-            timestampString = "579117494.7350399"
+            timestampString = "579890849.968634"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "NHOCameraDataMessage::serialize()"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +106,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StorageUnit/NHOImageStorageUnit.cpp"
-            timestampString = "579117494.7352591"
+            timestampString = "579887495.714272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
             endingLineNumber = "164"
             landmarkName = "NHOImageStorageUnit::receiveImageMessage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sensor/Src/NHOCamera.cpp"
+            timestampString = "579890849.968907"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "NHOCamera::acquire()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

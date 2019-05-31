@@ -24,6 +24,7 @@ public:
     /**
      * Emit one.
      **/
-    virtual bool send( NHOMessage  * const) const;
+    virtual bool send(const  NHOMessage  *) const;
+
 };
 #endif /* NHOBroadCastElitter_hpp */

@@ -11,6 +11,7 @@
 
 #include "NHOCameraData.hpp"
 #include "NHOImage.hpp"
+#include "NHOLOG.hpp"
 
 #include "NHOCameraDataMessage.hpp"
 
@@ -67,6 +68,10 @@ bool NHOCameraDataMessage::serialize() {
         return false;
     }
     
+    if (data != NULL) {
+        free(data);
+        data = NULL;
+    }
     unsigned int value;
     
     // mempry allocation
@@ -131,20 +136,29 @@ bool NHOCameraDataMessage::unserialize() {
     // format
     memcpy(&format, (void *) (data + offset), sizeof(format));
     offset += sizeof(format);
-    // pixels
     // TO DO
     unsigned int lSize = width * height * 3;
-    unsigned char* pixels = (unsigned char *) calloc(lSize, sizeof(unsigned char));
-    memcpy(pixels, (void *) (data + offset), lSize * sizeof(unsigned char));
-
-    cameraData = new NHOCameraData(cameraId);
-    NHOImage* image = new NHOImage();
-    image->setWidth(width);
-    image->setHeight(height);
-    image->setFormat(format);
-    image->setPixels(lSize, pixels);
-    cameraData->setImage(image);
-    computeSize();
-    
-    return true;
+    // pixels
+    // another test: workaround a bug
+    if ((lSize + offset) != size) {
+        delete cameraData;
+        cameraData = NULL;
+        NHOFILE_LOG(logDEBUG) << "NHOCameraDataMessage::unserialize unable to decode image." << std::endl;
+        return false;
+    }
+    else {
+        unsigned char* pixels = (unsigned char *) calloc(lSize, sizeof(unsigned char));
+        memcpy(pixels, (void *) (data + offset), lSize * sizeof(unsigned char));
+        
+        cameraData = new NHOCameraData(cameraId);
+        NHOImage* image = new NHOImage();
+        image->setWidth(width);
+        image->setHeight(height);
+        image->setFormat(format);
+        image->setPixels(lSize, pixels);
+        cameraData->setImage(image);
+        computeSize();
+        
+        return true;
+    }
 }

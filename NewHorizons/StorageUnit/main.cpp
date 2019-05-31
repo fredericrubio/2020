@@ -19,6 +19,7 @@
 #include "NHOImage.hpp"
 
 #include "NHOImageStorageUnit.hpp"
+#include "NHOHEMStorageUnit.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -27,19 +28,22 @@ int main(int argc, char *argv[])
     NHOImageStorageUnit* client = new NHOImageStorageUnit("localhost", 51717s);
 #else
 //    NHOImageStorageUnit* client = new NHOImageStorageUnit("localhost", 51717);
-//    NHOImageStorageUnit* client = new NHOImageStorageUnit("192.168.0.13", 51717, 51718);
-    NHOImageStorageUnit* client = new NHOImageStorageUnit("192.168.0.22", 51717, 51718);
+    NHOImageStorageUnit* imgClient = new NHOImageStorageUnit("192.168.0.13", 51717, 51718);
+    NHOHEMStorageUnit* hemClient = new NHOHEMStorageUnit("192.168.0.13", 51719);
+//    NHOImageStorageUnit* client = new NHOImageStorageUnit("192.168.0.22", 51717, 51718);
 #endif
-    client->setImageSize(400, 600);
-    client->setImageFormat(NHOImage::FORMAT_RGB);
-    client->initiate();
+    imgClient->setImageSize(400, 600);
+    imgClient->setImageFormat(NHOImage::FORMAT_RGB);
+    imgClient->initiate();
+    hemClient->initiate();
     
     std::cout << "Client running  Main Loop\n";
     unsigned int microseconds = 10000000;
     while(1) {
         usleep(microseconds);
     }    
-    client->terminate();
+    imgClient->terminate();
+    hemClient->terminate();
     return 0;
 }
 

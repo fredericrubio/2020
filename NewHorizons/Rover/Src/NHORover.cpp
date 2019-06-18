@@ -13,6 +13,8 @@
 #include "NHOCamera.hpp"
 #include "NHOSensorParameters.hpp"
 #include "NHORoverHEM.hpp"
+#include "NHODEXM.hpp"
+#include "NHOWiringPi.hpp"
 
 /**
  * Constructor
@@ -20,6 +22,7 @@
 NHORover::NHORover():
 cameraParameters(NULL) {
     
+    dex = new NHODEXM();
     camera = new NHOCamera(0);
     hem = new NHORoverHEM();
     
@@ -39,14 +42,51 @@ NHORover::~NHORover() {
         delete hem;
         hem = NULL;
     }
+    
+    if (dex) {
+        delete dex;
+        dex = NULL;
+    }
+    
+}
 
+/**
+ * Observing an TNHOTCMessage emitter.
+ **/
+void NHORover::refresh(NHOTCMessage* const pTC) {
+    
+    if (pTC == NULL) {
+        NHOFILE_LOG(logERROR) << "NHORover::refresh: nothing to decod." << std::endl;
+        return;
+    }
+    
+    // unserialize
+    pTC->unserialize();
+    NHOFILE_LOG(logDEBUG) << "NHORover::refresh: Command <" <<
+    pTC->getCommand() << "> <" << pTC->getMagnitude() << "> <" <<
+    pTC->getDuration() << "> <" << pTC->getSpeed() << ">" << std::endl;
+
+    if (! dex->execute(dynamic_cast<NHOTCMessage *>(pTC))) {
+        NHOFILE_LOG(logERROR) << "NHORover::refresh: TC execution failed <"<< NHOWiringPi::ERROR_CODE << ">\n";
+    }
 }
 
 /**
  *
  **/
 bool NHORover::initialize() {
+    // DEXM
+    dex->configure();
     
+    // NETWORK
+#ifdef _RASPBIAN
+    receiver = new NHOTemplateFullDuplexConnectedReceiver<NHOTCMessage>("192.168.0.13", 51720);
+#else
+    receiver = new NHOTemplateFullDuplexConnectedReceiver<NHOTCMessage>("192.168.0.13", 51720);
+#endif
+    receiver->initiate();
+    receiver->attach(this);
+
     if (! readConfiguration()) {
         NHOFILE_LOG(logERROR) << "NHORover::initialize: configuration failed." << std::endl;
         return false;
@@ -85,11 +125,10 @@ bool NHORover::start() {
  **/
 bool NHORover::readConfiguration() {
     
-    cameraParameters = new NHOCameraParameters();
-    
-    // insert code here...
+    // NETWORK
+    cameraParameters = new NHOCameraParameters();    
     cameraParameters->setStorage(false);
-    cameraParameters->setDataEmission(true);
+    cameraParameters->setDataEmission(false);//true);
     cameraParameters->setDataEmissionPort(51717);
     cameraParameters->setSamplingPeriod(10000);
     cameraParameters->setServiceEmissionPort(51718);
@@ -97,7 +136,7 @@ bool NHORover::readConfiguration() {
     hemParameters = new NHOSensorParameters();
     hemParameters->setStorage(false);
     hemParameters->setDataEmissionPort(51719);
-    hemParameters->setDataEmission(true);
+    hemParameters->setDataEmission(false);//true);
     hemParameters->setSamplingPeriod(1000);
     return true;
     

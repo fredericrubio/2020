@@ -17,12 +17,11 @@
 #include <string.h>
 
 #include "NHOSensorData.hpp"
+#include "NHOWiringPi.hpp"
 
 class NHOHEMData : public NHOSensorData {
     
-public:
-    static const int NB_PINS = 40;
-    
+public:    
     NHOHEMData();
     NHOHEMData(const long long pDate);
     NHOHEMData(const NHOHEMData& orig);
@@ -63,7 +62,10 @@ private:
     short cpu;
     short temp;
     short usedMemory;
-    int   modes[NB_PINS];
+    int   modes[NHOWiringPi::GPIO_PINS];
+    int analogValues[NHOWiringPi::GPIO_PINS];
+    unsigned short digitalValues[NHOWiringPi::GPIO_PINS]; // HIGH or LOW
+
     /**
      * Fetch CPU
      **/

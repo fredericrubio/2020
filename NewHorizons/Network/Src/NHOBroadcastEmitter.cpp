@@ -98,6 +98,8 @@ bool NHOBroadcastEmitter::send(const NHOMessage *  pMsg) const {
         return(false);
     }
     
+    delete pMsg;
+    
     return(true);
     
 }

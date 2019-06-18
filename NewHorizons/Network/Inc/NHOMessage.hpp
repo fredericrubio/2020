@@ -45,6 +45,9 @@ class NHOMessage {
     // Maximum size of a message (to ease the reception of a message we don't know the type)
     static const unsigned int MAX_SIZE = 255;
     
+    /**
+     * Extract the message type from the char array.
+     **/
     static NHOMessageFactory::NHOMessageType getType(const char * const pMessage) {
         unsigned int lOffset = 0;
         NHOMessageFactory::NHOMessageType type;
@@ -54,12 +57,18 @@ class NHOMessage {
     }
     
     virtual inline void setData(const char* const pData) {data = (char *) pData;};
+    
+    /**
+     * Extract the message date from the char array.
+     **/
     static long long getDate(const char * const pMessage) {
         unsigned int lOffset = 0;
         unsigned long lDate;
         memcpy(&lDate, pMessage + lOffset, sizeof(unsigned long));
         return lDate;
     }
+    
+    inline long long getDate() const {return date;};
     // Constants and static methods
     /////////////////////////////////////////
 

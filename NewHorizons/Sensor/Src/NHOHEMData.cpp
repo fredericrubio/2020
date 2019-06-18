@@ -163,14 +163,30 @@ bool NHOHEMData::fetchMemoryUsage() {
 bool NHOHEMData::fetchPins() {
     int pin;
 #ifdef _RASPBIAN
-    for (pin = 0 ; pin <= NHOHEMData::NB_PINS ; ++pin) {
-        modes[pin] = getAlt(pin);
-//        NHOFILE_LOG(logDEBUG) << modes[pin] << " ";
+    // modes
+    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
+        modes[pin] = getAlt(WiringPiMap[pin]);
     }
-//    NHOFILE_LOG(logDEBUG) << std::endl;
+    // analogic values
+    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
+        analogValues[pin] = analogRead(WiringPiMap[pin]);
+    }
+    // digital values
+    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
+        digitalValues[pin] = digitalRead(WiringPiMap[pin]);
+    }
 #else
-    for (pin = 0 ; pin <= NB_PINS ; ++pin) {
+    // modes
+    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
         modes[pin] = -1;
+    }
+    // analogic values
+    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
+        analogValues[pin] = -1;
+    }
+    // digital values
+    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
+        digitalValues[pin] = 0;
     }
 #endif
     return true;

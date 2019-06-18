@@ -25,27 +25,30 @@
 #include "NHOCameraDataMessage.hpp"
 #include "NHOCameraData.hpp"
 
-#include "NHOFullDuplexConnectedEmitter.hpp"
-
+#include "NHOTemplateFullDuplexConnectedEmitter.hpp"
+#ifdef TOTO
 /**
  * Constructor
  **/
-NHOFullDuplexConnectedEmitter::NHOFullDuplexConnectedEmitter(const unsigned short pDataPort,
-                                                             const unsigned short pPeriod):
-NHOEmitter(pDataPort, pPeriod) {
+template <class T>
+NHOTemplateFullDuplexConnectedEmitter<T>::NHOTemplateFullDuplexConnectedEmitter(
+                                        const unsigned short pPort):
+keepGoing(true) {
     
     emissionSocket = 0;
-    dataClientSocket = 0;
-    keepGoing = true;
+    connexionSocket = 0;
+
+    message = new T();
     
 }
 
 /**
  * Initiate whatever needs initialization.
  **/
-bool NHOFullDuplexConnectedEmitter::initiate() {
+template <class T>
+bool NHOTemplateFullDuplexConnectedEmitter<T>::initiate() {
     
-    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::initiate." << std::endl;
+    NHOFILE_LOG(logDEBUG) << "NHOTemplateFullDuplexConnectedEmitter::initiate." << std::endl;
     
     struct sockaddr_in lInfoServAddr;
     // service channel
@@ -59,15 +62,15 @@ bool NHOFullDuplexConnectedEmitter::initiate() {
     lInfoServAddr.sin_addr.s_addr = INADDR_ANY;
     lInfoServAddr.sin_port = htons(emissionPort);
     if (bind(emissionSocket, (struct sockaddr *) &lInfoServAddr, sizeof(lInfoServAddr)) < 0) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::initiate " << strerror(errno) ;
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::initiate: data socket binding error." << std::endl;
+        NHOFILE_LOG(logERROR) << "NHOTemplateFullDuplexConnectedEmitter::initiate " << strerror(errno) ;
+        NHOFILE_LOG(logERROR) << "NHOTemplateFullDuplexConnectedEmitter::initiate: data socket binding error." << std::endl;
         return(false);
     }
      
     // launch the connexion thread
-    connectionThread = new std::thread(&NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket, std::ref(*this));
+    connectionThread = new std::thread(&NHOTemplateFullDuplexConnectedEmitter::waitForConnectionOnSocket, std::ref(*this));
 
-    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::initiate end." << std::endl;
+    NHOFILE_LOG(logDEBUG) << "NHOTemplateFullDuplexConnectedEmitter::initiate end." << std::endl;
 
     return(true);
      
@@ -77,9 +80,9 @@ bool NHOFullDuplexConnectedEmitter::initiate() {
 // Never ending loop.
 // Wait and register a connexion on the main socket.
 // This socket is the exit for captured images.
-bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
+template <class T> bool NHOTemplateFullDuplexConnectedEmitter<T>::waitForConnectionOnSocket() {
     
-    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket \n";
+    NHOFILE_LOG(logDEBUG) << "NHOTemplateFullDuplexConnectedEmitter::waitForConnectionOnDataSocket \n";
 
     socklen_t clilen;
     struct sockaddr_in cli_addr;
@@ -88,10 +91,10 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
     clilen = sizeof(cli_addr);
     
     while (keepGoing) {
-        dataClientSocket = accept(emissionSocket,
+        connexionSocket = accept( emissionSocket,
                                   (struct sockaddr *) &cli_addr,
                                   &clilen);
-        if (dataClientSocket < 0) {
+        if (connexionSocket < 0) {
             fprintf(stderr, "ERROR on accept");
             return(false);
         }
@@ -107,10 +110,10 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
         //        int flag = 1;
         //        setsockopt(dataClientSocket, IPPROTO_TCP, TCP_NODELAY, (char *) &flag, sizeof(int));
 
-        NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket another connection\n";
+        NHOFILE_LOG(logDEBUG) << "NHOTemplateFullDuplexConnectedEmitter::waitForConnectionOnDataSocket another connection\n";
     }
     
-    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::waitForConnectionOnDataSocket End\n";
+    NHOFILE_LOG(logDEBUG) << "NHOTemplateFullDuplexConnectedEmitter::waitForConnectionOnDataSocket End\n";
 
     return(true);
     
@@ -118,23 +121,23 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
 
 ///////////////////////////
 // Send a message.
-bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
+template <class T> bool NHOTemplateFullDuplexConnectedEmitter<T>::send(const T* pMsg) const {
     
-    if (dataClientSocket <= 0) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send no data socket." << std::endl;
+    if (connexionSocket <= 0) {
+        NHOFILE_LOG(logERROR) << "NHOTemplateFullDuplexConnectedEmitter::send no data socket." << std::endl;
         return(false);
     }
     
     if (pMsg == NULL) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send parameter null." << std::endl;
+        NHOFILE_LOG(logERROR) << "NHOTemplateFullDuplexConnectedEmitter::send parameter null." << std::endl;
         return(false);
     }
     
     // send message
-    size_t lWrittenBytes = write(dataClientSocket, pMsg->getData(), pMsg->getSize());
+    size_t lWrittenBytes = write(connexionSocket, pMsg->getData(), pMsg->getSize());
     if (lWrittenBytes != pMsg->getSize()) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send " << strerror(errno) << std::endl;
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send (number of written bytes:" <<
+        NHOFILE_LOG(logERROR) << "NHOTemplateFullDuplexConnectedEmitter::send " << strerror(errno) << std::endl;
+        NHOFILE_LOG(logERROR) << "NHOTemplateFullDuplexConnectedEmitter::send (number of written bytes:" <<
             lWrittenBytes << "/" << pMsg->getSize() << "))." << std::endl;
         return(false);
     }
@@ -144,17 +147,17 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     NHOAckMessage* lAckMsg = new NHOAckMessage(clock());
     long lReceivedBytes;
     char* lBuffer = (char *) calloc(lAckMsg->getSize(), sizeof(char));
-    lReceivedBytes = read(dataClientSocket, lBuffer, sizeof(size_t));
+    lReceivedBytes = read(connexionSocket, lBuffer, sizeof(size_t));
     lAckMsg->setData(lBuffer);
     // we can detect a problem in the transmission of the image
     if (lReceivedBytes < 0) {
-        NHOFILE_LOG(logERROR) << "ERROR NHOFullDuplexConnectedEmitter::send (number of read bytes) " << lReceivedBytes << std::endl;
+        NHOFILE_LOG(logERROR) << "ERROR NHOTemplateFullDuplexConnectedEmitter::send (number of read bytes) " << lReceivedBytes << std::endl;
     }
     else {
         // check the answer
         lAckMsg->unserialize();
         if (lAckMsg->getValue() != pMsg->getSize()) {
-            NHOFILE_LOG(logERROR) << "ERROR NHOFullDuplexConnectedEmitter::send: lost image (" << std::endl;
+            NHOFILE_LOG(logERROR) << "ERROR NHOTemplateFullDuplexConnectedEmitter::send: lost image (" << std::endl;
         }
     }
     // memory management
@@ -162,26 +165,4 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     
     return(true);
 }
-
-bool NHOFullDuplexConnectedEmitter::echoing() {
-    
-    char buffer[256];
-    long n;
-    
-    bzero(buffer,256);
-    n = read(emissionSocket,buffer,255);
-    if (n < 0) {
-        std::cout << "ERROR reading from socket";
-        return(false);
-    }
-    
-    printf("Here is the message: %s\n",buffer);
-    n = write(emissionSocket,"I got your message",18);
-    if (n < 0) {
-        std::cout << "ERROR writing to socket";
-        return(false);
-    }
-    
-    return(true);
-    
-}
+#endif

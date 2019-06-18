@@ -28,8 +28,8 @@ NHOMessage(pDate, NHOMessageFactory::eHEM){
  **/
 NHOHEMMessage::~NHOHEMMessage() {
     
-    delete data;
-    
+//    delete data;
+//    data = NULL;
     if (msg != NULL) {
         free(msg);
     }
@@ -86,8 +86,8 @@ bool NHOHEMMessage::serialize() {
     offset += sizeof(lMemory);
     
     /// pins
-    memcpy((void *) (data + offset), HEMData->getPinModes(), sizeof(NHOHEMData::NB_PINS)*sizeof(int));
-    offset += sizeof(sizeof(NHOHEMData::NB_PINS)*sizeof(int));
+    memcpy((void *) (data + offset), HEMData->getPinModes(), sizeof(NHOWiringPi::GPIO_PINS)*sizeof(int));
+    offset += sizeof(sizeof(NHOWiringPi::GPIO_PINS)*sizeof(int));
     
     size = (unsigned int) lSize;
     return true;
@@ -104,6 +104,7 @@ bool NHOHEMMessage::unserialize() {
     NHOHEMData* lData = new NHOHEMData();
     
     if (data == NULL) {
+        delete lData;
         return false;
     }
     
@@ -133,7 +134,7 @@ bool NHOHEMMessage::unserialize() {
     lData->setMemoryUsage(lMemory);
     
     /// pins
-    int pins[NHOHEMData::NB_PINS];
+    int pins[NHOWiringPi::GPIO_PINS];
     memcpy(pins, (void *) (data + offset), sizeof(pins));
     offset += sizeof(pins);
     lData->setPinModes(pins);

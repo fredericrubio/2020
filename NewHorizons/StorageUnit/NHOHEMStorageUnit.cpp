@@ -42,8 +42,8 @@ bool NHOHEMStorageUnit::initiate() {
     // local variables
     struct addrinfo hints, *servinfo, *p;
     int rv;
-    int broadcast = 1;
-    socklen_t optlen = sizeof(broadcast);
+//    int broadcast = 1;
+//    socklen_t optlen = sizeof(broadcast);
     
     memset(&hints, 0, sizeof hints);
     hints.ai_family = AF_INET;//AF_UNSPEC; // set to AF_INET to force IPv4
@@ -112,16 +112,18 @@ bool NHOHEMStorageUnit::receiveHEM() {
             std::cout << "HEM_Client::receiveDataMessage recvfrom" << std::endl;
             return(false);
         }
-        lMessage->setData(numbytes, buf);
-        lMessage->unserialize();
-        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM CPU:" << lMessage->getHEMData()->getCPUUsage() << std::endl;
-        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Memory:" << lMessage->getHEMData()->getMemoryUsage() << std::endl;
-        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Temperature:" << lMessage->getHEMData()->getTemperature() << std::endl;
-        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Modes: " ;
-        for (int loop = 0 ; loop < NHOHEMData::NB_PINS ; loop++) {
-            NHOFILE_LOG(logDEBUG) << lMessage->getHEMData()->getPinModes()[loop] << " " ;
-        }
-            NHOFILE_LOG(logDEBUG) << std::endl;
+        // TO DO
+//        lMessage->setData((int) numbytes, buf);
+//        lMessage->unserialize();
+        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM HEM received." << std::endl;
+        //        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM CPU:" << lMessage->getHEMData()->getCPUUsage() << std::endl;
+//        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Memory:" << lMessage->getHEMData()->getMemoryUsage() << std::endl;
+//        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Temperature:" << lMessage->getHEMData()->getTemperature() << std::endl;
+//        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Modes: " ;
+//        for (int loop = 0 ; loop < NHOWiringPi::GPIO_PINS ; loop++) {
+//            NHOFILE_LOG(logDEBUG) << lMessage->getHEMData()->getPinModes()[loop] << " " ;
+//        }
+//            NHOFILE_LOG(logDEBUG) << std::endl;
     }
     
 #ifdef _DEBUG

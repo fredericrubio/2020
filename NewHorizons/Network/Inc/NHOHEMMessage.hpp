@@ -60,7 +60,7 @@ public:
     };
 
 private:
-    long long   date; // 'long long' to force 64bits on 32bits OS
+//    long long   date; // 'long long' to force 64bits on 32bits OS
     
     NHOHEMData*   HEMData;
     

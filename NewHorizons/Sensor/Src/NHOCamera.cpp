@@ -35,6 +35,9 @@ NHOCamera::NHOCamera(const unsigned short pCameraId) {
  **/
 NHOCamera::~NHOCamera() {
     
+    delete parameters;
+    delete data;
+    
 #ifdef _RASPBIAN
     if (raspCam != NULL) {
         delete raspCam;

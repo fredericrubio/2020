@@ -13,12 +13,14 @@
 #include "NHOLOG.hpp"
 #include "tinyxml2.h"
 #include "NHOCameraParameters.hpp"
+#include "NHORoverParameters.hpp"
 
 using namespace tinyxml2;
 
 static const char* CAMERA_ROOT = "camera";
 static const char* HEM_ROOT = "hem";
 static const char* CC_ROOT = "cc";
+static const char* ROVER_ROOT = "rover";
 static const char* IMAGE_SERVER = "img_server";
 static const char* SAMPLING = "sampling";
 static const char* VALUE = "value";
@@ -29,6 +31,14 @@ static const char* HOST_NAME = "hostname";
 static const char* PORT = "port";
 static const char* PORT1 = "port1";
 static const char* PORT2 = "port2";
+static const char* MOTOR_A = "motorA";
+static const char* MOTOR_B = "motorB";
+static const char* MOTOR_FAST_STOP = "MOTOR_EN";
+static const char* MOTOR_FORWARD = "MOTOR_A";
+static const char* MOTOR_REVERSE = "MOTOR_B";
+static const char* MOTOR_TYPE = "type";
+static const char* MOTOR_RIGHT = "right";
+static const char* MOTOR_LEFT = "left";
 
 class NHOCCParameters;
 
@@ -47,14 +57,19 @@ public:
     static NHOCameraParameters* getCemaraConfiguration();
     
     /**
-     * Returns the HEM configuration (NULL in case of erreor.
+     * Returns the HEM configuration (NULL in case of error).
      **/
     static NHOSensorParameters* getHEMConfiguration();
     
     /**
-     * Returns the CC configuration (NULL in case of erreor.
+     * Returns the CC configuration (NULL in case of error).
      **/
     static NHOCCParameters* getCCConfiguration();
+    
+    /**
+     * Returns the Rover configuration (NULL in case of error).
+     **/
+    static NHORoverParameters* getRoverConfiguration();
     
 protected:
     std::string fileName;
@@ -64,6 +79,12 @@ protected:
      * Load the configuration file.
      **/
     bool load();
+    
+    /**
+     *
+     **/
+    static NHORoverParameters::NHOMotorParameters* getMotorConfiguration(const XMLElement* const) ;
+
     
 };
 

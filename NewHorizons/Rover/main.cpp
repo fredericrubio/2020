@@ -35,6 +35,8 @@ int main(int argc, const char * argv[]) {
     
     NHOCCParameters* lCCParameters = NHOConfiguration::getCCConfiguration();
     
+    NHORoverParameters* lRoverParameters = NHOConfiguration::getRoverConfiguration();
+
     tinyxml2::XMLDocument doc;
     FILE* file = fopen("/Users/fredericrubio/Development/Project/New\ Horizons/Development/NewHorizons/Resources/rover.xml", "r");
     tinyxml2::XMLError loadOkay = doc.LoadFile("/Users/fredericrubio/Development/Project/New\ Horizons/Development/NewHorizons/Resources/rover.xml");

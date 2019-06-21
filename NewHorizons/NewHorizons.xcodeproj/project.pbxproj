@@ -63,8 +63,8 @@
 		B5CC553F22B822200015F2B7 /* NHOSensorParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55235132255460300DBE5DA /* NHOSensorParameters.cpp */; };
 		B5CC554322B968ED0015F2B7 /* NHOCCParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5CC554122B968ED0015F2B7 /* NHOCCParameters.cpp */; };
 		B5CC554422B968ED0015F2B7 /* NHOCCParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5CC554222B968ED0015F2B7 /* NHOCCParameters.hpp */; };
-		B5CC554722B9778F0015F2B7 /* NHORoverConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5CC554522B9778F0015F2B7 /* NHORoverConfiguration.cpp */; };
-		B5CC554822B9778F0015F2B7 /* NHORoverConfiguration.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5CC554622B9778F0015F2B7 /* NHORoverConfiguration.hpp */; };
+		B5CC554B22B97F3F0015F2B7 /* NHORoverParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5CC554922B97F3F0015F2B7 /* NHORoverParameters.cpp */; };
+		B5CC554C22B97F3F0015F2B7 /* NHORoverParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5CC554A22B97F3F0015F2B7 /* NHORoverParameters.hpp */; };
 		B5CDC8C9228FDF3600D23355 /* NHOHEMStorageUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5CDC8C8228FDF3600D23355 /* NHOHEMStorageUnit.cpp */; };
 		B5DC76FC226E0FB50043AAA8 /* NHOCameraDataMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */; };
 		B5DC76FD226E0FB50043AAA8 /* NHOCameraDataMessage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5DC76FB226E0FB50043AAA8 /* NHOCameraDataMessage.hpp */; };
@@ -219,8 +219,8 @@
 		B5CC554022B822910015F2B7 /* rover.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = rover.xml; sourceTree = "<group>"; };
 		B5CC554122B968ED0015F2B7 /* NHOCCParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCCParameters.cpp; sourceTree = "<group>"; };
 		B5CC554222B968ED0015F2B7 /* NHOCCParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOCCParameters.hpp; sourceTree = "<group>"; };
-		B5CC554522B9778F0015F2B7 /* NHORoverConfiguration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHORoverConfiguration.cpp; sourceTree = "<group>"; };
-		B5CC554622B9778F0015F2B7 /* NHORoverConfiguration.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHORoverConfiguration.hpp; sourceTree = "<group>"; };
+		B5CC554922B97F3F0015F2B7 /* NHORoverParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHORoverParameters.cpp; sourceTree = "<group>"; };
+		B5CC554A22B97F3F0015F2B7 /* NHORoverParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHORoverParameters.hpp; sourceTree = "<group>"; };
 		B5CDC8C7228FDE8200D23355 /* NHOHEMStorageUnit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHEMStorageUnit.hpp; sourceTree = "<group>"; };
 		B5CDC8C8228FDF3600D23355 /* NHOHEMStorageUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOHEMStorageUnit.cpp; sourceTree = "<group>"; };
 		B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCameraDataMessage.cpp; sourceTree = "<group>"; };
@@ -505,7 +505,7 @@
 				B55235182255475500DBE5DA /* NHOCameraParameters.hpp */,
 				B5CC554222B968ED0015F2B7 /* NHOCCParameters.hpp */,
 				B5A5049722B6B9AA005584D3 /* NHOConfiguration.hpp */,
-				B5CC554622B9778F0015F2B7 /* NHORoverConfiguration.hpp */,
+				B5CC554A22B97F3F0015F2B7 /* NHORoverParameters.hpp */,
 				B55235142255460300DBE5DA /* NHOSensorParameters.hpp */,
 			);
 			path = Inc;
@@ -517,7 +517,7 @@
 				B55235172255475500DBE5DA /* NHOCameraParameters.cpp */,
 				B5CC554122B968ED0015F2B7 /* NHOCCParameters.cpp */,
 				B5A5049622B6B9AA005584D3 /* NHOConfiguration.cpp */,
-				B5CC554522B9778F0015F2B7 /* NHORoverConfiguration.cpp */,
+				B5CC554922B97F3F0015F2B7 /* NHORoverParameters.cpp */,
 				B55235132255460300DBE5DA /* NHOSensorParameters.cpp */,
 			);
 			path = Src;
@@ -659,8 +659,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5A5049922B6B9AA005584D3 /* NHOConfiguration.hpp in Headers */,
-				B5CC554822B9778F0015F2B7 /* NHORoverConfiguration.hpp in Headers */,
 				B5CC554422B968ED0015F2B7 /* NHOCCParameters.hpp in Headers */,
+				B5CC554C22B97F3F0015F2B7 /* NHORoverParameters.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,8 +979,8 @@
 			files = (
 				B5CC554322B968ED0015F2B7 /* NHOCCParameters.cpp in Sources */,
 				B5CC553E22B822200015F2B7 /* NHOCameraParameters.cpp in Sources */,
-				B5CC554722B9778F0015F2B7 /* NHORoverConfiguration.cpp in Sources */,
 				B5A5049822B6B9AA005584D3 /* NHOConfiguration.cpp in Sources */,
+				B5CC554B22B97F3F0015F2B7 /* NHORoverParameters.cpp in Sources */,
 				B5CC553F22B822200015F2B7 /* NHOSensorParameters.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

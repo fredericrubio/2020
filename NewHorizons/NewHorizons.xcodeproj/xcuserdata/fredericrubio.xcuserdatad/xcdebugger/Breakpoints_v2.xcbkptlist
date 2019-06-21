@@ -314,7 +314,7 @@
                   moduleName = "Rover"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/fredericrubio/Development/Project/New%20Horizons/Development/NewHorizons/Utils/Inc/NHOSubject.hpp"
-                  timestampString = "582580823.642087"
+                  timestampString = "582839334.306609"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -329,7 +329,7 @@
                   moduleName = "Rover"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/fredericrubio/Development/Project/New%20Horizons/Development/NewHorizons/Utils/Inc/NHOSubject.hpp"
-                  timestampString = "582580823.643755"
+                  timestampString = "582839334.3083349"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -425,11 +425,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rover/main.cpp"
-            timestampString = "582580823.271437"
+            timestampString = "582839333.930492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "main(int argc, const char * argv[])"
             landmarkType = "9">
          </BreakpointContent>
@@ -441,7 +441,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rover/main.cpp"
-            timestampString = "582580823.271722"
+            timestampString = "582839333.930563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -457,13 +457,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rover/main.cpp"
-            timestampString = "582580823.271924"
+            timestampString = "582839333.93062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "main(int argc, const char * argv[])"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Configuration/Src/NHOConfiguration.cpp"
+            timestampString = "582839333.930673"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "NHOConfiguration::getMotorConfiguration(const XMLElement* const pMotor)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

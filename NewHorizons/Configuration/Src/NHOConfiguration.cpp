@@ -7,8 +7,8 @@
 //
 
 #include "NHOConfiguration.hpp"
-
 #include "NHOCCParameters.hpp"
+#include "NHORoverParameters.hpp"
 
 static NHOConfiguration* singleton = NULL;
 
@@ -149,4 +149,60 @@ NHOCCParameters* NHOConfiguration::getCCConfiguration() {
     return lCCParameters;
 }
 
+
+/**
+ * Returns the Rover configuration (NULL in case of error).
+ **/
+NHORoverParameters* NHOConfiguration::getRoverConfiguration() {
+ 
+    if (singleton == NULL) {
+        return NULL;
+    }
+    
+    NHORoverParameters* lRoverParameters = new NHORoverParameters();
+
+    XMLElement* lRoverRoot = singleton->document.FirstChildElement(ROVER_ROOT);
+    // first motor
+    XMLElement* lMotor = lRoverRoot->FirstChildElement(MOTOR_A);
+    lRoverParameters->addMotor(NHOConfiguration::getMotorConfiguration(lMotor));
+    
+    // second motor
+    lMotor = lRoverRoot->FirstChildElement(MOTOR_B);
+    lRoverParameters->addMotor(NHOConfiguration::getMotorConfiguration(lMotor));
+    
+    return lRoverParameters;
+
+}
+
+/**
+ *
+ **/
+NHORoverParameters::NHOMotorParameters* NHOConfiguration::getMotorConfiguration(const XMLElement* const pMotor) {
+    
+    int lInteger = -1;
+    const char* lType = new char[256];
+
+    NHORoverParameters::NHOMotorParameters* lMotorParam = new NHORoverParameters::NHOMotorParameters();
+    
+    pMotor->QueryIntAttribute(MOTOR_FAST_STOP, &lInteger);
+    lMotorParam->addPort(NHORoverParameters::MOTOR_EN, lInteger);
+    pMotor->QueryIntAttribute(MOTOR_FORWARD, &lInteger);
+    lMotorParam->addPort(NHORoverParameters::MOTOR_A, lInteger);
+    pMotor->QueryIntAttribute(MOTOR_REVERSE, &lInteger);
+    lMotorParam->addPort(NHORoverParameters::MOTOR_B, lInteger);
+    pMotor->QueryStringAttribute(MOTOR_TYPE, &lType);
+    std::string lString(lType);
+    if (lString.compare(MOTOR_RIGHT) == 0) {
+        lMotorParam->setType(NHORoverParameters::RIGHT);
+    }
+    else if (lString.compare(MOTOR_LEFT) == 0) {
+        lMotorParam->setType(NHORoverParameters::LEFT);
+    }
+    else {
+        lMotorParam->setType(NHORoverParameters::UNKNOWN);
+    }
+
+    return lMotorParam;
+    
+}
 

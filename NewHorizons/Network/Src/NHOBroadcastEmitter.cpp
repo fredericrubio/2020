@@ -47,7 +47,19 @@ bool NHOBroadcastEmitter::initiate() {
     // this call is what allows broadcast packets to be sent:
     /*    getsockopt( emissionSocket, SOL_SOCKET, SO_BROADCAST,
      &broadcast, &optlen);
-     */    if (setsockopt( emissionSocket, SOL_SOCKET, SO_BROADCAST,
+     */
+    int option = 1;
+    if (setsockopt(emissionSocket, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option))) {
+        NHOFILE_LOG(logERROR) << "HEM_Server::initiate: " << strerror(errno) << std::endl;
+        NHOFILE_LOG(logERROR) << "HEM_Server::initiate: setsockopt (SO_REUSEADDR)" << std::endl;
+        return(false);
+    }
+    if (setsockopt(emissionSocket, SOL_SOCKET, SO_REUSEPORT, &option, sizeof(option))) {
+        NHOFILE_LOG(logERROR) << "HEM_Server::initiate: " << strerror(errno) << std::endl;
+        NHOFILE_LOG(logERROR) << "HEM_Server::initiate: setsockopt (SO_REUSEPORT)" << std::endl;
+        return(false);
+    }
+    if (setsockopt(emissionSocket, SOL_SOCKET, SO_BROADCAST,
                           &broadcast, optlen) == -1) {
          NHOFILE_LOG(logERROR) << "HEM_Server::initiate: " << strerror(errno) << std::endl;
          NHOFILE_LOG(logERROR) << "HEM_Server::initiate: setsockopt (SO_BROADCAST)" << std::endl;

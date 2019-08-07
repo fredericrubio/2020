@@ -22,6 +22,11 @@
 @property (strong) IBOutlet NSButton *turnRightButton;
 @property (strong) IBOutlet NSButton *network;
 @property (strong) IBOutlet NSTextField *cpuTextField;
+@property (strong) IBOutlet NSTextField *memoryTextFiled;
+@property (strong) IBOutlet NSTextField *temperatureTextField;
+@property (strong) IBOutlet NSButton *gpioMode1;
+@property (strong) IBOutlet NSMatrix *gpioModeMatrix;
+@property (strong) IBOutlet NSMatrix *pwmMatrix;
 
 @property bool networkStatus;
 @property bool keepRefreshing;
@@ -33,7 +38,8 @@
 - (IBAction)turnRightCallback:(id)sender;
 - (IBAction)turnLeftCallback:(id)sender;
 
-- (void)refreshCemaeraView;
+- (void)refreshCameraView;
+- (void)refreshHEM;
 
 @end
 

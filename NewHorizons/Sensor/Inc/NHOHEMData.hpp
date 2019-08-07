@@ -24,7 +24,11 @@ class NHOHEMData : public NHOSensorData {
 public:    
     NHOHEMData();
     NHOHEMData(const long long pDate);
+    /**
+     * Copy constructor.
+     **/
     NHOHEMData(const NHOHEMData& orig);
+    NHOHEMData(const NHOHEMData* orig);
     virtual ~NHOHEMData();
     
     /**

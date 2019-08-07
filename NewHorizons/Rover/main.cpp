@@ -22,7 +22,7 @@
 #include "NHOCCParameters.hpp"
 
 int main(int argc, const char * argv[]) {
-    
+/*
     std::string lConfigurationFileName("/Users/fredericrubio/Development/Project/New\ Horizons/Development/NewHorizons/Resources/rover.xml");
     
     if (NHOConfiguration::initialize(lConfigurationFileName) == false) {

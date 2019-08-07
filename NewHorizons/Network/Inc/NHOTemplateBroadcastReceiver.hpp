@@ -65,15 +65,52 @@ public:
         
         // loop through all the results and bind to the first we can
         for (p = servinfo; p != NULL; p = p->ai_next) {
-            if ((this->recptionSocket = socket(p->ai_family, p->ai_socktype,
-                                     p->ai_protocol)) == -1) {
+            this->receptionSocket = socket(p->ai_family,
+                                          p->ai_socktype,
+                                          p->ai_protocol);
+            if (this->receptionSocket == -1) {
+                NHOFILE_LOG(logERROR) << "NHOTemplateBroadcastReceiver::initiate socket (socket):" << strerror(errno) << std::endl;
+                continue;
+            }
+            // to allow address reuse (in case of of two close execution.
+            int option = 1;
+            if (setsockopt(this->receptionSocket, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option)) == -1) {
+                NHOFILE_LOG(logERROR) << "NHOTemplateBroadcastReceiver::initiate socket (SO_REUSEADDR):" << strerror(errno) << std::endl;
+                continue;
+            }
+            option = 1;
+            if (setsockopt(this->receptionSocket, SOL_SOCKET, SO_REUSEPORT, &option, sizeof(option)) == -1) {
+                NHOFILE_LOG(logERROR) << "NHOTemplateBroadcastReceiver::initiate socket (SO_REUSEPORT):" << strerror(errno) << std::endl;
+                continue;
+            }
+            // a security based on time
+            struct timeval timeout;
+            timeout.tv_sec = 100;
+            timeout.tv_usec = 0;
+            if (setsockopt (this->receptionSocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout,
+                            sizeof(timeout)) < 0) {
+                NHOFILE_LOG(logERROR) << "NHOTemplateBroadcastReceiver::initiate socket (SO_RCVTIMEO):" << strerror(errno) << std::endl;
                 continue;
             }
             
-            if (bind(this->recptionSocket, p->ai_addr, p->ai_addrlen) == -1) {
-                close(this->recptionSocket);
+            if (bind(this->receptionSocket, p->ai_addr, p->ai_addrlen) == -1) {
+                NHOFILE_LOG(logERROR) << "NHOTemplateBroadcastReceiver::initiate bind:" << strerror(errno) << std::endl;
+                close(this->receptionSocket);
                 continue;
             }
+            
+            linger lin;
+            lin.l_onoff = 1;
+            lin.l_linger = 0;
+            if (setsockopt(this->receptionSocket,
+                           SOL_SOCKET,
+                           SO_LINGER,
+                           (const char *)&lin,
+                           sizeof(lin)) == -1) {
+                NHOFILE_LOG(logERROR) << "NHOTemplateBroadcastReceiver::initiate socket:" << strerror(errno) << std::endl;
+                continue;
+            }
+
             break;
         }
         
@@ -91,8 +128,7 @@ public:
     bool terminate() {
         
         this->keepGoing = false;
-        close(this->recptionSocket);
-        return true;
+        return (close(this->receptionSocket) ==0);
         
     }
     
@@ -106,7 +142,7 @@ public:
         long numbytes;
         struct sockaddr_storage their_addr;
 this->mutex.lock();
-        int size = this->message->getSize();
+        int size = this->message->getHEMData()->getSize();
 this->mutex.unlock();
         char* buf = new char[size];
         socklen_t addr_len;
@@ -122,24 +158,23 @@ this->mutex.unlock();
         NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive stalled on recvfrom\n";
 
             addr_len = sizeof their_addr;
-            if ((numbytes = recvfrom(this->recptionSocket, buf, size-1 , 0,
+            if ((numbytes = recvfrom(this->receptionSocket, buf, size , 0,
                                      (struct sockaddr *)&their_addr, &addr_len)) == -1) {
-                std::cout << "NHOTemplateBroadcastReceiver::receive recvfrom\n";
+                std::cout << "NHOTemplateBroadcastReceiver::receive recvfrom error " << strerror(errno) << "\n";
                 return(false);
             }
+            std::cout << "1\n";
 this->mutex.lock();
             this->message->setData((int) numbytes, buf);
             this->message->unserialize();
+            this->setVal(this->message);
+            this->notify();
 this->mutex.unlock();
+            le changement de couleurs des diodes est lent : fréquence d'envoi, fréquence de rafraîchissement de la GUI ?
+            les diodes allumées ne retombent pas après la commande "STOP"
+            on a la même configuration de diodes pour des commades différents : "LEFT" et "FORWARD" par exemple
+            il faut d'abord lancer l'interface graphique PUIS le rover.
             NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive\n";
-            //        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM CPU:" << lMessage->getHEMData()->getCPUUsage() << std::endl;
-            //        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Memory:" << lMessage->getHEMData()->getMemoryUsage() << std::endl;
-            //        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Temperature:" << lMessage->getHEMData()->getTemperature() << std::endl;
-            //        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Modes: " ;
-            //        for (int loop = 0 ; loop < NHOWiringPi::GPIO_PINS ; loop++) {
-            //            NHOFILE_LOG(logDEBUG) << lMessage->getHEMData()->getPinModes()[loop] << " " ;
-            //        }
-            //            NHOFILE_LOG(logDEBUG) << std::endl;
         }
         
         NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveImageMessage End\n";
@@ -148,7 +183,7 @@ this->mutex.unlock();
    
 protected:
     unsigned int port;
-    int recptionSocket;
+    int receptionSocket;
     std::thread* thread;
     std::mutex mutex;
     T* message;

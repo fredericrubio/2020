@@ -23,6 +23,7 @@ motorL(NULL), motorR(NULL),TC(NULL),timer(NULL), motion(false) {
     timer = new NHOTimer();
     timer->attach(this);
     
+    NHOWiringPi::wiringPiSetup();
 }
 
 /**
@@ -56,6 +57,7 @@ void NHODEXM::refresh(unsigned int* const parameter) {
 bool NHODEXM::configure() {
     
 #ifdef _RASPBIAN
+    
 #else
     motorR = new NHOMotor(1, 2, 3);
     motorL = new NHOMotor(4, 5, 6);
@@ -220,6 +222,7 @@ bool NHODEXM::forward() {
     if (TC->getDuration() > 0.0) {
         return startTimer(TC->getDuration());
     }
+    
     return true;
 }
 

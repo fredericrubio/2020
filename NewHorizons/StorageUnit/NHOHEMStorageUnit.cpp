@@ -61,7 +61,17 @@ bool NHOHEMStorageUnit::initiate() {
                                  p->ai_protocol)) == -1) {
             continue;
         }
-        
+        // to allow address reuse (in case of of two close execution.
+        int option = 1;
+        if (setsockopt(dataSocket, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option)) == -1) {
+            NHOFILE_LOG(logERROR) << "NHOHEMStorageUnit::initiate setsockopt:" << strerror(errno) << std::endl;
+            continue;
+        }
+        option = 1;
+        if (setsockopt(dataSocket, SOL_SOCKET, SO_REUSEPORT, &option, sizeof(option)) == -1) {
+            NHOFILE_LOG(logERROR) << "NHOHEMStorageUnit::initiate setsockopt:" << strerror(errno) << std::endl;
+            continue;
+        }
         if (bind(dataSocket, p->ai_addr, p->ai_addrlen) == -1) {
             close(dataSocket);
             continue;
@@ -99,7 +109,8 @@ bool NHOHEMStorageUnit::receiveHEM() {
      long lReceivedBytes;
      IMP_Message* lMessage = NULL;
      */
-    NHOHEMMessage* lMessage = new NHOHEMMessage(clock());
+    NHOHEMMessage* lMessage = NULL;
+    new NHOHEMMessage(clock());
     
     while (1) {
         
@@ -107,15 +118,16 @@ bool NHOHEMStorageUnit::receiveHEM() {
         std::cout << "HEM_Client::receiveDataMessage stalled on recvfrom" << std::endl;
 #endif
         addr_len = sizeof their_addr;
-        if ((numbytes = recvfrom(dataSocket, buf, sMAX_BUFFER_SIZE-1 , 0,
+        if ((numbytes = recvfrom(dataSocket, buf, sMAX_BUFFER_SIZE/*-1*/ , 0,
                                  (struct sockaddr *)&their_addr, &addr_len)) == -1) {
             std::cout << "HEM_Client::receiveDataMessage recvfrom" << std::endl;
             return(false);
         }
         // TO DO
+//        lMessage = new NHOHEMMessage(clock());
 //        lMessage->setData((int) numbytes, buf);
 //        lMessage->unserialize();
-        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM HEM received." << std::endl;
+        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM HEM received.\n";
         //        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM CPU:" << lMessage->getHEMData()->getCPUUsage() << std::endl;
 //        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Memory:" << lMessage->getHEMData()->getMemoryUsage() << std::endl;
 //        NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveHEM Temperature:" << lMessage->getHEMData()->getTemperature() << std::endl;
@@ -124,6 +136,7 @@ bool NHOHEMStorageUnit::receiveHEM() {
 //            NHOFILE_LOG(logDEBUG) << lMessage->getHEMData()->getPinModes()[loop] << " " ;
 //        }
 //            NHOFILE_LOG(logDEBUG) << std::endl;
+//        delete lMessage;
     }
     
 #ifdef _DEBUG

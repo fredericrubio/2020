@@ -7,7 +7,7 @@
 		<key>CommandCenter.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Configuration.xcscheme</key>
 		<dict>
@@ -27,7 +27,7 @@
 		<key>NewHorizons.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Rover.xcscheme</key>
 		<dict>
@@ -42,7 +42,7 @@
 		<key>StorageUnit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Utils.xcscheme</key>
 		<dict>

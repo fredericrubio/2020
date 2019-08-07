@@ -75,7 +75,7 @@ class NHOTemplateFullDuplexConnectedReceiver: public NHOSubject<T> {
               lServer->h_length);
         lServAddr.sin_port = htons(connexionPort);
         if (connect(connexionSocket, (struct sockaddr *) &lServAddr, sizeof(lServAddr)) < 0) {
-            NHOFILE_LOG(logERROR) << "NHOTemplateFullDuplexConnectedReceiver::initiate ERROR connecting data port"  << std::endl;
+            NHOFILE_LOG(logERROR) << "NHOTemplateFullDuplexConnectedReceiver::initiate ERROR connecting data port "  << strerror(errno) << std::endl;
             return false;
         }
         // Set the socket I/O mode: In this case FIONBIO
@@ -95,8 +95,13 @@ class NHOTemplateFullDuplexConnectedReceiver: public NHOSubject<T> {
         return true;
     }
     
+    
+    /**
+     * To terminate safely.
+     **/
     bool terminate() {
         
+        close(connexionSocket);
         return true;
         
     }
@@ -146,11 +151,11 @@ messageMutex.unlock();
                 NHOFILE_LOG(logDEBUG) << "NHOTemplateFullDuplexConnectedReceiver::receive new reception." << std::endl;
             }
             
-//messageMutex.lock();
+messageMutex.lock();
             this->setVal(message);
-//messageMutex.unlock();
             this->notify();
-            
+messageMutex.unlock();
+
             // send an aknownledgement
             NHOAckMessage* lAckMsg = new NHOAckMessage(clock(), lTotalOfBytes);
             lAckMsg->serialize();

@@ -41,7 +41,7 @@ public:
      * Notify a change.
      **/
     void notify() {
-        NHOFILE_LOG(logDEBUG) << "NHOSubject::notify <"<< observers.size()<<">\n";
+//        NHOFILE_LOG(logDEBUG) << "NHOSubject::notify <"<< observers.size()<<">\n";
         mutex.lock();
         for (NHOObserver<T>* observer : observers) {
             observer->refresh(value);

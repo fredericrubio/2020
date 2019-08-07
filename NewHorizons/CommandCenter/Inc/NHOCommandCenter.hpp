@@ -9,6 +9,8 @@
 #ifndef NHOCommandCenter_hpp
 #define NHOCommandCenter_hpp
 
+#include <mutex>
+
 #include "NHOTCMessage.hpp"
 #include "NHOTemplateFullDuplexConnectedEmitter.hpp"
 #include "NHOTemplateBroadcastReceiver.hpp"
@@ -58,9 +60,30 @@ public:
      **/
     static NHOCommandCenter* const get();
     
+    /**
+     * Get the latest HEM message.
+     **/
     virtual void refresh(NHOHEMMessage* const parameter) ;
 
+    /**
+     *
+     **/
+    inline static const NHOHEMMessage* getHEM() {
+NHOCommandCenter::get()->mutex.lock();
+        NHOHEMMessage* result = NULL;
+        if (NHOCommandCenter::get()->hem != NULL) {
+            result = new NHOHEMMessage(*NHOCommandCenter::get()->hem);
+        }
+        else {
+            result = new NHOHEMMessage(clock());
+        }
+NHOCommandCenter::get()->mutex.unlock();
+        return result;
+    }
+    
 protected:
+    std::mutex mutex;
+    NHOHEMMessage*  hem;
     NHOTemplateFullDuplexConnectedEmitter<NHOTCMessage>* emitter;
     NHOTemplateBroadcastReceiver<NHOHEMMessage>* HEMReceiver;
 

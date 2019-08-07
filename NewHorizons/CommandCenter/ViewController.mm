@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #include "NHOCommandCenter.hpp"
+#include "NHOHEMData.hpp"
 
 @implementation ViewController
 
@@ -30,12 +31,22 @@
 
     // initialize emitter
     self.networkStatus = NHOCommandCenter::initialize();
-    
-    NSThread* evtThread = [ [NSThread alloc] initWithTarget:self
-                                                   selector:@selector( refreshCemaeraView )
+
+    // CAMERA VIEW
+    /// refreshing the camera view
+    NSThread* cameraThread = [ [NSThread alloc] initWithTarget:self
+                                                   selector:@selector( refreshCameraView )
                                                      object:nil ];
+    /// start thread
+    [cameraThread start];
     
-    [evtThread start];
+    // HEM
+    /// refreshing HEM
+    NSThread* hemThread = [ [NSThread alloc] initWithTarget:self
+                                                   selector:@selector( refreshHEM )
+                                                     object:nil ];
+    /// start thread
+    [hemThread start];
     
     // manage Quit
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
@@ -43,6 +54,17 @@
            selector:@selector(closeConnexion)
                name:NSApplicationWillTerminateNotification
              object:nil];
+    
+    // initialize Mode Matrix
+    int row = 0;
+    int column = 0;
+    NSButtonCell *cell;
+    for (row = 0 ; row < [self.gpioModeMatrix numberOfRows] ; row++) {
+        for (column = 0 ; column < [self.gpioModeMatrix numberOfColumns] ; column++) {
+              cell = [self.gpioModeMatrix cellAtRow:row column:column];
+              [cell setImage:[NSImage imageNamed:@"Red.png"]];
+        }
+    }
 }
 /**
  * Close connexion, end loops
@@ -52,7 +74,7 @@
     self.keepRefreshing = false;
     
     NHOCommandCenter::terminate();
-    
+
 }
 
 - (NSString*) getLatestsFile {
@@ -153,7 +175,7 @@
     return nil;
 }
 
-- (void)refreshCemaeraView {
+- (void)refreshCameraView {
     
     // refresh network status
     if (self.networkStatus == false) {
@@ -173,16 +195,77 @@
 
 }
 
+- (void)refreshHEM {
+    
+    if (self.networkStatus == true) {
+        
+        while (self.keepRefreshing) {
+
+            // sleep 1 second
+            [NSThread sleepForTimeInterval:1];
+            
+            [self performSelectorOnMainThread:@selector(setHEM) withObject:nil waitUntilDone:YES];
+        }
+        
+    }
+
+    NSLog(@"End of refreshCemaeraView");
+
+}
+
+/**
+ * Refresh HEM GUI section
+ **/
+-(void) setHEM {
+    
+    // get values
+    const NHOHEMMessage* hem = NHOCommandCenter::getHEM();
+    
+    if (hem == NULL) {
+        return;
+    }
+    // CPU
+    [_cpuTextField setStringValue:[NSString stringWithFormat:@"%d", hem->getHEMData()->getCPUUsage()]];
+
+    // MEMORY
+    [_memoryTextFiled setStringValue:[NSString stringWithFormat:@"%d", hem->getHEMData()->getMemoryUsage()]];
+    
+    // TEMPERATURE
+    [_temperatureTextField setStringValue:[NSString stringWithFormat:@"%d", hem->getHEMData()->getTemperature()]];
+
+    // MODES
+    int counter = 0;
+    int row = 0;
+    int column = 0;
+    NSButtonCell *cell;
+    for (row = 0 ; row < [self.gpioModeMatrix numberOfRows] ; row++) {
+        for (column = 0 ; column < [self.gpioModeMatrix numberOfColumns] ; column++) {
+            cell = [self.gpioModeMatrix cellAtRow:row column:column];
+            if (hem->getHEMData()->getPinModes()[counter] == NHOWiringPi::OUTPUT) {
+                [cell setImage:[NSImage imageNamed:@"Green.png"]];
+            }
+            else {
+                [cell setImage:[NSImage imageNamed:@"Red.png"]];
+            }
+            counter++;
+        }
+    }
+    
+    delete hem;
+    
+}
+
 -(void) setNewImage {
     NSString *fileName = @"/Users/fredericrubio/Desktop/IMG_0113.png";
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:fileName];
-//    if (image == nil) {
-//        NSLog(@"image nil");
-//    }
-//    else {
-//        NSLog(@"%@", image.name);
-//        NSLog(@"size %f %f",image.size.width,image.size.height);
-//    }
+    if (image == nil) {
+        NSLog(@"image nil");
+    }
+    else {
+        NSLog(@"%@", image.name);
+        NSLog(@"size %f %f",image.size.width,image.size.height);
+    }
+    image = nil;
 }
 
 - (void)setRepresentedObject:(id)representedObject {

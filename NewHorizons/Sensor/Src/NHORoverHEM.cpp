@@ -18,7 +18,7 @@
  **/
 NHORoverHEM::NHORoverHEM() {
     
-    data = new NHOHEMData();
+    this->data = new NHOHEMData();
 
 }
 
@@ -35,7 +35,7 @@ NHORoverHEM::~NHORoverHEM(){
 bool NHORoverHEM::acquire(){
     
     // store date
-    NHOHEMData* lData = dynamic_cast<NHOHEMData*>(data);
+    NHOHEMData* lData = dynamic_cast<NHOHEMData*>(this->data);
 
     // update data
     lData->fetch();
@@ -61,7 +61,12 @@ bool NHORoverHEM::send(){
         // send mesg and get status
         lMessage->serialize();
         lReturn = dataEmitter->send(lMessage);
-        NHOFILE_LOG(logDEBUG) << "NHORoverHEM::send: " << std::endl;
+        if (lReturn) {
+            NHOFILE_LOG(logDEBUG) << "NHORoverHEM::send: " << std::endl;
+        }
+        else {
+            NHOFILE_LOG(logERROR) << "NHORoverHEM::send: failed to send HEM\n";
+        }
     }
     
     //memory management

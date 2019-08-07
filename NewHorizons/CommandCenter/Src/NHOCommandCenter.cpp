@@ -24,6 +24,18 @@ NHOCommandCenter* const NHOCommandCenter::get() {
 }
 
 void NHOCommandCenter::refresh(NHOHEMMessage* const parameter) {
+    
+    if (parameter == NULL) {
+        return;
+    }
+    
+    mutex.lock();
+    if (this->hem) {
+        delete this->hem;
+        this->hem = NULL;
+    }
+    this->hem = new NHOHEMMessage(*parameter);
+    mutex.unlock();
     return;
 }
 
@@ -32,10 +44,13 @@ void NHOCommandCenter::refresh(NHOHEMMessage* const parameter) {
  * Constructor
  **/
 NHOCommandCenter::NHOCommandCenter() {
+    
+    this->hem = new NHOHEMMessage(clock());
+
     // NETWORK
-    emitter = new NHOTemplateFullDuplexConnectedEmitter<NHOTCMessage>(51720) ;
-    HEMReceiver = new NHOTemplateBroadcastReceiver<NHOHEMMessage>(51719);
-    HEMReceiver->attach(this);
+    this->emitter = new NHOTemplateFullDuplexConnectedEmitter<NHOTCMessage>(51720) ;
+    this->HEMReceiver = new NHOTemplateBroadcastReceiver<NHOHEMMessage>(51719);
+    this->HEMReceiver->attach(this);
 }
 
 bool NHOCommandCenter::sendForwardTC() {
@@ -139,9 +154,15 @@ bool  NHOCommandCenter::sendTurnRightTC() {
  * Initialize whatever needs to be intialized (netwotk stuff)
  **/
 bool NHOCommandCenter::initialize() {
-    bool lReturn = get()->getEmitter()->initiate();
-    lReturn = get()->getHEMReceiver()->initiate() && lReturn;
-    return lReturn;
+    bool lReturnE = get()->getEmitter()->initiate();
+    if (lReturnE == false) {
+        get()->getEmitter()->terminate();
+    }
+    bool lReturnH = get()->getHEMReceiver()->initiate() ;
+    if (lReturnH == false) {
+        get()->getHEMReceiver()->terminate();
+    }
+    return lReturnH && lReturnE ;
 }
 
 /**
@@ -159,8 +180,18 @@ bool NHOCommandCenter::terminate() {
  * Destructor.
  **/
 NHOCommandCenter::~NHOCommandCenter() {
-    delete emitter;
-    delete HEMReceiver;
+    if (this->hem) {
+        delete this->hem;
+        this->hem = NULL;
+    }
+    if (this->emitter) {
+        delete this->emitter;
+        this->emitter = NULL;
+    }
+    if (this->HEMReceiver) {
+        delete HEMReceiver;
+        this->HEMReceiver = NULL;
+    }
 }
 
 /**

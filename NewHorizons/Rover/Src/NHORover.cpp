@@ -84,8 +84,6 @@ bool NHORover::initialize() {
 #else
     receiver = new NHOTemplateFullDuplexConnectedReceiver<NHOTCMessage>("192.168.0.13", 51720);
 #endif
-    receiver->initiate();
-    receiver->attach(this);
 
     if (! readConfiguration()) {
         NHOFILE_LOG(logERROR) << "NHORover::initialize: configuration failed." << std::endl;
@@ -93,14 +91,20 @@ bool NHORover::initialize() {
     }
     
     if (! camera->initialize(cameraParameters)) {
-        NHOFILE_LOG(logERROR) << "NHORover::initialize: initialization failed." << std::endl;
+        NHOFILE_LOG(logERROR) << "NHORover::initialize: CAMERA initialization failed." << std::endl;
         return false;
     }
     
     if (! hem->initialize(hemParameters)) {
-        NHOFILE_LOG(logERROR) << "NHORover::initialize: initialization failed." << std::endl;
+        NHOFILE_LOG(logERROR) << "NHORover::initialize: HEM initialization failed." << std::endl;
         return false;
     }
+    
+    if (! receiver->initiate()) {
+        NHOFILE_LOG(logERROR) << "NHORover::initialize: COMMAND PORT initialization failed." << std::endl;
+        return false;
+    }
+    receiver->attach(this);
     
     return true;
 }
@@ -136,7 +140,7 @@ bool NHORover::readConfiguration() {
     hemParameters = new NHOSensorParameters();
     hemParameters->setStorage(false);
     hemParameters->setDataEmissionPort(51719);
-    hemParameters->setDataEmission(false);//true);
+    hemParameters->setDataEmission(true);//true);
     hemParameters->setSamplingPeriod(1000);
     return true;
     

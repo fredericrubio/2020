@@ -35,7 +35,7 @@ public:
      * Returns the size (in bytes) of a HEM message
      **/
     static inline size_t getSize() {
-        return (sizeof(date) + sizeof(cpu) + sizeof(temp) + sizeof(usedMemory) + sizeof(modes)) ;
+        return (sizeof(date) + sizeof(cpu) + sizeof(temp) + sizeof(usedMemory) + sizeof(modes) + sizeof(digitalValues)) ;
     }
     
     /**
@@ -45,7 +45,8 @@ public:
     inline short getTemperature() const {return temp;};
     inline short getMemoryUsage() const {return usedMemory;};
     inline const int* const getPinModes() const {return modes;};
-    
+    inline const unsigned short* const getDigitalValues() const {return digitalValues;};
+
     /**
      * Setters
      **/
@@ -54,7 +55,8 @@ public:
     inline void setMemoryUsage(const short pMemory) {usedMemory = pMemory;};
     inline void setDate(const long long pDate) {date = pDate;};
     inline void setPinModes(const int* pModes) {memcpy(modes, pModes, sizeof(modes));};
-    
+    inline void setDigitalValues(const unsigned short* pDigitalValues) {memcpy(digitalValues, pDigitalValues, sizeof(digitalValues));};
+
     /**
      * Update health monitoring sata
      **/
@@ -66,9 +68,9 @@ private:
     short cpu;
     short temp;
     short usedMemory;
-    int   modes[NHOWiringPi::GPIO_PINS];
-    int analogValues[NHOWiringPi::GPIO_PINS];
-    unsigned short digitalValues[NHOWiringPi::GPIO_PINS]; // HIGH or LOW
+    int   modes[NHOWiringPi::TOTAL_GPIO_PINS]; // INPUT or OUTPUT
+    int analogValues[NHOWiringPi::TOTAL_GPIO_PINS];
+    unsigned short digitalValues[NHOWiringPi::TOTAL_GPIO_PINS]; // HIGH or LOW
 
     /**
      * Fetch CPU

@@ -50,7 +50,7 @@ bool NHORoverHEM::acquire(){
 bool NHORoverHEM::send(){
     //    NHOFILE_LOG(logDEBUG) << "NHORoverHEM::send: " << std::endl;
    
-    NHOHEMMessage* lMessage;
+    NHOHEMMessage* lMessage = NULL;
     bool lReturn = false;
 
     // send data
@@ -61,12 +61,12 @@ bool NHORoverHEM::send(){
         // send mesg and get status
         lMessage->serialize();
         lReturn = dataEmitter->send(lMessage);
-        if (lReturn) {
-            NHOFILE_LOG(logDEBUG) << "NHORoverHEM::send: " << std::endl;
-        }
-        else {
+        if (! lReturn) {
             NHOFILE_LOG(logERROR) << "NHORoverHEM::send: failed to send HEM\n";
         }
+//        else {
+//            NHOFILE_LOG(logDEBUG) << "NHORoverHEM::send: " << std::endl;
+//        }
     }
     
     //memory management
@@ -76,11 +76,11 @@ bool NHORoverHEM::send(){
     //        delete lMessage;
     //    }
     
-    return lReturn;
-
-
-    return true;
+    if (lMessage != NULL) {
+        delete lMessage;
+    }
     
+    return lReturn;
 }
 
 /**

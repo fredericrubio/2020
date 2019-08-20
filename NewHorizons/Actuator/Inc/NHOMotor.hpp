@@ -9,6 +9,8 @@
 #ifndef NHOMotor_hpp
 #define NHOMotor_hpp
 
+#include <string>
+
 class NHOMotor {
     
 public:
@@ -16,7 +18,7 @@ public:
     /**
      * Constructor
      **/
-    NHOMotor(unsigned short pPort1, unsigned short pPort2, unsigned short pPort3);
+    NHOMotor(const std::string& pName, unsigned short pPort1, unsigned short pPort2, unsigned short pPort3);
     
     // -- Commands --
     /**
@@ -45,6 +47,7 @@ public:
     bool setSpeed(unsigned short pSpeed);
     
 protected :
+    std::string     name;
     unsigned short port1;
     unsigned short port2;
     unsigned short port3;

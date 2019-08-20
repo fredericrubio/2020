@@ -122,7 +122,7 @@ bool  NHOCommandCenter::sendTurnLeftTC() {
     
     message.setCommand(NHOTCMessage::eTurnLeft);
     message.setMagnitude(-1.0);
-    message.setDuration(1000.0);
+    message.setDuration(-1.0);
     message.setSpeed(-1.0);
     message.serialize();
     

@@ -7,11 +7,13 @@
 //
 
 #include "NHOWiringPi.hpp"
+#include "NHOLOG.hpp"
+#include <iostream>
 
 #ifndef _RASPBIAN
-static unsigned int modes[NHOWiringPi::GPIO_PINS];
-static unsigned int analogValues[NHOWiringPi::GPIO_PINS];
-static unsigned int digitalValues[NHOWiringPi::GPIO_PINS];
+static unsigned int modes[NHOWiringPi::TOTAL_GPIO_PINS];
+static unsigned int analogValues[NHOWiringPi::TOTAL_GPIO_PINS];
+static unsigned int digitalValues[NHOWiringPi::TOTAL_GPIO_PINS];
 #endif
 
 int NHOWiringPi::ERROR_CODE = 0;
@@ -39,6 +41,9 @@ int NHOWiringPi::wiringPiSetup       (void) {
 #ifdef _RASPBIAN
     return wiringPiSetup();
 #else
+    memset(modes, 0, sizeof(modes));
+    memset(analogValues, 0, sizeof(modes));
+    memset(digitalValues, 0, sizeof(modes));
     return 0;
 #endif
     
@@ -74,6 +79,69 @@ void NHOWiringPi::pinMode             (int pin, int mode) {
     modes[pin] = mode;
 #endif
 
+}
+
+void NHOWiringPi::printModes(const int pModes[]) {
+#ifdef _RASPBIAN
+#else
+    std::string values = "";
+    NHOFILE_LOG(logDEBUG) << "Modes: "  << std::endl ;
+    for (int loop = 0 ; loop < NHOWiringPi::TOTAL_GPIO_PINS * 0.5; loop++) {
+        values += std::to_string(pModes[loop]) + " ";
+    }
+    values += "\n";
+    for (int loop = NHOWiringPi::TOTAL_GPIO_PINS * 0.5 ; loop < NHOWiringPi::TOTAL_GPIO_PINS; loop++) {
+        values += std::to_string(pModes[loop]) + " ";
+    }
+    std::cout << values  << "\n";
+#endif
+}
+void NHOWiringPi::printDigitalValues(const unsigned short pDigitalValues[]) {
+#ifdef _RASPBIAN
+#else
+    std::string values = "";
+    NHOFILE_LOG(logDEBUG) << "Digital values: "  << std::endl ;
+    for (int loop = 0 ; loop < NHOWiringPi::TOTAL_GPIO_PINS * 0.5; loop++) {
+        values += std::to_string(pDigitalValues[loop]) + " ";
+    }
+    values += "\n";
+    for (int loop = NHOWiringPi::TOTAL_GPIO_PINS * 0.5 ; loop < NHOWiringPi::TOTAL_GPIO_PINS; loop++) {
+        values += std::to_string(pDigitalValues[loop]) + " ";
+    }
+    std::cout << values  << "\n";
+#endif
+}
+
+void NHOWiringPi::printModes() {
+#ifdef _RASPBIAN
+#else
+    std::string values = "";
+    NHOFILE_LOG(logDEBUG) << "Modes: "  << std::endl ;
+    for (int loop = 0 ; loop < NHOWiringPi::TOTAL_GPIO_PINS * 0.5; loop++) {
+        values += std::to_string(modes[loop]) + " ";
+    }
+    values += "\n";
+    for (int loop = NHOWiringPi::TOTAL_GPIO_PINS * 0.5 ; loop < NHOWiringPi::TOTAL_GPIO_PINS; loop++) {
+        values += std::to_string(modes[loop]) + " ";
+    }
+    std::cout << values  << "\n";
+#endif
+}
+
+void NHOWiringPi::printDigitalValues() {
+#ifdef _RASPBIAN
+#else
+    std::string values = "";
+    NHOFILE_LOG(logDEBUG) << "Digital values: "  << std::endl ;
+    for (int loop = 0 ; loop < NHOWiringPi::TOTAL_GPIO_PINS * 0.5; loop++) {
+        values += std::to_string(digitalValues[loop]) + " ";
+    }
+    values += "\n";
+    for (int loop = NHOWiringPi::TOTAL_GPIO_PINS * 0.5 ; loop < NHOWiringPi::TOTAL_GPIO_PINS; loop++) {
+        values += std::to_string(digitalValues[loop]) + " ";
+    }
+    std::cout << values  << "\n";
+#endif
 }
 
 void NHOWiringPi::pullUpDnControl     (int pin, int pud) {

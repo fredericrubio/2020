@@ -23,6 +23,8 @@
 #include "NHOHEMData.hpp"
 #include "NHOLOG.hpp"
 #include "NHOWiringPi.hpp"
+#include "NHOLOG.hpp"
+#include <iostream>
 
 /**
  *
@@ -30,9 +32,9 @@
 NHOHEMData::NHOHEMData() {
     
     type = NHOMessageFactory::eHEM;
-    memset(this->modes, 0, sizeof(int) * NHOWiringPi::GPIO_PINS);;
-    memset(this->analogValues, 0, sizeof(int) * NHOWiringPi::GPIO_PINS);
-    memset(this->digitalValues, 0, sizeof(unsigned short) * NHOWiringPi::GPIO_PINS);
+    memset(this->modes, 0, sizeof(modes));
+    memset(this->analogValues, 0, sizeof(analogValues));
+    memset(this->digitalValues, 0, sizeof(digitalValues));
     
     this->date = 0;
     this->cpu = 0;
@@ -44,9 +46,9 @@ NHOHEMData::NHOHEMData() {
 NHOHEMData::NHOHEMData(const long long pDate):date(pDate) {
     
     type = NHOMessageFactory::eHEM;
-    memset(this->modes, 0, sizeof(int) * NHOWiringPi::GPIO_PINS);;
-    memset(this->analogValues, 0, sizeof(int) * NHOWiringPi::GPIO_PINS);
-    memset(this->digitalValues, 0, sizeof(unsigned short) * NHOWiringPi::GPIO_PINS);
+    memset(this->modes, 0, sizeof(modes));
+    memset(this->analogValues, 0, sizeof(analogValues));
+    memset(this->digitalValues, 0, sizeof(digitalValues));
 
     this->date = 0;
     this->cpu = 0;
@@ -67,10 +69,9 @@ NHOHEMData::NHOHEMData(const NHOHEMData* orig) {
     temp = orig->temp;
     usedMemory = orig->usedMemory;
     
-    memcpy(modes, orig->modes, sizeof(int) * NHOWiringPi::GPIO_PINS);
-    memcpy(analogValues, orig->analogValues, sizeof(int) * NHOWiringPi::GPIO_PINS);
-    memcpy(digitalValues, orig->digitalValues, sizeof(unsigned short) * NHOWiringPi::GPIO_PINS);
-    
+    memcpy(modes, orig->modes, sizeof(modes));
+    memcpy(analogValues, orig->analogValues, sizeof(analogValues));
+    memcpy(digitalValues, orig->digitalValues, sizeof(digitalValues));
 }
 
 /**
@@ -85,9 +86,9 @@ NHOHEMData::NHOHEMData(const NHOHEMData& orig) {
     temp = orig.temp;
     usedMemory = orig.usedMemory;
 
-    memcpy(modes, orig.modes, sizeof(int) * NHOWiringPi::GPIO_PINS);
-    memcpy(analogValues, orig.analogValues, sizeof(int) * NHOWiringPi::GPIO_PINS);
-    memcpy(digitalValues, orig.digitalValues, sizeof(unsigned short) * NHOWiringPi::GPIO_PINS);
+    memcpy(modes, orig.modes, sizeof(modes));
+    memcpy(analogValues, orig.analogValues, sizeof(analogValues));
+    memcpy(digitalValues, orig.digitalValues, sizeof(digitalValues));
 
 }
 
@@ -213,16 +214,19 @@ bool NHOHEMData::fetchPins() {
     int pin;
 
     // modes
-    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
-        modes[pin] = NHOWiringPi::getAlt(NHOWiringPi::WiringPiMap[pin]);
+    for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
+//        modes[pin] = NHOWiringPi::getAlt(NHOWiringPi::WiringPiMap[pin]);
+        modes[pin] = NHOWiringPi::getAlt(pin);
     }
     // analogic values
-    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
-        analogValues[pin] = NHOWiringPi::analogRead(NHOWiringPi::WiringPiMap[pin]);
+    for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
+//        analogValues[pin] = NHOWiringPi::analogRead(NHOWiringPi::WiringPiMap[pin]);
+        analogValues[pin] = NHOWiringPi::analogRead(pin);
     }
     // digital values
-    for (pin = 0 ; pin <= NHOWiringPi::GPIO_PINS ; ++pin) {
-        digitalValues[pin] = NHOWiringPi::digitalRead(NHOWiringPi::WiringPiMap[pin]);
+    for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
+//        digitalValues[pin] = NHOWiringPi::digitalRead(NHOWiringPi::WiringPiMap[pin]);
+        digitalValues[pin] = NHOWiringPi::digitalRead(pin);
     }
 
     return true;

@@ -59,8 +59,8 @@ bool NHODEXM::configure() {
 #ifdef _RASPBIAN
     
 #else
-    motorR = new NHOMotor(1, 2, 3);
-    motorL = new NHOMotor(4, 5, 6);
+    motorR = new NHOMotor("Right", 1, 2, 3);
+    motorL = new NHOMotor("Left", 4, 5, 6);
 #endif
     
     return true;
@@ -256,9 +256,14 @@ bool NHODEXM::stopMotion() {
     }
     
     // attempt to execute
-    if (!motorR->stifle() || !motorL->stifle()) {
+    if (!motorR->freeWheel() || !motorL->freeWheel()) {
         return false;
     }
+    
+    // attempt to execute
+//    if (!motorR->stifle() || !motorL->stifle()) {
+//        return false;
+//    }
     
     motion = false;
     

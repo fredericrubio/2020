@@ -142,7 +142,7 @@ public:
         long numbytes;
         struct sockaddr_storage their_addr;
 this->mutex.lock();
-        int size = this->message->getHEMData()->getSize();
+        unsigned long size = this->message->getHEMData()->getSize();
 this->mutex.unlock();
         char* buf = new char[size];
         socklen_t addr_len;
@@ -170,10 +170,10 @@ this->mutex.lock();
             this->setVal(this->message);
             this->notify();
 this->mutex.unlock();
-            le changement de couleurs des diodes est lent : fréquence d'envoi, fréquence de rafraîchissement de la GUI ?
-            les diodes allumées ne retombent pas après la commande "STOP"
-            on a la même configuration de diodes pour des commades différents : "LEFT" et "FORWARD" par exemple
-            il faut d'abord lancer l'interface graphique PUIS le rover.
+//            le changement de couleurs des diodes est lent : fréquence d'envoi, fréquence de rafraîchissement de la GUI ?
+//            les diodes allumées ne retombent pas après la commande "STOP"
+//            on a la même configuration de diodes pour des commades différents : "LEFT" et "FORWARD" par exemple
+//            il faut d'abord lancer l'interface graphique PUIS le rover.
             NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive\n";
         }
         

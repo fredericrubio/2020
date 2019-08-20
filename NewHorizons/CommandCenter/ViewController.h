@@ -27,6 +27,7 @@
 @property (strong) IBOutlet NSButton *gpioMode1;
 @property (strong) IBOutlet NSMatrix *gpioModeMatrix;
 @property (strong) IBOutlet NSMatrix *pwmMatrix;
+@property (strong) IBOutlet NSMatrix *gpioDigitalValueMatrix;
 
 @property bool networkStatus;
 @property bool keepRefreshing;

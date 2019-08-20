@@ -109,9 +109,17 @@ bool NHOHEMMessage::serialize() {
     offset += sizeof(lMemory);
     
     /// pins
-    memcpy((void *) (data + offset), HEMData->getPinModes(), NHOWiringPi::GPIO_PINS * sizeof(int));
-    offset += sizeof(sizeof(NHOWiringPi::GPIO_PINS)*sizeof(int));
+    //// modes
+    memcpy((void *) (data + offset), HEMData->getPinModes(), NHOWiringPi::TOTAL_GPIO_PINS * sizeof(int));
+    offset += NHOWiringPi::TOTAL_GPIO_PINS * sizeof(int);
     
+    //// digital values
+    memcpy((void *) (data + offset), HEMData->getDigitalValues(), NHOWiringPi::TOTAL_GPIO_PINS * sizeof(unsigned short));
+    offset += NHOWiringPi::TOTAL_GPIO_PINS * sizeof(unsigned short);
+    
+//    NHOWiringPi::printModes((int *) HEMData->getPinModes());
+//    NHOWiringPi::printDigitalValues((unsigned short *) HEMData->getDigitalValues());
+
     size = (unsigned int) lSize;
     return true;
 }
@@ -158,11 +166,19 @@ bool NHOHEMMessage::unserialize() {
     lData->setMemoryUsage(lMemory);
     
     /// pins
-    int pins[NHOWiringPi::GPIO_PINS];
+    int pins[NHOWiringPi::TOTAL_GPIO_PINS];
     memcpy(pins, (void *) (data + offset), sizeof(pins));
     offset += sizeof(pins);
     lData->setPinModes(pins);
-    
+
+    unsigned short digitalValues[NHOWiringPi::TOTAL_GPIO_PINS];
+    memcpy(digitalValues, (void *) (data + offset), sizeof(digitalValues));
+    offset += sizeof(digitalValues);
+    lData->setDigitalValues(digitalValues);
+
+//    NHOWiringPi::printModes(pins);
+//    NHOWiringPi::printDigitalValues(digitalValues);
+
     setHEMData(lData);
     
     return true;

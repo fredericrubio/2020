@@ -14,8 +14,8 @@
 /**
  * Constructor
  **/
-NHOMotor::NHOMotor(unsigned short pPort1, unsigned short pPort2, unsigned short pPort3):
-port1(pPort1), port2(pPort2), port3(pPort3), speed(0) {
+NHOMotor::NHOMotor(const std::string& pName, unsigned short pPort1, unsigned short pPort2, unsigned short pPort3):
+name(pName), port1(pPort1), port2(pPort2), port3(pPort3), speed(0) {
     
     // three values to test
     // OUTPUT: for first tests
@@ -37,8 +37,10 @@ bool NHOMotor::forward(){
     NHOWiringPi::digitalWrite(port2, NHOWiringPi::HIGH);
     NHOWiringPi::digitalWrite(port3, NHOWiringPi::LOW);
 
-    NHOFILE_LOG(logDEBUG) << "NHOMotor::forward forwarding." << std::endl;
+    NHOFILE_LOG(logDEBUG) << "NHOMotor::forward " << name << " forwarding." << std::endl;
 
+    NHOWiringPi::printDigitalValues();
+    
     return true;
     
 }
@@ -52,7 +54,7 @@ bool NHOMotor::reverse(){
     NHOWiringPi::digitalWrite(port2, NHOWiringPi::LOW);
     NHOWiringPi::digitalWrite(port3, NHOWiringPi::HIGH);
 
-    NHOFILE_LOG(logDEBUG) << "NHOMotor::reverse reversing." << std::endl;
+    NHOFILE_LOG(logDEBUG) << "NHOMotor::reverse " << name << " reversing." << std::endl;
     
     return true;
     
@@ -63,11 +65,12 @@ bool NHOMotor::reverse(){
  **/
 bool NHOMotor::stifle() {
 
-#ifdef _RASPBEIN
-#else
-    NHOFILE_LOG(logDEBUG) << "NHOMotor::stifle." << std::endl;
-#endif
+    NHOWiringPi::digitalWrite(port1, NHOWiringPi::LOW);
+    NHOWiringPi::digitalWrite(port2, NHOWiringPi::LOW);
+    NHOWiringPi::digitalWrite(port3, NHOWiringPi::LOW);
 
+    NHOFILE_LOG(logDEBUG) << "NHOMotor::stifle " << name << "." << std::endl;
+    
     return true;
     
 }
@@ -81,7 +84,7 @@ bool NHOMotor::freeWheel() {
     NHOWiringPi::digitalWrite(port2, NHOWiringPi::LOW);
     NHOWiringPi::digitalWrite(port3, NHOWiringPi::LOW);
     
-    NHOFILE_LOG(logDEBUG) << "NHOMotor::freeWheel." << std::endl;
+    NHOFILE_LOG(logDEBUG) << "NHOMotor::freeWheel " << name << "." << std::endl;
 
     return true;
     

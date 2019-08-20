@@ -20,6 +20,7 @@
     
     NSString *fileName = @"/Users/fredericrubio/Desktop/IMG_0113.png";
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:fileName];
+
 //    if (image == nil) {
 //        NSLog(@"image nil");
 //    }
@@ -82,7 +83,6 @@
     NSString* rootPath = @"/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/DerivedData/Build/Products";
     
 //    BOOL isDir = TRUE;
-//
 //    [[NSFileManager defaultManager] fileExistsAtPath:path
 //                                         isDirectory:&isDir];
 //    if ( isDir ) {
@@ -123,18 +123,41 @@
                                              // Return YES if the enumeration should continue after the error.
                                              return YES;
                                          }];
+    
     NSDate *lastModifiedDate = [NSDate dateWithTimeIntervalSince1970:0];
     NSString *lastModifiedFilePath = @"";
-
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *fontPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Fonts"];
+    BOOL isDir;
+    
     for (NSURL *url in enumerator) {
-        NSError *error;
-        NSNumber *isDirectory = nil;
-        if (! [url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
-            // handle error
-        }
-        else if (! [isDirectory boolValue]) {
-            // No error and it’s not a directory; do something with the file
-//            NSLog(@"%@", [url absoluteString]);
+        
+//        NSError *error;
+//        NSNumber *isDirectory = nil;
+//        NSString *pathToTest = nil;
+        
+//        NSMutableDictionary *queryStrings = [[NSMutableDictionary alloc] init];
+//        for (NSString *qs in [url.query componentsSeparatedByString:@"&"]) {
+//            // Get the parameter name
+//            NSString *key = [[qs componentsSeparatedByString:@"="] objectAtIndex:0];
+//            // Get the parameter value
+//            NSString *value = [[qs componentsSeparatedByString:@"="] objectAtIndex:1];
+//            value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+//            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//
+//            queryStrings[key] = value;
+//        }
+        
+//        NSLog(@"<%@> ", [url path]);
+        [fileManager fileExistsAtPath:[url path] isDirectory:&isDir];
+        NSRange isRange = [[url absoluteString] rangeOfString:@".ppm" options:NSCaseInsensitiveSearch];
+//        if(isRange.length != 0) {
+//            NSLog(@"==> image");
+//        }
+        
+        if ((! isDir)
+            &&
+            (isRange.length != 0)) {
             NSDate* creationDate;
             NSError* error;
             if ([url getResourceValue:&creationDate forKey:NSURLCreationDateKey error:&error]) {
@@ -147,6 +170,32 @@
                 NSLog(@"No creation date");
             }
         }
+//        if (url.hasDirectoryPath) {
+//            NSLog(@"<%@> is a directory.", url);
+//        }
+//
+//        if (! [url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+//            // handle error
+//        }
+//        else {
+//            NSLog(@"<%@> is not a directory.", url);
+//            Boolean directory = [isDirectory boolValue];
+//            if (! [isDirectory boolValue]) {
+//                // No error and it’s not a directory; do something with the file
+//                //            NSLog(@"%@", [url absoluteString]);
+//                NSDate* creationDate;
+//                NSError* error;
+//                if ([url getResourceValue:&creationDate forKey:NSURLCreationDateKey error:&error]) {
+//                    if (lastModifiedDate > creationDate) {
+//                        lastModifiedDate = creationDate;
+//                        lastModifiedFilePath = [url absoluteString];
+//                    }
+//                }
+//                else {
+//                    NSLog(@"No creation date");
+//                }
+//            }
+//        }
     }
     
     NSLog(@"Lastest modified file: <%@>", lastModifiedFilePath);
@@ -175,6 +224,16 @@
     return nil;
 }
 
+- (NSString *)valueForKey:(NSString *)key
+           fromQueryItems:(NSArray *)queryItems
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name=%@", key];
+    NSURLQueryItem *queryItem = [[queryItems
+                                  filteredArrayUsingPredicate:predicate]
+                                 firstObject];
+    return queryItem.value;
+}
+
 - (void)refreshCameraView {
     
     // refresh network status
@@ -182,19 +241,25 @@
         [self.network setImage:[NSImage imageNamed:@"Red.png"]];
     }
     
-    [self getLatestsFile];
+    NSString *imageToDisplayAbsPath = @"";
     
     while (self.keepRefreshing) {
         
         [NSThread sleepForTimeInterval:1];
-        [self performSelectorOnMainThread:@selector(setNewImage) withObject:nil waitUntilDone:YES];
-        
+        imageToDisplayAbsPath = [self getLatestsFile];
+        if (imageToDisplayAbsPath != nil) {
+//        if (! [imageToDisplayAbsPath isEqualToString:[NSString stringWithUTF8String:""]]) {
+            [self performSelectorOnMainThread:@selector(setNewImage) withObject:imageToDisplayAbsPath waitUntilDone:YES];
+        }
     }
     
     NSLog(@"End of refreshCemaeraView");
 
 }
 
+/**
+ *
+ **/
 - (void)refreshHEM {
     
     if (self.networkStatus == true) {
@@ -202,7 +267,7 @@
         while (self.keepRefreshing) {
 
             // sleep 1 second
-            [NSThread sleepForTimeInterval:1];
+            [NSThread sleepForTimeInterval:0.5];
             
             [self performSelectorOnMainThread:@selector(setHEM) withObject:nil waitUntilDone:YES];
         }
@@ -250,12 +315,29 @@
             counter++;
         }
     }
-    
+
+    // DIGITAL VALUES
+    counter = 0;
+    row = 0;
+    column = 0;
+    for (row = 0 ; row < [self.gpioDigitalValueMatrix numberOfRows] ; row++) {
+        for (column = 0 ; column < [self.gpioDigitalValueMatrix numberOfColumns] ; column++) {
+            cell = [self.gpioDigitalValueMatrix cellAtRow:row column:column];
+            if (hem->getHEMData()->getDigitalValues()[counter] == NHOWiringPi::HIGH) {
+                [cell setImage:[NSImage imageNamed:@"Green.png"]];
+            }
+            else {
+                [cell setImage:[NSImage imageNamed:@"Red.png"]];
+            }
+            counter++;
+        }
+    }
+
     delete hem;
     
 }
 
--(void) setNewImage {
+-(void) setNewImage:(NSString*)imageToLoadAbsPath {
     NSString *fileName = @"/Users/fredericrubio/Desktop/IMG_0113.png";
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:fileName];
     if (image == nil) {

@@ -31,6 +31,8 @@
 
 @property bool networkStatus;
 @property bool keepRefreshing;
+@property NSString *cameraCapture;
+@property (strong) IBOutlet NSButton *cameraLinkStatus;
 
 - (IBAction)forwardCallback:(id)sender;
 - (IBAction)reverseCallback:(id)sender;

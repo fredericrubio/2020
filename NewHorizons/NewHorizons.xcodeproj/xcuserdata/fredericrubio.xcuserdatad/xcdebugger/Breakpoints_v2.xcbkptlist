@@ -514,107 +514,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Network/Inc/NHOTemplateBroadcastReceiver.hpp"
-            timestampString = "588008065.119943"
+            timestampString = "588013808.627527"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
             endingLineNumber = "170"
             landmarkName = "receive()"
             landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CommandCenter/ViewController.mm"
-            timestampString = "588008065.120011"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
-            landmarkName = "-getLatestsFile"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ViewController getLatestsFile]"
-                  moduleName = "CommandCenter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fredericrubio/Development/Project/New%20Horizons/Development/NewHorizons/CommandCenter/ViewController.mm"
-                  timestampString = "588008065.481153"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
-                  offsetFromSymbolStart = "1540">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ViewController getLatestsFile]"
-                  moduleName = "CommandCenter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fredericrubio/Development/Project/New%20Horizons/Development/NewHorizons/CommandCenter/ViewController.mm"
-                  timestampString = "588008065.482833"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
-                  offsetFromSymbolStart = "1712">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ViewController getLatestsFile]"
-                  moduleName = "CommandCenter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fredericrubio/Development/Project/New%20Horizons/Development/NewHorizons/CommandCenter/ViewController.mm"
-                  timestampString = "588008065.484872"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
-                  offsetFromSymbolStart = "1732">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ViewController getLatestsFile]"
-                  moduleName = "CommandCenter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fredericrubio/Development/Project/New%20Horizons/Development/NewHorizons/CommandCenter/ViewController.mm"
-                  timestampString = "588008065.486613"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
-                  offsetFromSymbolStart = "1813">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CommandCenter/ViewController.mm"
-            timestampString = "588008065.12033"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
-            landmarkName = "-setNewImage:"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

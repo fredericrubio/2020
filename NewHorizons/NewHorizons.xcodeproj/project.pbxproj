@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B50E3F7122ADBF20004AE227 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A6908922ADBD7700BDB3D7 /* Green.png */; };
+		B51069D0230C56C400C6C952 /* Orange.png in Resources */ = {isa = PBXBuildFile; fileRef = B51069CF230C56B600C6C952 /* Orange.png */; };
+		B51069D2230C5A8100C6C952 /* Encelade.png in Resources */ = {isa = PBXBuildFile; fileRef = B51069D1230C5A7600C6C952 /* Encelade.png */; };
 		B518FD72228856E200C37EC2 /* NHOHEMData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B518FD71228856E200C37EC2 /* NHOHEMData.hpp */; };
 		B518FD74228856ED00C37EC2 /* NHOHEMData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B518FD73228856ED00C37EC2 /* NHOHEMData.cpp */; };
 		B518FD7D22885B7700C37EC2 /* NHORover.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B518FD7B22885B7700C37EC2 /* NHORover.cpp */; };
@@ -24,8 +26,6 @@
 		B547EE73227ECD7100181512 /* NHOImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B547EE71227ECD7100181512 /* NHOImage.cpp */; };
 		B547EE74227ECD7100181512 /* NHOImage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B547EE72227ECD7100181512 /* NHOImage.hpp */; };
 		B547EE762283038700181512 /* NHOReflexFullDuplexConnectedEmitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B547EE752283038700181512 /* NHOReflexFullDuplexConnectedEmitter.hpp */; };
-		B54B69922303569400F5F130 /* Input.png in Resources */ = {isa = PBXBuildFile; fileRef = B54B69912303568A00F5F130 /* Input.png */; };
-		B54B69932303569400F5F130 /* Output.png in Resources */ = {isa = PBXBuildFile; fileRef = B54B69902303568A00F5F130 /* Output.png */; };
 		B550888B22A5AB1C00688115 /* NHOTemplateFullDuplexConnectedReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550888922A5AB1600688115 /* NHOTemplateFullDuplexConnectedReceiver.cpp */; };
 		B550888E22A5B24D00688115 /* NHODEXM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550888C22A5B24D00688115 /* NHODEXM.cpp */; };
 		B550889222A6FB3C00688115 /* NHOSubject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B550889022A6FB3C00688115 /* NHOSubject.hpp */; };
@@ -156,6 +156,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B51069CF230C56B600C6C952 /* Orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orange.png; sourceTree = "<group>"; };
+		B51069D1230C5A7600C6C952 /* Encelade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Encelade.png; sourceTree = "<group>"; };
 		B518FD71228856E200C37EC2 /* NHOHEMData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHEMData.hpp; sourceTree = "<group>"; };
 		B518FD73228856ED00C37EC2 /* NHOHEMData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOHEMData.cpp; sourceTree = "<group>"; };
 		B518FD7B22885B7700C37EC2 /* NHORover.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHORover.cpp; sourceTree = "<group>"; };
@@ -532,6 +534,8 @@
 		B5A6908822ADBCDD00BDB3D7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B51069D1230C5A7600C6C952 /* Encelade.png */,
+				B51069CF230C56B600C6C952 /* Orange.png */,
 				B5C409502309C9CD00974D7A /* NewHorizon.png */,
 				B54B69912303568A00F5F130 /* Input.png */,
 				B54B69902303568A00F5F130 /* Output.png */,
@@ -927,8 +931,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B54B69922303569400F5F130 /* Input.png in Resources */,
-				B54B69932303569400F5F130 /* Output.png in Resources */,
+				B51069D2230C5A8100C6C952 /* Encelade.png in Resources */,
+				B51069D0230C56C400C6C952 /* Orange.png in Resources */,
 				B5B0958822ADBFE400F71B80 /* Red.png in Resources */,
 				B5C409512309C9CE00974D7A /* NewHorizon.png in Resources */,
 				B50E3F7122ADBF20004AE227 /* Green.png in Resources */,

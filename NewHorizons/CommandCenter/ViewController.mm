@@ -20,7 +20,7 @@
     
     NSString *fileName = @"/Users/fredericrubio/Desktop/IMG_0113.png";
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:fileName];
-
+    image = [NSImage imageNamed:@"Encelade.png"];
 //    if (image == nil) {
 //        NSLog(@"image nil");
 //    }
@@ -29,6 +29,7 @@
 //        NSLog(@"size %f %f",image.size.width,image.size.height);
 //    }
     [self.cameraView setImage:image];
+    self.cameraCapture = @"";
 
     // initialize emitter
     self.networkStatus = NHOCommandCenter::initialize();
@@ -78,37 +79,13 @@
 
 }
 
+/**
+ * Get the latest 'ppm' image in the directory containing
+ * the camera captures.
+ **/
 - (NSString*) getLatestsFile {
     
     NSString* rootPath = @"/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/DerivedData/Build/Products";
-    
-//    BOOL isDir = TRUE;
-//    [[NSFileManager defaultManager] fileExistsAtPath:path
-//                                         isDirectory:&isDir];
-//    if ( isDir ) {
-//        NSMutableArray *contentItemArray = [[NSMutableArray alloc] init];
-//        NSArray *contentOfDirectory =
-//        [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path
-//                                                            error:NULL];
-//
-//        for (int i = 0; i<[contentOfDirectory count]; i++) {
-//
-//            NSString *fileName = [contentOfDirectory objectAtIndex:i];
-//
-//            if([fileName.pathExtension isEqualToString:@"png"])
-//            {
-//                [contentItemArray addObject:fileName];
-//                NSURL *fileUrl = [NSURL URLWithString:path];
-//                NSDate *fileDate;
-//                [fileName getResourceValue:&fileDate forKey:NSURLContentModificationDateKey error:&error];
-//                if (!error)
-//                {
-//                    //here you should be able to read valid date from fileDate variable
-//                }
-//            }
-//        }
-//
-//    }
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *directoryURL = [NSURL fileURLWithPath:rootPath];
@@ -129,31 +106,11 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString *fontPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Fonts"];
     BOOL isDir;
-    
+
+    // loop on directory contents
     for (NSURL *url in enumerator) {
-        
-//        NSError *error;
-//        NSNumber *isDirectory = nil;
-//        NSString *pathToTest = nil;
-        
-//        NSMutableDictionary *queryStrings = [[NSMutableDictionary alloc] init];
-//        for (NSString *qs in [url.query componentsSeparatedByString:@"&"]) {
-//            // Get the parameter name
-//            NSString *key = [[qs componentsSeparatedByString:@"="] objectAtIndex:0];
-//            // Get the parameter value
-//            NSString *value = [[qs componentsSeparatedByString:@"="] objectAtIndex:1];
-//            value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-//            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//            queryStrings[key] = value;
-//        }
-        
-//        NSLog(@"<%@> ", [url path]);
         [fileManager fileExistsAtPath:[url path] isDirectory:&isDir];
         NSRange isRange = [[url absoluteString] rangeOfString:@".ppm" options:NSCaseInsensitiveSearch];
-//        if(isRange.length != 0) {
-//            NSLog(@"==> image");
-//        }
         
         if ((! isDir)
             &&
@@ -163,65 +120,17 @@
             if ([url getResourceValue:&creationDate forKey:NSURLCreationDateKey error:&error]) {
                 if (lastModifiedDate > creationDate) {
                     lastModifiedDate = creationDate;
-                    lastModifiedFilePath = [url absoluteString];
+                    lastModifiedFilePath = [url path];
                 }
             }
             else {
                 NSLog(@"No creation date");
             }
         }
-//        if (url.hasDirectoryPath) {
-//            NSLog(@"<%@> is a directory.", url);
-//        }
-//
-//        if (! [url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
-//            // handle error
-//        }
-//        else {
-//            NSLog(@"<%@> is not a directory.", url);
-//            Boolean directory = [isDirectory boolValue];
-//            if (! [isDirectory boolValue]) {
-//                // No error and it’s not a directory; do something with the file
-//                //            NSLog(@"%@", [url absoluteString]);
-//                NSDate* creationDate;
-//                NSError* error;
-//                if ([url getResourceValue:&creationDate forKey:NSURLCreationDateKey error:&error]) {
-//                    if (lastModifiedDate > creationDate) {
-//                        lastModifiedDate = creationDate;
-//                        lastModifiedFilePath = [url absoluteString];
-//                    }
-//                }
-//                else {
-//                    NSLog(@"No creation date");
-//                }
-//            }
-//        }
     }
     
-    NSLog(@"Lastest modified file: <%@>", lastModifiedFilePath);
-    
-//    NSString *documentsDirectory = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] path];
-//    NSArray *docFileList = [[NSFileManager defaultManager] subpathsAtPath:documentsDirectory];
-//    NSEnumerator *docEnumerator = [docFileList objectEnumerator];
-//    NSString *docFilePath;
-//    NSDate *lastModifiedDate = [NSDate dateWithTimeIntervalSince1970:0];
-//    NSString *lastModifiedFilePath = @"";
-//
-//    while ((docFilePath = [docEnumerator nextObject])) {
-//        NSLog(docFilePath);
-//        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:docFilePath];
-//        NSDictionary *fileAttributes = [[NSFileManager defaultManager]  attributesOfItemAtPath:fullPath error:nil];
-//        NSDate* currentModifiedDate = [fileAttributes fileModificationDate];
-//
-//        if (lastModifiedDate < currentModifiedDate) {
-//            lastModifiedDate = lastModifiedDate;
-//            lastModifiedFilePath = fullPath;
-//        }
-//    }
-//
-//    return lastModifiedFilePath;
-    
-    return nil;
+//    NSLog(@"Lastest modified file: <%@>", lastModifiedFilePath);
+    return lastModifiedFilePath;
 }
 
 - (NSString *)valueForKey:(NSString *)key
@@ -248,8 +157,10 @@
         [NSThread sleepForTimeInterval:1];
         imageToDisplayAbsPath = [self getLatestsFile];
         if (imageToDisplayAbsPath != nil) {
-//        if (! [imageToDisplayAbsPath isEqualToString:[NSString stringWithUTF8String:""]]) {
-            [self performSelectorOnMainThread:@selector(setNewImage) withObject:imageToDisplayAbsPath waitUntilDone:YES];
+//            if (! [imageToDisplayAbsPath isEqualToString:self.cameraCapture]) {
+            if (! [imageToDisplayAbsPath isEqualToString:[NSString stringWithUTF8String:""]]) {
+                [self performSelectorOnMainThread:@selector(setNewImage:) withObject:imageToDisplayAbsPath waitUntilDone:YES];
+            }
         }
     }
     
@@ -338,16 +249,28 @@
 }
 
 -(void) setNewImage:(NSString*)imageToLoadAbsPath {
-    NSString *fileName = @"/Users/fredericrubio/Desktop/IMG_0113.png";
-    NSImage *image = [[NSImage alloc] initWithContentsOfFile:fileName];
-    if (image == nil) {
-        NSLog(@"image nil");
+    
+    if (imageToLoadAbsPath == nil) {
+        NSLog(@"Image to display is 'nil'");
+        [self.cameraLinkStatus setImage:[NSImage imageNamed:@"Red.png"]];
+        return;
+    }
+    
+    if ([imageToLoadAbsPath isEqualToString:self.cameraCapture]) {
+        [self.cameraLinkStatus setImage:[NSImage imageNamed:@"Orange.png"]];
     }
     else {
-        NSLog(@"%@", image.name);
-        NSLog(@"size %f %f",image.size.width,image.size.height);
+        // store the displayed image
+        self.cameraCapture = imageToLoadAbsPath;
+        [self.cameraLinkStatus setImage:[NSImage imageNamed:@"Green.png"]];
+        
+        NSImage *image = [[NSImage alloc] initWithContentsOfFile:self.cameraCapture];
+        [self.cameraView setImage:image];
+        
+        // memory management
+        image = nil;
     }
-    image = nil;
+
 }
 
 - (void)setRepresentedObject:(id)representedObject {

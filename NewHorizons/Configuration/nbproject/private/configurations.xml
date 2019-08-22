@@ -2,7 +2,7 @@
 <configurationDescriptor version="100">
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="Debug" type="1">
+    <conf name="Debug" type="3">
       <toolsSet>
         <developmentServer>pi@192.168.0.22:22</developmentServer>
         <platform>2</platform>
@@ -29,16 +29,13 @@
         <runcommand>"${OUTPUT_PATH}"</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
-        <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
-          <variable name="LD_LIBRARY_PATH"
-                    value="$LD_LIBRARY_PATH:/home/pi/Projects/NewHorizons/2020/NewHorizons/RaspiCam/Lib"/>
         </environment>
       </runprofile>
     </conf>
-    <conf name="Release" type="1">
+    <conf name="Release" type="3">
       <toolsSet>
         <developmentServer>pi@192.168.0.22:22</developmentServer>
         <platform>2</platform>

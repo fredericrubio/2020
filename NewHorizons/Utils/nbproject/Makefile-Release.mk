@@ -36,7 +36,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Src/NHOImage.o \
-	${OBJECTDIR}/Src/NHOLOG.o
+	${OBJECTDIR}/Src/NHOLOG.o \
+	${OBJECTDIR}/Src/NHOTimer.o \
+	${OBJECTDIR}/Src/NHOWiringPi.o \
+	${OBJECTDIR}/Src/tinyxml2.o
 
 
 # C Compiler Flags
@@ -74,6 +77,21 @@ ${OBJECTDIR}/Src/NHOLOG.o: Src/NHOLOG.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOLOG.o Src/NHOLOG.cpp
+
+${OBJECTDIR}/Src/NHOTimer.o: Src/NHOTimer.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOTimer.o Src/NHOTimer.cpp
+
+${OBJECTDIR}/Src/NHOWiringPi.o: Src/NHOWiringPi.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOWiringPi.o Src/NHOWiringPi.cpp
+
+${OBJECTDIR}/Src/tinyxml2.o: Src/tinyxml2.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/tinyxml2.o Src/tinyxml2.cpp
 
 # Subprojects
 .build-subprojects:

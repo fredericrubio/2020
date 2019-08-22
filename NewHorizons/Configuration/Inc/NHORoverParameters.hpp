@@ -9,26 +9,13 @@
 #ifndef NHORoverParameters_hpp
 #define NHORoverParameters_hpp
 
+#include "NHOMotorParameters.hpp"
+
 #include <list>
-#include <array>
 
 class NHORoverParameters {
     
 public:
-    typedef enum {MOTOR_EN = 0, MOTOR_A, MOTOR_B} NHOMotorPort;
-    typedef enum {RIGHT = 0, LEFT, UNKNOWN} NHOMotorType;
-
-    class NHOMotorParameters {
-    public:
-        inline void addPort(const NHOMotorPort pIndex, const unsigned short pPort) {ports[pIndex]=pPort;};
-        inline void setType(const NHOMotorType pType) {
-            type = pType;
-        }
-    protected:
-        std::array<unsigned short, 3> ports;
-        NHOMotorType type;
-    };
-    
     /**
      * Constructor
      **/
@@ -38,10 +25,10 @@ public:
      *
      **/
     inline void addMotor(const NHOMotorParameters* const pMotorParam) {
-        motors.push_back(pMotorParam);
+        motors.push_back((NHOMotorParameters*) pMotorParam);
     }
 protected:
-    std::list<const NHOMotorParameters * const> motors;
+    std::list<NHOMotorParameters* > motors;
     
 };
 #endif /* NHORoverParameters_hpp */

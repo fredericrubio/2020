@@ -4,11 +4,13 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Inc/NHODEXM.hpp</itemPath>
       <itemPath>Inc/NHORover.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Src/NHODEXM.cpp</itemPath>
       <itemPath>Src/NHORover.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -52,6 +54,8 @@
             <pElem>../Utils/Inc</pElem>
             <pElem>../RaspiCam/Inc</pElem>
             <pElem>../../../../wiringPi/wiringPi</pElem>
+            <pElem>../Configuration/Inc</pElem>
+            <pElem>../Actuator/Inc</pElem>
           </incDir>
           <preprocessorList>
             <Elem>_RASPBIAN</Elem>
@@ -101,6 +105,30 @@
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
             <linkerLibFileItem>../RaspiCam/Lib/libraspicam.so</linkerLibFileItem>
             <linkerLibLibItem>wiringPi</linkerLibLibItem>
+            <linkerLibProjectItem>
+              <makeArtifact PL="../Actuator"
+                            CT="3"
+                            CN="Debug"
+                            AC="true"
+                            BL="true"
+                            WD="../Actuator"
+                            BC="${MAKE}  -f Makefile CONF=Debug"
+                            CC="${MAKE}  -f Makefile CONF=Debug clean"
+                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libactuator.a">
+              </makeArtifact>
+            </linkerLibProjectItem>
+            <linkerLibProjectItem>
+              <makeArtifact PL="../Configuration"
+                            CT="3"
+                            CN="Debug"
+                            AC="true"
+                            BL="true"
+                            WD="../Configuration"
+                            BC="${MAKE}  -f Makefile CONF=Debug"
+                            CC="${MAKE}  -f Makefile CONF=Debug clean"
+                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconfiguration.a">
+              </makeArtifact>
+            </linkerLibProjectItem>
           </linkerLibItems>
         </linkerTool>
         <requiredProjects>
@@ -136,7 +164,11 @@
           </makeArtifact>
         </requiredProjects>
       </compileType>
+      <item path="Inc/NHODEXM.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Inc/NHORover.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Src/NHODEXM.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHORover.cpp" ex="false" tool="1" flavor2="0">
         <ccTool>
@@ -168,7 +200,11 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Inc/NHODEXM.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Inc/NHORover.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Src/NHODEXM.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHORover.cpp" ex="false" tool="1" flavor2="0">
       </item>

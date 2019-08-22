@@ -9,6 +9,7 @@
         <group name="New Horizons">
             <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Inc/NHOFullDuplexConnectedEmitter.hpp</file>
             <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOReflexFullDuplexConnectedEmitter.cpp</file>
+            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOHEMMessage.cpp</file>
             <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOAckMessage.cpp</file>
             <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Inc/NHOReflexFullDuplexConnectedEmitter.hpp</file>
         </group>

@@ -44,7 +44,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Src/NHOImageSizeMessage.o \
 	${OBJECTDIR}/Src/NHOMessage.o \
 	${OBJECTDIR}/Src/NHOMessageFactory.o \
-	${OBJECTDIR}/Src/NHOReflexFullDuplexConnectedEmitter.o
+	${OBJECTDIR}/Src/NHOReflexFullDuplexConnectedEmitter.o \
+	${OBJECTDIR}/Src/NHOTCMessage.o
 
 
 # C Compiler Flags
@@ -122,6 +123,11 @@ ${OBJECTDIR}/Src/NHOReflexFullDuplexConnectedEmitter.o: Src/NHOReflexFullDuplexC
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Sensor/Inc -I../Utils/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOReflexFullDuplexConnectedEmitter.o Src/NHOReflexFullDuplexConnectedEmitter.cpp
+
+${OBJECTDIR}/Src/NHOTCMessage.o: Src/NHOTCMessage.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -D_RASPBIAN -IInc -I../Sensor/Inc -I../Utils/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOTCMessage.o Src/NHOTCMessage.cpp
 
 # Subprojects
 .build-subprojects:

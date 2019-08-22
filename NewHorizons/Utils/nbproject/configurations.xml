@@ -6,12 +6,20 @@
                    projectFiles="true">
       <itemPath>Inc/NHOImage.hpp</itemPath>
       <itemPath>Inc/NHOLOG.hpp</itemPath>
+      <itemPath>Inc/NHOObserver.hpp</itemPath>
+      <itemPath>Inc/NHOSubject.hpp</itemPath>
+      <itemPath>Inc/NHOTimer.hpp</itemPath>
+      <itemPath>Inc/NHOWiringPi.hpp</itemPath>
+      <itemPath>Inc/tinyxml2.h</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Src/NHOImage.cpp</itemPath>
       <itemPath>Src/NHOLOG.cpp</itemPath>
+      <itemPath>Src/NHOTimer.cpp</itemPath>
+      <itemPath>Src/NHOWiringPi.cpp</itemPath>
+      <itemPath>Src/tinyxml2.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -46,9 +54,25 @@
       </item>
       <item path="Inc/NHOLOG.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Inc/NHOObserver.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOSubject.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOTimer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOWiringPi.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/tinyxml2.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Src/NHOImage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOLOG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOTimer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOWiringPi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/tinyxml2.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="3">
@@ -77,9 +101,25 @@
       </item>
       <item path="Inc/NHOLOG.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Inc/NHOObserver.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOSubject.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOTimer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/NHOWiringPi.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Inc/tinyxml2.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Src/NHOImage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOLOG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOTimer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/NHOWiringPi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Src/tinyxml2.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

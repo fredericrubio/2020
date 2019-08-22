@@ -132,7 +132,7 @@ bool NHORover::readConfiguration() {
     // NETWORK
     cameraParameters = new NHOCameraParameters();    
     cameraParameters->setStorage(false);
-    cameraParameters->setDataEmission(false);//true);
+    cameraParameters->setDataEmission(true);//true);
     cameraParameters->setDataEmissionPort(51717);
     cameraParameters->setSamplingPeriod(10000);
     cameraParameters->setServiceEmissionPort(51718);

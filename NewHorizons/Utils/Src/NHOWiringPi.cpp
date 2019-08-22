@@ -10,6 +10,8 @@
 #include "NHOLOG.hpp"
 #include <iostream>
 
+#include <string.h>
+
 #ifndef _RASPBIAN
 static unsigned int modes[NHOWiringPi::TOTAL_GPIO_PINS];
 static unsigned int analogValues[NHOWiringPi::TOTAL_GPIO_PINS];

@@ -37,13 +37,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Src/NHOCamera.o \
 	${OBJECTDIR}/Src/NHOCameraData.o \
-	${OBJECTDIR}/Src/NHOCameraParameters.o \
 	${OBJECTDIR}/Src/NHOData.o \
 	${OBJECTDIR}/Src/NHOHEMData.o \
 	${OBJECTDIR}/Src/NHORoverHEM.o \
 	${OBJECTDIR}/Src/NHOSensor.o \
-	${OBJECTDIR}/Src/NHOSensorData.o \
-	${OBJECTDIR}/Src/NHOSensorParameters.o
+	${OBJECTDIR}/Src/NHOSensorData.o
 
 
 # C Compiler Flags
@@ -82,11 +80,6 @@ ${OBJECTDIR}/Src/NHOCameraData.o: Src/NHOCameraData.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOCameraData.o Src/NHOCameraData.cpp
 
-${OBJECTDIR}/Src/NHOCameraParameters.o: Src/NHOCameraParameters.cpp
-	${MKDIR} -p ${OBJECTDIR}/Src
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOCameraParameters.o Src/NHOCameraParameters.cpp
-
 ${OBJECTDIR}/Src/NHOData.o: Src/NHOData.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
@@ -111,11 +104,6 @@ ${OBJECTDIR}/Src/NHOSensorData.o: Src/NHOSensorData.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOSensorData.o Src/NHOSensorData.cpp
-
-${OBJECTDIR}/Src/NHOSensorParameters.o: Src/NHOSensorParameters.cpp
-	${MKDIR} -p ${OBJECTDIR}/Src
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOSensorParameters.o Src/NHOSensorParameters.cpp
 
 # Subprojects
 .build-subprojects:

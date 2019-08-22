@@ -18,13 +18,14 @@
     #include "sys/sysinfo.h"
     #include "wiringPi.h"
 #endif
+
+#include <iostream>
 #include <stdio.h>
+
 #include "NHOMessageFactory.hpp"
 #include "NHOHEMData.hpp"
 #include "NHOLOG.hpp"
 #include "NHOWiringPi.hpp"
-#include "NHOLOG.hpp"
-#include <iostream>
 
 /**
  *

@@ -9,11 +9,12 @@
 #ifndef NHOConfiguration_hpp
 #define NHOConfiguration_hpp
 
-#include <string>
-#include "NHOLOG.hpp"
-#include "tinyxml2.h"
+#include "NHOCCParameters.hpp"
 #include "NHOCameraParameters.hpp"
 #include "NHORoverParameters.hpp"
+#include "NHOSensorParameters.hpp"
+
+#include "tinyxml2.h"
 
 using namespace tinyxml2;
 
@@ -40,7 +41,6 @@ static const char* MOTOR_TYPE = "type";
 static const char* MOTOR_RIGHT = "right";
 static const char* MOTOR_LEFT = "left";
 
-class NHOCCParameters;
 
 class NHOConfiguration {
     
@@ -54,7 +54,7 @@ public:
     /**
      * Returns the camera configuration (NULL in case of error).
      **/
-    static NHOCameraParameters* getCemaraConfiguration();
+    static NHOCameraParameters* getCameraConfiguration();
     
     /**
      * Returns the HEM configuration (NULL in case of error).
@@ -83,7 +83,7 @@ protected:
     /**
      *
      **/
-    static NHORoverParameters::NHOMotorParameters* getMotorConfiguration(const XMLElement* const) ;
+    static NHOMotorParameters* getMotorConfiguration(const XMLElement* const) ;
 
     
 };

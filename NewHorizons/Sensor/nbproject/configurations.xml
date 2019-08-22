@@ -6,26 +6,22 @@
                    projectFiles="true">
       <itemPath>Inc/NHOCamera.hpp</itemPath>
       <itemPath>Inc/NHOCameraData.hpp</itemPath>
-      <itemPath>Inc/NHOCameraParameters.hpp</itemPath>
       <itemPath>Inc/NHOData.hpp</itemPath>
       <itemPath>Inc/NHOHEMData.hpp</itemPath>
       <itemPath>Inc/NHORoverHEM.hpp</itemPath>
       <itemPath>Inc/NHOSensor.hpp</itemPath>
       <itemPath>Inc/NHOSensorData.hpp</itemPath>
-      <itemPath>Inc/NHOSensorParameters.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Src/NHOCamera.cpp</itemPath>
       <itemPath>Src/NHOCameraData.cpp</itemPath>
-      <itemPath>Src/NHOCameraParameters.cpp</itemPath>
       <itemPath>Src/NHOData.cpp</itemPath>
       <itemPath>Src/NHOHEMData.cpp</itemPath>
       <itemPath>Src/NHORoverHEM.cpp</itemPath>
       <itemPath>Src/NHOSensor.cpp</itemPath>
       <itemPath>Src/NHOSensorData.cpp</itemPath>
-      <itemPath>Src/NHOSensorParameters.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -55,6 +51,8 @@
             <pElem>../Network/Inc</pElem>
             <pElem>../RaspiCam/Inc</pElem>
             <pElem>../../../../wiringPi/wiringPi</pElem>
+            <pElem>../Configuration/Inc</pElem>
+            <pElem>../Actuator/Inc</pElem>
           </incDir>
           <preprocessorList>
             <Elem>_RASPBIAN</Elem>
@@ -67,8 +65,6 @@
       </item>
       <item path="Inc/NHOCameraData.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Inc/NHOCameraParameters.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Inc/NHOData.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inc/NHOHEMData.hpp" ex="false" tool="3" flavor2="0">
@@ -79,13 +75,9 @@
       </item>
       <item path="Inc/NHOSensorData.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Inc/NHOSensorParameters.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Src/NHOCamera.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOCameraData.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Src/NHOCameraParameters.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOData.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -96,8 +88,6 @@
       <item path="Src/NHOSensor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOSensorData.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Src/NHOSensorParameters.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="3">
@@ -126,8 +116,6 @@
       </item>
       <item path="Inc/NHOCameraData.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Inc/NHOCameraParameters.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Inc/NHOData.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inc/NHOHEMData.hpp" ex="false" tool="3" flavor2="0">
@@ -138,13 +126,9 @@
       </item>
       <item path="Inc/NHOSensorData.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Inc/NHOSensorParameters.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Src/NHOCamera.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOCameraData.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Src/NHOCameraParameters.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOData.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -155,8 +139,6 @@
       <item path="Src/NHOSensor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOSensorData.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Src/NHOSensorParameters.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

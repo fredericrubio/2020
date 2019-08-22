@@ -5,10 +5,9 @@
 //  Created by Frédéric Rubio on 16/06/2019.
 //  Copyright © 2019 Frédéric Rubio. All rights reserved.
 //
-
 #include "NHOConfiguration.hpp"
-#include "NHOCCParameters.hpp"
-#include "NHORoverParameters.hpp"
+
+#include "NHOLOG.hpp"
 
 static NHOConfiguration* singleton = NULL;
 
@@ -47,7 +46,7 @@ bool NHOConfiguration::load() {
 /**
  * Returns the camera configuration (NULL in case of error).
  **/
-NHOCameraParameters* NHOConfiguration::getCemaraConfiguration() {
+NHOCameraParameters* NHOConfiguration::getCameraConfiguration() {
 
     if (singleton == NULL) {
         return NULL;
@@ -177,29 +176,29 @@ NHORoverParameters* NHOConfiguration::getRoverConfiguration() {
 /**
  *
  **/
-NHORoverParameters::NHOMotorParameters* NHOConfiguration::getMotorConfiguration(const XMLElement* const pMotor) {
+NHOMotorParameters* NHOConfiguration::getMotorConfiguration(const XMLElement* const pMotor) {
     
     int lInteger = -1;
     const char* lType = new char[256];
 
-    NHORoverParameters::NHOMotorParameters* lMotorParam = new NHORoverParameters::NHOMotorParameters();
+    NHOMotorParameters* lMotorParam = new NHOMotorParameters();
     
     pMotor->QueryIntAttribute(MOTOR_FAST_STOP, &lInteger);
-    lMotorParam->addPort(NHORoverParameters::MOTOR_EN, lInteger);
+    lMotorParam->addPort(NHOMotorParameters::MOTOR_EN, lInteger);
     pMotor->QueryIntAttribute(MOTOR_FORWARD, &lInteger);
-    lMotorParam->addPort(NHORoverParameters::MOTOR_A, lInteger);
+    lMotorParam->addPort(NHOMotorParameters::MOTOR_A, lInteger);
     pMotor->QueryIntAttribute(MOTOR_REVERSE, &lInteger);
-    lMotorParam->addPort(NHORoverParameters::MOTOR_B, lInteger);
+    lMotorParam->addPort(NHOMotorParameters::MOTOR_B, lInteger);
     pMotor->QueryStringAttribute(MOTOR_TYPE, &lType);
     std::string lString(lType);
     if (lString.compare(MOTOR_RIGHT) == 0) {
-        lMotorParam->setType(NHORoverParameters::RIGHT);
+        lMotorParam->setType(NHOMotorParameters::RIGHT);
     }
     else if (lString.compare(MOTOR_LEFT) == 0) {
-        lMotorParam->setType(NHORoverParameters::LEFT);
+        lMotorParam->setType(NHOMotorParameters::LEFT);
     }
     else {
-        lMotorParam->setType(NHORoverParameters::UNKNOWN);
+        lMotorParam->setType(NHOMotorParameters::UNKNOWN);
     }
 
     return lMotorParam;

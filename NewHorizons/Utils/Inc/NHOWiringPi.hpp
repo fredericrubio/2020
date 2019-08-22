@@ -14,7 +14,7 @@
 class NHOWiringPi {
     
 public:
-
+    
     static int ERROR_CODE;
     
     static const unsigned int MOTOR1_MISSING = 0;
@@ -26,9 +26,17 @@ public:
     static const unsigned int UNSTOPPABLE_TC = 11;
     static const unsigned int UNKNOWN_TC = 12;
 
+    static const int TOTAL_GPIO_PINS = 40;
+
+    static void printModes();
+    static void printDigitalValues();
+    static void printModes(const int pModes[]);
+    static void printDigitalValues(const unsigned short pDigitalValues[]);
+
+#ifndef _RASPBIAN
+
     // Maximum number of GPIO pins available (other 12 are dedicated to power supply)
     static const int GPIO_PINS = 28;
-    static const int TOTAL_GPIO_PINS = 40;
     // there are gaps between the number of avaiblable gpio pins. It is not a continuous sequence.
     // numbers from 17 to 20 are not used to address a pin.
     static const unsigned short WiringPiMap[];
@@ -87,8 +95,10 @@ public:
     #define    INT_EDGE_FALLING    1
     #define    INT_EDGE_RISING        2
     #define    INT_EDGE_BOTH        3
+
+#endif
     
-    struct wiringPiNodeStruct
+        struct wiringPiNodeStruct
     {
         int     pinBase ;
         int     pinMax ;
@@ -133,11 +143,6 @@ public:
     static int  analogRead          (int pin) ;
     static void analogWrite         (int pin, int value) ;
     static int  getAlt              (int pin) ;
-
-    static void printModes();
-    static void printDigitalValues();
-    static void printModes(const int pModes[]);
-    static void printDigitalValues(const unsigned short pDigitalValues[]);
-
+    
 };
 #endif /* NHOWiringPi_hpp */

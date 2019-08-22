@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=GNU-Linux
 CND_DLIB_EXT=so
-CND_CONF=Release
+CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -35,9 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Src/NHODEXM.o \
-	${OBJECTDIR}/Src/NHORover.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/Src/NHOMotor.o
 
 
 # C Compiler Flags
@@ -58,26 +56,18 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libactuator.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libactuator.a: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libactuator.a
+	${AR} -rv ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libactuator.a ${OBJECTFILES} 
+	$(RANLIB) ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libactuator.a
 
-${OBJECTDIR}/Src/NHODEXM.o: Src/NHODEXM.cpp
+${OBJECTDIR}/Src/NHOMotor.o: Src/NHOMotor.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHODEXM.o Src/NHODEXM.cpp
-
-${OBJECTDIR}/Src/NHORover.o: Src/NHORover.cpp
-	${MKDIR} -p ${OBJECTDIR}/Src
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHORover.o Src/NHORover.cpp
-
-${OBJECTDIR}/main.o: main.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -IInc -I../Utils/Inc -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOMotor.o Src/NHOMotor.cpp
 
 # Subprojects
 .build-subprojects:

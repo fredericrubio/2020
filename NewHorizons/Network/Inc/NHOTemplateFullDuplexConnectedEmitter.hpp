@@ -71,7 +71,7 @@ public:
             fprintf(stderr, "ERROR opening socket");
             return(false);
         }
-        // to allow address reuse (in case of of two close execution.
+        // to allow address reuse (in case of of too close execution).
         int option = 1;
         setsockopt(emissionSocket, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
         

@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+// 1: launch CC
+// 2: launch Rover
+// 3: launch StorageUnit
 int main(int argc, const char * argv[]) {
     return NSApplicationMain(argc, argv);
 }

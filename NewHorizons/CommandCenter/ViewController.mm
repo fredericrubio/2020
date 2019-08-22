@@ -85,7 +85,7 @@
  **/
 - (NSString*) getLatestsFile {
     
-    NSString* rootPath = @"/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/DerivedData/Build/Products";
+    NSString* rootPath = @"/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/DerivedData/Build/Products/Debug";
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *directoryURL = [NSURL fileURLWithPath:rootPath];
@@ -118,7 +118,9 @@
             NSDate* creationDate;
             NSError* error;
             if ([url getResourceValue:&creationDate forKey:NSURLCreationDateKey error:&error]) {
-                if (lastModifiedDate > creationDate) {
+                if (lastModifiedDate.timeIntervalSinceReferenceDate < creationDate.timeIntervalSinceReferenceDate) {
+//                if ([lastModifiedDate timeIntervalSince:creationDate] > 0) {
+//                if (lastModifiedDate > creationDate) {
                     lastModifiedDate = creationDate;
                     lastModifiedFilePath = [url path];
                 }
@@ -129,7 +131,7 @@
         }
     }
     
-//    NSLog(@"Lastest modified file: <%@>", lastModifiedFilePath);
+    NSLog(@"Lastest modified file: <%@>", lastModifiedFilePath);
     return lastModifiedFilePath;
 }
 

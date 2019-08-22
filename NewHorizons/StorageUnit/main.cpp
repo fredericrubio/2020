@@ -26,9 +26,10 @@ int main(int argc, char *argv[])
 
 #ifdef _RASPBIAN
     // NETWORK
-    NHOImageStorageUnit* client = new NHOImageStorageUnit("localhost", 51717s);
+    NHOImageStorageUnit* client = new NHOImageStorageUnit("localhost", 51717);
 #else
-//    NHOImageStorageUnit* client = new NHOImageStorageUnit("localhost", 51717);
+//    NHOImageStorageUnit* imgClient = new NHOImageStorageUnit("localhost", 51717, 51718);
+    // address of the server to connect to
     NHOImageStorageUnit* imgClient = new NHOImageStorageUnit("192.168.0.22", 51717, 51718);
     NHOHEMStorageUnit* hemClient = new NHOHEMStorageUnit("192.168.0.22", 51719);
 //    NHOImageStorageUnit* client = new NHOImageStorageUnit("192.168.0.22", 51717, 51718);

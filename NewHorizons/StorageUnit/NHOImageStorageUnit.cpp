@@ -122,7 +122,7 @@ bool NHOImageStorageUnit::waitForConnection() {
 // Wait for data messages on the dedicated socket
 bool NHOImageStorageUnit::receiveImageMessage() {
 
-    NHOFILE_LOG(logDEBUG) << "IMP_Client::receiveImageMessage" << std::endl;
+    NHOFILE_LOG(logDEBUG) << "NHOImageStorageUnit::receiveImageMessage" << std::endl;
 
     // waiting for the end of initialization through service messages
     usleep(1000);
@@ -160,7 +160,7 @@ bool NHOImageStorageUnit::receiveImageMessage() {
         }
         
         if (lNbBytes > lSize) {
-            NHOFILE_LOG(logERROR) << "ERROR IMP_Client::receiveImageMessage image lost." << std::endl;
+            NHOFILE_LOG(logERROR) << "ERROR NHOImageStorageUnit::receiveImageMessage image lost." << std::endl;
         }
         else {
             lCameraDataMessage->setData((char *)lBuffer);
@@ -181,7 +181,7 @@ bool NHOImageStorageUnit::receiveImageMessage() {
         lAckMsg->serialize();
         ssize_t lWrittenBytes = write(dataSocket, lAckMsg->getData(), lAckMsg->getSize());
         if (lWrittenBytes < 0) {
-            std::cout << "ERROR IMP_Client::receiveImageMessage" << std::endl;
+            std::cout << "ERROR NHOImageStorageUnit::receiveImageMessage" << std::endl;
             delete lAckMsg;
             return(false);
         }
@@ -189,7 +189,7 @@ bool NHOImageStorageUnit::receiveImageMessage() {
     }
 
 #ifdef _DEBUG
-    std::cout << "IMP_Client::receiveImageMessage End\n";
+    std::cout << "NHOImageStorageUnit::receiveImageMessage End\n";
 #endif
     return true;
 }

@@ -84,55 +84,55 @@
  * the camera captures.
  **/
 - (NSString*) getLatestsFile {
-    
-    NSString* rootPath = @"/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/DerivedData/Build/Products/Debug";
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *directoryURL = [NSURL fileURLWithPath:rootPath];
-    NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
-    
-    NSDirectoryEnumerator *enumerator = [fileManager
-                                         enumeratorAtURL:directoryURL
-                                         includingPropertiesForKeys:keys
-                                         options:0
-                                         errorHandler:^(NSURL *url, NSError *error) {
-                                             // Handle the error.
-                                             // Return YES if the enumeration should continue after the error.
-                                             return YES;
-                                         }];
-    
-    NSDate *lastModifiedDate = [NSDate dateWithTimeIntervalSince1970:0];
-    NSString *lastModifiedFilePath = @"";
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString *fontPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Fonts"];
-    BOOL isDir;
-
-    // loop on directory contents
-    for (NSURL *url in enumerator) {
-        [fileManager fileExistsAtPath:[url path] isDirectory:&isDir];
-        NSRange isRange = [[url absoluteString] rangeOfString:@".ppm" options:NSCaseInsensitiveSearch];
+    @autoreleasepool
+    {
+        NSString* rootPath = @"/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/DerivedData/Build/Products/Debug";
         
-        if ((! isDir)
-            &&
-            (isRange.length != 0)) {
-            NSDate* creationDate;
-            NSError* error;
-            if ([url getResourceValue:&creationDate forKey:NSURLCreationDateKey error:&error]) {
-                if (lastModifiedDate.timeIntervalSinceReferenceDate < creationDate.timeIntervalSinceReferenceDate) {
-//                if ([lastModifiedDate timeIntervalSince:creationDate] > 0) {
-//                if (lastModifiedDate > creationDate) {
-                    lastModifiedDate = creationDate;
-                    lastModifiedFilePath = [url path];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSURL *directoryURL = [NSURL fileURLWithPath:rootPath];
+        NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
+        
+        NSDirectoryEnumerator *enumerator = [fileManager
+                                             enumeratorAtURL:directoryURL
+                                             includingPropertiesForKeys:keys
+                                             options:NSDirectoryEnumerationSkipsPackageDescendants |  NSDirectoryEnumerationSkipsHiddenFiles
+                                             errorHandler:^(NSURL *url, NSError *error) {
+                                                 // Handle the error.
+                                                 // Return YES if the enumeration should continue after the error.
+                                                 return YES;
+                                             }];
+        
+        NSDate *lastModifiedDate = [NSDate dateWithTimeIntervalSince1970:0];
+        NSString *lastModifiedFilePath = @"";
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        NSString *fontPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Fonts"];
+        BOOL isDir;
+        NSDate* creationDate;
+        NSError* error;
+
+        // loop on directory contents
+        for (NSURL *url in enumerator) {
+            [fileManager fileExistsAtPath:[url path] isDirectory:&isDir];
+            NSRange isRange = [[url absoluteString] rangeOfString:@".ppm" options:NSCaseInsensitiveSearch];
+            
+            if ((! isDir)
+                &&
+                (isRange.length != 0)) {
+                if ([url getResourceValue:&creationDate forKey:NSURLCreationDateKey error:&error]) {
+                    if (lastModifiedDate.timeIntervalSinceReferenceDate < creationDate.timeIntervalSinceReferenceDate) {
+                        lastModifiedDate = creationDate;
+                        lastModifiedFilePath = [url path];
+                    }
+                }
+                else {
+                    NSLog(@"No creation date");
                 }
             }
-            else {
-                NSLog(@"No creation date");
-            }
         }
+        
+    //    NSLog(@"Lastest modified file: <%@>", lastModifiedFilePath);
+        return lastModifiedFilePath;
     }
-    
-    NSLog(@"Lastest modified file: <%@>", lastModifiedFilePath);
-    return lastModifiedFilePath;
 }
 
 - (NSString *)valueForKey:(NSString *)key
@@ -159,11 +159,11 @@
         [NSThread sleepForTimeInterval:1];
         imageToDisplayAbsPath = [self getLatestsFile];
         if (imageToDisplayAbsPath != nil) {
-//            if (! [imageToDisplayAbsPath isEqualToString:self.cameraCapture]) {
             if (! [imageToDisplayAbsPath isEqualToString:[NSString stringWithUTF8String:""]]) {
                 [self performSelectorOnMainThread:@selector(setNewImage:) withObject:imageToDisplayAbsPath waitUntilDone:YES];
             }
         }
+        imageToDisplayAbsPath = nil;
     }
     
     NSLog(@"End of refreshCemaeraView");

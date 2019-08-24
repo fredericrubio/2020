@@ -98,7 +98,6 @@ bool NHOCameraDataMessage::serialize() {
     // pixels
     const unsigned char* pixels = cameraData->getImage()->getPixels();
     memcpy((void *) (data + offset), pixels, cameraData->getImage()->getDataSize() * sizeof(unsigned char));
-
     
     return true;
 }

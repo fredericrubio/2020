@@ -53,10 +53,6 @@ public:
     // To do: take into account the image format
     inline void setPixels(const unsigned int pSize, unsigned char* const pPixels) {
         size = pSize;
-        /*           if (pixels != NULL) {
-         free(pixels);
-         }
-         */
         pixels = pPixels;
     } ;
     /*

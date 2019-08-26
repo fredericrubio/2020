@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "NHOMessage.hpp"
 
-class NHOHEMData;
+#include "NHOHEMData.hpp"
 
 class NHOHEMMessage : public NHOMessage {
   
@@ -22,6 +22,11 @@ public:
      **/
     NHOHEMMessage(const long long   pDate);
     
+    /**
+     * Copy constructor
+     **/
+    NHOHEMMessage(const NHOHEMMessage & pValue);
+
     /**
      * Destructor
      **/
@@ -45,22 +50,30 @@ public:
     /**
      * Set the payload.
      **/
-    inline void setHEMData(NHOHEMData* const pData) {HEMData = pData;};
+    inline void setHEMData(NHOHEMData* const pData) {
+        if (this->HEMData != NULL) {
+            delete this->HEMData;
+        }
+        this->HEMData = pData;
+    };
+    
     /**
      * Get the payload
      **/
-    inline const NHOHEMData* const getHEMDate() const {return HEMData;};
+    inline const NHOHEMData* const getHEMData() const {return HEMData;};
     
     inline const char* getMsg() const {return msg;};
     inline void setData(const int pSize, const char* pMsg) {
         if (data != NULL) {
-            free(data);
+            delete data;
+            data = NULL;
         }
-        data = (char *) calloc(pSize, 0); memcpy(data, pMsg, pSize);
+        data = new char[pSize];
+        memcpy(data, pMsg, pSize * sizeof(char));
     };
 
 private:
-    long long   date; // 'long long' to force 64bits on 32bits OS
+//    long long   date; // 'long long' to force 64bits on 32bits OS
     
     NHOHEMData*   HEMData;
     

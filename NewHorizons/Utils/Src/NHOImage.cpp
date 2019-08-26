@@ -45,7 +45,7 @@ NHOImage::NHOImage(const NHOImage& pCopy) {
     height = pCopy.height;
     format = pCopy.format;
     size = pCopy.size;
-    pixels = (unsigned char*) calloc(size, sizeof(char));
+    pixels = (unsigned char*) calloc(size, sizeof(unsigned char));
     memcpy(pixels, pCopy.pixels, size);
 
 }
@@ -71,7 +71,6 @@ bool NHOImage::saveToDisk() {
     std::string lFileName = std::to_string(clock()) + "_image.ppm";
     std::ofstream outFile ( lFileName, std::ios::binary );
     outFile<<"P6\n" << getWidth() << " " << getHeight() << " 255\n";
-    //     outFile<<"P6\n" << "#Raspery\n" << getWidth() << " " << getHeight() << "\n255\n";
     outFile.write ( ( char* ) getPixels(), getDataSize());
     outFile.close();
     
@@ -85,6 +84,7 @@ bool NHOImage::readPPM(const char *filename) {
     
     if (pixels != NULL) {
         free(pixels);
+        pixels = NULL;
     }
     
     char buff[16];

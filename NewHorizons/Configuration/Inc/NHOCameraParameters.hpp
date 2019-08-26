@@ -10,6 +10,7 @@
 #define NHOCameraParameters_hpp
 
 #include "NHOSensorParameters.hpp"
+#include <string>
 
 class NHOCameraParameters : public NHOSensorParameters {
     /**
@@ -48,9 +49,11 @@ public:
             dataEmissionPeriod = minimalPeriod;
         }
     };
-
+    
+    inline void setHostName(const std::string&pHostName) {hostname = pHostName;};
+    inline std::string getHostName() const {return hostname;};
 protected:
     unsigned short  minimalPeriod = 100;
-    
+    std::string hostname;
 };
 #endif /* NHOCameraParameters_hpp */

@@ -13,8 +13,14 @@ class NHOCamera;
 class NHOCameraParameters;
 class NHOSensorParameters;
 class NHORoverHEM;
+class NHODEXM;
+class NHOCCParameters;
 
-class NHORover {
+#include "NHOObserver.hpp"
+#include "NHOTCMessage.hpp"
+#include "NHOTemplateFullDuplexConnectedReceiver.hpp"
+
+class NHORover: public NHOObserver<NHOTCMessage> {
     
 public:
     /**
@@ -37,17 +43,27 @@ public:
      **/
     bool start();
     
+    /**
+     * Observing an TNHOTCMessage emitter.
+     **/
+    virtual void refresh(NHOTCMessage* const parameter);
+    
 protected:
     
+    NHOTemplateFullDuplexConnectedReceiver<NHOTCMessage>* receiver;
+
     NHOCamera*  camera;
     NHORoverHEM*  hem;
     NHOCameraParameters* cameraParameters;
     NHOSensorParameters* hemParameters;
-
+    NHOCCParameters*     ccParameters;
+    
     /**
      *
      **/
     bool readConfiguration();
+    
+    NHODEXM*    dex;
     
 };
 #endif /* NHORover_hpp */

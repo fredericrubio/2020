@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CommandCenter.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Configuration.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>Network.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -48,6 +58,16 @@
 			<true/>
 		</dict>
 		<key>B5228D85224FF70900CE4CD3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B59C3DDC22A2AE110040270F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B5DC771D2275F8A40043AAA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

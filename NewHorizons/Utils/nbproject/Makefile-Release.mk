@@ -35,8 +35,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Src/InputParser.o \
 	${OBJECTDIR}/Src/NHOImage.o \
-	${OBJECTDIR}/Src/NHOLOG.o
+	${OBJECTDIR}/Src/NHOLOG.o \
+	${OBJECTDIR}/Src/NHOTimer.o \
+	${OBJECTDIR}/Src/NHOWiringPi.o \
+	${OBJECTDIR}/Src/tinyxml2.o
 
 
 # C Compiler Flags
@@ -65,6 +69,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libutils.a: ${OBJECTFILES}
 	${AR} -rv ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libutils.a ${OBJECTFILES} 
 	$(RANLIB) ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libutils.a
 
+${OBJECTDIR}/Src/InputParser.o: Src/InputParser.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/InputParser.o Src/InputParser.cpp
+
 ${OBJECTDIR}/Src/NHOImage.o: Src/NHOImage.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
@@ -74,6 +83,21 @@ ${OBJECTDIR}/Src/NHOLOG.o: Src/NHOLOG.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOLOG.o Src/NHOLOG.cpp
+
+${OBJECTDIR}/Src/NHOTimer.o: Src/NHOTimer.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOTimer.o Src/NHOTimer.cpp
+
+${OBJECTDIR}/Src/NHOWiringPi.o: Src/NHOWiringPi.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/NHOWiringPi.o Src/NHOWiringPi.cpp
+
+${OBJECTDIR}/Src/tinyxml2.o: Src/tinyxml2.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/tinyxml2.o Src/tinyxml2.cpp
 
 # Subprojects
 .build-subprojects:

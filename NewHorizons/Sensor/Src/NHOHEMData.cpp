@@ -16,28 +16,81 @@
     #include <fcntl.h>
     #include <unistd.h>
     #include "sys/sysinfo.h"
+    #include "wiringPi.h"
 #endif
+
+#include <iostream>
 #include <stdio.h>
+
 #include "NHOMessageFactory.hpp"
 #include "NHOHEMData.hpp"
+#include "NHOLOG.hpp"
+#include "NHOWiringPi.hpp"
 
+/**
+ *
+ **/
 NHOHEMData::NHOHEMData() {
     
     type = NHOMessageFactory::eHEM;
+    memset(this->modes, 0, sizeof(modes));
+    memset(this->analogValues, 0, sizeof(analogValues));
+    memset(this->digitalValues, 0, sizeof(digitalValues));
+    
+    this->date = 0;
+    this->cpu = 0;
+    this->temp = 0;;
+    this->usedMemory = 0;
     
 }
 
 NHOHEMData::NHOHEMData(const long long pDate):date(pDate) {
     
     type = NHOMessageFactory::eHEM;
-    
+    memset(this->modes, 0, sizeof(modes));
+    memset(this->analogValues, 0, sizeof(analogValues));
+    memset(this->digitalValues, 0, sizeof(digitalValues));
+
+    this->date = 0;
+    this->cpu = 0;
+    this->temp = 0;;
+    this->usedMemory = 0;
+
 }
 
+/**
+ * Copy constructor.
+ **/
+NHOHEMData::NHOHEMData(const NHOHEMData* orig) {
     
+    type = NHOMessageFactory::eHEM;
+    
+    date = orig->date;
+    cpu = orig->cpu;
+    temp = orig->temp;
+    usedMemory = orig->usedMemory;
+    
+    memcpy(modes, orig->modes, sizeof(modes));
+    memcpy(analogValues, orig->analogValues, sizeof(analogValues));
+    memcpy(digitalValues, orig->digitalValues, sizeof(digitalValues));
+}
+
+/**
+ * Copy constructor.
+ **/
 NHOHEMData::NHOHEMData(const NHOHEMData& orig) {
     
     type = NHOMessageFactory::eHEM;
     
+    date = orig.date;
+    cpu = orig.cpu;
+    temp = orig.temp;
+    usedMemory = orig.usedMemory;
+
+    memcpy(modes, orig.modes, sizeof(modes));
+    memcpy(analogValues, orig.analogValues, sizeof(analogValues));
+    memcpy(digitalValues, orig.digitalValues, sizeof(digitalValues));
+
 }
 
 NHOHEMData::~NHOHEMData() {
@@ -50,7 +103,7 @@ bool NHOHEMData::fetch() {
     
     bool lReturn = false;
     
-    lReturn = fetchCPUUsage() && fetchMemoryUsage() && fetchTemperature();
+    lReturn = fetchCPUUsage() && fetchMemoryUsage() && fetchTemperature() && fetchPins();
     
     return lReturn;
 }
@@ -106,7 +159,7 @@ bool NHOHEMData::fetchTemperature() {
     fclose (lTemperatureFile);
     
     // conversion
-    temp = (short) lTemperature / 1000;
+    temp = (short) (lTemperature / 1000);
     
     return true;
 #else
@@ -154,3 +207,30 @@ bool NHOHEMData::fetchMemoryUsage() {
     return true;
 #endif    
 }
+
+/**
+ * Fetch Pins
+ **/
+bool NHOHEMData::fetchPins() {
+    int pin;
+
+    // modes
+    for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
+//        modes[pin] = NHOWiringPi::getAlt(NHOWiringPi::WiringPiMap[pin]);
+        modes[pin] = NHOWiringPi::getAlt(pin);
+    }
+    // analogic values
+    for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
+//        analogValues[pin] = NHOWiringPi::analogRead(NHOWiringPi::WiringPiMap[pin]);
+        analogValues[pin] = NHOWiringPi::analogRead(pin);
+    }
+    // digital values
+    for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
+//        digitalValues[pin] = NHOWiringPi::digitalRead(NHOWiringPi::WiringPiMap[pin]);
+        digitalValues[pin] = NHOWiringPi::digitalRead(pin);
+    }
+
+    return true;
+}
+
+

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50E3F7122ADBF20004AE227 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A6908922ADBD7700BDB3D7 /* Green.png */; };
+		B51069D0230C56C400C6C952 /* Orange.png in Resources */ = {isa = PBXBuildFile; fileRef = B51069CF230C56B600C6C952 /* Orange.png */; };
+		B51069D2230C5A8100C6C952 /* Encelade.png in Resources */ = {isa = PBXBuildFile; fileRef = B51069D1230C5A7600C6C952 /* Encelade.png */; };
 		B518FD72228856E200C37EC2 /* NHOHEMData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B518FD71228856E200C37EC2 /* NHOHEMData.hpp */; };
 		B518FD74228856ED00C37EC2 /* NHOHEMData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B518FD73228856ED00C37EC2 /* NHOHEMData.cpp */; };
 		B518FD7D22885B7700C37EC2 /* NHORover.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B518FD7B22885B7700C37EC2 /* NHORover.cpp */; };
@@ -23,15 +26,55 @@
 		B547EE73227ECD7100181512 /* NHOImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B547EE71227ECD7100181512 /* NHOImage.cpp */; };
 		B547EE74227ECD7100181512 /* NHOImage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B547EE72227ECD7100181512 /* NHOImage.hpp */; };
 		B547EE762283038700181512 /* NHOReflexFullDuplexConnectedEmitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B547EE752283038700181512 /* NHOReflexFullDuplexConnectedEmitter.hpp */; };
-		B55235152255460300DBE5DA /* NHOSensorParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55235132255460300DBE5DA /* NHOSensorParameters.cpp */; };
-		B55235162255460300DBE5DA /* NHOSensorParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B55235142255460300DBE5DA /* NHOSensorParameters.hpp */; };
-		B55235192255475500DBE5DA /* NHOCameraParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55235172255475500DBE5DA /* NHOCameraParameters.cpp */; };
-		B552351A2255475500DBE5DA /* NHOCameraParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B55235182255475500DBE5DA /* NHOCameraParameters.hpp */; };
+		B550888B22A5AB1C00688115 /* NHOTemplateFullDuplexConnectedReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550888922A5AB1600688115 /* NHOTemplateFullDuplexConnectedReceiver.cpp */; };
+		B550888E22A5B24D00688115 /* NHODEXM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550888C22A5B24D00688115 /* NHODEXM.cpp */; };
+		B550889222A6FB3C00688115 /* NHOSubject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B550889022A6FB3C00688115 /* NHOSubject.hpp */; };
+		B550889622A6FCDF00688115 /* NHOObserver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B550889422A6FCDF00688115 /* NHOObserver.hpp */; };
+		B5543ACC23142D4F0001E768 /* InputParser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5543ACB23142D4E0001E768 /* InputParser.hpp */; };
+		B5543ACE23142D540001E768 /* InputParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5543ACD23142D540001E768 /* InputParser.cpp */; };
+		B5543ACF2314306E0001E768 /* libConfiguration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A5048D22B6B95E005584D3 /* libConfiguration.a */; };
+		B5543AD1231430A40001E768 /* NHOMotorParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5543AD0231430A40001E768 /* NHOMotorParameters.hpp */; };
+		B5543AD3231430A90001E768 /* NHOMotorParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5543AD2231430A90001E768 /* NHOMotorParameters.cpp */; };
+		B5543AD4231434540001E768 /* rover.xml in Resources */ = {isa = PBXBuildFile; fileRef = B5CC554022B822910015F2B7 /* rover.xml */; };
+		B5543AD5231439430001E768 /* libConfiguration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A5048D22B6B95E005584D3 /* libConfiguration.a */; };
+		B56355DE22AE4C2300128C04 /* NHOMotor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56355DC22AE4C2300128C04 /* NHOMotor.cpp */; };
+		B56355DF22AEA78700128C04 /* NHOMotor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56355DC22AE4C2300128C04 /* NHOMotor.cpp */; };
+		B56355E222AEB64200128C04 /* NHOTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56355E022AEB64200128C04 /* NHOTimer.cpp */; };
+		B56355E322AEB64200128C04 /* NHOTimer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B56355E122AEB64200128C04 /* NHOTimer.hpp */; };
+		B56355E622AEBFEC00128C04 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56355E422AEBFEC00128C04 /* tinyxml2.cpp */; };
+		B56355E722AEBFEC00128C04 /* tinyxml2.h in Headers */ = {isa = PBXBuildFile; fileRef = B56355E522AEBFEC00128C04 /* tinyxml2.h */; };
+		B56822E222A9A482004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B56822E122A9A482004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.hpp */; };
+		B56822E422A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56822E322A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp */; };
+		B56D6EAA22A255EF00C69E63 /* NHOWiringPi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56D6EA822A255EF00C69E63 /* NHOWiringPi.cpp */; };
+		B56D6EAB22A255EF00C69E63 /* NHOWiringPi.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B56D6EA922A255EF00C69E63 /* NHOWiringPi.hpp */; };
 		B598F74622875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B598F74522875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp */; };
 		B59BB673228B55C600F43937 /* NHORoverHEM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59BB671228B55C600F43937 /* NHORoverHEM.cpp */; };
 		B59BB674228B55C600F43937 /* NHORoverHEM.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B59BB672228B55C600F43937 /* NHORoverHEM.hpp */; };
 		B59BB676228B58BB00F43937 /* NHOHEMMessage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B59BB675228B58BA00F43937 /* NHOHEMMessage.hpp */; };
 		B59BB678228B58DB00F43937 /* NHOHEMMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59BB677228B58DB00F43937 /* NHOHEMMessage.cpp */; };
+		B59C3DE122A2AE110040270F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B59C3DE022A2AE110040270F /* AppDelegate.m */; };
+		B59C3DE422A2AE110040270F /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B59C3DE322A2AE110040270F /* ViewController.mm */; };
+		B59C3DE622A2AE110040270F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B59C3DE522A2AE110040270F /* Assets.xcassets */; };
+		B59C3DE922A2AE110040270F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59C3DE722A2AE110040270F /* Main.storyboard */; };
+		B59C3DEC22A2AE110040270F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B59C3DEB22A2AE110040270F /* main.m */; };
+		B59C3DF522A2B55C0040270F /* NHOCommandCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59C3DF322A2B55C0040270F /* NHOCommandCenter.cpp */; };
+		B5A5049422B6B998005584D3 /* libSensor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5228D7C224FF6C700CE4CD3 /* libSensor.a */; };
+		B5A5049522B6B998005584D3 /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFC98225D2E6E0073ABFF /* libUtils.a */; };
+		B5A5049822B6B9AA005584D3 /* NHOConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A5049622B6B9AA005584D3 /* NHOConfiguration.cpp */; };
+		B5A5049922B6B9AA005584D3 /* NHOConfiguration.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5A5049722B6B9AA005584D3 /* NHOConfiguration.hpp */; };
+		B5A5049A22B6DEE8005584D3 /* libConfiguration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A5048D22B6B95E005584D3 /* libConfiguration.a */; };
+		B5A6908622AAEE5200BDB3D7 /* libNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */; };
+		B5A6908722AAEE5200BDB3D7 /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFC98225D2E6E0073ABFF /* libUtils.a */; };
+		B5B0958822ADBFE400F71B80 /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B0958722ADBFD900F71B80 /* Red.png */; };
+		B5B3A06222B2DB7F0090EC20 /* NHOTemplateBroadcastReceiver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5B3A06022B2DB7F0090EC20 /* NHOTemplateBroadcastReceiver.hpp */; };
+		B5B3A06322B2E88D0090EC20 /* libSensor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5228D7C224FF6C700CE4CD3 /* libSensor.a */; };
+		B5C409512309C9CE00974D7A /* NewHorizon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C409502309C9CD00974D7A /* NewHorizon.png */; };
+		B5CC553E22B822200015F2B7 /* NHOCameraParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55235172255475500DBE5DA /* NHOCameraParameters.cpp */; };
+		B5CC553F22B822200015F2B7 /* NHOSensorParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55235132255460300DBE5DA /* NHOSensorParameters.cpp */; };
+		B5CC554322B968ED0015F2B7 /* NHOCCParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5CC554122B968ED0015F2B7 /* NHOCCParameters.cpp */; };
+		B5CC554422B968ED0015F2B7 /* NHOCCParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5CC554222B968ED0015F2B7 /* NHOCCParameters.hpp */; };
+		B5CC554B22B97F3F0015F2B7 /* NHORoverParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5CC554922B97F3F0015F2B7 /* NHORoverParameters.cpp */; };
+		B5CC554C22B97F3F0015F2B7 /* NHORoverParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5CC554A22B97F3F0015F2B7 /* NHORoverParameters.hpp */; };
 		B5CDC8C9228FDF3600D23355 /* NHOHEMStorageUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5CDC8C8228FDF3600D23355 /* NHOHEMStorageUnit.cpp */; };
 		B5DC76FC226E0FB50043AAA8 /* NHOCameraDataMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */; };
 		B5DC76FD226E0FB50043AAA8 /* NHOCameraDataMessage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5DC76FB226E0FB50043AAA8 /* NHOCameraDataMessage.hpp */; };
@@ -61,6 +104,8 @@
 		B5EBFCBF2261C1D90073ABFF /* libNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */; };
 		B5EBFCC02261C1D90073ABFF /* libSensor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5228D7C224FF6C700CE4CD3 /* libSensor.a */; };
 		B5EBFCC12261C1D90073ABFF /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFC98225D2E6E0073ABFF /* libUtils.a */; };
+		B5F38BEC22A431D10055C08C /* NHOTCMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5F38BEA22A431D10055C08C /* NHOTCMessage.cpp */; };
+		B5F38BED22A431D10055C08C /* NHOTCMessage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5F38BEB22A431D10055C08C /* NHOTCMessage.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +163,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B51069CF230C56B600C6C952 /* Orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orange.png; sourceTree = "<group>"; };
+		B51069D1230C5A7600C6C952 /* Encelade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Encelade.png; sourceTree = "<group>"; };
 		B518FD71228856E200C37EC2 /* NHOHEMData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHEMData.hpp; sourceTree = "<group>"; };
 		B518FD73228856ED00C37EC2 /* NHOHEMData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOHEMData.cpp; sourceTree = "<group>"; };
 		B518FD7B22885B7700C37EC2 /* NHORover.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHORover.cpp; sourceTree = "<group>"; };
@@ -138,15 +185,59 @@
 		B547EE71227ECD7100181512 /* NHOImage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOImage.cpp; sourceTree = "<group>"; };
 		B547EE72227ECD7100181512 /* NHOImage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOImage.hpp; sourceTree = "<group>"; };
 		B547EE752283038700181512 /* NHOReflexFullDuplexConnectedEmitter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOReflexFullDuplexConnectedEmitter.hpp; sourceTree = "<group>"; };
+		B550888822A5A61C00688115 /* NHOTemplateFullDuplexConnectedReceiver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NHOTemplateFullDuplexConnectedReceiver.hpp; path = Network/Inc/NHOTemplateFullDuplexConnectedReceiver.hpp; sourceTree = SOURCE_ROOT; };
+		B550888922A5AB1600688115 /* NHOTemplateFullDuplexConnectedReceiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NHOTemplateFullDuplexConnectedReceiver.cpp; path = Network/Src/NHOTemplateFullDuplexConnectedReceiver.cpp; sourceTree = SOURCE_ROOT; };
+		B550888C22A5B24D00688115 /* NHODEXM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHODEXM.cpp; sourceTree = "<group>"; };
+		B550888D22A5B24D00688115 /* NHODEXM.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHODEXM.hpp; sourceTree = "<group>"; };
+		B550889022A6FB3C00688115 /* NHOSubject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSubject.hpp; sourceTree = "<group>"; };
+		B550889422A6FCDF00688115 /* NHOObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOObserver.hpp; sourceTree = "<group>"; };
 		B55235132255460300DBE5DA /* NHOSensorParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOSensorParameters.cpp; sourceTree = "<group>"; };
 		B55235142255460300DBE5DA /* NHOSensorParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSensorParameters.hpp; sourceTree = "<group>"; };
 		B55235172255475500DBE5DA /* NHOCameraParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCameraParameters.cpp; sourceTree = "<group>"; };
 		B55235182255475500DBE5DA /* NHOCameraParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOCameraParameters.hpp; sourceTree = "<group>"; };
+		B5543ACB23142D4E0001E768 /* InputParser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputParser.hpp; sourceTree = "<group>"; };
+		B5543ACD23142D540001E768 /* InputParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputParser.cpp; sourceTree = "<group>"; };
+		B5543AD0231430A40001E768 /* NHOMotorParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOMotorParameters.hpp; sourceTree = "<group>"; };
+		B5543AD2231430A90001E768 /* NHOMotorParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOMotorParameters.cpp; sourceTree = "<group>"; };
+		B56355DC22AE4C2300128C04 /* NHOMotor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOMotor.cpp; sourceTree = "<group>"; };
+		B56355DD22AE4C2300128C04 /* NHOMotor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOMotor.hpp; sourceTree = "<group>"; };
+		B56355E022AEB64200128C04 /* NHOTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOTimer.cpp; sourceTree = "<group>"; };
+		B56355E122AEB64200128C04 /* NHOTimer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOTimer.hpp; sourceTree = "<group>"; };
+		B56355E422AEBFEC00128C04 /* tinyxml2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
+		B56355E522AEBFEC00128C04 /* tinyxml2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
+		B56822E122A9A482004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateFullDuplexConnectedEmitter.hpp; sourceTree = "<group>"; };
+		B56822E322A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOTemplateFullDuplexConnectedEmitter.cpp; sourceTree = "<group>"; };
+		B56D6EA822A255EF00C69E63 /* NHOWiringPi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOWiringPi.cpp; sourceTree = "<group>"; };
+		B56D6EA922A255EF00C69E63 /* NHOWiringPi.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOWiringPi.hpp; sourceTree = "<group>"; };
 		B598F74522875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOReflexFullDuplexConnectedEmitter.cpp; sourceTree = "<group>"; };
 		B59BB671228B55C600F43937 /* NHORoverHEM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHORoverHEM.cpp; sourceTree = "<group>"; };
 		B59BB672228B55C600F43937 /* NHORoverHEM.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHORoverHEM.hpp; sourceTree = "<group>"; };
 		B59BB675228B58BA00F43937 /* NHOHEMMessage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHEMMessage.hpp; sourceTree = "<group>"; };
 		B59BB677228B58DB00F43937 /* NHOHEMMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOHEMMessage.cpp; sourceTree = "<group>"; };
+		B59C3DDD22A2AE110040270F /* CommandCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommandCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59C3DDF22A2AE110040270F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B59C3DE022A2AE110040270F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B59C3DE222A2AE110040270F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B59C3DE322A2AE110040270F /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		B59C3DE522A2AE110040270F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B59C3DE822A2AE110040270F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B59C3DEA22A2AE110040270F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B59C3DEB22A2AE110040270F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B59C3DED22A2AE110040270F /* CommandCenter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CommandCenter.entitlements; sourceTree = "<group>"; };
+		B59C3DF322A2B55C0040270F /* NHOCommandCenter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCommandCenter.cpp; sourceTree = "<group>"; };
+		B59C3DF422A2B55C0040270F /* NHOCommandCenter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOCommandCenter.hpp; sourceTree = "<group>"; };
+		B5A5048D22B6B95E005584D3 /* libConfiguration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libConfiguration.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A5049622B6B9AA005584D3 /* NHOConfiguration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOConfiguration.cpp; sourceTree = "<group>"; };
+		B5A5049722B6B9AA005584D3 /* NHOConfiguration.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOConfiguration.hpp; sourceTree = "<group>"; };
+		B5A6908922ADBD7700BDB3D7 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green.png; sourceTree = "<group>"; };
+		B5B0958722ADBFD900F71B80 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
+		B5B3A06022B2DB7F0090EC20 /* NHOTemplateBroadcastReceiver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateBroadcastReceiver.hpp; sourceTree = "<group>"; };
+		B5C409502309C9CD00974D7A /* NewHorizon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewHorizon.png; sourceTree = "<group>"; };
+		B5CC554022B822910015F2B7 /* rover.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = rover.xml; sourceTree = "<group>"; };
+		B5CC554122B968ED0015F2B7 /* NHOCCParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCCParameters.cpp; sourceTree = "<group>"; };
+		B5CC554222B968ED0015F2B7 /* NHOCCParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOCCParameters.hpp; sourceTree = "<group>"; };
+		B5CC554922B97F3F0015F2B7 /* NHORoverParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHORoverParameters.cpp; sourceTree = "<group>"; };
+		B5CC554A22B97F3F0015F2B7 /* NHORoverParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHORoverParameters.hpp; sourceTree = "<group>"; };
 		B5CDC8C7228FDE8200D23355 /* NHOHEMStorageUnit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHEMStorageUnit.hpp; sourceTree = "<group>"; };
 		B5CDC8C8228FDF3600D23355 /* NHOHEMStorageUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOHEMStorageUnit.cpp; sourceTree = "<group>"; };
 		B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCameraDataMessage.cpp; sourceTree = "<group>"; };
@@ -175,6 +266,8 @@
 		B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOEmitter.hpp; sourceTree = "<group>"; };
 		B5EBFCBA226133E00073ABFF /* NHOBroadcastEmitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOBroadcastEmitter.cpp; sourceTree = "<group>"; };
 		B5EBFCBB226133E00073ABFF /* NHOBroadcastEmitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOBroadcastEmitter.hpp; sourceTree = "<group>"; };
+		B5F38BEA22A431D10055C08C /* NHOTCMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOTCMessage.cpp; sourceTree = "<group>"; };
+		B5F38BEB22A431D10055C08C /* NHOTCMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOTCMessage.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,9 +289,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A5049A22B6DEE8005584D3 /* libConfiguration.a in Frameworks */,
 				B5EBFCBF2261C1D90073ABFF /* libNetwork.a in Frameworks */,
 				B5EBFCC02261C1D90073ABFF /* libSensor.a in Frameworks */,
 				B5EBFCC12261C1D90073ABFF /* libUtils.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B59C3DDA22A2AE110040270F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5543AD5231439430001E768 /* libConfiguration.a in Frameworks */,
+				B5B3A06322B2E88D0090EC20 /* libSensor.a in Frameworks */,
+				B5A6908622AAEE5200BDB3D7 /* libNetwork.a in Frameworks */,
+				B5A6908722AAEE5200BDB3D7 /* libUtils.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5A5048A22B6B95E005584D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5A5049422B6B998005584D3 /* libSensor.a in Frameworks */,
+				B5A5049522B6B998005584D3 /* libUtils.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5543ACF2314306E0001E768 /* libConfiguration.a in Frameworks */,
 				B5DC7728227634F70043AAA8 /* libNetwork.a in Frameworks */,
 				B5DC7729227634F70043AAA8 /* libSensor.a in Frameworks */,
 				B5DC772A227634F70043AAA8 /* libUtils.a in Frameworks */,
@@ -232,6 +347,7 @@
 		B518FD7922885B5600C37EC2 /* Inc */ = {
 			isa = PBXGroup;
 			children = (
+				B550888D22A5B24D00688115 /* NHODEXM.hpp */,
 				B518FD7C22885B7700C37EC2 /* NHORover.hpp */,
 			);
 			path = Inc;
@@ -240,6 +356,7 @@
 		B518FD7A22885B5B00C37EC2 /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B550888C22A5B24D00688115 /* NHODEXM.cpp */,
 				B518FD7B22885B7700C37EC2 /* NHORover.cpp */,
 			);
 			path = Src;
@@ -248,7 +365,10 @@
 		B5228D64224FF4DE00CE4CD3 = {
 			isa = PBXGroup;
 			children = (
+				B5A5049122B6B97D005584D3 /* Configuration */,
+				B5A6908822ADBCDD00BDB3D7 /* Resources */,
 				B5228D81224FF6E500CE4CD3 /* Actuator */,
+				B59C3DDE22A2AE110040270F /* CommandCenter */,
 				B5EBFCBE2261C1D90073ABFF /* Frameworks */,
 				B5EBFCB3225E7F350073ABFF /* Network */,
 				B5228D6F224FF4DE00CE4CD3 /* NewHorizons */,
@@ -269,6 +389,8 @@
 				B5EBFC98225D2E6E0073ABFF /* libUtils.a */,
 				B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */,
 				B5DC771E2275F8A40043AAA8 /* StorageUnit */,
+				B59C3DDD22A2AE110040270F /* CommandCenter.app */,
+				B5A5048D22B6B95E005584D3 /* libConfiguration.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -312,6 +434,7 @@
 		B5228D91224FF8A800CE4CD3 /* Inc */ = {
 			isa = PBXGroup;
 			children = (
+				B56355DD22AE4C2300128C04 /* NHOMotor.hpp */,
 			);
 			path = Inc;
 			sourceTree = "<group>";
@@ -319,6 +442,7 @@
 		B5228D92224FF8AD00CE4CD3 /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B56355DC22AE4C2300128C04 /* NHOMotor.cpp */,
 			);
 			path = Src;
 			sourceTree = "<group>";
@@ -328,13 +452,11 @@
 			children = (
 				B5228D9A2253F11000CE4CD3 /* NHOCamera.hpp */,
 				B5EBFCA8225E64E10073ABFF /* NHOCameraData.hpp */,
-				B55235182255475500DBE5DA /* NHOCameraParameters.hpp */,
 				B5DC76FF226E1DDA0043AAA8 /* NHOData.hpp */,
 				B518FD71228856E200C37EC2 /* NHOHEMData.hpp */,
 				B59BB672228B55C600F43937 /* NHORoverHEM.hpp */,
 				B5228D96224FF90900CE4CD3 /* NHOSensor.hpp */,
 				B5EBFCA4225D33AB0073ABFF /* NHOSensorData.hpp */,
-				B55235142255460300DBE5DA /* NHOSensorParameters.hpp */,
 			);
 			path = Inc;
 			sourceTree = "<group>";
@@ -344,15 +466,95 @@
 			children = (
 				B5228D992253F11000CE4CD3 /* NHOCamera.cpp */,
 				B5EBFCA7225E64E10073ABFF /* NHOCameraData.cpp */,
-				B55235172255475500DBE5DA /* NHOCameraParameters.cpp */,
 				B5DC76FE226E1DDA0043AAA8 /* NHOData.cpp */,
 				B518FD73228856ED00C37EC2 /* NHOHEMData.cpp */,
 				B59BB671228B55C600F43937 /* NHORoverHEM.cpp */,
 				B5228D95224FF90900CE4CD3 /* NHOSensor.cpp */,
 				B5EBFCA3225D33AB0073ABFF /* NHOSensorData.cpp */,
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
+		B59C3DDE22A2AE110040270F /* CommandCenter */ = {
+			isa = PBXGroup;
+			children = (
+				B59C3DDF22A2AE110040270F /* AppDelegate.h */,
+				B59C3DE022A2AE110040270F /* AppDelegate.m */,
+				B59C3DE522A2AE110040270F /* Assets.xcassets */,
+				B59C3DED22A2AE110040270F /* CommandCenter.entitlements */,
+				B59C3DF122A2B53A0040270F /* Inc */,
+				B59C3DEA22A2AE110040270F /* Info.plist */,
+				B59C3DEB22A2AE110040270F /* main.m */,
+				B59C3DE722A2AE110040270F /* Main.storyboard */,
+				B59C3DF222A2B5410040270F /* Src */,
+				B59C3DE222A2AE110040270F /* ViewController.h */,
+				B59C3DE322A2AE110040270F /* ViewController.mm */,
+			);
+			path = CommandCenter;
+			sourceTree = "<group>";
+		};
+		B59C3DF122A2B53A0040270F /* Inc */ = {
+			isa = PBXGroup;
+			children = (
+				B59C3DF422A2B55C0040270F /* NHOCommandCenter.hpp */,
+			);
+			path = Inc;
+			sourceTree = "<group>";
+		};
+		B59C3DF222A2B5410040270F /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				B59C3DF322A2B55C0040270F /* NHOCommandCenter.cpp */,
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
+		B5A5049122B6B97D005584D3 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				B5A5049222B6B986005584D3 /* Inc */,
+				B5A5049322B6B98B005584D3 /* Src */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		B5A5049222B6B986005584D3 /* Inc */ = {
+			isa = PBXGroup;
+			children = (
+				B5543AD0231430A40001E768 /* NHOMotorParameters.hpp */,
+				B55235182255475500DBE5DA /* NHOCameraParameters.hpp */,
+				B5CC554222B968ED0015F2B7 /* NHOCCParameters.hpp */,
+				B5A5049722B6B9AA005584D3 /* NHOConfiguration.hpp */,
+				B5CC554A22B97F3F0015F2B7 /* NHORoverParameters.hpp */,
+				B55235142255460300DBE5DA /* NHOSensorParameters.hpp */,
+			);
+			path = Inc;
+			sourceTree = "<group>";
+		};
+		B5A5049322B6B98B005584D3 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				B5543AD2231430A90001E768 /* NHOMotorParameters.cpp */,
+				B55235172255475500DBE5DA /* NHOCameraParameters.cpp */,
+				B5CC554122B968ED0015F2B7 /* NHOCCParameters.cpp */,
+				B5A5049622B6B9AA005584D3 /* NHOConfiguration.cpp */,
+				B5CC554922B97F3F0015F2B7 /* NHORoverParameters.cpp */,
 				B55235132255460300DBE5DA /* NHOSensorParameters.cpp */,
 			);
 			path = Src;
+			sourceTree = "<group>";
+		};
+		B5A6908822ADBCDD00BDB3D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B51069D1230C5A7600C6C952 /* Encelade.png */,
+				B51069CF230C56B600C6C952 /* Orange.png */,
+				B5C409502309C9CD00974D7A /* NewHorizon.png */,
+				B5CC554022B822910015F2B7 /* rover.xml */,
+				B5B0958722ADBFD900F71B80 /* Red.png */,
+				B5A6908922ADBD7700BDB3D7 /* Green.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		B5DC771F2275F8A40043AAA8 /* StorageUnit */ = {
@@ -379,8 +581,14 @@
 		B5EBFC9D225D2E810073ABFF /* Inc */ = {
 			isa = PBXGroup;
 			children = (
+				B5543ACB23142D4E0001E768 /* InputParser.hpp */,
 				B547EE72227ECD7100181512 /* NHOImage.hpp */,
 				B5EBFC9F225D2EA90073ABFF /* NHOLOG.hpp */,
+				B550889422A6FCDF00688115 /* NHOObserver.hpp */,
+				B550889022A6FB3C00688115 /* NHOSubject.hpp */,
+				B56355E122AEB64200128C04 /* NHOTimer.hpp */,
+				B56D6EA922A255EF00C69E63 /* NHOWiringPi.hpp */,
+				B56355E522AEBFEC00128C04 /* tinyxml2.h */,
 			);
 			path = Inc;
 			sourceTree = "<group>";
@@ -388,8 +596,12 @@
 		B5EBFC9E225D2E850073ABFF /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B5543ACD23142D540001E768 /* InputParser.cpp */,
 				B547EE71227ECD7100181512 /* NHOImage.cpp */,
 				B5EBFCA1225D2FAF0073ABFF /* NHOLOG.cpp */,
+				B56355E022AEB64200128C04 /* NHOTimer.cpp */,
+				B56D6EA822A255EF00C69E63 /* NHOWiringPi.cpp */,
+				B56355E422AEBFEC00128C04 /* tinyxml2.cpp */,
 			);
 			path = Src;
 			sourceTree = "<group>";
@@ -406,16 +618,20 @@
 		B5EBFCB4225E7F400073ABFF /* Inc */ = {
 			isa = PBXGroup;
 			children = (
-				B59BB675228B58BA00F43937 /* NHOHEMMessage.hpp */,
-				B547EE6B227C9F2100181512 /* NHOImageSizeMessage.hpp */,
-				B547EE6A227C9F2000181512 /* NHOMessage.hpp */,
 				B5DC77172275ECAA0043AAA8 /* NHOAckMessage.hpp */,
 				B5EBFCBB226133E00073ABFF /* NHOBroadcastEmitter.hpp */,
 				B5DC76FB226E0FB50043AAA8 /* NHOCameraDataMessage.hpp */,
 				B5EBFCB7225E7F600073ABFF /* NHOEmitter.hpp */,
 				B5DC77132274F2A90043AAA8 /* NHOFullDuplexConnectedEmitter.hpp */,
-				B547EE752283038700181512 /* NHOReflexFullDuplexConnectedEmitter.hpp */,
+				B59BB675228B58BA00F43937 /* NHOHEMMessage.hpp */,
+				B547EE6B227C9F2100181512 /* NHOImageSizeMessage.hpp */,
+				B547EE6A227C9F2000181512 /* NHOMessage.hpp */,
 				B5DC770F2270E09B0043AAA8 /* NHOMessageFactory.hpp */,
+				B547EE752283038700181512 /* NHOReflexFullDuplexConnectedEmitter.hpp */,
+				B5F38BEB22A431D10055C08C /* NHOTCMessage.hpp */,
+				B5B3A06022B2DB7F0090EC20 /* NHOTemplateBroadcastReceiver.hpp */,
+				B56822E122A9A482004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.hpp */,
+				B550888822A5A61C00688115 /* NHOTemplateFullDuplexConnectedReceiver.hpp */,
 			);
 			path = Inc;
 			sourceTree = "<group>";
@@ -423,16 +639,19 @@
 		B5EBFCB5225E7F430073ABFF /* Src */ = {
 			isa = PBXGroup;
 			children = (
-				B59BB677228B58DB00F43937 /* NHOHEMMessage.cpp */,
-				B598F74522875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp */,
-				B547EE64227C9F0C00181512 /* NHOImageSizeMessage.cpp */,
-				B547EE63227C9F0C00181512 /* NHOMessage.cpp */,
 				B5DC77162275ECAA0043AAA8 /* NHOAckMessage.cpp */,
 				B5EBFCBA226133E00073ABFF /* NHOBroadcastEmitter.cpp */,
 				B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */,
 				B5EBFCB6225E7F600073ABFF /* NHOEmitter.cpp */,
 				B5DC77122274F2A90043AAA8 /* NHOFullDuplexConnectedEmitter.cpp */,
+				B59BB677228B58DB00F43937 /* NHOHEMMessage.cpp */,
+				B547EE64227C9F0C00181512 /* NHOImageSizeMessage.cpp */,
+				B547EE63227C9F0C00181512 /* NHOMessage.cpp */,
 				B5DC770E2270E09B0043AAA8 /* NHOMessageFactory.cpp */,
+				B598F74522875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp */,
+				B5F38BEA22A431D10055C08C /* NHOTCMessage.cpp */,
+				B56822E322A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp */,
+				B550888922A5AB1600688115 /* NHOTemplateFullDuplexConnectedReceiver.cpp */,
 			);
 			path = Src;
 			sourceTree = "<group>";
@@ -455,11 +674,20 @@
 				B59BB674228B55C600F43937 /* NHORoverHEM.hpp in Headers */,
 				B5228D9C2253F11000CE4CD3 /* NHOCamera.hpp in Headers */,
 				B5DC7701226E1DDA0043AAA8 /* NHOData.hpp in Headers */,
-				B55235162255460300DBE5DA /* NHOSensorParameters.hpp in Headers */,
 				B5EBFCAA225E64E10073ABFF /* NHOCameraData.hpp in Headers */,
 				B518FD72228856E200C37EC2 /* NHOHEMData.hpp in Headers */,
-				B552351A2255475500DBE5DA /* NHOCameraParameters.hpp in Headers */,
 				B5EBFCA6225D33AB0073ABFF /* NHOSensorData.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5A5048B22B6B95E005584D3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5A5049922B6B9AA005584D3 /* NHOConfiguration.hpp in Headers */,
+				B5CC554422B968ED0015F2B7 /* NHOCCParameters.hpp in Headers */,
+				B5543AD1231430A40001E768 /* NHOMotorParameters.hpp in Headers */,
+				B5CC554C22B97F3F0015F2B7 /* NHORoverParameters.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,8 +695,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56355E322AEB64200128C04 /* NHOTimer.hpp in Headers */,
 				B547EE74227ECD7100181512 /* NHOImage.hpp in Headers */,
+				B5543ACC23142D4F0001E768 /* InputParser.hpp in Headers */,
+				B550889222A6FB3C00688115 /* NHOSubject.hpp in Headers */,
+				B56D6EAB22A255EF00C69E63 /* NHOWiringPi.hpp in Headers */,
+				B56355E722AEBFEC00128C04 /* tinyxml2.h in Headers */,
 				B5EBFCA0225D2EA90073ABFF /* NHOLOG.hpp in Headers */,
+				B550889622A6FCDF00688115 /* NHOObserver.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,13 +712,16 @@
 			files = (
 				B547EE762283038700181512 /* NHOReflexFullDuplexConnectedEmitter.hpp in Headers */,
 				B59BB676228B58BB00F43937 /* NHOHEMMessage.hpp in Headers */,
+				B5B3A06222B2DB7F0090EC20 /* NHOTemplateBroadcastReceiver.hpp in Headers */,
 				B5DC77112270E09B0043AAA8 /* NHOMessageFactory.hpp in Headers */,
 				B5EBFCBD226133E00073ABFF /* NHOBroadcastEmitter.hpp in Headers */,
 				B547EE6F227C9F2100181512 /* NHOImageSizeMessage.hpp in Headers */,
+				B56822E222A9A482004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.hpp in Headers */,
 				B5EBFCB9225E7F600073ABFF /* NHOEmitter.hpp in Headers */,
 				B5DC77152274F2A90043AAA8 /* NHOFullDuplexConnectedEmitter.hpp in Headers */,
 				B5DC77192275ECAA0043AAA8 /* NHOAckMessage.hpp in Headers */,
 				B5DC76FD226E0FB50043AAA8 /* NHOCameraDataMessage.hpp in Headers */,
+				B5F38BED22A431D10055C08C /* NHOTCMessage.hpp in Headers */,
 				B547EE6E227C9F2100181512 /* NHOMessage.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +782,40 @@
 			productName = Rover;
 			productReference = B5228D86224FF70900CE4CD3 /* Rover */;
 			productType = "com.apple.product-type.tool";
+		};
+		B59C3DDC22A2AE110040270F /* CommandCenter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B59C3DEE22A2AE110040270F /* Build configuration list for PBXNativeTarget "CommandCenter" */;
+			buildPhases = (
+				B59C3DD922A2AE110040270F /* Sources */,
+				B59C3DDA22A2AE110040270F /* Frameworks */,
+				B59C3DDB22A2AE110040270F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CommandCenter;
+			productName = CommandCenter;
+			productReference = B59C3DDD22A2AE110040270F /* CommandCenter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B5A5048C22B6B95E005584D3 /* Configuration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5A5049022B6B95E005584D3 /* Build configuration list for PBXNativeTarget "Configuration" */;
+			buildPhases = (
+				B5A5048922B6B95E005584D3 /* Sources */,
+				B5A5048A22B6B95E005584D3 /* Frameworks */,
+				B5A5048B22B6B95E005584D3 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Configuration;
+			productName = Configuration;
+			productReference = B5A5048D22B6B95E005584D3 /* libConfiguration.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		B5DC771D2275F8A40043AAA8 /* StorageUnit */ = {
 			isa = PBXNativeTarget;
@@ -618,6 +889,19 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
+					B59C3DDC22A2AE110040270F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+					B5A5048C22B6B95E005584D3 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					B5DC771D2275F8A40043AAA8 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -638,6 +922,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = B5228D64224FF4DE00CE4CD3;
 			productRefGroup = B5228D6E224FF4DE00CE4CD3 /* Products */;
@@ -650,9 +935,29 @@
 				B5EBFC97225D2E6E0073ABFF /* Utils */,
 				B5EBFCAE225E7F2F0073ABFF /* Network */,
 				B5DC771D2275F8A40043AAA8 /* StorageUnit */,
+				B59C3DDC22A2AE110040270F /* CommandCenter */,
+				B5A5048C22B6B95E005584D3 /* Configuration */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B59C3DDB22A2AE110040270F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5543AD4231434540001E768 /* rover.xml in Resources */,
+				B51069D2230C5A8100C6C952 /* Encelade.png in Resources */,
+				B51069D0230C56C400C6C952 /* Orange.png in Resources */,
+				B5B0958822ADBFE400F71B80 /* Red.png in Resources */,
+				B5C409512309C9CE00974D7A /* NewHorizon.png in Resources */,
+				B50E3F7122ADBF20004AE227 /* Green.png in Resources */,
+				B59C3DE622A2AE110040270F /* Assets.xcassets in Resources */,
+				B59C3DE922A2AE110040270F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B5228D69224FF4DE00CE4CD3 /* Sources */ = {
@@ -673,8 +978,6 @@
 				B5EBFCA9225E64E10073ABFF /* NHOCameraData.cpp in Sources */,
 				B5228D9B2253F11000CE4CD3 /* NHOCamera.cpp in Sources */,
 				B5228D97224FF90900CE4CD3 /* NHOSensor.cpp in Sources */,
-				B55235192255475500DBE5DA /* NHOCameraParameters.cpp in Sources */,
-				B55235152255460300DBE5DA /* NHOSensorParameters.cpp in Sources */,
 				B5EBFCA5225D33AB0073ABFF /* NHOSensorData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,8 +986,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56355DF22AEA78700128C04 /* NHOMotor.cpp in Sources */,
 				B518FD7D22885B7700C37EC2 /* NHORover.cpp in Sources */,
 				B5228D90224FF7CB00CE4CD3 /* main.cpp in Sources */,
+				B550888E22A5B24D00688115 /* NHODEXM.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B59C3DD922A2AE110040270F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B59C3DE422A2AE110040270F /* ViewController.mm in Sources */,
+				B56355DE22AE4C2300128C04 /* NHOMotor.cpp in Sources */,
+				B59C3DEC22A2AE110040270F /* main.m in Sources */,
+				B59C3DF522A2B55C0040270F /* NHOCommandCenter.cpp in Sources */,
+				B59C3DE122A2AE110040270F /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5A5048922B6B95E005584D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5CC554322B968ED0015F2B7 /* NHOCCParameters.cpp in Sources */,
+				B5543AD3231430A90001E768 /* NHOMotorParameters.cpp in Sources */,
+				B5CC553E22B822200015F2B7 /* NHOCameraParameters.cpp in Sources */,
+				B5A5049822B6B9AA005584D3 /* NHOConfiguration.cpp in Sources */,
+				B5CC554B22B97F3F0015F2B7 /* NHORoverParameters.cpp in Sources */,
+				B5CC553F22B822200015F2B7 /* NHOSensorParameters.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,7 +1033,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EBFCA2225D2FAF0073ABFF /* NHOLOG.cpp in Sources */,
+				B5543ACE23142D540001E768 /* InputParser.cpp in Sources */,
+				B56D6EAA22A255EF00C69E63 /* NHOWiringPi.cpp in Sources */,
 				B547EE73227ECD7100181512 /* NHOImage.cpp in Sources */,
+				B56355E222AEB64200128C04 /* NHOTimer.cpp in Sources */,
+				B56355E622AEBFEC00128C04 /* tinyxml2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,7 +1045,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56822E422A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp in Sources */,
+				B550888B22A5AB1C00688115 /* NHOTemplateFullDuplexConnectedReceiver.cpp in Sources */,
 				B5EBFCB8225E7F600073ABFF /* NHOEmitter.cpp in Sources */,
+				B5F38BEC22A431D10055C08C /* NHOTCMessage.cpp in Sources */,
 				B598F74622875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp in Sources */,
 				B547EE67227C9F0C00181512 /* NHOMessage.cpp in Sources */,
 				B5DC77142274F2A90043AAA8 /* NHOFullDuplexConnectedEmitter.cpp in Sources */,
@@ -743,6 +1080,17 @@
 			targetProxy = B5EBFCC62261C2600073ABFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B59C3DE722A2AE110040270F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B59C3DE822A2AE110040270F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B5228D72224FF4DE00CE4CD3 /* Debug */ = {
@@ -898,6 +1246,50 @@
 			};
 			name = Release;
 		};
+		B59C3DEF22A2AE110040270F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CommandCenter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BTG.CommandCenter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B59C3DF022A2AE110040270F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CommandCenter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BTG.CommandCenter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B5A5048E22B6B95E005584D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B5A5048F22B6B95E005584D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B5DC77232275F8A40043AAA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -985,6 +1377,24 @@
 			buildConfigurations = (
 				B5228D8B224FF70900CE4CD3 /* Debug */,
 				B5228D8C224FF70900CE4CD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B59C3DEE22A2AE110040270F /* Build configuration list for PBXNativeTarget "CommandCenter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B59C3DEF22A2AE110040270F /* Debug */,
+				B59C3DF022A2AE110040270F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5A5049022B6B95E005584D3 /* Build configuration list for PBXNativeTarget "Configuration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5A5048E22B6B95E005584D3 /* Debug */,
+				B5A5048F22B6B95E005584D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -72,3 +72,7 @@ DerivedData/
 /NewHorizons/Rover/build/
 /NewHorizons/Rover/dist/
 /NewHorizons/Rover/.dep.inc
+/NewHorizons/Configuration/build/
+/NewHorizons/Actuator/build/
+/NewHorizons/Actuator/dist/
+/NewHorizons/Configuration/dist/

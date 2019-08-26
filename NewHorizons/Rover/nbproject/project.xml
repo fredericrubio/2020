@@ -6,11 +6,13 @@
             <name>Rover</name>
             <c-extensions/>
             <cpp-extensions>cpp</cpp-extensions>
-            <header-extensions/>
+            <header-extensions>hpp</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects>
                 <make-dep-project>../Network</make-dep-project>
                 <make-dep-project>../Sensor</make-dep-project>
+                <make-dep-project>../Actuator</make-dep-project>
+                <make-dep-project>../Configuration</make-dep-project>
                 <make-dep-project>../Utils</make-dep-project>
             </make-dep-projects>
             <sourceRootList/>

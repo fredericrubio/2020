@@ -55,10 +55,12 @@ NHOMessage* NHOMessageFactory::build(const NHOData* const pData) {
     // get the message type
     NHOMessageFactory::NHOMessageType lType = pData->getType();
     NHOMessage* lMessage = NULL;
+    NHOHEMData* lData = NULL;
     switch (lType) {
         case NHOMessageFactory::eHEM:
             lMessage = new NHOHEMMessage(clock());
-            (dynamic_cast<NHOHEMMessage*> (lMessage))->setHEMData((NHOHEMData*) pData);
+            lData = new NHOHEMData(*((NHOHEMData*) pData));
+            (dynamic_cast<NHOHEMMessage*> (lMessage))->setHEMData(lData);
             break;
             
         default:

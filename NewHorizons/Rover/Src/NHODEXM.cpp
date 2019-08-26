@@ -13,7 +13,7 @@
 #include "NHOWiringPi.hpp"
 #include "NHOTimer.hpp"
 #include "NHOLOG.hpp"
-
+#include "NHOConfiguration.hpp"
 /**
  * Constructor
  **/
@@ -57,7 +57,30 @@ void NHODEXM::refresh(unsigned int* const parameter) {
 bool NHODEXM::configure() {
     
 #ifdef _RASPBIAN
+    NHORoverParameters* lRoverParameters = NHOConfiguration::getRoverConfiguration();
     
+    for (const NHOMotorParameters* motorParameter : lRoverParameters->getMotors())
+    {
+        if (motorParameter->check()) {
+            if (motorParameter->getType() == NHOMotorParameters::RIGHT) {
+                this->motorR = new NHOMotor("Right", 
+                        motorParameter->getPort(NHOMotorParameters::MOTOR_EN),
+                        motorParameter->getPort(NHOMotorParameters::MOTOR_A),
+                        motorParameter->getPort(NHOMotorParameters::MOTOR_B));
+            }
+            else if (motorParameter->getType() == NHOMotorParameters::LEFT) {
+                this->motorL = new NHOMotor("Left", 
+                        motorParameter->getPort(NHOMotorParameters::MOTOR_EN),
+                        motorParameter->getPort(NHOMotorParameters::MOTOR_A),
+                        motorParameter->getPort(NHOMotorParameters::MOTOR_B));
+            }
+        }
+        else {
+            NHOFILE_LOG(logDEBUG) << "NHODEXM::configure invalide motor arameter." << std::endl;
+        }
+            
+    }
+
 #else
     motorR = new NHOMotor("Right", 1, 2, 3);
     motorL = new NHOMotor("Left", 4, 5, 6);
@@ -313,8 +336,3 @@ bool NHODEXM::turnRight() {
     
    return true;
 }
-
-
-
-
-

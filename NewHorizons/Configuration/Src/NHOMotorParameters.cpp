@@ -22,3 +22,8 @@ NHOMotorParameters::NHOMotorParameters(const NHOMotorParameters& orig) {
 NHOMotorParameters::~NHOMotorParameters() {
 }
 
+bool NHOMotorParameters::check() const {
+ 
+    return true;
+    
+}

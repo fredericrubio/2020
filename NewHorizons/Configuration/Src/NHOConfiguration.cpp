@@ -110,6 +110,7 @@ NHOSensorParameters* NHOConfiguration::getHEMConfiguration() {
     lEmission->QueryIntAttribute(PERIOD, &lInteger);
     lHEMParameters->setDataEmission(lBoolean);
     lHEMParameters->setDataEmissionPeriod(lInteger);
+    lHEMParameters->setSamplingPeriod(lInteger);
 
     XMLElement* lStorage = lHEMRoot->FirstChildElement(STORAGE);
     lStorage->QueryBoolAttribute(VALUE, &lBoolean);

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Src/InputParser.o \
 	${OBJECTDIR}/Src/NHOImage.o \
 	${OBJECTDIR}/Src/NHOLOG.o \
 	${OBJECTDIR}/Src/NHOTimer.o \
@@ -67,6 +68,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libutils.a: ${OBJECTFILES}
 	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libutils.a
 	${AR} -rv ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libutils.a ${OBJECTFILES} 
 	$(RANLIB) ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libutils.a
+
+${OBJECTDIR}/Src/InputParser.o: Src/InputParser.cpp
+	${MKDIR} -p ${OBJECTDIR}/Src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Src/InputParser.o Src/InputParser.cpp
 
 ${OBJECTDIR}/Src/NHOImage.o: Src/NHOImage.cpp
 	${MKDIR} -p ${OBJECTDIR}/Src

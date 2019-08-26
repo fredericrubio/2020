@@ -14,6 +14,7 @@ class NHOCameraParameters;
 class NHOSensorParameters;
 class NHORoverHEM;
 class NHODEXM;
+class NHOCCParameters;
 
 #include "NHOObserver.hpp"
 #include "NHOTCMessage.hpp"
@@ -55,7 +56,8 @@ protected:
     NHORoverHEM*  hem;
     NHOCameraParameters* cameraParameters;
     NHOSensorParameters* hemParameters;
-
+    NHOCCParameters*     ccParameters;
+    
     /**
      *
      **/

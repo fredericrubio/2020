@@ -110,6 +110,7 @@ bool NHOBroadcastEmitter::send(const NHOMessage *  pMsg) const {
         return(false);
     }
     
+    NHOFILE_LOG(logINFO) << "NHOEmitter::send: Sent.\n";
     //delete pMsg;    
     return(true);
     

@@ -54,6 +54,11 @@ bool NHOFullDuplexConnectedEmitter::initiate() {
         fprintf(stderr, "ERROR opening socket");
         return(false);
     }
+
+    // to allow address reuse (in case of of too close execution).
+    int option = 1;
+    setsockopt(emissionSocket, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
+
     bzero((char *) &lInfoServAddr, sizeof(lInfoServAddr));
     lInfoServAddr.sin_family = AF_INET;
     lInfoServAddr.sin_addr.s_addr = INADDR_ANY;
@@ -120,6 +125,8 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
 // Send a message.
 bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     
+    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::sending: " << pMsg->getSize() << "\n";
+    
     if (dataClientSocket <= 0) {
         NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send no data socket." << std::endl;
         return(false);
@@ -133,7 +140,7 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     // send message
     size_t lWrittenBytes = write(dataClientSocket, pMsg->getData(), pMsg->getSize());
     if (lWrittenBytes != pMsg->getSize()) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send " << strerror(errno) << std::endl;
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send (errno) " << strerror(errno) << std::endl;
         NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send (number of written bytes:" <<
             lWrittenBytes << "/" << pMsg->getSize() << "))." << std::endl;
         return(false);
@@ -144,7 +151,7 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     NHOAckMessage* lAckMsg = new NHOAckMessage(clock());
     long lReceivedBytes;
     char* lBuffer = (char *) calloc(lAckMsg->getSize(), sizeof(char));
-    lReceivedBytes = read(dataClientSocket, lBuffer, sizeof(size_t));
+    lReceivedBytes = read(dataClientSocket, lBuffer, lAckMsg->getSize());
     lAckMsg->setData(lBuffer);
     // we can detect a problem in the transmission of the image
     if (lReceivedBytes < 0) {
@@ -154,7 +161,9 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
         // check the answer
         lAckMsg->unserialize();
         if (lAckMsg->getValue() != pMsg->getSize()) {
-            NHOFILE_LOG(logERROR) << "ERROR NHOFullDuplexConnectedEmitter::send: lost image (" << std::endl;
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send lost image.\n";
+        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send (ack bytes vs sent bytes): " << 
+            lAckMsg->getValue() << "/" << pMsg->getSize() << std::endl;
         }
     }
     // memory management

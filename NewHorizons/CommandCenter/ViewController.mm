@@ -10,6 +10,7 @@
 
 #include "NHOCommandCenter.hpp"
 #include "NHOHEMData.hpp"
+#include "NHOConfiguration.hpp"
 
 @implementation ViewController
 
@@ -18,16 +19,19 @@
     
     self.keepRefreshing = true;
     
+    // configuration
+    NSString* filePath = @"rover";
+    NSString* fileRoot = [[NSBundle mainBundle] pathForResource:filePath ofType:@"xml"];
+    
+    if (NHOConfiguration::initialize(std::string([fileRoot UTF8String])) == false) {
+        NHOFILE_LOG(logERROR) << "Unable to load config file \n";
+        return;
+    };
+
     NSString *fileName = @"/Users/fredericrubio/Desktop/IMG_0113.png";
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:fileName];
     image = [NSImage imageNamed:@"Encelade.png"];
-//    if (image == nil) {
-//        NSLog(@"image nil");
-//    }
-//    else {
-//        NSLog(@"%@", image.name);
-//        NSLog(@"size %f %f",image.size.width,image.size.height);
-//    }
+
     [self.cameraView setImage:image];
     self.cameraCapture = @"";
 

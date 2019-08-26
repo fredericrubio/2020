@@ -153,22 +153,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Rover/Src/NHODEXM.cpp"
-            timestampString = "588197051.093901"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "NHODEXM::NHODEXM()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Utils/Inc/NHOSubject.hpp"
             timestampString = "584220193.459246"
             startingColumnNumber = "9223372036854775807"
@@ -233,12 +217,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rover/main.cpp"
-            timestampString = "587890704.608542"
+            timestampString = "588528591.40441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
-            landmarkName = "main(int argc, const char * argv[])"
+            landmarkName = "main(int argc, const char **argv)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -249,45 +233,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rover/main.cpp"
-            timestampString = "587890704.608626"
+            timestampString = "588528591.404469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
             endingLineNumber = "40"
-            landmarkName = "main(int argc, const char * argv[])"
+            landmarkName = "main(int argc, const char **argv)"
             landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StorageUnit/NHOHEMStorageUnit.cpp"
-            timestampString = "588280347.697341"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "NHOHEMStorageUnit::receiveHEM()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StorageUnit/NHOHEMStorageUnit.cpp"
-            timestampString = "588280347.697625"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "NHOHEMStorageUnit::receiveHEM()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

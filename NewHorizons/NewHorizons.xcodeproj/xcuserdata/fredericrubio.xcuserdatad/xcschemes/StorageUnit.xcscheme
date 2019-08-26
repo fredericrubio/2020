@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B59C3DDC22A2AE110040270F"
-               BuildableName = "CommandCenter.app"
-               BlueprintName = "CommandCenter"
+               BlueprintIdentifier = "B5DC771D2275F8A40043AAA8"
+               BuildableName = "StorageUnit"
+               BlueprintName = "StorageUnit"
                ReferencedContainer = "container:NewHorizons.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B59C3DDC22A2AE110040270F"
-            BuildableName = "CommandCenter.app"
-            BlueprintName = "CommandCenter"
+            BlueprintIdentifier = "B5DC771D2275F8A40043AAA8"
+            BuildableName = "StorageUnit"
+            BlueprintName = "StorageUnit"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -57,15 +57,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B59C3DDC22A2AE110040270F"
-            BuildableName = "CommandCenter.app"
-            BlueprintName = "CommandCenter"
+            BlueprintIdentifier = "B5DC771D2275F8A40043AAA8"
+            BuildableName = "StorageUnit"
+            BlueprintName = "StorageUnit"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-root &quot;/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/Resources&quot;"
+            argument = "-root &quot;/Users/fredericrubio/Development/Project/New\ Horizons/Development/NewHorizons/&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -82,9 +82,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B59C3DDC22A2AE110040270F"
-            BuildableName = "CommandCenter.app"
-            BlueprintName = "CommandCenter"
+            BlueprintIdentifier = "B5DC771D2275F8A40043AAA8"
+            BuildableName = "StorageUnit"
+            BlueprintName = "StorageUnit"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

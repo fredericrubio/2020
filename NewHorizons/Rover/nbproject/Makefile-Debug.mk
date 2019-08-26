@@ -54,7 +54,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-L../../../../wiringPi/wiringPi ../Sensor/dist/Debug/GNU-Linux/libsensor.a ../Network/dist/Debug/GNU-Linux/libnetwork.a ../Utils/dist/Debug/GNU-Linux/libutils.a -lpthread ../RaspiCam/Lib/libraspicam.so -lwiringPi ../Actuator/dist/Debug/GNU-Linux/libactuator.a ../Configuration/dist/Debug/GNU-Linux/libconfiguration.a
+LDLIBSOPTIONS=-L../../../../wiringPi/wiringPi ../Sensor/dist/Debug/GNU-Linux/libsensor.a ../Network/dist/Debug/GNU-Linux/libnetwork.a ../Configuration/dist/Debug/GNU-Linux/libconfiguration.a ../Utils/dist/Debug/GNU-Linux/libutils.a -lpthread ../RaspiCam/Lib/libraspicam.so -lwiringPi ../Actuator/dist/Debug/GNU-Linux/libactuator.a
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -64,13 +64,13 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ../Sensor/dist/Debug/GNU-Linux
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ../Network/dist/Debug/GNU-Linux/libnetwork.a
 
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ../Configuration/dist/Debug/GNU-Linux/libconfiguration.a
+
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ../Utils/dist/Debug/GNU-Linux/libutils.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ../RaspiCam/Lib/libraspicam.so
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ../Actuator/dist/Debug/GNU-Linux/libactuator.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ../Configuration/dist/Debug/GNU-Linux/libconfiguration.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rover: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -95,9 +95,9 @@ ${OBJECTDIR}/main.o: main.cpp
 .build-subprojects:
 	cd ../Sensor && ${MAKE}  -f Makefile CONF=Debug
 	cd ../Network && ${MAKE}  -f Makefile CONF=Debug
+	cd ../Configuration && ${MAKE}  -f Makefile CONF=Debug
 	cd ../Utils && ${MAKE}  -f Makefile CONF=Debug
 	cd ../Actuator && ${MAKE}  -f Makefile CONF=Debug
-	cd ../Configuration && ${MAKE}  -f Makefile CONF=Debug
 	cd ../Utils && ${MAKE}  -f Makefile CONF=Debug
 	cd ../Sensor && ${MAKE}  -f Makefile CONF=Debug
 	cd ../Network && ${MAKE}  -f Makefile CONF=Debug
@@ -112,9 +112,9 @@ ${OBJECTDIR}/main.o: main.cpp
 .clean-subprojects:
 	cd ../Sensor && ${MAKE}  -f Makefile CONF=Debug clean
 	cd ../Network && ${MAKE}  -f Makefile CONF=Debug clean
+	cd ../Configuration && ${MAKE}  -f Makefile CONF=Debug clean
 	cd ../Utils && ${MAKE}  -f Makefile CONF=Debug clean
 	cd ../Actuator && ${MAKE}  -f Makefile CONF=Debug clean
-	cd ../Configuration && ${MAKE}  -f Makefile CONF=Debug clean
 	cd ../Utils && ${MAKE}  -f Makefile CONF=Debug clean
 	cd ../Sensor && ${MAKE}  -f Makefile CONF=Debug clean
 	cd ../Network && ${MAKE}  -f Makefile CONF=Debug clean

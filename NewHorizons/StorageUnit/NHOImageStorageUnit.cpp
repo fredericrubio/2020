@@ -45,14 +45,17 @@ bool NHOImageStorageUnit::initiate() {
         NHOFILE_LOG(logERROR) << "NHPImageStorageUnit::initiate ERROR, no such host"  << std::endl;
         return false;
     }
-    
+
     struct sockaddr_in lInfoServAddr;
     infoSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (infoSocket < 0) {
         NHOFILE_LOG(logERROR) << "NHPImageStorageUnit::initiate ERROR opening socket" << std::endl;
         return false;
     }
-    
+    // to allow address reuse (in case of of too close execution).
+    int option = 1;
+    setsockopt(infoSocket, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
+
     bzero((char *) &lInfoServAddr, sizeof(lInfoServAddr));
     lInfoServAddr.sin_family = AF_INET;
     bcopy((char *)server->h_addr,
@@ -60,6 +63,7 @@ bool NHOImageStorageUnit::initiate() {
           server->h_length);
     lInfoServAddr.sin_port = htons(infoPort);
     if (connect(infoSocket, (struct sockaddr *) &lInfoServAddr, sizeof(lInfoServAddr)) < 0) {
+        NHOFILE_LOG(logERROR) << "NHPImageStorageUnit::initiate " << strerror(errno) ;
         NHOFILE_LOG(logDEBUG) << "NHPImageStorageUnit::initiate ERROR connecting info port"  << std::endl;
         return false;
     }

@@ -159,7 +159,7 @@ bool NHOHEMData::fetchTemperature() {
     fclose (lTemperatureFile);
     
     // conversion
-    temp = (short) lTemperature / 1000;
+    temp = (short) (lTemperature / 1000);
     
     return true;
 #else

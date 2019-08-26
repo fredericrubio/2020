@@ -26,17 +26,20 @@ public:
     virtual ~NHOMotorParameters();
     
     inline void addPort(const NHOMotorPort pIndex, const unsigned short pPort) {ports[pIndex]=pPort;};
+    inline const unsigned short getPort(const NHOMotorPort pIndex) const {return ports[pIndex];};
     inline void setType(const NHOMotorType pType) {
         type = pType;
     }
-    
+    inline const NHOMotorType getType() const {return type;};
+    bool check() const;
 protected:
         std::array<unsigned short, 3> ports;
         NHOMotorType type;
         
 private:
 
-};
+}
+    ;
 
 #endif /* NHOMOTORPARAMETERS_H */
 

@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Inc/InputParser.hpp</itemPath>
       <itemPath>Inc/NHOImage.hpp</itemPath>
       <itemPath>Inc/NHOLOG.hpp</itemPath>
       <itemPath>Inc/NHOObserver.hpp</itemPath>
@@ -15,6 +16,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Src/InputParser.cpp</itemPath>
       <itemPath>Src/NHOImage.cpp</itemPath>
       <itemPath>Src/NHOLOG.cpp</itemPath>
       <itemPath>Src/NHOTimer.cpp</itemPath>
@@ -46,10 +48,15 @@
           <incDir>
             <pElem>Inc</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>_RASPBIAN</Elem>
+          </preprocessorList>
         </ccTool>
         <archiverTool>
         </archiverTool>
       </compileType>
+      <item path="Inc/InputParser.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Inc/NHOImage.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inc/NHOLOG.hpp" ex="false" tool="3" flavor2="0">
@@ -63,6 +70,8 @@
       <item path="Inc/NHOWiringPi.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inc/tinyxml2.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Src/InputParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOImage.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -97,6 +106,8 @@
         <archiverTool>
         </archiverTool>
       </compileType>
+      <item path="Inc/InputParser.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Inc/NHOImage.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inc/NHOLOG.hpp" ex="false" tool="3" flavor2="0">
@@ -110,6 +121,8 @@
       <item path="Inc/NHOWiringPi.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inc/tinyxml2.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Src/InputParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Src/NHOImage.cpp" ex="false" tool="1" flavor2="0">
       </item>

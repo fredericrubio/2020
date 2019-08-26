@@ -27,6 +27,7 @@ public:
     inline void addMotor(const NHOMotorParameters* const pMotorParam) {
         motors.push_back((NHOMotorParameters*) pMotorParam);
     }
+    inline const std::list<NHOMotorParameters* >& getMotors() const {return motors;};
 protected:
     std::list<NHOMotorParameters* > motors;
     

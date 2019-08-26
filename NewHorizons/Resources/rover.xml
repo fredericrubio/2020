@@ -1,17 +1,17 @@
 <hem>
     <sampling value = "1000"/>
     <storage value = "false" period = "1000"/>
-    <emission value = "true" period = "2222" />
-	<port value = "1999" />
+    <emission value = "true" period = "1000" />
+    <port value = "51719" />
 </hem>
-<cc hostname = "localhost" port = "1999" />
-<img_server hostname = "localhost" port1 = "2000" port2 = "2002"/>
+<cc hostname = "192.168.0.13" port = "51720" />
+<img_server hostname = "192.168.0.22" port1 = "51717" port2 = "51718"/>
 <rover>
 	<motorA MOTOR_EN = "14" MOTOR_A = "18" MOTOR_B = "15" type = "right"/>
-	<motorB MOTOR_EN = "41" MOTOR_A = "81" MOTOR_B = "51" type = "left" />
+	<motorB MOTOR_EN = "25" MOTOR_A = "8" MOTOR_B = "7" type = "left" />
 </rover>
 <camera>
-	<sampling value = "1000"/>
-	<emission value = "true" period = "2222" />
+	<sampling value = "5000"/>
+	<emission value = "true" period = "5000" />
 	<storage value = "false" period = "1000"/>
 </camera>

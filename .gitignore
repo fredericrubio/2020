@@ -30,6 +30,8 @@ DerivedData/
 # Compiled Dynamic libraries
 *.dylib
 *.dll
+*.nib
+*.xcuserdata@
 
 # Compiled Static libraries
 *.lai

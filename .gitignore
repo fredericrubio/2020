@@ -26,6 +26,7 @@ Server/dist/
 
 # XCode section
 DerivedData/
+*.xcuserstate
 
 # Compiled Dynamic libraries
 *.dylib

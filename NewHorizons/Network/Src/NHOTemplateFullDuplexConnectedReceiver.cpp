@@ -130,11 +130,11 @@ template <class T> bool NHOTemplateFullDuplexConnectedReceiver<T>::receive() {
         }
         
         if (lNbBytes > lSize) {
-            NHOFILE_LOG(logERROR) << "ERROR IMP_Client::receiveImageMessage image lost." << std::endl;
+            NHOFILE_LOG(logERROR) << "ERROR NHOTemplateFullDuplexConnectedReceiver::receiveImageMessage image lost." << std::endl;
         }
         else {
             message->unserialize();
-            NHOFILE_LOG(logDEBUG) << "NHOImageStorageUnit::receiveImageMessage another image." << std::endl;
+            NHOFILE_LOG(logDEBUG) << "NHOTemplateFullDuplexConnectedReceiver::receiveImageMessage another image." << std::endl;
         }
         
         // send an aknownledgement
@@ -142,7 +142,7 @@ template <class T> bool NHOTemplateFullDuplexConnectedReceiver<T>::receive() {
         lAckMsg->serialize();
         ssize_t lWrittenBytes = write(connexionSocket, lAckMsg->getData(), lAckMsg->getSize());
         if (lWrittenBytes < 0) {
-            std::cout << "ERROR NHOFullDuplexConnectedReceiver::receiveImageMessage" << std::endl;
+            std::cout << "ERROR NHOTemplateFullDuplexConnectedReceiver::receiveImageMessage" << std::endl;
             delete lAckMsg;
             return(false);
         }
@@ -150,7 +150,7 @@ template <class T> bool NHOTemplateFullDuplexConnectedReceiver<T>::receive() {
     }
 
 #ifdef _DEBUG
-    std::cout << "NHOFullDuplexConnectedReceiver::receiveImageMessage End\n";
+    std::cout << "NHOTemplateFullDuplexConnectedReceiver::receiveImageMessage End\n";
 #endif
     return true;
 }

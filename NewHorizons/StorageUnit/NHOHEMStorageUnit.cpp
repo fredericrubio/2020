@@ -109,8 +109,7 @@ bool NHOHEMStorageUnit::receiveHEM() {
      long lReceivedBytes;
      IMP_Message* lMessage = NULL;
      */
-    NHOHEMMessage* lMessage = NULL;
-    new NHOHEMMessage(clock());
+//    NHOHEMMessage* lMessage = new NHOHEMMessage(clock());
     
     while (1) {
         

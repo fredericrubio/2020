@@ -122,7 +122,7 @@ bool NHOImageStorageUnit::waitForConnection() {
 // Wait for data messages on the dedicated socket
 bool NHOImageStorageUnit::receiveImageMessage() {
 
-    NHOFILE_LOG(logDEBUG) << "IMP_Client::receiveImageMessage" << std::endl;
+    NHOFILE_LOG(logDEBUG) << "NHOImageStorageUnit::receiveImageMessage" << std::endl;
 
     // waiting for the end of initialization through service messages
     usleep(1000);
@@ -142,7 +142,7 @@ bool NHOImageStorageUnit::receiveImageMessage() {
     long lReceivedBytes;
     unsigned long lNbBytes;
     unsigned int lTotalOfBytes;
-    lBuffer = (unsigned char *) calloc(lSize, sizeof(char));
+    lBuffer = (unsigned char *) calloc(lSize, sizeof(unsigned char));
     while (1) {
         lNbBytes = 0;
         lReceivedBytes = 0;
@@ -160,20 +160,18 @@ bool NHOImageStorageUnit::receiveImageMessage() {
         }
         
         if (lNbBytes > lSize) {
-            NHOFILE_LOG(logERROR) << "ERROR IMP_Client::receiveImageMessage image lost." << std::endl;
+            NHOFILE_LOG(logERROR) << "ERROR NHOImageStorageUnit::receiveImageMessage image lost." << std::endl;
         }
         else {
+//            NHOFILE_LOG(logDEBUG) << "ERROR NHOImageStorageUnit::receiveImageMessage received bytes: " << lNbBytes << std::endl;
+            
             lCameraDataMessage->setData((char *)lBuffer);
             lCameraDataMessage->unserialize();
             cameraData.getImage()->setPixels(cameraData.getImage()->getDataSize(),
                                              (unsigned char *)lCameraDataMessage->getCameraData()->getImage()->getPixels());
-            NHOFILE_LOG(logDEBUG) << "NHOImageStorageUnit::receiveImageMessage another image." << std::endl;
+
             cameraData.getImage()->saveToDisk();
-            /*            std::string lFileName = std::to_string(clock()) + "_image.ppm";
-             std::ofstream outFile ( lFileName ,std::ios::binary );
-             outFile<<"P6\n" << image.getWidth() << " " << image.getHeight() << " 255\n";
-             outFile.write ( ( char* ) image.getPixels(), image.getDataSize());
-             outFile.close();*/
+            NHOFILE_LOG(logDEBUG) << "NHOImageStorageUnit::receiveImageMessage another image." << std::endl;
         }
         
         // send an aknownledgement
@@ -181,7 +179,7 @@ bool NHOImageStorageUnit::receiveImageMessage() {
         lAckMsg->serialize();
         ssize_t lWrittenBytes = write(dataSocket, lAckMsg->getData(), lAckMsg->getSize());
         if (lWrittenBytes < 0) {
-            std::cout << "ERROR IMP_Client::receiveImageMessage" << std::endl;
+            std::cout << "ERROR NHOImageStorageUnit::receiveImageMessage" << std::endl;
             delete lAckMsg;
             return(false);
         }
@@ -189,7 +187,7 @@ bool NHOImageStorageUnit::receiveImageMessage() {
     }
 
 #ifdef _DEBUG
-    std::cout << "IMP_Client::receiveImageMessage End\n";
+    std::cout << "NHOImageStorageUnit::receiveImageMessage End\n";
 #endif
     return true;
 }

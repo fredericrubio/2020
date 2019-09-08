@@ -194,7 +194,6 @@ bool NHOCamera::acquire() {
         lData->getImage()->setPixels(lSize, lImageBuffer);
     }
 #else
-    // To do
     // Read an image (rgb) from a file
     std::string lFileName = "/Users/fredericrubio/Development/Project/New Horizons/Development/test.ppm";
     dynamic_cast<NHOCameraData*>(data)->getImage()->readPPM(lFileName.c_str());

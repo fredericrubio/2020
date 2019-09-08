@@ -74,3 +74,5 @@ DerivedData/
 /NewHorizons/Actuator/build/
 /NewHorizons/Actuator/dist/
 /NewHorizons/Configuration/dist/
+/NewHorizons/Test/Blink/build/
+/NewHorizons/Test/Blink/dist/

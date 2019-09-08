@@ -125,10 +125,8 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
 // Send a message.
 bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     
-    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::sending: " << pMsg->getSize() << "\n";
-    
     if (dataClientSocket <= 0) {
-        NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send no data socket." << std::endl;
+        NHOFILE_LOG(logWarning) << "NHOFullDuplexConnectedEmitter::send no client." << std::endl;
         return(false);
     }
     
@@ -138,6 +136,7 @@ bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     }
     
     // send message
+    NHOFILE_LOG(logDEBUG) << "NHOFullDuplexConnectedEmitter::sending: " << pMsg->getSize() << "\n";    
     size_t lWrittenBytes = write(dataClientSocket, pMsg->getData(), pMsg->getSize());
     if (lWrittenBytes != pMsg->getSize()) {
         NHOFILE_LOG(logERROR) << "NHOFullDuplexConnectedEmitter::send (errno) " << strerror(errno) << std::endl;

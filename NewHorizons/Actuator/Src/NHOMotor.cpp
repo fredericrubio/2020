@@ -21,9 +21,9 @@ name(pName), port1(pPort1), port2(pPort2), port3(pPort3), speed(0) {
     // OUTPUT: for first tests
     // PWM_OUTPUT: only with wiringPi pins 1 and 23
     // SOFT_PWM_OUTPUT: for any others pins but requires softPwmWrite and may be softPwmStop
-    NHOWiringPi::pinMode(port1, NHOWiringPi::OUTPUT);
-    NHOWiringPi::pinMode(port2, NHOWiringPi::OUTPUT);
-    NHOWiringPi::pinMode(port3, NHOWiringPi::OUTPUT);
+    NHOWiringPi::PinMode(port1, NHOWiringPi::OUTPUT);
+    NHOWiringPi::PinMode(port2, NHOWiringPi::OUTPUT);
+    NHOWiringPi::PinMode(port3, NHOWiringPi::OUTPUT);
 
 }
 
@@ -33,13 +33,13 @@ name(pName), port1(pPort1), port2(pPort2), port3(pPort3), speed(0) {
  **/
 bool NHOMotor::forward(){
     
-    NHOWiringPi::digitalWrite(port1, NHOWiringPi::HIGH);
-    NHOWiringPi::digitalWrite(port2, NHOWiringPi::HIGH);
-    NHOWiringPi::digitalWrite(port3, NHOWiringPi::LOW);
+    NHOWiringPi::DigitalWrite(port1, NHOWiringPi::HIGH);
+    NHOWiringPi::DigitalWrite(port2, NHOWiringPi::HIGH);
+    NHOWiringPi::DigitalWrite(port3, NHOWiringPi::LOW);
 
     NHOFILE_LOG(logDEBUG) << "NHOMotor::forward " << name << " forwarding." << std::endl;
 
-    NHOWiringPi::printDigitalValues();
+    NHOWiringPi::PrintDigitalValues();
     
     return true;
     
@@ -50,9 +50,9 @@ bool NHOMotor::forward(){
  **/
 bool NHOMotor::reverse(){
     
-    NHOWiringPi::digitalWrite(port1, NHOWiringPi::HIGH);
-    NHOWiringPi::digitalWrite(port2, NHOWiringPi::LOW);
-    NHOWiringPi::digitalWrite(port3, NHOWiringPi::HIGH);
+    NHOWiringPi::DigitalWrite(port1, NHOWiringPi::HIGH);
+    NHOWiringPi::DigitalWrite(port2, NHOWiringPi::LOW);
+    NHOWiringPi::DigitalWrite(port3, NHOWiringPi::HIGH);
 
     NHOFILE_LOG(logDEBUG) << "NHOMotor::reverse " << name << " reversing." << std::endl;
     
@@ -65,9 +65,9 @@ bool NHOMotor::reverse(){
  **/
 bool NHOMotor::stifle() {
 
-    NHOWiringPi::digitalWrite(port1, NHOWiringPi::LOW);
-    NHOWiringPi::digitalWrite(port2, NHOWiringPi::LOW);
-    NHOWiringPi::digitalWrite(port3, NHOWiringPi::LOW);
+    NHOWiringPi::DigitalWrite(port1, NHOWiringPi::LOW);
+    NHOWiringPi::DigitalWrite(port2, NHOWiringPi::LOW);
+    NHOWiringPi::DigitalWrite(port3, NHOWiringPi::LOW);
 
     NHOFILE_LOG(logDEBUG) << "NHOMotor::stifle " << name << "." << std::endl;
     
@@ -80,9 +80,9 @@ bool NHOMotor::stifle() {
  **/
 bool NHOMotor::freeWheel() {
 
-    NHOWiringPi::digitalWrite(port1, NHOWiringPi::HIGH);
-    NHOWiringPi::digitalWrite(port2, NHOWiringPi::LOW);
-    NHOWiringPi::digitalWrite(port3, NHOWiringPi::LOW);
+    NHOWiringPi::DigitalWrite(port1, NHOWiringPi::HIGH);
+    NHOWiringPi::DigitalWrite(port2, NHOWiringPi::LOW);
+    NHOWiringPi::DigitalWrite(port3, NHOWiringPi::LOW);
     
     NHOFILE_LOG(logDEBUG) << "NHOMotor::freeWheel " << name << "." << std::endl;
 

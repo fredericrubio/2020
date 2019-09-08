@@ -217,17 +217,17 @@ bool NHOHEMData::fetchPins() {
     // modes
     for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
 //        modes[pin] = NHOWiringPi::getAlt(NHOWiringPi::WiringPiMap[pin]);
-        modes[pin] = NHOWiringPi::getAlt(pin);
+        modes[pin] = NHOWiringPi::GetAlt(pin);
     }
     // analogic values
     for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
 //        analogValues[pin] = NHOWiringPi::analogRead(NHOWiringPi::WiringPiMap[pin]);
-        analogValues[pin] = NHOWiringPi::analogRead(pin);
+        analogValues[pin] = NHOWiringPi::AnalogRead(pin);
     }
     // digital values
     for (pin = 0 ; pin < NHOWiringPi::TOTAL_GPIO_PINS ; pin++) {
 //        digitalValues[pin] = NHOWiringPi::digitalRead(NHOWiringPi::WiringPiMap[pin]);
-        digitalValues[pin] = NHOWiringPi::digitalRead(pin);
+        digitalValues[pin] = NHOWiringPi::DigitalRead(pin);
     }
 
     return true;

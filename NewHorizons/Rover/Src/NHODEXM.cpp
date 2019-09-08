@@ -23,7 +23,7 @@ motorL(NULL), motorR(NULL),TC(NULL),timer(NULL), motion(false) {
     timer = new NHOTimer();
     timer->attach(this);
     
-    NHOWiringPi::wiringPiSetup();
+    NHOWiringPi::WiringPiSetup();
 }
 
 /**

@@ -55,8 +55,6 @@ NHOCommandCenter::NHOCommandCenter() {
     // NETWORK
     this->emitter = new NHOTemplateFullDuplexConnectedEmitter<NHOTCMessage>(lCCParameters->getPort()) ;
     this->HEMReceiver = new NHOTemplateBroadcastReceiver<NHOHEMMessage>(lHEMConfig->getDataEmissionPort());
-//    this->emitter = new NHOTemplateFullDuplexConnectedEmitter<NHOTCMessage>(51720) ;
-//    this->HEMReceiver = new NHOTemplateBroadcastReceiver<NHOHEMMessage>(51719);
     this->HEMReceiver->attach(this);
 }
 

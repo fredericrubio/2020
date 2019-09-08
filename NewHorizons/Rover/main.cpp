@@ -35,14 +35,6 @@ int main(int argc, const char **argv) {
         return 1;
     };
 
-    NHOCameraParameters* lCameraConfig = NHOConfiguration::getCameraConfiguration();
-    
-    NHOSensorParameters* lHEMConfig = NHOConfiguration::getHEMConfiguration();
-    
-    NHOCCParameters* lCCParameters = NHOConfiguration::getCCConfiguration();
-    
-    NHORoverParameters* lRoverParameters = NHOConfiguration::getRoverConfiguration();
-
     NHOFILE_LOG(logDEBUG) << "main: start" << std::endl;
     NHORover*   lRover;
     lRover = new NHORover();

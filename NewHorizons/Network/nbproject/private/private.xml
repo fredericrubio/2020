@@ -7,14 +7,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="New Horizons">
-            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOBroadcastEmitter.cpp</file>
-            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Inc/NHOFullDuplexConnectedEmitter.hpp</file>
-            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOReflexFullDuplexConnectedEmitter.cpp</file>
-            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOHEMMessage.cpp</file>
             <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOFullDuplexConnectedEmitter.cpp</file>
-            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOAckMessage.cpp</file>
-            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Inc/NHOReflexFullDuplexConnectedEmitter.hpp</file>
-            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Network/Src/NHOMessage.cpp</file>
         </group>
     </open-files>
 </project-private>

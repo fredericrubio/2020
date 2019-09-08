@@ -28,10 +28,10 @@ public:
 
     static const int TOTAL_GPIO_PINS = 40;
 
-    static void printModes();
-    static void printDigitalValues();
-    static void printModes(const int pModes[]);
-    static void printDigitalValues(const unsigned short pDigitalValues[]);
+    static void PrintModes();
+    static void PrintDigitalValues();
+    static void PrintModes(const int pModes[]);
+    static void PrintDigitalValues(const unsigned short pDigitalValues[]);
 
 #ifndef _RASPBIAN
 
@@ -98,7 +98,7 @@ public:
 
 #endif
     
-        struct wiringPiNodeStruct
+    struct WiringPiNodeStruct
     {
         int     pinBase ;
         int     pinMax ;
@@ -109,18 +109,18 @@ public:
         unsigned int data2 ;    //  ditto
         unsigned int data3 ;    //  ditto
         
-        struct wiringPiNodeStruct *next ;
+        struct WiringPiNodeStruct *next ;
     } ;
 
-    static struct wiringPiNodeStruct *wiringPiFindNode (int pin) ;
-    static struct wiringPiNodeStruct *wiringPiNewNode  (int pinBase, int numPins) ;
+    static struct WiringPiNodeStruct *WiringPiFindNode (int pin) ;
+    static struct WiringPiNodeStruct *WiringPiNewNode  (int pinBase, int numPins) ;
     
     // SETUP section
-    static void wiringPiVersion    (int *major, int *minor) ;
-    static  int wiringPiSetup     (void) ;
-    static int  wiringPiSetupSys   (void) ;
-    static int  wiringPiSetupGpio  (void) ;
-    static int  wiringPiSetupPhys  (void) ;
+    static void WiringPiVersion    (int *major, int *minor) ;
+    static  int WiringPiSetup     (void) ;
+    static int  WiringPiSetupSys   (void) ;
+    static int  WiringPiSetupGpio  (void) ;
+    static int  WiringPiSetupPhys  (void) ;
     
     // the hardware PWM pins are BCM_18 (pwm0) and BCM_13 (pwm1).
     // Or wiringPi pins 1 and 23 respectively, or physical pins 12 and 33.
@@ -128,21 +128,21 @@ public:
     // pinMode (pin, SOFT_PWM_OUTPUT) ;
     // which does the same as softPwmCreate() ; You still need to use
     // softPwmWrite (pin, value) ; though.
-    static int  softPwmCreate (int pin, int value, int range) ;
-    static void softPwmWrite  (int pin, int value) ;
-    static void softPwmStop   (int pin) ;
+    static int  SoftPwmCreate (int pin, int value, int range) ;
+    static void SoftPwmWrite  (int pin, int value) ;
+    static void SoftPwmStop   (int pin) ;
     
-    static void pinModeAlt          (int pin, int mode) ;
-    static void pinMode             (int pin, int mode) ; // GPIO.setup
-    static void pullUpDnControl     (int pin, int pud) ;
-    static int  digitalRead         (int pin) ;
-    static void digitalWrite        (int pin, int value) ;
-    static unsigned int  digitalRead8        (int pin) ;
-    static void digitalWrite8       (int pin, int value) ;
-    static void pwmWrite            (int pin, int value) ; // GPIO.PWM
-    static int  analogRead          (int pin) ;
-    static void analogWrite         (int pin, int value) ;
-    static int  getAlt              (int pin) ;
+    static void PinModeAlt          (int pin, int mode) ;
+    static void PinMode             (int pin, int mode) ; // GPIO.setup
+    static void PullUpDnControl     (int pin, int pud) ;
+    static int  DigitalRead         (int pin) ;
+    static void DigitalWrite        (int pin, int value) ;
+    static unsigned int  DigitalRead8        (int pin) ;
+    static void DigitalWrite8       (int pin, int value) ;
+    static void PwmWrite            (int pin, int value) ; // GPIO.PWM
+    static int  AnalogRead          (int pin) ;
+    static void AnalogWrite         (int pin, int value) ;
+    static int  GetAlt              (int pin) ;
     
 };
 #endif /* NHOWiringPi_hpp */

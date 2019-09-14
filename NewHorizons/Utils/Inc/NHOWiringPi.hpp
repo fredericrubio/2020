@@ -121,6 +121,7 @@ public:
     static int  WiringPiSetupSys   (void) ;
     static int  WiringPiSetupGpio  (void) ;
     static int  WiringPiSetupPhys  (void) ;
+    static int WiringPicleanUpGPIO (void) ;
     
     // the hardware PWM pins are BCM_18 (pwm0) and BCM_13 (pwm1).
     // Or wiringPi pins 1 and 23 respectively, or physical pins 12 and 33.

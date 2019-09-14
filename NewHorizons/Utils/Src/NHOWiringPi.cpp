@@ -52,6 +52,15 @@ int NHOWiringPi::WiringPiSetup       (void) {
     
 }
 
+int NHOWiringPi::WiringPicleanUpGPIO(void) {
+
+    for (int port = 0 ; port < TOTAL_GPIO_PINS ; port++) {
+        NHOWiringPi::PinMode(port, INPUT);
+        NHOWiringPi::DigitalWrite(port, LOW);
+    }
+
+}
+
 int  NHOWiringPi::WiringPiSetupSys    (void) {
     
     return -1;

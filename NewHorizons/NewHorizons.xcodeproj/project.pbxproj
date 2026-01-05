@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B50E3F7122ADBF20004AE227 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A6908922ADBD7700BDB3D7 /* Green.png */; };
+		B50E6AA728BBB2930030102F /* NHOHallEffectMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50E6AA628BBB2930030102F /* NHOHallEffectMessage.cpp */; };
 		B51069D0230C56C400C6C952 /* Orange.png in Resources */ = {isa = PBXBuildFile; fileRef = B51069CF230C56B600C6C952 /* Orange.png */; };
 		B51069D2230C5A8100C6C952 /* Encelade.png in Resources */ = {isa = PBXBuildFile; fileRef = B51069D1230C5A7600C6C952 /* Encelade.png */; };
 		B518FD72228856E200C37EC2 /* NHOHEMData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B518FD71228856E200C37EC2 /* NHOHEMData.hpp */; };
@@ -47,6 +48,11 @@
 		B56822E422A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56822E322A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp */; };
 		B56D6EAA22A255EF00C69E63 /* NHOWiringPi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56D6EA822A255EF00C69E63 /* NHOWiringPi.cpp */; };
 		B56D6EAB22A255EF00C69E63 /* NHOWiringPi.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B56D6EA922A255EF00C69E63 /* NHOWiringPi.hpp */; };
+		B57DECE92E91A59300D937EF /* TS_NTP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57DECE82E91A59300D937EF /* TS_NTP.cpp */; };
+		B57E93A228A012C7001173CC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E93A128A012C7001173CC /* main.cpp */; };
+		B57E93A728A01F54001173CC /* NHOProxyAlertCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E93A628A01675001173CC /* NHOProxyAlertCenter.cpp */; };
+		B57E93AA28A0217C001173CC /* libConfiguration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A5048D22B6B95E005584D3 /* libConfiguration.a */; };
+		B57E93AB28A0219F001173CC /* libNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */; };
 		B598F74622875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B598F74522875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp */; };
 		B59BB673228B55C600F43937 /* NHORoverHEM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59BB671228B55C600F43937 /* NHORoverHEM.cpp */; };
 		B59BB674228B55C600F43937 /* NHORoverHEM.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B59BB672228B55C600F43937 /* NHORoverHEM.hpp */; };
@@ -65,7 +71,20 @@
 		B5A5049A22B6DEE8005584D3 /* libConfiguration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A5048D22B6B95E005584D3 /* libConfiguration.a */; };
 		B5A6908622AAEE5200BDB3D7 /* libNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */; };
 		B5A6908722AAEE5200BDB3D7 /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFC98225D2E6E0073ABFF /* libUtils.a */; };
+		B5ADE9B02E677E99004186A4 /* NHOSolenoidValveMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE9AD2E66388C004186A4 /* NHOSolenoidValveMessage.cpp */; };
+		B5ADE9E02E6A2E13004186A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE9DF2E6A2E13004186A4 /* main.cpp */; };
+		B5ADE9E52E6A2FEB004186A4 /* libConfiguration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A5048D22B6B95E005584D3 /* libConfiguration.a */; };
+		B5ADE9E62E6A2FEB004186A4 /* libNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */; };
+		B5ADE9E72E6A2FEB004186A4 /* libSensor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5228D7C224FF6C700CE4CD3 /* libSensor.a */; };
+		B5ADE9E82E6A3140004186A4 /* NHOSolenoidValveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE9AC2E66388C004186A4 /* NHOSolenoidValveData.cpp */; };
+		B5ADE9F02E6ABB2F004186A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE9EF2E6ABB2F004186A4 /* main.cpp */; };
+		B5ADE9F42E6ABC35004186A4 /* libConfiguration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A5048D22B6B95E005584D3 /* libConfiguration.a */; };
+		B5ADE9F52E6ABC35004186A4 /* libNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EBFCAF225E7F2F0073ABFF /* libNetwork.a */; };
+		B5ADE9F62E6ABC35004186A4 /* libSensor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5228D7C224FF6C700CE4CD3 /* libSensor.a */; };
+		B5ADE9FD2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE9FB2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.cpp */; };
+		B5ADEA002E75F1AE004186A4 /* NHOSVPingPong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE9FE2E75F1AE004186A4 /* NHOSVPingPong.cpp */; };
 		B5B0958822ADBFE400F71B80 /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B0958722ADBFD900F71B80 /* Red.png */; };
+		B5B1E98F28C3E36800AA29D4 /* NHOHallEffectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B1E98E28C3E36800AA29D4 /* NHOHallEffectData.cpp */; };
 		B5B3A06222B2DB7F0090EC20 /* NHOTemplateBroadcastReceiver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B5B3A06022B2DB7F0090EC20 /* NHOTemplateBroadcastReceiver.hpp */; };
 		B5B3A06322B2E88D0090EC20 /* libSensor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5228D7C224FF6C700CE4CD3 /* libSensor.a */; };
 		B5C409512309C9CE00974D7A /* NewHorizon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C409502309C9CD00974D7A /* NewHorizon.png */; };
@@ -151,6 +170,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		B57E939828A01253001173CC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		B5ADE9D62E6A2D40004186A4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		B5ADE9EB2E6ABB2F004186A4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		B5DC771C2275F8A40043AAA8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -163,6 +209,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B50E6AA528BBB27A0030102F /* NHOHallEffectMessage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHallEffectMessage.hpp; sourceTree = "<group>"; };
+		B50E6AA628BBB2930030102F /* NHOHallEffectMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOHallEffectMessage.cpp; sourceTree = "<group>"; };
 		B51069CF230C56B600C6C952 /* Orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orange.png; sourceTree = "<group>"; };
 		B51069D1230C5A7600C6C952 /* Encelade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Encelade.png; sourceTree = "<group>"; };
 		B518FD71228856E200C37EC2 /* NHOHEMData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHEMData.hpp; sourceTree = "<group>"; };
@@ -209,6 +257,12 @@
 		B56822E322A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOTemplateFullDuplexConnectedEmitter.cpp; sourceTree = "<group>"; };
 		B56D6EA822A255EF00C69E63 /* NHOWiringPi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOWiringPi.cpp; sourceTree = "<group>"; };
 		B56D6EA922A255EF00C69E63 /* NHOWiringPi.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOWiringPi.hpp; sourceTree = "<group>"; };
+		B57DECE72E91A58C00D937EF /* TS_NTP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TS_NTP.hpp; sourceTree = "<group>"; };
+		B57DECE82E91A59300D937EF /* TS_NTP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TS_NTP.cpp; sourceTree = "<group>"; };
+		B57E939A28A01253001173CC /* Listerner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Listerner; sourceTree = BUILT_PRODUCTS_DIR; };
+		B57E93A128A012C7001173CC /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B57E93A528A01645001173CC /* NHOProxyAlertCenter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOProxyAlertCenter.hpp; sourceTree = "<group>"; };
+		B57E93A628A01675001173CC /* NHOProxyAlertCenter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOProxyAlertCenter.cpp; sourceTree = "<group>"; };
 		B598F74522875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOReflexFullDuplexConnectedEmitter.cpp; sourceTree = "<group>"; };
 		B59BB671228B55C600F43937 /* NHORoverHEM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHORoverHEM.cpp; sourceTree = "<group>"; };
 		B59BB672228B55C600F43937 /* NHORoverHEM.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHORoverHEM.hpp; sourceTree = "<group>"; };
@@ -230,7 +284,23 @@
 		B5A5049622B6B9AA005584D3 /* NHOConfiguration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOConfiguration.cpp; sourceTree = "<group>"; };
 		B5A5049722B6B9AA005584D3 /* NHOConfiguration.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOConfiguration.hpp; sourceTree = "<group>"; };
 		B5A6908922ADBD7700BDB3D7 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green.png; sourceTree = "<group>"; };
+		B5ADE9AA2E663885004186A4 /* NHOSolenoidValveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOSolenoidValveData.hpp; sourceTree = "<group>"; };
+		B5ADE9AB2E663885004186A4 /* NHOSolenoidValveMessage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOSolenoidValveMessage.hpp; sourceTree = "<group>"; };
+		B5ADE9AC2E66388C004186A4 /* NHOSolenoidValveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOSolenoidValveData.cpp; sourceTree = "<group>"; };
+		B5ADE9AD2E66388C004186A4 /* NHOSolenoidValveMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOSolenoidValveMessage.cpp; sourceTree = "<group>"; };
+		B5ADE9D82E6A2D40004186A4 /* Wishper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Wishper; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5ADE9DF2E6A2E13004186A4 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B5ADE9ED2E6ABB2F004186A4 /* Hearing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Hearing; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5ADE9EF2E6ABB2F004186A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B5ADE9FB2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOSolenoidValveMessageDispatcher.cpp; sourceTree = "<group>"; };
+		B5ADE9FC2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSolenoidValveMessageDispatcher.hpp; sourceTree = "<group>"; };
+		B5ADE9FE2E75F1AE004186A4 /* NHOSVPingPong.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOSVPingPong.cpp; sourceTree = "<group>"; };
+		B5ADE9FF2E75F1AE004186A4 /* NHOSVPingPong.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSVPingPong.hpp; sourceTree = "<group>"; };
+		B5ADEA042E7DEDA0004186A4 /* NHOTemplateBroadcaster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateBroadcaster.hpp; sourceTree = "<group>"; };
+		B5ADEA052E7DF03C004186A4 /* NHOTemplateBroadcaster_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateBroadcaster_impl.hpp; sourceTree = "<group>"; };
 		B5B0958722ADBFD900F71B80 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
+		B5B1E98E28C3E36800AA29D4 /* NHOHallEffectData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOHallEffectData.cpp; sourceTree = "<group>"; };
+		B5B1E99028C3E37000AA29D4 /* NHOHallEffectData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHallEffectData.hpp; sourceTree = "<group>"; };
 		B5B3A06022B2DB7F0090EC20 /* NHOTemplateBroadcastReceiver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateBroadcastReceiver.hpp; sourceTree = "<group>"; };
 		B5C409502309C9CD00974D7A /* NewHorizon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewHorizon.png; sourceTree = "<group>"; };
 		B5CC554022B822910015F2B7 /* rover.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = rover.xml; sourceTree = "<group>"; };
@@ -296,6 +366,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B57E939728A01253001173CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B57E93AB28A0219F001173CC /* libNetwork.a in Frameworks */,
+				B57E93AA28A0217C001173CC /* libConfiguration.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B59C3DDA22A2AE110040270F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +392,26 @@
 			files = (
 				B5A5049422B6B998005584D3 /* libSensor.a in Frameworks */,
 				B5A5049522B6B998005584D3 /* libUtils.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ADE9D52E6A2D40004186A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5ADE9E52E6A2FEB004186A4 /* libConfiguration.a in Frameworks */,
+				B5ADE9E62E6A2FEB004186A4 /* libNetwork.a in Frameworks */,
+				B5ADE9E72E6A2FEB004186A4 /* libSensor.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ADE9EA2E6ABB2F004186A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5ADE9F42E6ABC35004186A4 /* libConfiguration.a in Frameworks */,
+				B5ADE9F52E6ABC35004186A4 /* libNetwork.a in Frameworks */,
+				B5ADE9F62E6ABC35004186A4 /* libSensor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,10 +464,13 @@
 		B5228D64224FF4DE00CE4CD3 = {
 			isa = PBXGroup;
 			children = (
+				B57E939528A010C1001173CC /* Listerner */,
 				B5A5049122B6B97D005584D3 /* Configuration */,
 				B5A6908822ADBCDD00BDB3D7 /* Resources */,
 				B5228D81224FF6E500CE4CD3 /* Actuator */,
 				B59C3DDE22A2AE110040270F /* CommandCenter */,
+				B5ADE9D92E6A2D40004186A4 /* Wishper */,
+				B5ADE9EE2E6ABB2F004186A4 /* Hearing */,
 				B5EBFCBE2261C1D90073ABFF /* Frameworks */,
 				B5EBFCB3225E7F350073ABFF /* Network */,
 				B5228D6F224FF4DE00CE4CD3 /* NewHorizons */,
@@ -391,6 +493,9 @@
 				B5DC771E2275F8A40043AAA8 /* StorageUnit */,
 				B59C3DDD22A2AE110040270F /* CommandCenter.app */,
 				B5A5048D22B6B95E005584D3 /* libConfiguration.a */,
+				B57E939A28A01253001173CC /* Listerner */,
+				B5ADE9D82E6A2D40004186A4 /* Wishper */,
+				B5ADE9ED2E6ABB2F004186A4 /* Hearing */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -450,6 +555,7 @@
 		B5228D93224FF8B200CE4CD3 /* Inc */ = {
 			isa = PBXGroup;
 			children = (
+				B5ADE9AA2E663885004186A4 /* NHOSolenoidValveData.hpp */,
 				B5228D9A2253F11000CE4CD3 /* NHOCamera.hpp */,
 				B5EBFCA8225E64E10073ABFF /* NHOCameraData.hpp */,
 				B5DC76FF226E1DDA0043AAA8 /* NHOData.hpp */,
@@ -464,6 +570,7 @@
 		B5228D94224FF8B700CE4CD3 /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B5ADE9AC2E66388C004186A4 /* NHOSolenoidValveData.cpp */,
 				B5228D992253F11000CE4CD3 /* NHOCamera.cpp */,
 				B5EBFCA7225E64E10073ABFF /* NHOCameraData.cpp */,
 				B5DC76FE226E1DDA0043AAA8 /* NHOData.cpp */,
@@ -471,6 +578,36 @@
 				B59BB671228B55C600F43937 /* NHORoverHEM.cpp */,
 				B5228D95224FF90900CE4CD3 /* NHOSensor.cpp */,
 				B5EBFCA3225D33AB0073ABFF /* NHOSensorData.cpp */,
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
+		B57E939528A010C1001173CC /* Listerner */ = {
+			isa = PBXGroup;
+			children = (
+				B57E93A328A01610001173CC /* Inc */,
+				B57E93A428A01615001173CC /* Src */,
+				B57E93A128A012C7001173CC /* main.cpp */,
+			);
+			path = Listerner;
+			sourceTree = "<group>";
+		};
+		B57E93A328A01610001173CC /* Inc */ = {
+			isa = PBXGroup;
+			children = (
+				B5B1E99028C3E37000AA29D4 /* NHOHallEffectData.hpp */,
+				B50E6AA528BBB27A0030102F /* NHOHallEffectMessage.hpp */,
+				B57E93A528A01645001173CC /* NHOProxyAlertCenter.hpp */,
+			);
+			path = Inc;
+			sourceTree = "<group>";
+		};
+		B57E93A428A01615001173CC /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				B5B1E98E28C3E36800AA29D4 /* NHOHallEffectData.cpp */,
+				B50E6AA628BBB2930030102F /* NHOHallEffectMessage.cpp */,
+				B57E93A628A01675001173CC /* NHOProxyAlertCenter.cpp */,
 			);
 			path = Src;
 			sourceTree = "<group>";
@@ -557,6 +694,62 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		B5ADE9D92E6A2D40004186A4 /* Wishper */ = {
+			isa = PBXGroup;
+			children = (
+				B5ADE9F82E73487A004186A4 /* Src */,
+				B5ADE9F72E73486F004186A4 /* Inc */,
+				B5ADE9DF2E6A2E13004186A4 /* main.cpp */,
+			);
+			path = Wishper;
+			sourceTree = "<group>";
+		};
+		B5ADE9EE2E6ABB2F004186A4 /* Hearing */ = {
+			isa = PBXGroup;
+			children = (
+				B5ADE9F92E73488D004186A4 /* Inc */,
+				B5ADE9FA2E734891004186A4 /* Src */,
+				B5ADE9EF2E6ABB2F004186A4 /* main.cpp */,
+			);
+			path = Hearing;
+			sourceTree = "<group>";
+		};
+		B5ADE9F72E73486F004186A4 /* Inc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Inc;
+			sourceTree = "<group>";
+		};
+		B5ADE9F82E73487A004186A4 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
+		B5ADE9F92E73488D004186A4 /* Inc */ = {
+			isa = PBXGroup;
+			children = (
+				B57DECE72E91A58C00D937EF /* TS_NTP.hpp */,
+				B5ADEA042E7DEDA0004186A4 /* NHOTemplateBroadcaster.hpp */,
+				B5ADEA052E7DF03C004186A4 /* NHOTemplateBroadcaster_impl.hpp */,
+				B5ADE9FF2E75F1AE004186A4 /* NHOSVPingPong.hpp */,
+				B5ADE9FC2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.hpp */,
+			);
+			path = Inc;
+			sourceTree = "<group>";
+		};
+		B5ADE9FA2E734891004186A4 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				B57DECE82E91A59300D937EF /* TS_NTP.cpp */,
+				B5ADE9FE2E75F1AE004186A4 /* NHOSVPingPong.cpp */,
+				B5ADE9FB2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.cpp */,
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
 		B5DC771F2275F8A40043AAA8 /* StorageUnit */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +811,7 @@
 		B5EBFCB4225E7F400073ABFF /* Inc */ = {
 			isa = PBXGroup;
 			children = (
+				B5ADE9AB2E663885004186A4 /* NHOSolenoidValveMessage.hpp */,
 				B5DC77172275ECAA0043AAA8 /* NHOAckMessage.hpp */,
 				B5EBFCBB226133E00073ABFF /* NHOBroadcastEmitter.hpp */,
 				B5DC76FB226E0FB50043AAA8 /* NHOCameraDataMessage.hpp */,
@@ -639,6 +833,7 @@
 		B5EBFCB5225E7F430073ABFF /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B5ADE9AD2E66388C004186A4 /* NHOSolenoidValveMessage.cpp */,
 				B5DC77162275ECAA0043AAA8 /* NHOAckMessage.cpp */,
 				B5EBFCBA226133E00073ABFF /* NHOBroadcastEmitter.cpp */,
 				B5DC76FA226E0FB50043AAA8 /* NHOCameraDataMessage.cpp */,
@@ -783,6 +978,23 @@
 			productReference = B5228D86224FF70900CE4CD3 /* Rover */;
 			productType = "com.apple.product-type.tool";
 		};
+		B57E939928A01253001173CC /* Listerner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B57E939E28A01253001173CC /* Build configuration list for PBXNativeTarget "Listerner" */;
+			buildPhases = (
+				B57E939628A01253001173CC /* Sources */,
+				B57E939728A01253001173CC /* Frameworks */,
+				B57E939828A01253001173CC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Listerner;
+			productName = Listerner;
+			productReference = B57E939A28A01253001173CC /* Listerner */;
+			productType = "com.apple.product-type.tool";
+		};
 		B59C3DDC22A2AE110040270F /* CommandCenter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B59C3DEE22A2AE110040270F /* Build configuration list for PBXNativeTarget "CommandCenter" */;
@@ -816,6 +1028,40 @@
 			productName = Configuration;
 			productReference = B5A5048D22B6B95E005584D3 /* libConfiguration.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		B5ADE9D72E6A2D40004186A4 /* Wishper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5ADE9DC2E6A2D40004186A4 /* Build configuration list for PBXNativeTarget "Wishper" */;
+			buildPhases = (
+				B5ADE9D42E6A2D40004186A4 /* Sources */,
+				B5ADE9D52E6A2D40004186A4 /* Frameworks */,
+				B5ADE9D62E6A2D40004186A4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Wishper;
+			productName = Wishper;
+			productReference = B5ADE9D82E6A2D40004186A4 /* Wishper */;
+			productType = "com.apple.product-type.tool";
+		};
+		B5ADE9EC2E6ABB2F004186A4 /* Hearing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5ADE9F12E6ABB2F004186A4 /* Build configuration list for PBXNativeTarget "Hearing" */;
+			buildPhases = (
+				B5ADE9E92E6ABB2F004186A4 /* Sources */,
+				B5ADE9EA2E6ABB2F004186A4 /* Frameworks */,
+				B5ADE9EB2E6ABB2F004186A4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hearing;
+			productName = Hearing;
+			productReference = B5ADE9ED2E6ABB2F004186A4 /* Hearing */;
+			productType = "com.apple.product-type.tool";
 		};
 		B5DC771D2275F8A40043AAA8 /* StorageUnit */ = {
 			isa = PBXNativeTarget;
@@ -889,6 +1135,10 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
+					B57E939928A01253001173CC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					B59C3DDC22A2AE110040270F = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -899,6 +1149,14 @@
 						};
 					};
 					B5A5048C22B6B95E005584D3 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					B5ADE9D72E6A2D40004186A4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					B5ADE9EC2E6ABB2F004186A4 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -937,6 +1195,9 @@
 				B5DC771D2275F8A40043AAA8 /* StorageUnit */,
 				B59C3DDC22A2AE110040270F /* CommandCenter */,
 				B5A5048C22B6B95E005584D3 /* Configuration */,
+				B57E939928A01253001173CC /* Listerner */,
+				B5ADE9D72E6A2D40004186A4 /* Wishper */,
+				B5ADE9EC2E6ABB2F004186A4 /* Hearing */,
 			);
 		};
 /* End PBXProject section */
@@ -975,6 +1236,7 @@
 				B518FD74228856ED00C37EC2 /* NHOHEMData.cpp in Sources */,
 				B59BB673228B55C600F43937 /* NHORoverHEM.cpp in Sources */,
 				B5DC7700226E1DDA0043AAA8 /* NHOData.cpp in Sources */,
+				B5ADE9E82E6A3140004186A4 /* NHOSolenoidValveData.cpp in Sources */,
 				B5EBFCA9225E64E10073ABFF /* NHOCameraData.cpp in Sources */,
 				B5228D9B2253F11000CE4CD3 /* NHOCamera.cpp in Sources */,
 				B5228D97224FF90900CE4CD3 /* NHOSensor.cpp in Sources */,
@@ -990,6 +1252,17 @@
 				B518FD7D22885B7700C37EC2 /* NHORover.cpp in Sources */,
 				B5228D90224FF7CB00CE4CD3 /* main.cpp in Sources */,
 				B550888E22A5B24D00688115 /* NHODEXM.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B57E939628A01253001173CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B57E93A728A01F54001173CC /* NHOProxyAlertCenter.cpp in Sources */,
+				B50E6AA728BBB2930030102F /* NHOHallEffectMessage.cpp in Sources */,
+				B57E93A228A012C7001173CC /* main.cpp in Sources */,
+				B5B1E98F28C3E36800AA29D4 /* NHOHallEffectData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,6 +1288,25 @@
 				B5A5049822B6B9AA005584D3 /* NHOConfiguration.cpp in Sources */,
 				B5CC554B22B97F3F0015F2B7 /* NHORoverParameters.cpp in Sources */,
 				B5CC553F22B822200015F2B7 /* NHOSensorParameters.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ADE9D42E6A2D40004186A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5ADE9E02E6A2E13004186A4 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ADE9E92E6ABB2F004186A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5ADEA002E75F1AE004186A4 /* NHOSVPingPong.cpp in Sources */,
+				B5ADE9FD2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.cpp in Sources */,
+				B5ADE9F02E6ABB2F004186A4 /* main.cpp in Sources */,
+				B57DECE92E91A59300D937EF /* TS_NTP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1052,6 +1344,7 @@
 				B598F74622875CD2000925E0 /* NHOReflexFullDuplexConnectedEmitter.cpp in Sources */,
 				B547EE67227C9F0C00181512 /* NHOMessage.cpp in Sources */,
 				B5DC77142274F2A90043AAA8 /* NHOFullDuplexConnectedEmitter.cpp in Sources */,
+				B5ADE9B02E677E99004186A4 /* NHOSolenoidValveMessage.cpp in Sources */,
 				B5EBFCBC226133E00073ABFF /* NHOBroadcastEmitter.cpp in Sources */,
 				B5DC77182275ECAA0043AAA8 /* NHOAckMessage.cpp in Sources */,
 				B59BB678228B58DB00F43937 /* NHOHEMMessage.cpp in Sources */,
@@ -1246,6 +1539,22 @@
 			};
 			name = Release;
 		};
+		B57E939F28A01253001173CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B57E93A028A01253001173CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B59C3DEF22A2AE110040270F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1286,6 +1595,40 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B5ADE9DD2E6A2D40004186A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B5ADE9DE2E6A2D40004186A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B5ADE9F22E6ABB2F004186A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = ../Inc;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B5ADE9F32E6ABB2F004186A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = ../Inc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1381,6 +1724,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		B57E939E28A01253001173CC /* Build configuration list for PBXNativeTarget "Listerner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B57E939F28A01253001173CC /* Debug */,
+				B57E93A028A01253001173CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B59C3DEE22A2AE110040270F /* Build configuration list for PBXNativeTarget "CommandCenter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1395,6 +1747,24 @@
 			buildConfigurations = (
 				B5A5048E22B6B95E005584D3 /* Debug */,
 				B5A5048F22B6B95E005584D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5ADE9DC2E6A2D40004186A4 /* Build configuration list for PBXNativeTarget "Wishper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5ADE9DD2E6A2D40004186A4 /* Debug */,
+				B5ADE9DE2E6A2D40004186A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5ADE9F12E6ABB2F004186A4 /* Build configuration list for PBXNativeTarget "Hearing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5ADE9F22E6ABB2F004186A4 /* Debug */,
+				B5ADE9F32E6ABB2F004186A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

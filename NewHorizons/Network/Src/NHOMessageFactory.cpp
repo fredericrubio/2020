@@ -15,6 +15,7 @@
 #include "NHOData.hpp"
 #include "NHOHEMMessage.hpp"
 #include "NHOHEMData.hpp"
+#include "NHOSolenoidValveMessage.hpp"
 
 /**
  *
@@ -55,12 +56,18 @@ NHOMessage* NHOMessageFactory::build(const NHOData* const pData) {
     // get the message type
     NHOMessageFactory::NHOMessageType lType = pData->getType();
     NHOMessage* lMessage = NULL;
-    NHOHEMData* lData = NULL;
+    NHOData* lData = NULL;
     switch (lType) {
         case NHOMessageFactory::eHEM:
             lMessage = new NHOHEMMessage(clock());
             lData = new NHOHEMData(*((NHOHEMData*) pData));
-            (dynamic_cast<NHOHEMMessage*> (lMessage))->setHEMData(lData);
+            (dynamic_cast<NHOHEMMessage*> (lMessage))->setHEMData((NHOHEMData*) lData);
+            break;
+            
+        case NHOMessageFactory::eSolenoidValve:
+            lMessage = new NHOSolenoidValveMessage(clock());
+            lData = new NHOSolenoidValveData(*((NHOSolenoidValveData*) pData));
+            (dynamic_cast<NHOSolenoidValveMessage*> (lMessage))->setSolenoidValveData((NHOSolenoidValveData*) lData);
             break;
             
         default:

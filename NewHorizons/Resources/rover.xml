@@ -5,7 +5,10 @@
     <port value = "51719" />
 </hem>
 <cc hostname = "192.168.0.13" port = "51720" />
+<!-- Raspberry -->
 <img_server hostname = "192.168.0.22" port1 = "51717" port2 = "51718"/>
+<!-- Mac OS -->
+<!-- <img_server hostname = "192.168.0.13" port1 = "51717" port2 = "51718"/> -->
 <rover>
 	<motorA MOTOR_EN = "15" MOTOR_A = "1" MOTOR_B = "16" type = "right"/>
 	<motorB MOTOR_EN = "6" MOTOR_A = "10" MOTOR_B = "11" type = "left" />

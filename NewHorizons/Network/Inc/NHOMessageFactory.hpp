@@ -18,7 +18,7 @@ class NHOData;
 class NHOMessageFactory {
     
 public:
-    typedef enum {eUnknown, eAckMessage, eImageSize, eCameraParameters, eImage, eCameraData, eHEM, eTC} NHOMessageType;
+    typedef enum {eUnknown, eBoolean, eHallEffect, eAckMessage, eImageSize, eCameraParameters, eImage, eCameraData, eHEM, eTC, eSolenoidValve} NHOMessageType;
 
     /**
      *

@@ -44,5 +44,4 @@ class NHORoverHEM : public NHOSensor {
 protected:
     
  };
-
-#endif /* NHORoverHEM_hpp */
+#endif

@@ -25,11 +25,11 @@
 #include <sys/ioctl.h>
 #include <netinet/tcp.h>
 #include <mutex>
+#include <thread>
 
 #include "NHOSubject.hpp"
 #include "NHOMessage.hpp"
 #include "NHOLOG.hpp"
-#include "NHOAckMessage.hpp"
 
 template <class T>
 class NHOTemplateBroadcastReceiver: public NHOSubject<T> {
@@ -93,6 +93,12 @@ public:
                 continue;
             }
             
+            option = 1;
+            if (setsockopt(this->receptionSocket, SOL_SOCKET, SO_BROADCAST, &option, sizeof(option)) == -1) {
+                NHOFILE_LOG(logERROR) << "NHOTemplateBroadcastReceiver::initiate socket (SO_BROADCAST):" << strerror(errno) << std::endl;
+                continue;
+            }
+
             if (bind(this->receptionSocket, p->ai_addr, p->ai_addrlen) == -1) {
                 NHOFILE_LOG(logERROR) << "NHOTemplateBroadcastReceiver::initiate bind:" << strerror(errno) << std::endl;
                 close(this->receptionSocket);
@@ -137,12 +143,10 @@ public:
      **/
     bool receive(){
         
-        NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive \n";
-        
         long numbytes;
         struct sockaddr_storage their_addr;
 this->mutex.lock();
-        unsigned long size = this->message->getHEMData()->getSize();
+        unsigned long size = this->message->getSize();
 this->mutex.unlock();
         char* buf = new char[size];
         socklen_t addr_len;
@@ -155,26 +159,33 @@ this->mutex.unlock();
         
         while (this->keepGoing) {
             
-        NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive stalled on recvfrom\n";
+            NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive stalled on recvfrom\n";
 
             addr_len = sizeof their_addr;
             if ((numbytes = recvfrom(this->receptionSocket, buf, size , 0,
                                      (struct sockaddr *)&their_addr, &addr_len)) == -1) {
                 std::cout << "NHOTemplateBroadcastReceiver::receive recvfrom error " << strerror(errno) << "\n";
-                return(false);
+//                return(false);
             }
-            std::cout << "1\n";
-this->mutex.lock();
-            this->message->setData((int) numbytes, buf);
-            this->message->unserialize();
-            this->setVal(this->message);
-            this->notify();
-this->mutex.unlock();
+            else {
+                this->mutex.lock();
+                this->message->setData((int) numbytes, buf);
+                this->message->setAddress((struct sockaddr *) &their_addr);
+                this->message->unserialize();
+                this->setVal(this->message);
+                this->notify();
+                this->mutex.unlock();
+                if (numbytes > 0) {
+                    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive message type : " <<     NHOMessage::getType(this->message->getData());
+                    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive data received\n";
+                }
+            }
+
 //            le changement de couleurs des diodes est lent : fréquence d'envoi, fréquence de rafraîchissement de la GUI ?
 //            les diodes allumées ne retombent pas après la commande "STOP"
 //            on a la même configuration de diodes pour des commades différents : "LEFT" et "FORWARD" par exemple
 //            il faut d'abord lancer l'interface graphique PUIS le rover.
-            NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive\n";
+//            NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcastReceiver::receive\n";
         }
         
         NHOFILE_LOG(logDEBUG) << "NHOHEMStorageUnit::receiveImageMessage End\n";

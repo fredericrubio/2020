@@ -10,11 +10,18 @@
 #include <string.h>
 #include <iostream>
 
-#include "NHOMessage.hpp"
-#include "NHOMessageFactory.hpp"
+#ifdef ESP32_ADAFRUIT_FEATHER
+    #include "NHOMessage.hpp"
+    #include "NHOMessageFactory.hpp"
+    #include "Utils/NHOLOG.hpp"
+#else
+    #include "NHOMessage.hpp"
+    #include "NHOMessageFactory.hpp"
+    #include "NHOLOG.hpp"
+#endif
 
 NHOMessage::NHOMessage(long long pDate, NHOMessageFactory::NHOMessageType pType):
-date(pDate), type(pType), size(0), data(NULL) {
+date(pDate), type(pType), size(0), data(NULL), address(NULL) {
 
 }
 
@@ -22,11 +29,15 @@ date(pDate), type(pType), size(0), data(NULL) {
  * Destructor
  **/
 NHOMessage::~NHOMessage() {
-    
+//    NHOFILE_LOG(logDEBUG) << "NHOMessage::~NHOMessage " << std::endl;
     if (data != NULL) {
-        free(data);
+#ifdef ESP32_ADAFRUIT_FEATHER     
+        heap_caps_free(this->data);
+#else
+        free(this->data);
+#endif
+        data = NULL;
     }
-    
 }
 
 const unsigned int NHOMessage::serializeHeader() {
@@ -69,6 +80,23 @@ const unsigned short NHOMessage::getHeaderSize() {
     size += sizeof(type);
 
     return size;
+}
+
+#ifdef ESP32_ADAFRUIT_FEATHER
+void NHOMessage::setAddress(const IPAddress  &pAddress) {
+    if (this->address) {
+        delete this->address;
+    }
+    this->address = new IPAddress(pAddress); //uint32_t
+#else
+void NHOMessage::setAddress(const sockaddr*  pAddress) {
+    if (this->address) {
+        free(this->address);
+    }
+    
+    this->address = (sockaddr*) calloc(sizeof(*pAddress), 1);
+    memcpy(this->address, pAddress, sizeof(*pAddress));
+#endif
 }
 
 

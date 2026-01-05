@@ -11,6 +11,11 @@
 
 #include <stdio.h>
 #include <string.h>
+#ifdef ESP32_ADAFRUIT_FEATHER
+#include "ASyncUDP.h"
+#else
+#include <sys/socket.h>
+#endif
 
 #include "NHOMessageFactory.hpp"
 
@@ -39,6 +44,13 @@ class NHOMessage {
 
     virtual const unsigned int serializeHeader();
     virtual const unsigned int unserializeHeader();
+#ifdef ESP32_ADAFRUIT_FEATHER
+    void setAddress(const IPAddress  &pAddress);
+    inline const IPAddress* getAddress() const {return this->address;};
+#else
+    void setAddress(const sockaddr*  pAddress);
+    inline const sockaddr* getAddress() const {return this->address;};
+#endif
     
     /////////////////////////////////////////
     // Constants and static methods
@@ -78,7 +90,12 @@ class NHOMessage {
         long long   date; // 'long long' to force 64bits on 32bits OS
 
         char* data;
-
         unsigned int size;
+#ifdef ESP32_ADAFRUIT_FEATHER
+    IPAddress*  address;
+#else
+    sockaddr*  address;
+#endif
+    
 };
 #endif /* IMP_Message_hpp */

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5228D85224FF70900CE4CD3"
-               BuildableName = "Rover"
-               BlueprintName = "Rover"
+               BlueprintIdentifier = "B5ADE9D72E6A2D40004186A4"
+               BuildableName = "Wishper"
+               BlueprintName = "Wishper"
                ReferencedContainer = "container:NewHorizons.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5228D85224FF70900CE4CD3"
-            BuildableName = "Rover"
-            BlueprintName = "Rover"
+            BlueprintIdentifier = "B5ADE9D72E6A2D40004186A4"
+            BuildableName = "Wishper"
+            BlueprintName = "Wishper"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -57,18 +57,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5228D85224FF70900CE4CD3"
-            BuildableName = "Rover"
-            BlueprintName = "Rover"
+            BlueprintIdentifier = "B5ADE9D72E6A2D40004186A4"
+            BuildableName = "Wishper"
+            BlueprintName = "Wishper"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-root &quot;/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -82,9 +76,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5228D85224FF70900CE4CD3"
-            BuildableName = "Rover"
-            BlueprintName = "Rover"
+            BlueprintIdentifier = "B5ADE9D72E6A2D40004186A4"
+            BuildableName = "Wishper"
+            BlueprintName = "Wishper"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

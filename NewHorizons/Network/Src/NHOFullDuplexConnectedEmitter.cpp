@@ -126,7 +126,7 @@ bool NHOFullDuplexConnectedEmitter::waitForConnectionOnSocket() {
 bool NHOFullDuplexConnectedEmitter::send(const NHOMessage* pMsg) const {
     
     if (dataClientSocket <= 0) {
-        NHOFILE_LOG(logWarning) << "NHOFullDuplexConnectedEmitter::send no client." << std::endl;
+        NHOFILE_LOG(logWARNING) << "NHOFullDuplexConnectedEmitter::send no client." << std::endl;
         return(false);
     }
     

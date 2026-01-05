@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5228D85224FF70900CE4CD3"
-               BuildableName = "Rover"
-               BlueprintName = "Rover"
+               BlueprintIdentifier = "B5A5048C22B6B95E005584D3"
+               BuildableName = "libConfiguration.a"
+               BlueprintName = "Configuration"
                ReferencedContainer = "container:NewHorizons.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,15 +30,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5228D85224FF70900CE4CD3"
-            BuildableName = "Rover"
-            BlueprintName = "Rover"
-            ReferencedContainer = "container:NewHorizons.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -53,22 +44,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5228D85224FF70900CE4CD3"
-            BuildableName = "Rover"
-            BlueprintName = "Rover"
+            BlueprintIdentifier = "B5A5048C22B6B95E005584D3"
+            BuildableName = "libConfiguration.a"
+            BlueprintName = "Configuration"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-root &quot;/Users/fredericrubio/Development/Project/New Horizons/Development/NewHorizons/&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -78,16 +62,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5228D85224FF70900CE4CD3"
-            BuildableName = "Rover"
-            BlueprintName = "Rover"
+            BlueprintIdentifier = "B5A5048C22B6B95E005584D3"
+            BuildableName = "libConfiguration.a"
+            BlueprintName = "Configuration"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

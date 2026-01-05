@@ -8,7 +8,9 @@
 
 #include "NHOWiringPi.hpp"
 #include "NHOLOG.hpp"
+#ifdef _RASPBIAN
 #include "wiringPi.h"
+#endif
 
 #include <string.h>
 #include <iostream>

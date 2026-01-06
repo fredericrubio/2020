@@ -48,6 +48,9 @@
 		B56822E422A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56822E322A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp */; };
 		B56D6EAA22A255EF00C69E63 /* NHOWiringPi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56D6EA822A255EF00C69E63 /* NHOWiringPi.cpp */; };
 		B56D6EAB22A255EF00C69E63 /* NHOWiringPi.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B56D6EA922A255EF00C69E63 /* NHOWiringPi.hpp */; };
+		B578CCC12F0C1DB0001C25F3 /* NHOMediator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B578CCBF2F0C1DB0001C25F3 /* NHOMediator.hpp */; };
+		B578CCC52F0C1F40001C25F3 /* NHOComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B578CCC32F0C1F40001C25F3 /* NHOComponent.hpp */; };
+		B578CCC72F0C70D7001C25F3 /* NHOComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B578CCC62F0C70D7001C25F3 /* NHOComponent.cpp */; };
 		B57DECE92E91A59300D937EF /* TS_NTP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57DECE82E91A59300D937EF /* TS_NTP.cpp */; };
 		B57E93A228A012C7001173CC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E93A128A012C7001173CC /* main.cpp */; };
 		B57E93A728A01F54001173CC /* NHOProxyAlertCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E93A628A01675001173CC /* NHOProxyAlertCenter.cpp */; };
@@ -257,6 +260,9 @@
 		B56822E322A9A4A2004F0C2B /* NHOTemplateFullDuplexConnectedEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOTemplateFullDuplexConnectedEmitter.cpp; sourceTree = "<group>"; };
 		B56D6EA822A255EF00C69E63 /* NHOWiringPi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOWiringPi.cpp; sourceTree = "<group>"; };
 		B56D6EA922A255EF00C69E63 /* NHOWiringPi.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOWiringPi.hpp; sourceTree = "<group>"; };
+		B578CCBF2F0C1DB0001C25F3 /* NHOMediator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOMediator.hpp; sourceTree = "<group>"; };
+		B578CCC32F0C1F40001C25F3 /* NHOComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOComponent.hpp; sourceTree = "<group>"; };
+		B578CCC62F0C70D7001C25F3 /* NHOComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOComponent.cpp; sourceTree = "<group>"; };
 		B57DECE72E91A58C00D937EF /* TS_NTP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TS_NTP.hpp; sourceTree = "<group>"; };
 		B57DECE82E91A59300D937EF /* TS_NTP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TS_NTP.cpp; sourceTree = "<group>"; };
 		B57E939A28A01253001173CC /* Listerner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Listerner; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -782,6 +788,8 @@
 				B56355E122AEB64200128C04 /* NHOTimer.hpp */,
 				B56D6EA922A255EF00C69E63 /* NHOWiringPi.hpp */,
 				B56355E522AEBFEC00128C04 /* tinyxml2.h */,
+				B578CCBF2F0C1DB0001C25F3 /* NHOMediator.hpp */,
+				B578CCC32F0C1F40001C25F3 /* NHOComponent.hpp */,
 			);
 			path = Inc;
 			sourceTree = "<group>";
@@ -795,6 +803,7 @@
 				B56355E022AEB64200128C04 /* NHOTimer.cpp */,
 				B56D6EA822A255EF00C69E63 /* NHOWiringPi.cpp */,
 				B56355E422AEBFEC00128C04 /* tinyxml2.cpp */,
+				B578CCC62F0C70D7001C25F3 /* NHOComponent.cpp */,
 			);
 			path = Src;
 			sourceTree = "<group>";
@@ -892,11 +901,13 @@
 			files = (
 				B56355E322AEB64200128C04 /* NHOTimer.hpp in Headers */,
 				B547EE74227ECD7100181512 /* NHOImage.hpp in Headers */,
+				B578CCC52F0C1F40001C25F3 /* NHOComponent.hpp in Headers */,
 				B5543ACC23142D4F0001E768 /* InputParser.hpp in Headers */,
 				B550889222A6FB3C00688115 /* NHOSubject.hpp in Headers */,
 				B56D6EAB22A255EF00C69E63 /* NHOWiringPi.hpp in Headers */,
 				B56355E722AEBFEC00128C04 /* tinyxml2.h in Headers */,
 				B5EBFCA0225D2EA90073ABFF /* NHOLOG.hpp in Headers */,
+				B578CCC12F0C1DB0001C25F3 /* NHOMediator.hpp in Headers */,
 				B550889622A6FCDF00688115 /* NHOObserver.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1330,6 +1341,7 @@
 				B547EE73227ECD7100181512 /* NHOImage.cpp in Sources */,
 				B56355E222AEB64200128C04 /* NHOTimer.cpp in Sources */,
 				B56355E622AEBFEC00128C04 /* tinyxml2.cpp in Sources */,
+				B578CCC72F0C70D7001C25F3 /* NHOComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

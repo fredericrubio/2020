@@ -13,10 +13,17 @@
 
 #include "NHOSolenoidValveMessageDispatcher.hpp"
 #include "NHOTemplateBroadcaster.hpp"
+#ifdef ESP32_ADAFRUIT_FEATHER
+#include "Utils/NHOComponent.hpp"
+#include "Utils/NHOMediator.hpp"
+#else
+#include "NHOComponent.hpp"
+#include "NHOMediator.hpp"
+#endif
 
 class NHOSVEmRec;
 
-class NHOSVPingPong : public NHOSolenoidValveMessageDispatcher::NHORegistree {
+class NHOSVPingPong : public NHOSolenoidValveMessageDispatcher::NHORegistree, public NHOComponent {
     
     public :
 //        typedef enum {eUnknown, ePing, ePong, eAckMessage, eNackMessage} NHOSolenoidValvePayload;
@@ -25,9 +32,12 @@ class NHOSVPingPong : public NHOSolenoidValveMessageDispatcher::NHORegistree {
      *
      **/
 #ifdef ESP32_ADAFRUIT_FEATHER
-    NHOSVPingPong(const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, const String role);
+    NHOSVPingPong(  const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
+                    const String role);
 #else
-    NHOSVPingPong(const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, const std::string role);
+    NHOSVPingPong(  const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
+                    const std::string role
+                );
 #endif    
     /**
      *

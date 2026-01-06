@@ -10,6 +10,7 @@
     #include "Utils/NHOLOG.hpp"
     #include "Utils/TS_NTP.hpp"
     #include "Sensor/NHOSolenoidValveData.hpp"
+    #include "NHOSVMediator.hpp"
 #else
     #include "NHOLOG.hpp"
     #include "TS_NTP.hpp"
@@ -20,9 +21,11 @@
  *
  **/
 #ifdef ESP32_ADAFRUIT_FEATHER
-NHOSVPingPong::NHOSVPingPong(const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, const String pRole):
+NHOSVPingPong::NHOSVPingPong(   const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
+                                const String pRole):
 #else
-NHOSVPingPong::NHOSVPingPong(const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, const std::string pRole):
+NHOSVPingPong::NHOSVPingPong(   const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
+                                const std::string pRole):
 #endif
 delayPing(0), delayAck(0), role(pRole) {
     this->broadcast = pBroadcast;
@@ -57,12 +60,12 @@ bool NHOSVPingPong::process(const NHOSolenoidValveMessage* const pMsg) {
             this->broadcast->send(msg->getAddress(), msg);
             delete msg;
 
-            msg = new NHOSolenoidValveMessage(TS_NTP::clockMS());
-            msg->getSoleniodValveData()->setCommand(NHOSolenoidValveData::eClose);
-            this->broadcast->setVal(static_cast<const NHOSolenoidValveMessage*>(msg));
-            this->broadcast->notify();
-            delete msg;
-
+#ifdef ESP32_ADAFRUIT_FEATHER
+            // close the solenoid valve
+            if (this->mediator != nullptr) {
+                ((NHOSVMediator *) this->mediator)->notify(const_cast<NHOComponent*>(static_cast<NHOComponent*>( this )));
+            }
+#endif
             break;
         case NHOSolenoidValveData::ePong :
 //            if msg->load == pong -> stop waiting for an acq

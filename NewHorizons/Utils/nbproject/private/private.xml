@@ -9,6 +9,7 @@
         <group name="New Horizons">
             <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Utils/Inc/NHOWiringPi.hpp</file>
             <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Utils/Src/NHOWiringPi.cpp</file>
+            <file>file:/Volumes/Projects/NewHorizons/2020/NewHorizons/Utils/Inc/NHOSubject.hpp</file>
         </group>
     </open-files>
 </project-private>

@@ -24,6 +24,7 @@ motorL(NULL), motorR(NULL),TC(NULL),timer(NULL), motion(false) {
     timer->attach(this);
     
     NHOWiringPi::WiringPiSetup();
+    NHOWiringPi::WiringPicleanUpGPIO();
 }
 
 /**

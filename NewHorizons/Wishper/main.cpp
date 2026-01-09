@@ -25,10 +25,16 @@ int main(int argc, const char * argv[]) {
             exit(-1);
     }
     bool keepRefreshing = true;
-    const NHOSolenoidValveData* data = new NHOSolenoidValveData(NHOSolenoidValveData::ePong, clock());
+    const NHOSolenoidValveData* data = new NHOSolenoidValveData(NHOSolenoidValveData::eClose, clock());
     NHOSolenoidValveMessage* msg = dynamic_cast<NHOSolenoidValveMessage*>(NHOMessageFactory::build(data));
     msg->computeSize();
     msg->serialize();
+    
+    const NHOSolenoidValveData* data2 = new NHOSolenoidValveData(NHOSolenoidValveData::eOpen, clock());
+    NHOSolenoidValveMessage* msg2 = dynamic_cast<NHOSolenoidValveMessage*>(NHOMessageFactory::build(data2));
+    msg2->computeSize();
+    msg2->serialize();
+
     // = new NHOSolenoidValveMessage(clock());
     bool result = false;
     
@@ -42,6 +48,15 @@ int main(int argc, const char * argv[]) {
         if (! result) {
             NHOFILE_LOG(logERROR) << "Main : error on send message." << std::endl;
         }
+        
+        // sleep 2 second
+        std::this_thread::sleep_for(std::chrono::milliseconds((long long) (2 * 1000)));
+        // send mesg and get status
+        result = dataEmitter->send(msg2);
+        if (! result) {
+            NHOFILE_LOG(logERROR) << "Main : error on send message msg2." << std::endl;
+        }
+
     }
     return 0;
 }

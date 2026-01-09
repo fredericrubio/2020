@@ -18,7 +18,11 @@ class NHOMediator {
     
 public:
     
-    virtual void notify( NHOComponent* component) = 0;
+#ifdef ESP32_ADAFRUIT_FEATHER
+    virtual void notify( NHOComponent* component, String msg) = 0;
+#else
+    virtual void notify( NHOComponent* component, std::string msg) = 0;
+#endif
 
 };
 

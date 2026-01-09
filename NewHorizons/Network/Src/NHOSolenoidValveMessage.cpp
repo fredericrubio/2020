@@ -15,10 +15,13 @@
 
 #ifdef ESP32_ADAFRUIT_FEATHER     
     #include "esp_heap_caps.h"
-#endif    
-
+    #include "Utils/NHOLOG.hpp"
+#else
+    #include "NHOLOG.hpp"
+#endif
+  
 #include "NHOSolenoidValveMessage.hpp"
-#include "NHOLOG.hpp"
+
 
 /**
  * Constructors

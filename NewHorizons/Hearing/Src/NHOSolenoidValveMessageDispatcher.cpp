@@ -84,6 +84,7 @@ bool NHOSolenoidValveMessageDispatcher::dispatch(const NHOSolenoidValveMessage* 
     singleton->mutex.lock();
     for (NHORegistreePayload* registree : singleton->registrees) {
         if (registree->payload == ((NHOSolenoidValveData*) pMsg->getSoleniodValveData())->getCommand()) {
+            NHOFILE_LOG(logDEBUG) << "NHOSolenoidValveMessageDispatcher::dispatch " << registree->payload <<  "\n";
             registree->registree->process(pMsg);
         }
     }

@@ -22,7 +22,6 @@
 #include "NHOSolenoidValveMessageDispatcher.hpp"
 #include "NHOSolenoidValveMessageDispatcher.hpp"
 #include "NHOSVPingPong.hpp"
-#include "NHOTemplateBroadcaster.hpp"
 
 int main(int argc, const char * argv[]) {
     

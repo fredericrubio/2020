@@ -17,14 +17,16 @@
 #endif
 #include "NHOSVPingPong.hpp"
 
+const int NHOSVPingPong::sNbMaxFailures = 10;
+
 /**
  *
  **/
 #ifdef ESP32_ADAFRUIT_FEATHER
-NHOSVPingPong::NHOSVPingPong(   const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
+NHOSVPingPong::NHOSVPingPong(   NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
                                 const String pRole):
 #else
-NHOSVPingPong::NHOSVPingPong(   const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
+NHOSVPingPong::NHOSVPingPong(   NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
                                 const std::string pRole):
 #endif
 delayPing(0), delayAck(0), role(pRole) {
@@ -60,12 +62,6 @@ bool NHOSVPingPong::process(const NHOSolenoidValveMessage* const pMsg) {
             this->broadcast->send(msg->getAddress(), msg);
             delete msg;
 
-#ifdef ESP32_ADAFRUIT_FEATHER
-            // close the solenoid valve
-            if (this->mediator != nullptr) {
-                ((NHOSVMediator *) this->mediator)->notify(const_cast<NHOComponent*>(static_cast<NHOComponent*>( this )));
-            }
-#endif
             break;
         case NHOSolenoidValveData::ePong :
 //            if msg->load == pong -> stop waiting for an acq
@@ -99,19 +95,29 @@ bool NHOSVPingPong::loop() {
     long long currentTime = TS_NTP::clockMS();
 
     if (this->isWaitingForAcknowledgement()) {
+        NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::loop : waiting for acknowledgment.";
         if ((currentTime - this->getLastPingDate()) > this->delayAck) {
-            NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::process  : " << currentTime - this->getLastPingDate() << "ms since last Pong reception.";
+            NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::loop : " << currentTime - this->getLastPingDate() << "ms since last Pong reception.";
             this->setFailedAttempts(this->getFailedAttempts() + 1);
-            if (this->getFailedAttempts() >= 2) {
-                this->setFailedAttempts(0);      
-                this->broadcast->send("From " + this->role + ": no acknowledgment to ping."); 
-                NHOFILE_LOG(logDEBUG) << "==> NHOSVPingPong::loop sendig 'no pong' warning.";
+            NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::loop : number of failures: " << this->getFailedAttempts();
+            if (this->getFailedAttempts() >= NHOSVPingPong::sNbMaxFailures) {
+                this->setFailedAttempts(0);
+                this->setLastPingDate(0);
+                (const_cast< NHOTemplateBroadcaster<NHOSolenoidValveMessage>*>(this->broadcast))->send("From " + this->role + ": no acknowledgment to ping."); 
+                NHOFILE_LOG(logDEBUG) << "==> NHOSVPingPong::loop sending 'no pong' warning.";
+#ifdef ESP32_ADAFRUIT_FEATHER
+                // close the solenoid valve
+                if (this->mediator != nullptr) {
+                    ((NHOSVMediator *) this->mediator)->notify( const_cast<NHOComponent*>(static_cast<NHOComponent*>( this )),
+                                                                "close");
+                }
+#endif
             }
         }
-        // stop waiting otherwise it is going to flood with emails
-        this->setLastPingDate(0);
     }
     else if ((currentTime - this->getLastPingDate()) > this->delayPing) {
+        NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::process : send first ping.";
+
         // build ping message
         const NHOSolenoidValveData* data = new NHOSolenoidValveData(NHOSolenoidValveData::ePing, TS_NTP::clockMS());
         NHOSolenoidValveMessage* msg = dynamic_cast<NHOSolenoidValveMessage*>(NHOMessageFactory::build(data));

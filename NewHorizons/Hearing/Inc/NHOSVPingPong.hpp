@@ -21,21 +21,19 @@
 #include "NHOMediator.hpp"
 #endif
 
-class NHOSVEmRec;
-
 class NHOSVPingPong : public NHOSolenoidValveMessageDispatcher::NHORegistree, public NHOComponent {
     
     public :
-//        typedef enum {eUnknown, ePing, ePong, eAckMessage, eNackMessage} NHOSolenoidValvePayload;
+    static const int sNbMaxFailures;
 
     /**
      *
      **/
 #ifdef ESP32_ADAFRUIT_FEATHER
-    NHOSVPingPong(  const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
+    NHOSVPingPong(  NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
                     const String role);
 #else
-    NHOSVPingPong(  const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
+    NHOSVPingPong(  NHOTemplateBroadcaster<NHOSolenoidValveMessage>* pBroadcast, 
                     const std::string role
                 );
 #endif    
@@ -81,7 +79,7 @@ class NHOSVPingPong : public NHOSolenoidValveMessageDispatcher::NHORegistree, pu
     inline void setDelayAck(unsigned short pValue) {this->delayAck = pValue;};
 
     protected :
-    const NHOTemplateBroadcaster<NHOSolenoidValveMessage>* broadcast;
+    NHOTemplateBroadcaster<NHOSolenoidValveMessage>* broadcast;
     unsigned short  delayPing;
     unsigned short  delayAck;
 #ifdef ESP32_ADAFRUIT_FEATHER

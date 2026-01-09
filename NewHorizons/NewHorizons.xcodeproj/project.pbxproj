@@ -246,6 +246,8 @@
 		B55235142255460300DBE5DA /* NHOSensorParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSensorParameters.hpp; sourceTree = "<group>"; };
 		B55235172255475500DBE5DA /* NHOCameraParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOCameraParameters.cpp; sourceTree = "<group>"; };
 		B55235182255475500DBE5DA /* NHOCameraParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOCameraParameters.hpp; sourceTree = "<group>"; };
+		B55341CA2F11094C00F7B6B9 /* NHOTemplateBroadcaster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateBroadcaster.hpp; sourceTree = "<group>"; };
+		B55341CB2F11094C00F7B6B9 /* NHOTemplateBroadcaster_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateBroadcaster_impl.hpp; sourceTree = "<group>"; };
 		B5543ACB23142D4E0001E768 /* InputParser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputParser.hpp; sourceTree = "<group>"; };
 		B5543ACD23142D540001E768 /* InputParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputParser.cpp; sourceTree = "<group>"; };
 		B5543AD0231430A40001E768 /* NHOMotorParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOMotorParameters.hpp; sourceTree = "<group>"; };
@@ -302,8 +304,6 @@
 		B5ADE9FC2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSolenoidValveMessageDispatcher.hpp; sourceTree = "<group>"; };
 		B5ADE9FE2E75F1AE004186A4 /* NHOSVPingPong.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NHOSVPingPong.cpp; sourceTree = "<group>"; };
 		B5ADE9FF2E75F1AE004186A4 /* NHOSVPingPong.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NHOSVPingPong.hpp; sourceTree = "<group>"; };
-		B5ADEA042E7DEDA0004186A4 /* NHOTemplateBroadcaster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateBroadcaster.hpp; sourceTree = "<group>"; };
-		B5ADEA052E7DF03C004186A4 /* NHOTemplateBroadcaster_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOTemplateBroadcaster_impl.hpp; sourceTree = "<group>"; };
 		B5B0958722ADBFD900F71B80 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
 		B5B1E98E28C3E36800AA29D4 /* NHOHallEffectData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NHOHallEffectData.cpp; sourceTree = "<group>"; };
 		B5B1E99028C3E37000AA29D4 /* NHOHallEffectData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NHOHallEffectData.hpp; sourceTree = "<group>"; };
@@ -737,9 +737,9 @@
 		B5ADE9F92E73488D004186A4 /* Inc */ = {
 			isa = PBXGroup;
 			children = (
+				B55341CB2F11094C00F7B6B9 /* NHOTemplateBroadcaster_impl.hpp */,
+				B55341CA2F11094C00F7B6B9 /* NHOTemplateBroadcaster.hpp */,
 				B57DECE72E91A58C00D937EF /* TS_NTP.hpp */,
-				B5ADEA042E7DEDA0004186A4 /* NHOTemplateBroadcaster.hpp */,
-				B5ADEA052E7DF03C004186A4 /* NHOTemplateBroadcaster_impl.hpp */,
 				B5ADE9FF2E75F1AE004186A4 /* NHOSVPingPong.hpp */,
 				B5ADE9FC2E7348C2004186A4 /* NHOSolenoidValveMessageDispatcher.hpp */,
 			);

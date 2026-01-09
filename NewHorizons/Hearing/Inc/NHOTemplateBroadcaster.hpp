@@ -28,18 +28,18 @@
 #include <thread>
 
 #ifdef ESP32_ADAFRUIT_FEATHER
-#include "HTTPClient.h"
-#include "UrlEncode.h"
-#include "AsyncUDP.h"
-#include "Utils/NHOSubject.hpp"
-#include "Network/NHOMessage.hpp"
-#include "Utils/NHOLOG.hpp"
-#include "Utils/TS_NTP.hpp"
+    #include "HTTPClient.h"
+    #include "UrlEncode.h"
+    #include "AsyncUDP.h"
+    #include "Utils/NHOSubject.hpp"
+    #include "Network/NHOMessage.hpp"
+    #include "Utils/NHOLOG.hpp"
+    #include "Utils/TS_NTP.hpp"
 #else
-#include "NHOSubject.hpp"
-#include "NHOMessage.hpp"
-#include "NHOLOG.hpp"
-#include "TS_NTP.hpp"
+    #include "NHOSubject.hpp"
+    #include "NHOMessage.hpp"
+    #include "NHOLOG.hpp"
+    #include "TS_NTP.hpp"
 #endif
 
 
@@ -47,7 +47,7 @@ template <class T>
 class NHOTemplateBroadcaster: public NHOSubject<T> {
     
 public:
-    NHOTemplateBroadcaster(const int pConnexionPort) {
+    NHOTemplateBroadcaster(const int pConnexionPort) : lastWhatsappSendTime(0) {
         this->port = pConnexionPort;
         this->message = new T(TS_NTP::clockMS());
         this->keepGoing = true;
@@ -77,9 +77,9 @@ public:
      * Emit one.
      **/
 #ifdef ESP32_ADAFRUIT_FEATHER
-    virtual bool send(const IPAddress*  pAddress, const  NHOMessage  *pMsg) const;
+    virtual bool send(const IPAddress*  pAddress, const  NHOMessage  * const pMsg) ;
 #else
-    virtual bool send(const sockaddr*  address, const  NHOMessage  *) const;
+    virtual bool send(const sockaddr*  address, const  NHOMessage  *) ;
 #endif
 
     /**
@@ -91,11 +91,11 @@ public:
 
     /*
     * Send a message thanks to http api
-    */    
+    */
 #ifdef ESP32_ADAFRUIT_FEATHER
-    void send(const String message) const;
+    void send(const String message) ;
 #else
-    void send(const std::string message) const;
+    void send(const std::string message) ;
 #endif
 
 protected:
@@ -110,7 +110,7 @@ protected:
 #endif
     T* message;
     bool keepGoing;
-
+    long long lastWhatsappSendTime;
 };
 
 #include "NHOTemplateBroadcaster_impl.hpp"

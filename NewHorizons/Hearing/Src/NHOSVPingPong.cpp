@@ -44,6 +44,7 @@ NHOSVPingPong::~NHOSVPingPong() {
  *
  **/
 bool NHOSVPingPong::process(const NHOSolenoidValveMessage* const pMsg) {
+
     NHOSolenoidValveMessage* msg = NULL;
     // NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::process : " << ((NHOSolenoidValveData*) pMsg->getSoleniodValveData())->getType() << "\n";
     // NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::process : " << ((NHOSolenoidValveData*) pMsg->getSoleniodValveData())->getCommand() << "\n";
@@ -61,7 +62,6 @@ bool NHOSVPingPong::process(const NHOSolenoidValveMessage* const pMsg) {
 #endif
             this->broadcast->send(msg->getAddress(), msg);
             delete msg;
-
             break;
         case NHOSolenoidValveData::ePong :
 //            if msg->load == pong -> stop waiting for an acq
@@ -97,9 +97,9 @@ bool NHOSVPingPong::loop() {
     if (this->isWaitingForAcknowledgement()) {
         NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::loop : waiting for acknowledgment.";
         if ((currentTime - this->getLastPingDate()) > this->delayAck) {
-            NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::loop : " << currentTime - this->getLastPingDate() << "ms since last Pong reception.";
+            // NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::loop : " << currentTime - this->getLastPingDate() << "ms since last Pong reception.";
             this->setFailedAttempts(this->getFailedAttempts() + 1);
-            NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::loop : number of failures: " << this->getFailedAttempts();
+            // NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::loop : number of failures: " << this->getFailedAttempts();
             if (this->getFailedAttempts() >= NHOSVPingPong::sNbMaxFailures) {
                 this->setFailedAttempts(0);
                 this->setLastPingDate(0);
@@ -116,8 +116,7 @@ bool NHOSVPingPong::loop() {
         }
     }
     else if ((currentTime - this->getLastPingDate()) > this->delayPing) {
-        NHOFILE_LOG(logDEBUG) << "NHOSVPingPong::process : send first ping.";
-
+        // NHOFILE_LOG(logDEBUG) << "===> NHOSVPingPong::process : send first ping.";
         // build ping message
         const NHOSolenoidValveData* data = new NHOSolenoidValveData(NHOSolenoidValveData::ePing, TS_NTP::clockMS());
         NHOSolenoidValveMessage* msg = dynamic_cast<NHOSolenoidValveMessage*>(NHOMessageFactory::build(data));
@@ -135,6 +134,7 @@ bool NHOSVPingPong::loop() {
 
             delete msg;
         }
+        delete data;
     }
     else {
         // kind of reset of the counter

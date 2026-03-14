@@ -82,9 +82,10 @@ bool NHOSolenoidValveMessageDispatcher::dispatch(const NHOSolenoidValveMessage* 
     
     //  NHOFILE_LOG(logDEBUG) << "NHOSubject::notify <"<< observers.size()<<">\n";
     singleton->mutex.lock();
+    // NHOFILE_LOG(logDEBUG) << "NHOSolenoidValveMessageDispatcher::dispatch received " << ((NHOSolenoidValveData*) pMsg->getSoleniodValveData())->getCommand() <<  "\n";
     for (NHORegistreePayload* registree : singleton->registrees) {
         if (registree->payload == ((NHOSolenoidValveData*) pMsg->getSoleniodValveData())->getCommand()) {
-            NHOFILE_LOG(logDEBUG) << "NHOSolenoidValveMessageDispatcher::dispatch " << registree->payload <<  "\n";
+            // NHOFILE_LOG(logDEBUG) << "NHOSolenoidValveMessageDispatcher::dispatch dispatching " << registree->payload <<  "\n";
             registree->registree->process(pMsg);
         }
     }

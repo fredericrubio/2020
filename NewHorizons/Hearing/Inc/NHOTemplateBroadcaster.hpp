@@ -99,7 +99,8 @@ public:
 #endif
 
 protected:
-    unsigned int port;
+    unsigned int    port;
+    size_t          addressSize;
 #ifdef ESP32_ADAFRUIT_FEATHER
     AsyncUDP udp;
     std::mutex mutex;

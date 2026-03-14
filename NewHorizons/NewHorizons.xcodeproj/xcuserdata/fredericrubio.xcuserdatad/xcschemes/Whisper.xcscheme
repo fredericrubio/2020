@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B5ADE9D72E6A2D40004186A4"
-               BuildableName = "Wishper"
-               BlueprintName = "Wishper"
+               BuildableName = "Whisper"
+               BlueprintName = "Whisper"
                ReferencedContainer = "container:NewHorizons.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,7 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
+      language = "fr"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -34,8 +34,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5ADE9D72E6A2D40004186A4"
-            BuildableName = "Wishper"
-            BlueprintName = "Wishper"
+            BuildableName = "Whisper"
+            BlueprintName = "Whisper"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -58,8 +58,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5ADE9D72E6A2D40004186A4"
-            BuildableName = "Wishper"
-            BlueprintName = "Wishper"
+            BuildableName = "Whisper"
+            BlueprintName = "Whisper"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -77,8 +77,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5ADE9D72E6A2D40004186A4"
-            BuildableName = "Wishper"
-            BlueprintName = "Wishper"
+            BuildableName = "Whisper"
+            BlueprintName = "Whisper"
             ReferencedContainer = "container:NewHorizons.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

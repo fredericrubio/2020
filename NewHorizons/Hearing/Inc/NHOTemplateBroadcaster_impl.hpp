@@ -6,6 +6,9 @@
 //  Copyright © 2019 Frédéric Rubio. All rights reserved.
 //
 
+#ifndef ESP32_ADAFRUIT_FEATHER
+    #include <arpa/inet.h>
+#endif
 /**
 * Initialize network stuff.
 **/
@@ -34,80 +37,35 @@ bool NHOTemplateBroadcaster<T>::initiate(){
         });
     }
 #else
-    // local variables
-    struct addrinfo hints, *servinfo, *p;
-    int rv;
-    //    int broadcast = 1;
-    //    socklen_t optlen = sizeof(broadcast);
-
-    memset(&hints, 0, sizeof hints);
-    hints.ai_family = AF_INET;//AF_UNSPEC; // set to AF_INET to force IPv4
-    hints.ai_socktype = SOCK_DGRAM;
-    hints.ai_flags = AI_PASSIVE; // use my IP
-
-    if ((rv = getaddrinfo(NULL, std::to_string(this->port).c_str(), &hints, &servinfo)) != 0) {
-        NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate getaddrinfo:" << gai_strerror(rv) << std::endl;
+    struct sockaddr_in addr;
+    int broadcastEnable = 1;
+    
+    // Création du socket UDP
+    this->emrecSocket = socket(AF_INET, SOCK_DGRAM, 0);
+    if (this->emrecSocket < 0) {
+        NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate failed to create socket." << std::endl;
         return false;
     }
-
-    // loop through all the results and bind to the first we can
-    for (p = servinfo; p != NULL; p = p->ai_next) {
-        this->emrecSocket = socket(p->ai_family,
-        p->ai_socktype,
-        p->ai_protocol);
-        if (this->emrecSocket == -1) {
-            NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate socket (socket):" << strerror(errno) << std::endl;
-            continue;
-        }
-        // to allow address reuse (in case of of two close execution.
-        int option = 1;
-        if (setsockopt(this->emrecSocket, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option)) == -1) {
-            NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate socket (SO_REUSEADDR):" << strerror(errno) << std::endl;
-            continue;
-        }
-        option = 1;
-        if (setsockopt(this->emrecSocket, SOL_SOCKET, SO_REUSEPORT, &option, sizeof(option)) == -1) {
-            NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate socket (SO_REUSEPORT):" << strerror(errno) << std::endl;
-            continue;
-        }
-        // a security based on time
-        struct timeval timeout;
-        timeout.tv_sec = 100;
-        timeout.tv_usec = 0;
-        if (setsockopt (this->emrecSocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout)) < 0) {
-            NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate socket (SO_RCVTIMEO):" << strerror(errno) << std::endl;
-            continue;
-        }
-
-        option = 1;
-        if (setsockopt(this->emrecSocket, SOL_SOCKET, SO_BROADCAST, &option, sizeof(option)) == -1) {
-            NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate socket (SO_BROADCAST):" << strerror(errno) << std::endl;
-            continue;
-        }
-
-        if (bind(this->emrecSocket, p->ai_addr, p->ai_addrlen) == -1) {
-        NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate bind:" << strerror(errno) << std::endl;
-            close(this->emrecSocket);
-            continue;
-        }
-
-        linger lin;
-        lin.l_onoff = 1;
-        lin.l_linger = 0;
-        if (setsockopt( this->emrecSocket,
-                        SOL_SOCKET,
-                        SO_LINGER,
-                        (const char *)&lin,
-                        sizeof(lin)) == -1) {
-            NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate socket:" << strerror(errno) << std::endl;
-            continue;
-        }
-
-        break;
+    
+    // Autoriser le broadcast
+    if (setsockopt(this->emrecSocket, SOL_SOCKET, SO_BROADCAST,
+                   &broadcastEnable, sizeof(broadcastEnable)) < 0) {
+        NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate failed to set SO_BROADCAST." << std::endl;
+        close(this->emrecSocket);
+        return false;
     }
-
-    if (p == NULL) {
-        NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate failed to bind socket." << std::endl;
+    
+    // Configuration de l'adresse locale
+    memset(&addr, 0, sizeof(addr));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(this->port);
+    addr.sin_addr.s_addr = INADDR_ANY;
+    this->addressSize = sizeof(addr);
+    
+    // Bind pour pouvoir recevoir
+    if (bind(this->emrecSocket, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
+        NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::initiate failed to bind." << std::endl;
+        close(this->emrecSocket);
         return false;
     }
     this->thread = new std::thread(&NHOTemplateBroadcaster::receive, std::ref(*this));
@@ -136,24 +94,24 @@ bool NHOTemplateBroadcaster<T>::terminate() {
 template <class T>
 #ifdef ESP32_ADAFRUIT_FEATHER
 bool NHOTemplateBroadcaster<T>::receive(AsyncUDPPacket pPacket){
-NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(receive(AsyncUDPPacket): waiting for lock." << std::endl;
+//NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(receive(AsyncUDPPacket): waiting for lock." << std::endl;
 this->mutex.lock();
     this->message->setData((int) pPacket.length(), (char *) pPacket.data());
     this->message->setAddress(pPacket.remoteIP());
     this->message->unserialize();
     this->setVal(this->message);
     this->mutex.unlock();
-NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(receive(AsyncUDPPacket): lock released." << std::endl;
+//NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(receive(AsyncUDPPacket): lock released." << std::endl;
 this->notify();
 #else
 bool NHOTemplateBroadcaster<T>::receive(){
     long numbytes;
     struct sockaddr_storage their_addr;
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive : waiting for lock." << std::endl;
+//    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive : waiting for lock." << std::endl;
 this->mutex.lock();
     unsigned long size = this->message->getSize();
 this->mutex.unlock();
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive : lock released." << std::endl;
+//    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive : lock released." << std::endl;
     char* buf = new char[size];
     socklen_t addr_len;
     
@@ -169,14 +127,14 @@ this->mutex.unlock();
         }
         else {
             // check we do not receive a broadcast we sent (same as EPS32)
-            NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive : receive waiting for lock." << std::endl;
+//            NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive : receive waiting for lock." << std::endl;
 this->mutex.lock();
             this->message->setData((int) numbytes, buf);
             this->message->setAddress((struct sockaddr *) &their_addr);
             this->message->unserialize();
             this->setVal(this->message);
 this->mutex.unlock();
-            NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive : receive lock released." << std::endl;
+//            NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive : receive lock released." << std::endl;
             this->notify();
             if (numbytes > 0) {
                 NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::receive message type : " <<     NHOMessage::getType(this->message->getData());
@@ -210,11 +168,11 @@ bool NHOTemplateBroadcaster<T>::send(const IPAddress*  pAddress, const  NHOMessa
     size_t lWrittenBytes = 0;
     AsyncUDPMessage message ; 
     message.print(pMsg->getData());
-NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*, const  NHOMessage): waiting for lock." << std::endl;
+//NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*, const  NHOMessage): waiting for lock." << std::endl;
 this->mutex.lock();
     lWrittenBytes = ((AsyncUDP )this->udp).sendTo(message, *pAddress, this->getEmissionPort());
 this->mutex.unlock();
-NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*, const  NHOMessage): lock released." << std::endl;
+//NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*, const  NHOMessage): lock released." << std::endl;
     NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*  pAddress, const  NHOMessage* const pMsg) done\n";
 
     if (lWrittenBytes != pMsg->getSize()) {
@@ -240,7 +198,7 @@ bool NHOTemplateBroadcaster<T>::send(const sockaddr*  pAddress, const  NHOMessag
     
     // send message
     size_t lWrittenBytes = 0;
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*, const  NHOMessage): waiting for lock." << std::endl;
+//    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*, const  NHOMessage): waiting for lock." << std::endl;
 this->mutex.lock();
     lWrittenBytes = sendto(emrecSocket,
                            pMsg->getData(),
@@ -249,7 +207,7 @@ this->mutex.lock();
                            pAddress,
                            optlen);
 this->mutex.unlock();
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*, const  NHOMessage): lock released." << std::endl;
+//    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const IPAddress*, const  NHOMessage): lock released." << std::endl;
     if (lWrittenBytes != pMsg->getSize()) {
         NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::send: Sendig message failed <" << lWrittenBytes << ">"
         << " vs <" << pMsg->getSize() << ">" << std::endl;
@@ -283,11 +241,11 @@ bool NHOTemplateBroadcaster<T>::send(const NHOMessage *  pMsg) {
 
     // send message
     size_t lWrittenBytes = 0; 
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const NHOMessage *): waiting for lock." << std::endl;
+//    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const NHOMessage *): waiting for lock." << std::endl;
  this->mutex.lock();
     lWrittenBytes = this->udp.broadcastTo((uint8_t *) pMsg->getData(), (size_t) pMsg->getSize(), this->getEmissionPort());
  this->mutex.unlock();
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const NHOMessage *): lock released." << std::endl;
+//    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const NHOMessage *): lock released." << std::endl;
     if (lWrittenBytes != pMsg->getSize()) {
         NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::send: Sendig message failed <" << (unsigned int) lWrittenBytes << ">"
         << " vs <" << pMsg->getSize() << ">" << std::endl;
@@ -305,31 +263,24 @@ bool NHOTemplateBroadcaster<T>::send(const NHOMessage *  pMsg) {
         return false;
     }
     
-    // configure for emission
-    struct sockaddr_in lInfoServAddr;
-    struct hostent* he = gethostbyname("255.255.255.255");
-    // broadcast => .255 in the following address
-    //    struct hostent* he = gethostbyname("192.168.0.255");
-    //    192.168.1.32
-    bzero((char *) &lInfoServAddr, sizeof(lInfoServAddr));
-    lInfoServAddr.sin_family = AF_INET;
-    //    lInfoServAddr.sin_addr.s_addr = INADDR_ANY; // INADDR_BROADCAST //? sure about that ?
-    lInfoServAddr.sin_addr = *((struct in_addr *)he->h_addr);
-    lInfoServAddr.sin_port = htons(emrecSocket);
-    socklen_t optlen = sizeof(lInfoServAddr);
+    // Adresse de broadcast
+    struct sockaddr_in broadcastAddr;
+    memset(&broadcastAddr, 0, sizeof(broadcastAddr));
+    broadcastAddr.sin_family = AF_INET;
+    broadcastAddr.sin_port = htons(this->port);
+    broadcastAddr.sin_addr.s_addr = inet_addr("255.255.255.255");
     
     // send message
     size_t lWrittenBytes = 0;
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const NHOMessage *): waiting for lock." << std::endl;
+    //    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const NHOMessage *): waiting for lock." << std::endl;
 this->mutex.lock();
     lWrittenBytes = sendto(emrecSocket,
                            pMsg->getData(),
                            pMsg->getSize(),
                            0,
-                           (struct sockaddr *)&lInfoServAddr,
-                           optlen);
-this->mutex.unlock();
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send(const NHOMessage *): lock released." << std::endl;
+                           (struct sockaddr *)&broadcastAddr,
+                           this->addressSize);
+  this->mutex.unlock();
     if (lWrittenBytes != pMsg->getSize()) {
         NHOFILE_LOG(logERROR) << "NHOTemplateBroadcaster::send: Sendig message failed <" << lWrittenBytes << ">"
         << " vs <" << pMsg->getSize() << ">" << std::endl;
@@ -386,6 +337,6 @@ template <class T>
 #else
 template <class T>
 void NHOTemplateBroadcaster<T>::send(const std::string message) {
-    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send sendig warning.";
+    NHOFILE_LOG(logDEBUG) << "NHOTemplateBroadcaster::send sending whatsapp warning.";
 #endif
 }
